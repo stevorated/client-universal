@@ -4,7 +4,8 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "webpack && node build/server.js",
+    "start": "node build/server.js",
+    "build": "webpack",
     "dev": "env-cmd npm-run-all --parallel webpack:*",
     "webpack:build": "webpack --watch",
     "webpack:start": "nodemon --watch build --exec node build/server.js"
