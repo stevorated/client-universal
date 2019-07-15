@@ -1,0 +1,38 @@
+import { GET_MA_DETAILS, GET_ME, GET_USERS, GET_MA_POSTS } from '../../Apollo/Queries/'
+import { LOGIN_USER_MUT, LOGOUT_USER } from '../../Apollo/Mutaions'
+
+export const fetchUsers = () => async (dispatch, getState, client) => {
+  const {data} = await client.query({
+    query: GET_USERS
+  })
+  dispatch({
+    type: 'FETCH_USERS',
+    payload: data
+  })
+}
+
+export const fetchCurrentUser = () => async (dispatch, getState, client) => {
+  // console.log('fetchCurrentUser')
+  const res = await client.query({
+    query: GET_ME,
+
+  })
+  const {data} = res
+  console.log(res)
+  // console.log(data)
+  dispatch({
+    type: 'FETCH_CURRENT_USER', 
+    payload: data
+  })
+}
+
+export const fetchMyDetails = () => async (dispatch, getState, client) => {
+  const { data } = await client.query({
+    query: GET_MA_DETAILS,
+    notifyOnNetworkStatusChange
+  })
+  dispatch({
+    type: FETCH_MY_DETAILS, 
+    payload: data
+  })
+}
