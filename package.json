@@ -7,7 +7,7 @@
     "start": "node build/server.js",
     "build": "webpack",
     "dev": "env-cmd npm-run-all --parallel webpack:*",
-    "webpack:build": "webpack",
+    "webpack:build": "env-cmd webpack",
     "webpack:start": "nodemon --watch build --exec node build/server.js"
   },
   "dependencies": {
