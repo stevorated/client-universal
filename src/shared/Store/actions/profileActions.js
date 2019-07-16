@@ -12,7 +12,7 @@ export const clearUsersPosts = () => async (dispatch, getState, client) => {
 }
 
 export const clearUsersPostsAndRefetch = (id) => async (dispatch, getState, client) => {
-  // console.log(id)
+
   dispatch({
     type: 'CLEAR_PROFILE_POSTS'
   })

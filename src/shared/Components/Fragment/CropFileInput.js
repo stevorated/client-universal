@@ -9,7 +9,6 @@ import ReactCrop from 'react-image-crop'
 import '../../../assets/css/ReactCrop.css'
 
 function CropFileInput(props) {
-  // console.log(props.fileData, props.crop)
   const handleOnCrop = (crop) =>  {
     props.setCrop(crop)
   }
@@ -41,7 +40,6 @@ function CropFileInput(props) {
           props.setError('')
           props.setFileData({ file: rawFile, size: sizeString })
           const preview = URL.createObjectURL(rawFile)
-          // console.log(preview)
           props.setPreview(preview)
           props.setValid(true)
         }

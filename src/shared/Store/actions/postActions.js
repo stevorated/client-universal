@@ -50,7 +50,7 @@ export const createPost = (data) => async (dispatch, getState, client) => {
 } 
 
 export const deletePostAction = (id) => async (dispatch, getState, client) => {
-  // console.log(id)
+  
   await dispatch({
     type: 'DELETE_POST',
     payload: id

@@ -15,7 +15,6 @@ function SearchBarSuggest(props) {
     
     if(props.choices && props.choices.length ) {
       const fullName = `${props.choices[props.pointer].fname} ${props.choices[props.pointer].lname}`
-      // console.log(fullName)
       if(fullName !== e.target.text) {
         props.clearUsersPostsAndRefetch(props.choices[props.pointer].id)
       }
