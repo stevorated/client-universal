@@ -4,9 +4,10 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all -s build serve",
+    "start": "env-cmd npm-run-all -s build serve",
+    "start:dev": "env-cmd -f .dev.env npm-run-all -s build serve",
     "build": "env-cmd webpack --progress",
-    "serve": "node build/server.js",
+    "serve": "env-cmd node build/server.js",
     "dev": "env-cmd -f .dev.env npm-run-all --parallel dev:*",
     "dev:build": "env-cmd -f .dev.env webpack  --watch",
     "dev:start": "env-cmd -f .dev.env nodemon --watch build --exec node build/server.js",
