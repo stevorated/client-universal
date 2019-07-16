@@ -10,9 +10,6 @@
     "dev": "env-cmd -f .dev.env npm-run-all --parallel dev:*",
     "dev:build": "env-cmd -f .dev.env webpack  --watch",
     "dev:start": "env-cmd -f .dev.env nodemon --watch build --exec node build/server.js",
-    "start:stage": "env-cmd -f .dev.env npm-run-all -s stage:build stage:serve",
-    "stage:build": "env-cmd -f .dev.env webpack --progress",
-    "stage:serve": "env-cmd -f .dev.env nodemon node build/server.js",
     "test": "jest",
     "test:dev": "jest --watchAll"
   },
