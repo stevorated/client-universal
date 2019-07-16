@@ -21,7 +21,6 @@ const QueryMorePosts = (props) => {
     // refetchQueries={[{query:GET_MA_POSTS, variables:{limit: 10, skip: 0 }}]}
     >
     {({ loading, error, data, fetchMore }) => {
-      // console.log(prev)
       const handleFatchMore = () => {
         fetchMore({
           variables: {

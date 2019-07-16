@@ -6,7 +6,6 @@ const document = document || null
 export default () => {
   if(document) {
     const portalRoot = document.getElementById('portal')
-    // console.log(portalRoot)
     class Portal extends Component {
   
       constructor() {
@@ -16,9 +15,7 @@ export default () => {
       }
     
       componentDidMount = () => {
-        // console.log('modal mounted')
         this.el = document.createElement('div')
-        // console.log(this.el, 'fsdgdfgfdg')
         portalRoot.append(this.el)
       }
     

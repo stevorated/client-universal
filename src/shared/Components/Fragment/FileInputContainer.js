@@ -8,7 +8,6 @@ import { getCroppedImg } from '../../Utils'
 
 function FileInputContainer(props) {
   const reactCropPreview = document.getElementsByClassName('ReactCrop__image')
-  // console.log(reactCropPreview)
   const [valid, setValid] = useState(false)
   const [error, setError] = useState('')
   const [fileData, setFileData] = useState({})
@@ -19,25 +18,24 @@ function FileInputContainer(props) {
     height: 100,
     aspect: props.round ? 1 / 1 : 16 / 9
   })
-  // console.log(crop)
+
   const handleSubmitAvatar = async (e) => {
     e.preventDefault()
     if (valid && reactCropPreview.length > 0) {
       const previewWidth = reactCropPreview[0].width
       const previewHeight = reactCropPreview[0].height
-      // console.log(previewWidth, previewHeight)
-      // console.log()
+
       setValid(false)
       const img = new Image()
       img.src = preview
-      // console.log(img)
+
       img.onload = (e) => {
         const image = e.target
         const { unit, height, width, aspect, x, y } = crop
-        // console.log(width)
+
         const scaleX = Math.round((image.naturalWidth / previewWidth)*10000)
         const scaleY = Math.round((image.naturalHeight / previewHeight)*10000)
-        // console.log(scaleX, x, scaleX* x, image.naturalWidth )
+
         const data = {
           ...fileData,
           unit,
@@ -49,18 +47,11 @@ function FileInputContainer(props) {
           scaleX,
           scaleY
         }
-        // console.log(data)
+
         props.uploadFile(data)
       }
-
-
-
-      // console.log(data)
-
       props.toggle()
-
-      // const div = document.getElementById('divik')
-      // div.append(img)
+      
     } else {
       setValid(false)
     }

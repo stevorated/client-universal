@@ -25,15 +25,12 @@ const FeedScrollQuery = (props) => {
     >
       {({ loading, error, data, fetchMore }) => {
         const handleFatchMore = () => {
-          // console.log(props)
+
           fetchMore({
             variables: {
               skip: props.feed.length
             },
             updateQuery: (prev, { fetchMoreResult }) => {
-              // console.log(
-              //   [...prev.getMyPosts, ...fetchMoreResult.getMyPosts]
-              // )
               if (!fetchMoreResult) return prev
               props.fetchFeed(
                 [...fetchMoreResult.getPosts]

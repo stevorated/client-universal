@@ -14,10 +14,7 @@ import Layout from '../shared/Routes/Layout'
 import '../assets/css/animate.css'
 import '../assets/css/bootstrap.min.css'
 import '../assets/css/style.css'
-// import json from '../../webConfig.json'
-// console.log(__url__)
-// console.log(json.api)
-// console.log(process.env.GRAPH_URL)
+
 const store = createStore(
   reducers,
   window.__INITIAL_STATE__,

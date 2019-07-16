@@ -12,14 +12,11 @@ export const fetchUsers = () => async (dispatch, getState, client) => {
 }
 
 export const fetchCurrentUser = () => async (dispatch, getState, client) => {
-  // console.log('fetchCurrentUser')
-  const res = await client.query({
+
+  const {data} = await client.query({
     query: GET_ME,
 
   })
-  const {data} = res
-  console.log(res)
-  // console.log(data)
   dispatch({
     type: 'FETCH_CURRENT_USER', 
     payload: data

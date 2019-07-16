@@ -39,7 +39,7 @@ function RegisterForm ({state, handleFormState, register, errors}) {
         }})
       }
     } catch (error) {
-      // console.log(error)
+      // do nothing
     }
   }
   const handleChangeInput = (e) => {

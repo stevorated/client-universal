@@ -12,9 +12,7 @@ function FileInput(props) {
   const [ crop, setCrop ] = useState({aspect: 1/1})
 
   const handleOnCrop = (crop) =>  {
-    // console.log(crop)
     setCrop(crop)
-    // console.log(crop)
   }
   const onDrop = useCallback(async (acceptedFiles) => {
     props.setValid(false)
@@ -65,7 +63,6 @@ function FileInput(props) {
   // DROPZONE HOOK
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
   const borderRadius = props.round ? '100%' : 'none'
-  // console.log(imgSrc)
   return (
     <div className="text-center">
       <div {...getRootProps()} className="" style={{ cursor: 'pointer'}}>

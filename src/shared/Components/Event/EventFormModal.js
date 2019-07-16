@@ -7,6 +7,7 @@ import { black, orange, elevation, white } from '../../Utils'
 import EventForm from './EventForm'
 import moment from 'moment'
 import { RoundButton, SquareButton } from '../../Elements'
+
 class EventFormModal extends Component {
   constructor(props) {
     super(props)
@@ -41,13 +42,11 @@ class EventFormModal extends Component {
   }
 
   handleFormState = (data) => {
-    // console.log(data)
     this.setState(data)
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    // console.log(this.state)
     const { 
       fbId,
       name,
@@ -85,8 +84,6 @@ class EventFormModal extends Component {
       endTime
     }})
     this.setState({modal:false})
-    // props.handleFormState({imageValid: valid, imageData: fileData})
-    // console.log(props.state)
   }
 
   modalBtn = this.props.round ? (
@@ -142,14 +139,10 @@ export default EventFormModal
 
 
 const StyledIcon = styled(FontAwesomeIcon)`
-/* font-size: .7rem; */
 margin: 0 0 0 .6rem;
 
 color: ${white};
 `
 const StyledIconRound = styled(FontAwesomeIcon)`
-/* font-size: .7rem; */
-/* margin: 0 0 0 .6rem; */
-/* margin: 1rem; */
 color: ${white};
 `

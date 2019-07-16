@@ -30,10 +30,7 @@ app.use(cors())
 app.use(express.static('build/public'))
 
 app.get('*', async (req, res) => {
-  console.log(req.headers)
-  // console.log(req.header('Cookie'), ' = req.header')
   const linkHttp = createUploadLink({
-    // uri: 'https://wisdomofdecrowd.com/graphql', 
     uri: config.url, 
     credentials: 'include',
     headers: {
@@ -43,13 +40,11 @@ app.get('*', async (req, res) => {
   })
 
   const errorLink = onError(({ graphQLErrors, networkError, operation, forward, response }) => {
-    // console.log(networkError)
     if (graphQLErrors) {
       // console.log(graphQLErrors)
       for (let err of graphQLErrors) {
         switch (err.extensions.code) {
           case 'UNAUTHENTICATED':
-            // console.log(err.message)
         }
       }
     }
@@ -72,9 +67,7 @@ app.get('*', async (req, res) => {
       return route.loadData ? route.loadData(store) : null
     }).map(promise => {
       if (promise) {
-        // console.log(promise)
         return new Promise((resolve, rej) => {
-          // console.log(resolve)
           promise.then(resolve).catch(resolve)
         })
       }
@@ -100,7 +93,3 @@ app.listen(PORT, (req, res) => {
   
 })
 console.log('is Browser? ',__isBrowser__)
-
-
-// console.log(__url__)
-// console.log(__dirname)

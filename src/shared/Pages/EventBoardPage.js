@@ -40,7 +40,7 @@ class EventBoardPage extends Component {
           </div>
           <h3 className="sigmar-one text-center">- add new events -</h3>
           <div className="d-flex justify-content-center my-5">
-          <EventFormContainer className="mx-2" round={false} buttonLabel="Add Event" buttonSize="sm" />
+          <EventFormContainer className="text-center" round={false} buttonLabel="Add Event" buttonSize="sm" />
           <SquareButton size="sm" style={{ background: '#3b5998' }} className="mx-2">From Facebook</SquareButton>
           </div>
           

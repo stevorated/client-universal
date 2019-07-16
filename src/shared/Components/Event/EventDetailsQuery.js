@@ -10,8 +10,6 @@ import styled from 'styled-components'
 import EventDetails from './EventDetails'
 
 const EventDetailsQuery = (props) => {
-  // const skip = props.events ? 1 : 0
-  // console.log(props.id)
   return (
     <Query
       // fetchPolicy='network-only' // IMPORTANT
@@ -22,10 +20,8 @@ const EventDetailsQuery = (props) => {
           props.fetchEvent(getEvents)
         }
       }
-    // refetchQueries={[{query:GET_MA_POSTS, variables:{limit: 10, skip: 0 }}]}
     >
       {({ loading, error, data, fetchMore }) => {
-        // console.log(data)
         if (loading) return <Loading />
         if (error) return <Loading />
         const { id } = data.getEvents[0]

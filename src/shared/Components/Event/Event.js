@@ -9,7 +9,6 @@ import { black, elevation, transition, timeAgo } from '../../Utils'
 import config from '../../../../webConfig.json'
 
 function Event(props) {
-  // console.log(props)
   const [redirect, setRedirect] = useState(false)
   return redirect ? <Redirect to={`/event/${props.id}`} /> : (
     <StyledCard className="p-1" onClick={ ()=>setRedirect(true) }>

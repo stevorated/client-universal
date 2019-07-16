@@ -30,12 +30,13 @@ class PreferencesPage extends Component {
 
   render() {
     return(
-      <Row className="">
+      <Row className="text-center">
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatLeft lg="3">
           <Menu />
         </FloatLeft>
         <Col lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
+          <h1>PREFS PAGE</h1>
         </Col>
         <Col lg="3" className="order-2 order-lg-3 mt-2 animated fadeIn">
         </Col>

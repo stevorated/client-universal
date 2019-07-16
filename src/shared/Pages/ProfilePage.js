@@ -19,7 +19,6 @@ class ProfilePage extends Component {
   componentDidMount() {
     // if first load load only 5 posts (total 10)
     const postCount = this.props.posts.length || 5
-    console.log('component mounted',postCount)
     this.props.fetchMyPosts(postCount)
   }
   

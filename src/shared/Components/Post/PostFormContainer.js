@@ -41,7 +41,6 @@ class PostFormContainer extends Component {
             {(createPost, {loading, error}) => {
               if (error) {
                 for (let err of error.graphQLErrors) {
-                  console.log(err.extensions.exception.errors)
                   return (
                     <Fragment>
                       <PostForm 

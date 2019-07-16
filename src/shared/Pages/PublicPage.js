@@ -11,7 +11,7 @@ import Logo from '../../assets/logos/logo5.png'
 const linkLogo = Logo.replace('build', '').replace('/public', '')
 
 const responseFacebook = (response) => {
-  // console.log(response)
+
 }
 
 function PublicPage(props) {

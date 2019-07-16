@@ -41,16 +41,14 @@ class RegisterPage extends Component {
         {client => (
           <Mutation
             mutation={REGISTER_USER_MUT}
-            // onError={(e) => console.log(e)}
             onCompleted={({signUp})=>{
               this.props.registerUser({signUp})
             }}
           >
             {(signUp, {loading, error}) => {
               if (error) {
-                // console.log(signUp)
                 for (let err of error.graphQLErrors) {
-                  // console.log(err.extensions.exception.errors)
+                  console.log(err.extensions.exception.errors)
                   return (
                   <div className="text-center">
                     <RegisterForm 

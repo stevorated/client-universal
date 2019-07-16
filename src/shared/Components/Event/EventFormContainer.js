@@ -25,7 +25,6 @@ class EventFormContainer extends Component {
               {(createEvent, {loading, error}) => {
                 if (error) {
                   for (let err of error.graphQLErrors) {
-                    console.log(err.extensions.exception.errors)
                     return (
                       <EventFormModal
                       createEvent={createEvent}

@@ -9,7 +9,6 @@ import { Card } from './Cards'
 export default class Modal extends Component {
   render() {
     const { children, toggle, on } = this.props
-    // console.log(this.props)
     return (
       <Portal>
           <Fragment>

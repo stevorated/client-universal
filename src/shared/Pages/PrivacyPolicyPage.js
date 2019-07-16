@@ -21,7 +21,6 @@ class PrivacyPolicyPage extends Component {
     this.setState({ animation: 'animated slideInLeft' })
   }
   componentWillUnmount() {
-    console.log('unmount')
     this.setState({ animation: 'animated fadeOut' })
   }
   redirectBack = () => {

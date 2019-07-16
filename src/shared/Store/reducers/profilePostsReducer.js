@@ -3,7 +3,6 @@ const initialState = []
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case 'CREATE_POST':
-      // console.log('payload',payload)
         if(state[0]) {
           return state[0].createdBy.id === payload[0].createdBy.id ? [...payload.concat(state)] : state
 

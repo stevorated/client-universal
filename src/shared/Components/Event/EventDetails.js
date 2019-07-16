@@ -13,7 +13,6 @@ import { black, elevation, transition, timeAgo } from '../../Utils'
 import config from '../../../../webConfig.json'
 
 function Event(props) {
-  // console.log(props)
   const { name, venue, address, description, startDate, startTime, coverPhoto } = props.data
   return (
         <StyledCard  style={{minHeight: '100vh',  marginTop: '.2rem'}}>

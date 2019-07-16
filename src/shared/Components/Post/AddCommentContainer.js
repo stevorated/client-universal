@@ -9,9 +9,6 @@ import { pushComment } from '../../Store/actions'
 class AddCommentContainer extends Component {
   constructor(props) {
     super(props)
-    // console.log(this.props)
-    // console.log(this.props.commentCount)
-    // console.log(this.props.feedMode ? {query: FETCH_FEED} : {query:GET_MA_POSTS})
   }
   state = {
     formGood: false,
@@ -47,7 +44,7 @@ class AddCommentContainer extends Component {
               // if (loading) return <Loading />
               if (error) {
                 for (let err of error.graphQLErrors) {
-                  console.log(err.extensions.exception.errors)
+                  // console.log(err.extensions.exception.errors)
                   return (
                     <AddCommentForm 
                     id={this.props.id}
