@@ -22,7 +22,7 @@ import '../assets/css/style.css'
 
 const PORT = process.env.PORT || 8080
 const isProd = process.env.NODE_ENV === 'production' ? true : false
-
+const prodEnv = process.env.ENV === 'production' ? true : false
 const app = express()
 app.use(cookieParser())
 app.use(cors())
@@ -30,7 +30,7 @@ app.use(express.static('build/public'))
 
 app.get('*', async (req, res) => {
   const linkHttp = createUploadLink({
-    uri: isProd ? configProd.url : config.url, 
+    uri: prodEnv ? configProd.url : config.url, 
     credentials: 'include',
     headers: {
       cookie: req.header('Cookie')
