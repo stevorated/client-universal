@@ -23,6 +23,8 @@ import '../assets/css/style.css'
 const PORT = process.env.PORT || 8080
 const isProd = process.env.NODE_ENV === 'production' ? true : false
 const prodEnv = process.env.ENV === 'production' ? true : false
+console.log(process.env.ENV)
+console.log(prodEnv ? configProd.url : config.url)
 const app = express()
 app.use(cookieParser())
 app.use(cors())
@@ -91,4 +93,3 @@ app.listen(PORT, (req, res) => {
   console.log(`APP IS RUNNING ON PORT ${PORT}`)
   
 })
-console.log('is Browser? ',__isBrowser__)
