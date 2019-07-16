@@ -1,6 +1,5 @@
 {
-  "siteURL": "https://wisdomofdecrowd.com",
-  "api":"https://wisdomofdecrowd.com/api",
-  "url": "https://wisdomofdecrowd.com/api/graphql",
-  "environment": "development"
+  "siteURL": "http://localhost:4000",
+  "api":"http://localhost:4000/api",
+  "url": "http://localhost:4000/api/graphql"
 }

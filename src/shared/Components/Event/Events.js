@@ -18,6 +18,7 @@ function Events(props) {
     else if (eventFeedMode) {
       return events.map((event) => {
         const { id } = event
+        console.log(event)
         return (<Event key={`events-${id}`} {...event} />)
       })
     }

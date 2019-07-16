@@ -9,14 +9,16 @@ import { black, elevation, transition, timeAgo } from '../../Utils'
 import config from '../../../../webConfig.json'
 
 function Event(props) {
+  console.log(props)
+  const { id, coverPhoto, name, startDate, startTime, venue, address } = props
   const [redirect, setRedirect] = useState(false)
-  return redirect ? <Redirect to={`/event/${props.id}`} /> : (
+  return redirect ? <Redirect to={`/event/${id}`} /> : (
     <StyledCard className="p-1" onClick={ ()=>setRedirect(true) }>
-      <CardImg style={{borderRadius: '5px 5px 0 0'}} top width="100%" src={props.coverPhoto && `${config.api}${props.coverPhoto.url}`} alt="card img" />
+      <CardImg style={{borderRadius: '5px 5px 0 0'}} top width="100%" src={coverPhoto && `${config.api}${coverPhoto.url}`} alt="card img" />
       <hr className="noPadding"/>
       <CardBody>
-        <CardTitle>{props.name}</CardTitle>
-        <CardSubtitle className="small-text">{props.startDate} {props.startTime} at {props.venue} ({props.address})</CardSubtitle>
+        <CardTitle>{name}</CardTitle>
+        <CardSubtitle className="small-text">{startDate} {startTime} at {venue} ({ address })</CardSubtitle>
         <CardText>{props.description}</CardText>
       </CardBody>
     </StyledCard> 

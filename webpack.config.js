@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base.js')
-const GRAPH_URL='https://localhost:4000/graphql'
+
 const clientConfig = {
   entry: './src/browser/index.js',
   output: {
