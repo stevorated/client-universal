@@ -5,13 +5,15 @@ import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
 import history from './history'
 import config from '../../webConfig.json'
+import configProd from '../../webConfigProd.json'
+
 const { NODE_ENV } = process.env 
 const isProd = (NODE_ENV === 'production') ? true : false
 const cache = new InMemoryCache({
   addTypename: false
 }).restore(window.__APOLLO_STATE__)
 const linkHttp = createUploadLink ({
-  uri: config.url, 
+  uri: isProd ? configProd.url : config.url, 
   credentials: 'include',
   ssrMode: true,
   ssrForceFetchDelay: 100,

@@ -7,9 +7,9 @@
     "start": "npm-run-all -s build serve",
     "build": "env-cmd webpack --progress",
     "serve": "node build/server.js",
-    "dev": "env-cmd npm-run-all --parallel dev:*",
-    "dev:build": "env-cmd webpack  --watch",
-    "dev:start": "env-cmd nodemon --watch build --exec node build/server.js",
+    "dev": "env-cmd -f .dev.env npm-run-all --parallel dev:*",
+    "dev:build": "env-cmd -f .dev.env webpack  --watch",
+    "dev:start": "env-cmd -f .dev.env nodemon --watch build --exec node build/server.js",
     "test": "jest",
     "test:dev": "jest --watchAll"
   },

@@ -13,16 +13,15 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
 import config from '../../webConfig.json'
+import configProd from '../../webConfigProd.json'
 // import '../assets/css/ReactCrop.css'
 import '../assets/css/react-datepicker.css'
 import '../assets/css/animate.css'
 import '../assets/css/bootstrap.min.css'
 import '../assets/css/style.css'
 
-const { GRAPH_URL }  = process.env
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8080
 const isProd = process.env.NODE_ENV === 'production' ? true : false
-// if(!isProd) process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
 const app = express()
 app.use(cookieParser())
@@ -31,7 +30,7 @@ app.use(express.static('build/public'))
 
 app.get('*', async (req, res) => {
   const linkHttp = createUploadLink({
-    uri: config.url, 
+    uri: isProd ? configProd.url : config.url, 
     credentials: 'include',
     headers: {
       cookie: req.header('Cookie')
