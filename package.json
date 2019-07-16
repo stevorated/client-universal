@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "env-cmd npm-run-all -s build serve",
-    "start:dev": "env-cmd -f .dev.env npm-run-all -s dev:build dev:serve",
     "build": "env-cmd webpack --progress",
     "serve": "env-cmd node build/server.js",
     "dev": "env-cmd -f .dev.env npm-run-all --parallel dev:*",
     "dev:build": "env-cmd -f .dev.env webpack  --watch",
     "dev:start": "env-cmd -f .dev.env nodemon --watch build --exec node build/server.js",
-    "dev:serve": "env-cmd -f .dev.env nodemon --watch build --exec node build/server.js",
+    "start:stage": "env-cmd -f .dev.env npm-run-all -s stage:build stage:serve",
+    "stage:build": "env-cmd -f .dev.env webpack --progress",
+    "stage:serve": "env-cmd -f .dev.env nodemon node build/server.js",
     "test": "jest",
     "test:dev": "jest --watchAll"
   },
