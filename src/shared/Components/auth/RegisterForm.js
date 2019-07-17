@@ -7,7 +7,6 @@ import { registerUser } from '../../Store/actions'
 
 
 function RegisterForm ({state, handleFormState, register, errors}) {
-
   const {  
     fname,
     lname,
@@ -27,7 +26,6 @@ function RegisterForm ({state, handleFormState, register, errors}) {
     submitError,
     submitErrorMsg
   } = state
-  console.log(fnameError)
   const handleReg = async (e) => {
     e.preventDefault()
     try {
@@ -40,11 +38,9 @@ function RegisterForm ({state, handleFormState, register, errors}) {
           password
         }})
       } else {
-        console.log('Ya Alla')
         handleFormState({ submitError: true })
       }
     } catch (error) {
-      console.log('Ya Alla')
         handleFormState({ submitError: true })
     }
   } 
@@ -107,8 +103,6 @@ function RegisterForm ({state, handleFormState, register, errors}) {
         break
     }
   }
-  console.log(fnameGood)
-  console.log(submitError)
   return (
     <Container className="animated fadeIn mb-5 pb-5">
       <Row className="d-flex justify-content-center py-3">
