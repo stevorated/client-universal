@@ -7,14 +7,23 @@ import history from './history'
 import config from '../../webConfig.json'
 import configProd from '../../webConfigProd.json'
 
-const { NODE_ENV, ENV } = process.env 
-const isProd = NODE_ENV === 'production' ? true : false
-const prodEnv = ENV === 'production' ? true : false
+const isServer = process.env.SERVER === 'true'
+
+if(process.env.NODE_ENV !== 'production') {
+  console.log('url: ', isServer ? configProd.url : config.url)
+  console.log('isServer: ', isServer)
+  console.log(process.env.NODE_ENV)
+} else {
+  console.log('prod')
+}
+
 const cache = new InMemoryCache({
   addTypename: false
 }).restore(window.__APOLLO_STATE__)
+
 const linkHttp = createUploadLink ({
-  uri: prodEnv ? configProd.url : config.url, 
+  uri: isServer ? configProd.url : config.url,  
+  // uri: config.url,  
   credentials: 'include',
   ssrMode: true,
   ssrForceFetchDelay: 100,

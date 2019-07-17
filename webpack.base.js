@@ -1,7 +1,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 const { NODE_ENV } = process.env
 isProd = (NODE_ENV === 'production') ? true : false
 

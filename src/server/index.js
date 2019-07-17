@@ -21,10 +21,8 @@ import '../assets/css/bootstrap.min.css'
 import '../assets/css/style.css'
 
 const PORT = process.env.PORT || 8080
-const isProd = process.env.NODE_ENV === 'production' ? true : false
-const prodEnv = process.env.ENV === 'production' ? true : false
-console.log(process.env.ENV)
-console.log(prodEnv ? configProd.url : config.url)
+const isServer = process.env.SERVER === 'true'
+
 const app = express()
 app.use(cookieParser())
 app.use(cors())
@@ -32,7 +30,7 @@ app.use(express.static('build/public'))
 
 app.get('*', async (req, res) => {
   const linkHttp = createUploadLink({
-    uri: prodEnv ? configProd.url : config.url, 
+    uri: isServer ? configProd.url : config.url, 
     credentials: 'include',
     headers: {
       cookie: req.header('Cookie')
