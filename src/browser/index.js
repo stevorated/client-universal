@@ -2,7 +2,7 @@ import 'babel-polyfill'
 import React from 'react'
 import { hydrate } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
@@ -18,7 +18,7 @@ import '../assets/css/style.css'
 const store = createStore(
   reducers,
   window.__INITIAL_STATE__,
-  composeWithDevTools(applyMiddleware(thunk.withExtraArgument(client)))
+  composeWithDevTools (applyMiddleware(thunk.withExtraArgument(client)))
 )
 
 hydrate(
