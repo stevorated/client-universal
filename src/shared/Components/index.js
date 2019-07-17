@@ -3,8 +3,8 @@ import Loading from './Fragment/Loading'
 import SmallLoading from './Fragment/SmallLoading'
 import Footer from './Fragment/Footer'
 import SearchBar from './Fragment/SearchBar'
-import LoginForm from './authComponents/LoginForm'
-import RegisterForm from './authComponents/RegisterForm'
+import LoginForm from './auth/LoginForm'
+import RegisterForm from './auth/RegisterForm'
 import ScrollContainer from './wall/ScrollContainer'
 import InfoContainer from './wall/InfoContainer'
 import SearchBarSuggest from './Fragment/SearchBarSuggest'
@@ -23,10 +23,6 @@ import EventDetails from './Event/EventDetails'
 import EventDetailsQuery from './Event/EventDetailsQuery'
 import EventMainCard from './Event/EventMainCard'
 import LittleMenu from './Fragment/LittleMenu'
-// import CustomModal from './Fragment/CustomModal'
-// import FeedLeftBar from './Feed/FeedLeftBar'
-// import FeedRightBar from './Feed/FeedRightBar'
-// import FeedScroll from './Feed/FeedScroll'
 import { Menu } from './Feed'
 
 import {
@@ -73,9 +69,6 @@ export {
   EventFeed,
   EventDetailsQuery,
   EventMainCard,
+  EventDetails,
   LittleMenu
-  // CustomModal,
-  // FeedLeftBar,
-  // FeedRightBar,
-  // FeedScroll
 }
