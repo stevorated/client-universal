@@ -78,7 +78,7 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
             <StyledNavLink
               className='nav-link'
               onClick={handleClick}
-              to='/event-board'
+              to='/event-feed'
             >
               Events
           </StyledNavLink>

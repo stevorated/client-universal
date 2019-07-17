@@ -24,6 +24,7 @@ const linkHttp = createUploadLink ({
 })
 
 const errorLink = onError(({ graphQLErrors, networkError, operation, forward, response, error }) => {
+  // console.log(graphQlErrors)
   if (graphQLErrors){
     {!isProd && graphQLErrors.forEach((err)=> console.log(err.extensions.code))}
     if(graphQLErrors.find((err)=>err.extensions.code === 'UNAUTHENTICATED')) {

@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import { black, elevation, transition, timeAgo } from '../../Utils'
 
 function Event(props) {
-  console.log(props)
+  // console.log(props)
   
   const { id, coverPhoto, name, startDate, startTime, venue, address } = props
   const [redirect, setRedirect] = useState(false)
@@ -41,14 +41,9 @@ font-size: .6rem;
 text-align: left;
 `
 const StyledCard = styled(Card)`
-      /* min-height: 300px; */
-      /* color: ${black}; */
       padding: 0;
       margin: 0;
       background: whitesmoke;
-      /* opacity: .9; */
-      /* border-radius: .3rem; */
-      /* margin: .1rem; */
       ${elevation[1]};
       ${transition({
   property: 'all'
