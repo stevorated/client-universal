@@ -7,6 +7,8 @@ import { registerUser } from '../../Store/actions'
 
 
 function RegisterForm ({state, handleFormState, register, errors}) {
+  const [ showEmailError, setShowEmailError ] = useState(true)
+  const [ showUsernameError, setShowUsernameError ] = useState(true)
   const {  
     fname,
     lname,
@@ -47,6 +49,7 @@ function RegisterForm ({state, handleFormState, register, errors}) {
   const handleChangeInput = (e) => {
     const name = e.target.name
     const value = e.target.value
+    
     const newData = {
       [name]: value
     }
@@ -76,19 +79,28 @@ function RegisterForm ({state, handleFormState, register, errors}) {
           if(value && !isLength(value, {min:4, max: 30})) {
             handleFormState({usernameError: true})
             handleFormState({usernameGood: false})
+          } else if (errors && errors.username && value && isLength(value, {min:2, max: 30})) {
+            setShowUsernameError(false)
+            handleFormState({usernameError: false})
+            handleFormState({usernameGood: true})
           } else if (value && isLength(value, {min:2, max: 30})) {
             handleFormState({usernameError: false})
             handleFormState({usernameGood: true})
           }
         return handleFormState(newData)
       case 'email':
+        
         if(value && !isEmail(value)){
           handleFormState({emailError: true})
           handleFormState({emailGood: false})
-        } else if(value && isEmail(value) ) {
+        } else if (errors && errors.email && value && isEmail(value) ) {
+          setShowEmailError(false)
           handleFormState({emailError: false})
           handleFormState({emailGood: true})
-        }
+        } else if (value && isEmail(value) ) {
+          handleFormState({emailError: false})
+          handleFormState({emailGood: true})
+        } 
         return handleFormState(newData)
       case 'password':
           if(value && !value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*^?&#])[A-Za-z\d@$!%#*^?&]{8,30}$/)) {
@@ -103,6 +115,7 @@ function RegisterForm ({state, handleFormState, register, errors}) {
         break
     }
   }
+  console.log(showEmailError)
   return (
     <Container className="animated fadeIn mb-5 pb-5">
       <Row className="d-flex justify-content-center py-3">
@@ -159,7 +172,7 @@ function RegisterForm ({state, handleFormState, register, errors}) {
             value={username}
             />
             {usernameError && <FormFeedback>username must be <strong>one word</strong> & at least 4 letters long</FormFeedback>}
-            {errors && (errors.username && <FormFeedback>{errors.username.message}</FormFeedback>)}
+            {errors && showUsernameError && (errors.username && <FormFeedback>{errors.username.message}</FormFeedback>)}
           </FormGroup>
           <FormGroup>
             <Label for="email">Email</Label>
@@ -175,7 +188,7 @@ function RegisterForm ({state, handleFormState, register, errors}) {
             value={email}
             />
             {emailError && <FormFeedback>email must be a valid email address</FormFeedback>}
-            {errors && (errors.email && <FormFeedback>{errors.email.message}</FormFeedback>)}
+            {errors && showEmailError && (errors.email && <FormFeedback>{errors.email.message}</FormFeedback>)}
           </FormGroup>
           <FormGroup>
             <Label for="password">Password</Label>

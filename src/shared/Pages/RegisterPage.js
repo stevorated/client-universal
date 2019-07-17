@@ -30,7 +30,7 @@ class RegisterPage extends Component {
     passwordGood: false,
     passwordError: false,
     submitError: null,
-    submitErrorMsg: ''
+    showServerError: true
   }
   
   handleFormState = (data) => {
@@ -50,7 +50,6 @@ class RegisterPage extends Component {
             {(signUp, {loading, error}) => {
               if (error) {
                 for (let err of error.graphQLErrors) {
-                  console.log(err.extensions.exception.errors)
                   return (
                   <div className="text-center">
                     <RegisterForm 
