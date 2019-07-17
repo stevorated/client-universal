@@ -1,6 +1,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
+const TerserPlugin = require('terser-webpack-plugin')
 const { NODE_ENV } = process.env
 isProd = (NODE_ENV === 'production') ? true : false
 
@@ -18,7 +18,7 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
             options: {
               publicPath: '/',
-              hmr: process.env.NODE_ENV === 'development',
+              hmr: NODE_ENV === 'development',
             },
           },
           {loader: 'css-loader'},
@@ -82,6 +82,9 @@ module.exports = {
       filename: '/styles/[name].css',
       chunkFilename: '[id].css',
     })
-  ]
+  ],
+  optimization: {
+    minimizer: [new TerserPlugin()],
+  },
   
 }
