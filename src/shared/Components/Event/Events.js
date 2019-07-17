@@ -10,8 +10,6 @@ function Events(props) {
     if(myEventsMode) {
       return myEvents.map((event) => {
         const { id, name, venue, address, coverPhoto, thumbnil, createdAt, createdBy } = event
-        // const cover = event.coverPhoto ?  `${config.api}${event.coverPhoto.url}` : null
-        // const thumb = event.thumbnil ?  `${config.api}${event.thumbnil.url}` : null
         return (<Event key={`myEvents-${id}`} {...event} />)
       })
     }

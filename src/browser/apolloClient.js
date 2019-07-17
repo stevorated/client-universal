@@ -4,26 +4,20 @@ import { createUploadLink } from 'apollo-upload-client'
 import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
 import history from './history'
-import config from '../../webConfig.json'
-import configProd from '../../webConfigProd.json'
-
-const isServer = process.env.SERVER === 'true'
 
 if(process.env.NODE_ENV !== 'production') {
-  console.log('url: ', isServer ? configProd.url : config.url)
-  console.log('isServer: ', isServer)
+  console.log('url:', process.env.GRAPH_URL)
   console.log(process.env.NODE_ENV)
 } else {
   console.log('prod')
 }
-
+const isProd = process.env.NODE_ENV === 'production'
 const cache = new InMemoryCache({
   addTypename: false
 }).restore(window.__APOLLO_STATE__)
 
 const linkHttp = createUploadLink ({
-  uri: isServer ? configProd.url : config.url,  
-  // uri: config.url,  
+  uri: process.env.GRAPH_URL, 
   credentials: 'include',
   ssrMode: true,
   ssrForceFetchDelay: 100,

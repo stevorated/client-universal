@@ -4,7 +4,6 @@ import { Button, Card } from 'reactstrap'
 import Comment from './Comment'
 import AddCommentContainer from './AddCommentContainer'
 import { Link, NavLink } from 'react-router-dom'
-import config from '../../../../webConfig.json'
 
 function Comments(props) {
   const { comments, id, auth } = props
@@ -23,7 +22,7 @@ function Comments(props) {
       const myComment = auth.id === createdBy.id
       const commentID = id
       const name = `${createdBy.fname} ${createdBy.lname}`
-      const profileImgUrl = createdBy.avatar ? `${config.api}${createdBy.avatar.url}` : null
+      const profileImgUrl = createdBy.avatar ? `${process.env.API_BASE}${createdBy.avatar.url}` : null
 
       return <Comment 
       key={commentID} 
@@ -33,7 +32,7 @@ function Comments(props) {
       createdBy={createdBy} 
       profileImgUrl={
         myComment & createdBy.avatar 
-        ? `${config.api}${auth.avatar.url}` 
+        ? `${process.env.API_BASE}${auth.avatar.url}` 
         : profileImgUrl} />
     })
   }

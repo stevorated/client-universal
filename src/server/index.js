@@ -12,8 +12,6 @@ import fetch from 'node-fetch'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
-import config from '../../webConfig.json'
-import configProd from '../../webConfigProd.json'
 // import '../assets/css/ReactCrop.css'
 import '../assets/css/react-datepicker.css'
 import '../assets/css/animate.css'
@@ -21,7 +19,6 @@ import '../assets/css/bootstrap.min.css'
 import '../assets/css/style.css'
 
 const PORT = process.env.PORT || 8080
-const isServer = process.env.SERVER === 'true'
 
 const app = express()
 app.use(cookieParser())
@@ -30,7 +27,7 @@ app.use(express.static('build/public'))
 
 app.get('*', async (req, res) => {
   const linkHttp = createUploadLink({
-    uri: isServer ? configProd.url : config.url, 
+    uri: process.env.GRAPH_URL, 
     credentials: 'include',
     headers: {
       cookie: req.header('Cookie')

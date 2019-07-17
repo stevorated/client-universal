@@ -10,13 +10,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBeer } from '@fortawesome/free-solid-svg-icons'
 import { SmallProfileImg } from '../../Elements'
 import { black, elevation, transition, timeAgo } from '../../Utils'
-import config from '../../../../webConfig.json'
 
 function Event(props) {
   const { name, venue, address, description, startDate, startTime, coverPhoto } = props.data
   return (
         <StyledCard  style={{minHeight: '100vh',  marginTop: '.2rem'}}>
-          <CardImg top src={coverPhoto && `${config.api}${coverPhoto.url}`} alt="card img" />
+          <CardImg top src={coverPhoto && `${process.env.API_BASE}${coverPhoto.url}`} alt="card img" />
           <hr className="noPadding"/>
           <CardBody style={{minHeight: '100vh'}}>
             <CardTitle>{name}</CardTitle>

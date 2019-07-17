@@ -5,7 +5,6 @@ import AddImageModal from './AddImageModal'
 import { BigProfileImg, FlatCard } from '../../Elements'
 import Loading from '../Fragment/Loading'
 import styled from 'styled-components'
-import config from '../../../../webConfig.json'
 import { mediaQueries } from '../../Utils';
 import Avatar from '../../../assets/logos/new_logo.png'
 const imgAvatar = Avatar.replace('build', '').replace('/public', '')
@@ -26,9 +25,9 @@ function ProfileContainer({ auth, profilePosts, profileMode }) {
     // check if this is my user's profile
     const myProfile = id === auth.id ? true : false
     // check if my is an avatar avalible else send the default one
-    const myAvatarUrl = auth.avatar ? `${config.api}${auth.avatar.url}` : imgAvatar
+    const myAvatarUrl = auth.avatar ? `${process.env.API_BASE}${auth.avatar.url}` : imgAvatar
     // check if the user (not me) has an avatar avalible else send the default one
-    const avatarOfUser = avatar ? `${config.api}${avatar.url}` : imgAvatar
+    const avatarOfUser = avatar ? `${process.env.API_BASE}${avatar.url}` : imgAvatar
     // if my profile return my else return user's
     const imgUrl = myProfile ? myAvatarUrl : avatarOfUser
     let postCount = posts ? posts.length : null
