@@ -115,7 +115,6 @@ function RegisterForm ({state, handleFormState, register, errors}) {
         break
     }
   }
-  console.log(showEmailError)
   return (
     <Container className="animated fadeIn mb-5 pb-5">
       <Row className="d-flex justify-content-center py-3">
