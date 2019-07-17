@@ -4,7 +4,8 @@ import {
   transition,
   black,
   white,
-  orange
+  orange,
+  mediaQueries
 } from '../Utils'
 
 export const Card = styled.div `
@@ -22,6 +23,7 @@ export const Card = styled.div `
       &:hover {
             ${elevation[4]};
       }
+    
 `
 
 export const FlatCard = styled.div `
@@ -56,7 +58,7 @@ export const MenuCard = styled.div `
       /* min-height: 50vh; */
       background: ${black};
       opacity: .5;
-      border-radius: .3rem;
+      /* border-radius: .3rem; */
       padding: 0.5rem;
       margin-bottom: .3rem;
       ${elevation[1]}
@@ -67,5 +69,8 @@ export const MenuCard = styled.div `
       &:hover {
             ${elevation[2]};
       }
+      ${mediaQueries.lg`
+      border-radius: .3rem;
+      `}
 `
 

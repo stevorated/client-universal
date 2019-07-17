@@ -31,7 +31,7 @@ function Menu({ logoutUser }) {
     await logoutUser()
   }
   return (
-    <MenuCard className="text-center">
+    <MenuCard className="text-center" style={{borderRadius: 'none'}}>
       <h3 className="header-4 mt-3 py-1" style={{color: `${orange}`}}>Menu</h3>
       <hr className="lead mb-3" style={{ color: `${orange}`, borderWidth: '2px', borderColor: `${orange}` }} />
       <Container>
@@ -54,7 +54,6 @@ function Menu({ logoutUser }) {
           </Col>
         </Row>
       </Container>
-      
     </MenuCard>
   )
 }

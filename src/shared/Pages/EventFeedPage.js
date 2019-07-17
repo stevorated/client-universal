@@ -27,9 +27,9 @@ class EventFeedPage extends Component {
 
   render() {
     return (
-      <Row className="noPadding text-center"  >
+      <Row className="text-center"  >
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
-        <FloatLeft lg="3" className="noPadding">
+        <FloatLeft lg="3" className="">
           <Menu />
         </FloatLeft>
         <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-3" >
