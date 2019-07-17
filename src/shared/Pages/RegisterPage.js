@@ -28,7 +28,9 @@ class RegisterPage extends Component {
     emailGood: false,
     emailError: false,
     passwordGood: false,
-    passwordError: false
+    passwordError: false,
+    submitError: null,
+    submitErrorMsg: ''
   }
   
   handleFormState = (data) => {

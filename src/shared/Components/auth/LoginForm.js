@@ -51,7 +51,9 @@ function LoginForm(props) {
                 id="password"
                 placeholder="shh.. secret.."
               />
-              {formError && <FormFeedback className="mt-3"><strong>Wrong Details</strong></FormFeedback>}
+              {formError && 
+                <FormFeedback className="mt-3"><strong>Wrong Details, check your password Or email</strong></FormFeedback>
+              }
             </FormGroup>
             <Button>Sign In</Button>
             <p className="pt-3 mt-3">Don't Have an Acount?<br/> <Link className="sigmar-one orange-color-hover no-underline-hover" to="/register"> Register</Link></p>
