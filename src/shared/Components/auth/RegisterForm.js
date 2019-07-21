@@ -205,7 +205,7 @@ function RegisterForm({ state, handleFormState, register, errors }) {
               {errors && (errors.password && <FormFeedback>{errors.password.message}</FormFeedback>)}
             </FormGroup>
             {submitError && <p className="my-3 text-danger smallText">You Have Errors In your form Or Stuff missing..</p>}
-            <Button>Sign In</Button>
+            <Button className="btn-mainclr">Sign In</Button>
             <p className="pt-3">Already Have an Acount? <Link className="sigmar-one orange-color-hover no-underline-hover" to="/login">Login</Link></p>
           </Form>
         </Col>

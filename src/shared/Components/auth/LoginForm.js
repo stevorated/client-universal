@@ -55,8 +55,8 @@ function LoginForm(props) {
                 <FormFeedback className="mt-3"><strong>Wrong Details, check your password Or email</strong></FormFeedback>
               }
             </FormGroup>
-            <Button>Sign In</Button>
-            <p className="pt-3 mt-3">Don't Have an Acount?<br/> <Link className="sigmar-one orange-color-hover no-underline-hover" to="/register"> Register</Link></p>
+            <Button className="btn-mainclr">Sign In</Button>
+            <p className="pt-3 mt-3 text-capitalize">Don't Have an Acount yet?<br/>no wories.. it's easy just click here to<Link className="sigmar-one orange-color-hover no-underline-hover" to="/register"> Register</Link></p>
           </Form>
         </Col>
       </Row>
