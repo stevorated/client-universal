@@ -32,7 +32,7 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
       <StyledNavLink className='nav-link' to="/logout" onClick={handleLogout}>Logout</StyledNavLink>
   ) : (
       <div className="d-md-flex">
-        <StyledNavLink className='nav-link' to="/privacy">Privacy</StyledNavLink>
+        <StyledNavLink className='nav-link' to="/privacy" onClick={handleClick}>Privacy</StyledNavLink>
         <StyledNavLink className='nav-link' to="/login" onClick={handleClick}  >Login</StyledNavLink>
         <StyledNavLink className='nav-link' to="/register" onClick={handleClick}  >Register</StyledNavLink>
       </div>

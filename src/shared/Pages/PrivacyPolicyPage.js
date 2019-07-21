@@ -12,17 +12,14 @@ class PrivacyPolicyPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      animation: 'animated slideInRight fast',
+      animation: '',
       redirect: false
     }
     this.title = 'privacy-policy'
   }
-  componentWillMount() {
-    this.setState({ animation: 'animated slideInLeft' })
-  }
-  componentWillUnmount() {
-    this.setState({ animation: 'animated fadeOut' })
-  }
+  // componentWillMount() {
+  //   this.setState({ animation: 'animated slideInLeft' })
+  // }
   redirectBack = () => {
     this.setState({ redirect: true })
   }
