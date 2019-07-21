@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Mutation, ApolloConsumer } from 'react-apollo'
-import { CREATE_COMMENT_MUT } from '../../Apollo/Mutaions'
-import { GET_MA_POSTS, FETCH_FEED, FETCH_USERS_POSTS } from '../../Apollo/Queries'
+import { CREATE_COMMENT_MUT } from '../../Store/Apollo/Mutaions'
+import { GET_MA_POSTS, FETCH_FEED, FETCH_USERS_POSTS } from '../../Store/Apollo/Queries'
 import { AddCommentForm , Loading } from '..'
 import { pushComment } from '../../Store/actions'
 
@@ -36,7 +36,7 @@ class AddCommentContainer extends Component {
             }}
             refetchQueries={[
               {query: FETCH_FEED},
-              {query:GET_MA_POSTS}, 
+              {query:GET_MA_POSTS, fetchPolicy: 'network-only'}, 
               {query: FETCH_USERS_POSTS, variables: { id: this.props.id }}
             ]}     
             >

@@ -54,8 +54,10 @@ function CropFileInput(props) {
   return (
     <div style={{minHeight: '400px'}} className="text-center">
       <div {...getRootProps()} style={{ cursor: 'pointer', minHeight: props.valid ? '50px' : '400px'}}>
-        <input {...getInputProps()} />
-        {(!props.valid && props.showText) ? <p>Drag and Drop here or Click to select a file</p> : <p>drag or click here to choose another file</p>}
+        <input {...getInputProps()}  />
+        {(!props.valid && props.showText) 
+          ? <p className="text-capitalize">Drag and Drop here or Click to select a file</p> 
+          : <p className="text-capitalize">now crop the file or choose another one by clicking here</p>}
         
         {!!props.error && <p>{props.error}</p> }
         

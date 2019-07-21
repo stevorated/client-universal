@@ -8,33 +8,43 @@ import NavbarComponent from './NavbarComponent'
 import { Footer } from '../Components'
 
 const MainContent = ({ whereTo, redirect, setRedirect }) => {
+
   const id = whereTo
-  if(redirect) {
+  if (redirect) {
     setRedirect(false)
     return <Redirect to={`/profile/${id}`} />
   }
-  return(
-  <Container fluid>{renderRoutes(routes)}</Container>
-)}
-
-function Layout (props) {
-  const [ whereTo, setWhereTo ] = useState('')
-  const [ redirect, setRedirect ] = useState(false)
   return (
-  <Fragment>
-    <NavbarComponent 
-    setRedirect={setRedirect} 
-    setWhereTo={setWhereTo} 
-    whereTo={whereTo} 
-    />
-    <MainContent 
-    redirect={redirect} 
-    setRedirect={setRedirect} 
-    setWhereTo={setWhereTo} 
-    whereTo={whereTo} 
-    />
-    <Footer />
-  </Fragment>
+    <Container fluid>{renderRoutes(routes)}</Container>
+  )
+}
+
+function Layout(props) {
+
+  const [whereTo, setWhereTo] = useState('')
+  const [redirect, setRedirect] = useState(false)
+  const handleLeave = () => {
+    setTimeout(() => {
+      setShow(false)
+    }, 1000)
+
+  }
+  return (
+    <Fragment>
+      <NavbarComponent
+        setRedirect={setRedirect}
+        setWhereTo={setWhereTo}
+        whereTo={whereTo}
+      />
+      <MainContent
+        redirect={redirect}
+        setRedirect={setRedirect}
+        setWhereTo={setWhereTo}
+        whereTo={whereTo}
+      />
+      <Footer />
+
+    </Fragment>
   )
 }
 

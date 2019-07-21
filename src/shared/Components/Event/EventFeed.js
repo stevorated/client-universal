@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Query } from 'react-apollo'
 import { fetchEvents } from '../../Store/actions'
 import { Loading } from '..'
-import { FETCH_EVENTS } from '../../Apollo/Queries'
+import { FETCH_EVENTS } from '../../Store/Apollo/Queries'
 import styled from 'styled-components'
 import { Events } from '..'
 import { FlatCardStatic } from '../../Elements'
@@ -42,7 +42,7 @@ const EventFeed = (props) => {
         return (
           <FlatCardStatic className="mt-3 animated fadeIn slow" >
             <Events eventFeedMode />
-            <Button className="mb-5" onClick={handleFatchMore}>Load More</Button>
+            <Button size="sm" className="my-5 btn-mainclr" onClick={handleFatchMore}>Load More</Button>
           </FlatCardStatic>
         )
       }}

@@ -21,9 +21,6 @@ class EventFeedPage extends Component {
       leaveClass: 'animated fadeOutUp'
     }
   }
-  componentWillUnmount = () => {
-
-  }
 
   render() {
     return (
@@ -32,7 +29,7 @@ class EventFeedPage extends Component {
         <FloatLeft lg="3" className="">
           <Menu />
         </FloatLeft>
-        <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-3" >
+        <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-2" >
           <EventMainCard />
           <EventFeed />
         </MainCol>

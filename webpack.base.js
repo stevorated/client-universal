@@ -12,7 +12,7 @@ module.exports = {
     rules: [
 
       {
-        test: /\.css$/,
+        test: /\.(css|ttf)$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -25,7 +25,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|gif|ttf)$/,
         use: [
         'file-loader'
         ]

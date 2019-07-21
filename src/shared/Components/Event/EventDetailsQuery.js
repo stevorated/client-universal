@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Query } from 'react-apollo'
 import { fetchEvent } from '../../Store/actions'
 import { Loading } from '..'
-import { FETCH_EVENTS } from '../../Apollo/Queries'
+import { FETCH_EVENTS } from '../../Store/Apollo/Queries'
 import styled from 'styled-components'
 import EventDetails from './EventDetails'
 

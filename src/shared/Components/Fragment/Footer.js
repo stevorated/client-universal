@@ -2,9 +2,9 @@ import React, { useState }  from 'react'
 import { Navbar } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { mediaQueries } from '../../Utils'
 
 function Footer () {
-  const [collapsed, toggleNavbar] = useState(false)
   return (
     <FooterDiv>
       <FooterNavbar color="dark" dark fixed="bottom">
@@ -19,7 +19,11 @@ function Footer () {
 
 export default Footer
 const FooterDiv = styled.div`
+  display: none;
   opacity:0.6;
+  ${mediaQueries.lg`
+    display: block;
+  `}
 `
 const FooterNavbar = styled(Navbar)`
 height: 2rem;

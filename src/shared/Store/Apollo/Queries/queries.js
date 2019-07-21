@@ -93,6 +93,9 @@ export const FETCH_USERS_POSTS = gql`
     id
     body
     createdAt
+    likes {
+      id
+    }
     createdBy {
       id
       fname
@@ -102,7 +105,16 @@ export const FETCH_USERS_POSTS = gql`
         url
       }
       username
+      likes {
+        id
+      }
       posts { 
+        id
+      }
+      following {
+        id
+      }
+      followers {
         id
       }
     }
@@ -137,6 +149,12 @@ export const GET_ME = gql`
     posts { 
       id
     }
+    following {
+      id
+    }
+    followers {
+      id
+    }
   }
 }
 `
@@ -150,6 +168,15 @@ export const GET_MA_DETAILS = gql`
     avatar {
       url
     }
+    posts { 
+      id
+    }
+    following {
+      id
+    }
+    followers {
+      id
+    }
   }
 }
 `
@@ -159,6 +186,9 @@ query( $limit: Int, $skip: Int ){
     id
     body
     createdAt
+    likes {
+      id
+    }
     createdBy {
       id
       fname
@@ -167,7 +197,14 @@ query( $limit: Int, $skip: Int ){
       avatar {
         url
       }
+      
       posts {
+        id
+      }
+      following {
+      id
+      }
+      followers {
         id
       }
     }
@@ -195,6 +232,9 @@ query ($limit: Int, $skip: Int){
     id
     body
     createdAt
+    likes {
+      id
+    }
     createdBy {
       id
       fname
@@ -204,6 +244,12 @@ query ($limit: Int, $skip: Int){
         url
       }
       posts {
+        id
+      }
+      following {
+      id
+      }
+      followers {
         id
       }
     }
@@ -230,6 +276,9 @@ query getFeed ($limit: Int, $skip: Int) {
     id
     body
     createdAt
+    likes {
+      id
+    }
     createdBy {
       id
       fname
@@ -239,6 +288,12 @@ query getFeed ($limit: Int, $skip: Int) {
         url
       }
       posts {
+        id
+      }
+      following {
+      id
+      }
+      followers {
         id
       }
     }

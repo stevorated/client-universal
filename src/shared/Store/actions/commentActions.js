@@ -1,6 +1,3 @@
-import { GET_MA_DETAILS, GET_ME, GET_USERS, GET_MA_POSTS } from '../../Apollo/Queries/'
-import { LOGIN_USER_MUT, LOGOUT_USER } from '../../Apollo/Mutaions'
-
 export const pushComment = (data) => (dispatch, getState, client) => {
 
   dispatch({
@@ -8,3 +5,15 @@ export const pushComment = (data) => (dispatch, getState, client) => {
     payload: data
   })
 }
+
+
+export const deleteCommentAction = (comment, post) => async (dispatch, getState, client) => {
+  
+  await dispatch({
+    type: 'DELETE_COMMENT',
+    payload: {
+      post,
+      comment 
+    }
+  })
+} 

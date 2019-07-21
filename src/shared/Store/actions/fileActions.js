@@ -1,4 +1,4 @@
-import { UPLOAD_FILE_TEST } from '../../Apollo/Mutaions'
+import { UPLOAD_FILE_TEST } from '../Apollo/Mutaions'
 
 export const uploadFile = (data) => async (dispatch, getState, client) => {
   const { file, size } = data

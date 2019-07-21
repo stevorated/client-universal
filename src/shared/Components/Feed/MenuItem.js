@@ -21,7 +21,9 @@ function MenuItem({ icon, text, to = "/", handleLogout }) {
 export default connect()(MenuItem)
 
 const StyledListItem = styled.li`
-  border: 5px solid black;
+  /* border: 5px solid black; */
+  padding: 2px 4px;
+  border: none;
   background: black;
   cursor: pointer;
   list-style: none;
@@ -35,6 +37,9 @@ const StyledListItem = styled.li`
   &:hover {
     background: ${orange};
     color: black;
+  }
+  &:active {
+    background: none!important;
   }
 `
 

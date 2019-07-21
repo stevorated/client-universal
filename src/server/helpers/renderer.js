@@ -9,7 +9,7 @@ import { ServerStyleSheet } from 'styled-components'
 import Layout from '../../shared/Routes/Layout'
 
 export default function renderer(req, store, client, context) {
-  
+
   // console.log(req.originalUrl)
 
   const App = (
@@ -25,16 +25,29 @@ export default function renderer(req, store, client, context) {
   const sheet = new ServerStyleSheet()
   const content = renderToString(sheet.collectStyles(App))
   const styles = sheet.getStyleTags()
-  
+
   const helmet = Helmet.renderStatic()
 
   return `
   <!DOCTYPE html>
     <html>
       <head>
+      <script type="text/javascript">
+        WebFontConfig = {
+          google: { families: [ 'Sigmar One::latin' ] }
+        };
+        (function() {
+          var wf = document.createElement('script');
+          wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+          wf.type = 'text/javascript';
+          wf.async = 'true';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(wf, s);
+        })(); </script>
+      <link href="https://fonts.googleapis.com/css?family=Sigmar+One&display=swap" rel="stylesheet">
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="https://fonts.googleapis.com/css?family=Sigmar+One&display=swap" rel="stylesheet">
       <link rel="icon" href="/f575a04ebbb31b5798a4c54783e745a2.png" type="image/png"/>
       ${helmet.title.toString()}
       ${helmet.meta.toString()}

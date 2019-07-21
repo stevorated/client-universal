@@ -2,10 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Query } from 'react-apollo'
 import { fetchMoreMyPosts } from '../../Store/actions'
-
-import Posts from '.'
+import { Button } from 'reactstrap'
+// import Posts from '.'
 import { Loading } from '../'
-import { FETCH_MORE_POSTS, GET_MA_POSTS } from '../../Apollo/Queries'
+import { FETCH_MORE_POSTS, GET_MA_POSTS } from '../../Store/Apollo/Queries'
 
 const QueryMorePosts = (props) => {
   const length = props.posts.length
@@ -37,7 +37,7 @@ const QueryMorePosts = (props) => {
       if (loading) return <Loading />
       if (error) return <h1>`Error! ${error}`</h1>
       return (
-        <button className="mb-5" onClick={handleFatchMore}>get More</button>
+        <Button size="sm" className="mb-5 btn-mainclr" onClick={handleFatchMore}>get More</Button>
       );
     }}
   </Query>

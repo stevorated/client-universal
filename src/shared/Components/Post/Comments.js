@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from 'react'
 import { connect } from 'react-redux'
-import { Button, Card } from 'reactstrap'
+import { Card } from 'reactstrap'
 import Comment from './Comment'
 import AddCommentContainer from './AddCommentContainer'
-import { Link, NavLink } from 'react-router-dom'
+import { StyledLink } from '../../Elements'
 
 function Comments(props) {
   const { comments, id, auth } = props
@@ -25,11 +25,14 @@ function Comments(props) {
       const profileImgUrl = createdBy.avatar ? `${process.env.API_BASE}${createdBy.avatar.url}` : null
 
       return <Comment 
-      key={commentID} 
+      key={commentID}
+      id={commentID}
+      post={props.post} 
       body={body} 
       createdAt={createdAt} 
       name={name} 
       createdBy={createdBy} 
+      myComment={myComment}
       profileImgUrl={
         myComment & createdBy.avatar 
         ? `${process.env.API_BASE}${auth.avatar.url}` 
@@ -39,7 +42,7 @@ function Comments(props) {
   return (
     <div  className="mx-2 p-2" style={{opacity: '0.8'}}>
       {renderQuery()}
-      <Link to="#" onClick={openForm} className="ml-2">{showForm ? 'Hide' : 'Comment'}</Link>
+      <StyledLink to="#" onClick={openForm} className="m-2 small-text">{showForm ? 'Hide' : 'Comment'}</StyledLink>
       {showForm && <Card className="pt-3 mt-2" >
       <AddCommentContainer 
       id={id} 

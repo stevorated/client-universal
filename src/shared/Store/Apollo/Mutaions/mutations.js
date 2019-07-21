@@ -1,5 +1,26 @@
 import gql from 'graphql-tag'
 
+export const FOLLOW_USER_MUT = gql`
+  mutation ($id: ID!) {
+    follow (id: $id) {
+      id
+      followers {
+        id
+      }
+    }
+  }
+`
+
+export const LIKE_POST_MUT = gql`
+  mutation ($id: ID!) {
+    likePost (id: $id) {
+      likes {
+        id
+      }
+    }
+  }
+`
+
 export const CREATE_EVENT = gql`
 mutation ( 
   $fbId: String,
@@ -74,6 +95,15 @@ mutation ($post: ID!) {
 
 `
 
+export const DELETE_COMMENT_MUT = gql`
+mutation ($id: ID!) {
+  deleteComment (id: $id) {
+    id
+  }
+}
+
+`
+
 export const CREATE_POST_MUT = gql`
     mutation (
 	$body: String!
@@ -82,6 +112,9 @@ export const CREATE_POST_MUT = gql`
     id
     body
     createdAt
+    likes {
+      id
+    }
     createdBy {
       id
       fname
@@ -171,6 +204,12 @@ export const LOGIN_USER_MUT = gql`
       url
     }
     posts {
+      id
+    }
+    following {
+      id
+    }
+    followers {
       id
     }
   }

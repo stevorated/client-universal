@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Mutation, ApolloConsumer } from 'react-apollo'
-import { REGISTER_USER_MUT } from '../Apollo/Mutaions'
+import { REGISTER_USER_MUT } from '../Store/Apollo/Mutaions'
 import { RegisterForm, Loading } from '../Components'
 import forceLoggedIn from '../HOC/forceLoggedIn'
 import { registerUser } from '../Store/actions'
@@ -30,7 +30,8 @@ class RegisterPage extends Component {
     passwordGood: false,
     passwordError: false,
     submitError: null,
-    showServerError: true
+    showServerError: true,
+    showEmailError: true,
   }
   
   handleFormState = (data) => {

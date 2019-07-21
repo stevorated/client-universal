@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Mutation, ApolloConsumer } from 'react-apollo'
 import { createEventAction } from '../../Store/actions'
-import { CREATE_EVENT } from '../../Apollo/Mutaions'
+import { CREATE_EVENT } from '../../Store/Apollo/Mutaions'
 import EventFormModal from './EventFormModal'
 
 class EventFormContainer extends Component {

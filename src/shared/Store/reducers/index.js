@@ -7,12 +7,14 @@ import profilePostsReducer from './profilePostsReducer'
 import myEventsReducer from './myEventsReducer'
 import eventReducer from './eventReducer'
 import singleEventReducer from './singleEventReducer'
+import profileDataReducer from './profileData'
 const appReducer = combineReducers({
   users: userReducer,
   auth: authReducer,
   posts: postsReducer,
   feed: feedReducer,
   profilePosts: profilePostsReducer,
+  profileDetails: profileDataReducer,
   myEvents: myEventsReducer,
   events: eventReducer,
   event: singleEventReducer

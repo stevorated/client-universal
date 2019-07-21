@@ -12,14 +12,33 @@ export default (state = null, { payload, type }) => {
       const avatar = { url: payload }
       return { ...state, avatar }
     case 'CREATE_POST':
-      const newPost = [{id:payload[0].id}]
-      return { ...state, posts: newPost.concat(state.posts)}
+      const newPost = [{ id: payload[0].id }]
+      return { ...state, posts: newPost.concat(state.posts) }
     case 'DELETE_POST':
-        const newposts = state.posts.filter((post)=> {
-          return post.id !== payload
-        })
-        return { ...state, posts: newposts }
-    default: 
+      const newposts = state.posts.filter((post) => {
+        return post.id !== payload
+      })
+      return { ...state, posts: newposts }
+    case 'FOLLOW_USER':
+      console.log(payload.userId)
+      console.log(state.following)
+      const userObjArray = [{ id: payload.userId }]
+      const filtered = state.following.filter((follow) => { return follow.id === payload.userId})
+      console.log(filtered)
+      if(filtered.length > 0) {
+        return {
+          ...state,
+          following: state.following.filter(follow => {
+            return follow.id !== payload.userId
+          })
+        }
+      } else {
+        return {
+          ...state,
+          following: userObjArray.concat(state.following)
+        }
+      }
+    default:
       return state
   }
 }

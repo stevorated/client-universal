@@ -164,7 +164,9 @@ function EventForm(props) {
             <Label for="event_startTime">time</Label>
             <Input type="time" name="startTime" id="event_startTime"
               value={props.state.startTime}
-              onChange={handleChangeInput} />
+              onChange={handleChangeInput}
+              step="1800"
+              />
           </FormGroup>
         </Col>
         <Col md={3}>

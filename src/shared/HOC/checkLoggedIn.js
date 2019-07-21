@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Query } from 'react-apollo'
-import { GET_ME } from '../Apollo/Queries'
+import { GET_ME } from '../Store/Apollo/Queries'
 import { checkUserLoggedOut } from '../Store/actions'
 
 export default (ChildComponent) => {
@@ -14,7 +14,7 @@ export default (ChildComponent) => {
       return (
         <Query
         query={GET_ME}
-        pollInterval={80000}
+        pollInterval={8000}
       >
         {({ loading, error, data, startPolling, stopPolling }) => {
           if (error) {

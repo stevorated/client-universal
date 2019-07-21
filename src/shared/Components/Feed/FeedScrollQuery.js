@@ -6,7 +6,7 @@ import { Query } from 'react-apollo'
 import { fetchFeed } from '../../Store/actions'
 import { Posts } from '../Post'
 import { Loading } from '../'
-import { FETCH_FEED } from '../../Apollo/Queries'
+import { FETCH_FEED } from '../../Store/Apollo/Queries'
 import { PostFormContainer } from '../Post'
 import styled from 'styled-components'
 
@@ -44,7 +44,7 @@ const FeedScrollQuery = (props) => {
           <StyledDiv className="text-center">
             <PostFormContainer feedMode={true} />
             <Posts feedMode={true} />
-            <Button className="mb-5" onClick={handleFatchMore}>Load More</Button>
+            <Button size="sm" className="my-5 btn-mainclr" onClick={handleFatchMore}>Load More</Button>
           </StyledDiv>
         )
       }}

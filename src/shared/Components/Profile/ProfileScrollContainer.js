@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Button  } from 'reactstrap'
 import { Loading , Posts } from '..'
 import { Query } from 'react-apollo'
-import { FETCH_USERS_POSTS } from '../../Apollo/Queries'
+import { FETCH_USERS_POSTS } from '../../Store/Apollo/Queries'
 import { fetchUsersPosts } from '../../Store/actions'
 import { PostFormContainer } from '../Post'
 import styled from 'styled-components'
 
 function ProfileScrollContainer(props) {
-  
+  // const [ animation, setAnimation ] = useState('')
   const length = props.profilePosts.length
+  // console.log(animation)
   return (
     // <div></div>
     <Query
@@ -29,7 +30,9 @@ function ProfileScrollContainer(props) {
             skip: length
           },
           updateQuery: (prev, { fetchMoreResult }) => {
-            if (!fetchMoreResult) return prev
+            if (!fetchMoreResult) { 
+              return prev
+            }
             props.fetchUsersPosts(
               [...fetchMoreResult.getUsersPosts]
             ) 
@@ -44,7 +47,7 @@ function ProfileScrollContainer(props) {
         myProfile={props.auth.id === props.id} 
         />
           <Posts profileMode={true} />
-          <Button onClick={handleFetchMore}>Load More</Button>
+          <Button size="sm" className={`my-5 btn-mainclr`} onClick={handleFetchMore}>Load More</Button>
         </StyledDiv>
       );
     }}

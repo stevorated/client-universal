@@ -1,4 +1,4 @@
-import { UPLOAD_FILE_TEST } from '../../Apollo/Mutaions'
+// import { UPLOAD_FILE_TEST } from '../Apollo/Mutaions'
  
 export * from './authActions'
 export * from './userActions'

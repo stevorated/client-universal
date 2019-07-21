@@ -6,6 +6,7 @@ import routes from './mainRoutes'
 
 export const MainContent = ({ whereTo, redirect, setRedirect }) => {
   const id = whereTo
+  console.log(window.scrollTop(0,0))
   if(redirect) {
     setRedirect(false)
     return <Redirect to={`/profile/${id}`} />

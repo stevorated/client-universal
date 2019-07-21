@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState} from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
 import { connect } from 'react-redux'
 import { Query } from 'react-apollo'
 import { fetchMyEvents } from '../../Store/actions'
 import { Loading } from '..'
-import { FETCH_MY_EVENTS } from '../../Apollo/Queries'
+import { FETCH_MY_EVENTS } from '../../Store/Apollo/Queries'
 import styled from 'styled-components'
 import { Events } from '..'
 
 const MyEventsBoard = (props) => {
+  // const [ animation, setAnimation ] = useState('')
   return (
     <Query
       // fetchPolicy='network-only' // IMPORTANT
@@ -17,6 +18,7 @@ const MyEventsBoard = (props) => {
       variables={{ limit: 6, skip: 0}}
       onCompleted={
         ({ getMyEvents }) => {
+          
           props.fetchMyEvents(getMyEvents, props.myEvents.length )
         }
       }
@@ -40,7 +42,7 @@ const MyEventsBoard = (props) => {
         return (
           <StyledDiv className="text-center">
             <Events myEventsMode />
-            <Button className="mb-5" onClick={handleFatchMore}>Load More</Button>
+            <Button size="sm" className={`my-5 btn-mainclr`} onClick={handleFatchMore}>Load More</Button>
           </StyledDiv>
         )
       }}

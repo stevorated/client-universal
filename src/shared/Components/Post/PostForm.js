@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
-  Container, Col, Row, Input, Card, CardSubtitle, Button, CardBody, Form
+  Container, Col, Row, Input, Card, CardSubtitle, Button, CardBody, Form, FormFeedback
 } from 'reactstrap'
 import { isLength } from 'validator'
 import {
@@ -12,6 +12,8 @@ import {
 import styled from 'styled-components'
 
 export default function PostForm({id, errors, state, setFormState, createPost}) {
+  const [ showError, setShowError ] = useState(null)
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     if(isLength(state.body,{min:2, max: 500})) {
@@ -19,13 +21,17 @@ export default function PostForm({id, errors, state, setFormState, createPost}) 
         body: state.body,
       }})
       setFormState({body: ''})
+      setShowError(false)
+      
     } else {
-      console.log('Form Too Long')
+      console.log('Form Too Long or roo short')
+      setShowError(true)
     }
     // openForm()
   }
 
   const handleOnChange = (e) => {
+    // setShowError(false)
     setFormState({retry :false})
     const value = e.target.value
     const name = e.target.name
@@ -40,8 +46,11 @@ export default function PostForm({id, errors, state, setFormState, createPost}) 
         <CardBody>
         <CardSubtitle className="mb-1">Share Your Wisdom</CardSubtitle>
           <Form onSubmit={handleSubmit}>
+            
             <StyledInput 
+            id="post_form_input"
             value={state.body}
+            invalid={showError}
             onChange={handleOnChange}
             className="mb-2" 
             type="textarea" 
@@ -49,6 +58,7 @@ export default function PostForm({id, errors, state, setFormState, createPost}) 
             id="Post_add_body" 
             rows="2"
             />
+            <FormFeedback tooltip placement="left" targe="post_form_input">Wisdom must be between 2 and 500 lettes long</FormFeedback>
             <div className="d-flex">
               <Button size="sm" className="btn-mainclr px-4 m-auto px-2">Post</Button>
             </div>

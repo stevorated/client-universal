@@ -5,14 +5,14 @@ import AddImageModal from './AddImageModal'
 import { BigProfileImg, FlatCard } from '../../Elements'
 import Loading from '../Fragment/Loading'
 import styled from 'styled-components'
-import { mediaQueries } from '../../Utils';
+import FollowUserMut from './FollowUserMut'
+import { mediaQueries } from '../../Utils'
 import Avatar from '../../../assets/logos/new_logo.png'
 const imgAvatar = Avatar.replace('build', '').replace('/public', '')
 
-function ProfileContainer({ auth, profilePosts, profileMode }) {
-  
+function ProfileContainer({ auth, profilePosts, profileMode, profileDetails }) {
   let details
-  const profileData = profilePosts[0] ? profilePosts[0].createdBy : null
+  const profileData = profileDetails ? profileDetails : null
   if (profileMode) {
     if (profileData) {
       details = profileData
@@ -21,7 +21,7 @@ function ProfileContainer({ auth, profilePosts, profileMode }) {
     details = auth
   }
   if (details !== undefined) {
-    let { id, fname, lname, username, posts, avatar } = details
+    let { id, fname, lname, username, posts, avatar, followers, following } = details
     // check if this is my user's profile
     const myProfile = id === auth.id ? true : false
     // check if my is an avatar avalible else send the default one
@@ -30,7 +30,10 @@ function ProfileContainer({ auth, profilePosts, profileMode }) {
     const avatarOfUser = avatar ? `${process.env.API_BASE}${avatar.url}` : imgAvatar
     // if my profile return my else return user's
     const imgUrl = myProfile ? myAvatarUrl : avatarOfUser
-    let postCount = posts ? posts.length : null
+    let postCount = posts ? posts.length : 0
+    let followersCount = followers ? followers.length : 0
+    let followingCount = following ? following.length : 0
+    if (details.length === 0) return <Loading />
     return (
       <div className="m-0 text-left">
         {details !== undefined &&
@@ -44,8 +47,7 @@ function ProfileContainer({ auth, profilePosts, profileMode }) {
                   <div className="noPadding small-text ml-3">{username}</div>
                   <hr className="noPadding" />
                   <div className="small-text text-left mt-2 ml-3 font-weight-bold">Bio</div>
-                 
-                  </Col>
+                </Col>
                 <Col className="text-right mt-4" xs="3" sm="4">
                   {myProfile && <AddImageModal />}
                   <div className="mt-1">
@@ -60,13 +62,13 @@ function ProfileContainer({ auth, profilePosts, profileMode }) {
               <p className="lo-text text-left ml-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, tenetur?</p>
               <div className="d-flex justify-content-around lo-text">
                 <div>{postCount} Wisdoms</div>
-                <div>21 followers</div>
-                <div>35 following</div>
+                <div>{followersCount} followers</div>
+                <div>{followingCount} following</div>
               </div>
               <hr className="noPadding" />
               <div className="d-flex mb-2 small-text mt-2">
-                <StyledButton size="sm" className="btn-mainclr mt-2 ml-1">Follow</StyledButton>
-                <StyledButton size="sm" className="btn-mainclr mt-2 ml-1">Go to</StyledButton>
+                {!myProfile && <FollowUserMut user={id} followersCount={followersCount} followers={followers} myId={auth.id} />}
+                {myProfile && <StyledButton size="sm" className="btn-mainclr mt-2 ml-1">Update details</StyledButton>}
                 <div className="ml-auto">
                   <StyledButton size="sm" className="btn-mainclr mt-2 mr-2">Go to</StyledButton>
                 </div>
@@ -79,11 +81,8 @@ function ProfileContainer({ auth, profilePosts, profileMode }) {
   } else {
     return <Loading />
   }
-
-  // || (profileData && profileMode)
-
 }
-const mapStateToProps = ({ auth, profilePosts }) => ({ auth, profilePosts })
+const mapStateToProps = ({ auth, profilePosts, profileDetails }) => ({ auth, profilePosts, profileDetails })
 export default connect(mapStateToProps)(ProfileContainer)
 
 const StyledButton = styled(Button)`

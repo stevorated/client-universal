@@ -7,21 +7,19 @@ import {
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBeer } from '@fortawesome/free-solid-svg-icons'
+import LikePostMut from './LikePostMut'
 import { Comments, AddCommentForm, AddCommentContainer, DeletePostMutation } from './'
-import { SmallProfileImg } from '../../Elements'
+import { SmallProfileImg, StyledLink } from '../../Elements'
 import { black, elevation, transition, timeAgo } from '../../Utils'
 
 import Avatar from '../../../assets/logos/new_logo.png'
 const imgAvatar = Avatar.replace('build', '').replace('/public', '')
 
 function Post(props) {
-
+  const [ animation, setAnimation ] = useState('')
   const [ showForm, setShowForm ] = useState(false)
   const [ showComments, setShowComments ] = useState(false)
-  const [ hideDeletedComment, setHideDeletedComment ] = useState(false)
-  const [ clickDeleteCounter, setClickDeleteCounter ] = useState(0)
-  const [ deleteMessage, setDeleteMessage ] = useState('')
-
+  const [ hideDeletedPost, setHideDeletedPost ] = useState(false)
   const MyPost = props.createdBy.id === props.auth.id
   const profileUrl = `/profile/${props.createdBy.id}`
 
@@ -31,31 +29,17 @@ function Post(props) {
   const toggleComments = () => {
     setShowComments(!showComments)
   }
-  const handleDelete = () => {
-    if(clickDeleteCounter === 0) {
-      setDeleteMessage('You Sure? click twice')
-    }
-    if(clickDeleteCounter === 1) {
-      setDeleteMessage('final warning ... u sure?')
-    }
-    if(clickDeleteCounter === 2) {
-      setHideDeletedComment(true)
-    }
-  }
   
   const animatedClass = 'animated fadeIn slow'
   const PostedTime = timeAgo(Date.now(),props.createdAt)
-  return !hideDeletedComment ? (
-    <div className={`mb-4 text-center ${animatedClass}`}>
+  return !hideDeletedPost ? (
+    <div className={` text-center`}>
       <StyledCard  >
         <CardBody>
           {MyPost && <DeletePostMutation 
-          handleDelete={handleDelete}
-          hideDeletedComment={hideDeletedComment}
-          post={props.id} 
-          deleteMessage={deleteMessage} 
-          clickDeleteCounter={clickDeleteCounter} 
-          setClickDeleteCounter={setClickDeleteCounter}
+          hideDeletedPost={hideDeletedPost}
+          setHideDeletedPost={setHideDeletedPost}
+          post={props.id}
           close />}
           <div className="d-flex">
             <ProfileLink to={profileUrl} >
@@ -74,7 +58,7 @@ function Post(props) {
           </div>
           {props.body.length > 20 
           ?
-          <CardText className="mb-4 mt-2 text-left ml-2">
+          <CardText style={{whiteSpace: 'pre-wrap'}} className="mb-4 mt-2 text-left ml-2">
             {props.body}
           </CardText>
           :
@@ -85,16 +69,17 @@ function Post(props) {
           <div className="d-flex">
             <Button 
             size="sm" 
-            className="px-2 btn-mainclr"
-            // style={{padding: '0.3rem'}} 
-            onClick={ props.comments.length >0 ? toggleComments : (()=>{})}>
+            className={`px-2 btn-mainclr ${animation}`}
+            onClick={ props.comments.length >0 ? toggleComments : (()=>{
+              setAnimation(animation + ' animated shake ')
+              setTimeout(()=> {
+                setAnimation('')
+              }, 1000)
+            })}>
             {props.comments ? props.comments.length : '0'} Comments
             </Button>
             <div className="ml-auto" >
-              <Button size="sm" className="btn-mainclr ml-2 px-2">
-              0 Likes 
-              <FontAwesomeIcon icon={faBeer} className="ml-2 text-warning" />
-              </Button>
+              <LikePostMut post={props.id} likes={props.likes}  />
             </div>
           </div>
         </CardBody>
@@ -124,6 +109,7 @@ function Post(props) {
         profileMode={props.profileMode}
         comments={props.comments} 
         id={props.id} 
+        post={props.id}
         />}
     </div>
   ) : (
@@ -164,10 +150,3 @@ const StyledCard = styled(Card)`
       }
 `
 
-const StyledLink = styled(Link)`
-  color: ${black};
-  &:hover {
-    color: ${black};
-    text-decoration: none;
-  }
-`

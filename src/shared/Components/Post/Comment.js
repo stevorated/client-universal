@@ -1,17 +1,22 @@
 import React from 'react'
 import { FlatCard, SmallProfileImg } from '../../Elements'
-import {
-  Col, Row, Card, CardTitle, CardSubtitle, CardText, Button, CardBody
-} from 'reactstrap'
+import { CardTitle } from 'reactstrap'
+import DeleteCommentMutation from './DeleteCommentMutation'
 import styled from 'styled-components'
+
+import { timeAgo } from '../../Utils'
+
 import Avatar from '../../../assets/logos/new_logo.png'
 const imgAvatar = Avatar.replace('build', '').replace('/public', '')
-import { timeAgo } from '../../Utils'
-export default function Comment({ id, body, createdAt, name, profileImgUrl }) {
-  const PostedTime = timeAgo(Date.now(),createdAt)
+
+export default function Comment({ id, body, createdAt, name, profileImgUrl, createdBy, myComment, post }) {
+  const PostedTime = timeAgo(Date.now(), createdAt)
   return (
     <FlatCard className="bg-white animated fadeIn mt-1" >
-      <Button close></Button>
+      {myComment && <DeleteCommentMutation
+        post={post}
+        comment={id}
+        close />}
       <div className="d-flex">
         <SmallProfileImg
           className="mr-3"
@@ -19,11 +24,10 @@ export default function Comment({ id, body, createdAt, name, profileImgUrl }) {
           alt="my profile img" />
         <div>
           <CardTitle className="mb-0 text-capitalize">{name}<span className="lo-text" > commented</span></CardTitle>
-          
           <CreatedAt className="ml-0 pl-0">{PostedTime}</CreatedAt>
         </div>
       </div>
-      <div className="text-left ml-2">{body}</div>
+      <div style={{whiteSpace: 'pre-wrap'}} className="text-left ml-2">{body}</div>
     </FlatCard>
   )
 }
