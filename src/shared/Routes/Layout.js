@@ -10,6 +10,10 @@ import { Footer } from '../Components'
 const MainContent = ({ whereTo, redirect, setRedirect }) => {
 
   const id = whereTo
+  if (redirect && !id) {
+    setRedirect(false)
+    return <Redirect to={`/feed`} />
+  }
   if (redirect) {
     setRedirect(false)
     return <Redirect to={`/profile/${id}`} />

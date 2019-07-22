@@ -29,7 +29,7 @@ class AddImageModal extends React.Component {
         <Modal returnFocusAfterClose={false} isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Upload Profile Pic</ModalHeader>
           <ModalBody>
-            <FileInputContainer limit="2000000" uploadType="avatar" toggle={this.toggle} round={true} />
+            <FileInputContainer limit="4000000" uploadType="avatar" toggle={this.toggle} round={true} />
           </ModalBody>
         </Modal>
       </div>

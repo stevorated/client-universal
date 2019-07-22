@@ -32,6 +32,7 @@ class RegisterPage extends Component {
     submitError: null,
     showServerError: true,
     showEmailError: true,
+    loading: false
   }
   
   handleFormState = (data) => {
@@ -59,7 +60,8 @@ class RegisterPage extends Component {
                     state={this.state} 
                     handleFormState={this.handleFormState} 
                     />
-                    {loading && <Loading />}
+                    {this.state.loading && <Loading size={`10`} style={{ position: 'fixed', bottom: '10%', left: '48%', zIndex: '100' }} />}
+                    {loading && <Loading size={`10`} style={{ position: 'fixed', bottom: '10%', left: '48%', zIndex: '100' }} />}
                   </div>
                   )
                 }
@@ -72,8 +74,8 @@ class RegisterPage extends Component {
                 state={this.state} 
                 handleFormState={this.handleFormState} 
                 />
-                
-                {loading && <Loading />}
+                {this.state.loading && <Loading size={`10`} style={{ position: 'fixed', bottom: '10%', left: '48%', zIndex: '100' }} />}
+                {loading && <Loading size={`10`} style={{ position: 'fixed', bottom: '10%', left: '48%', zIndex: '100' }} />}
               </div>
               )
             }}

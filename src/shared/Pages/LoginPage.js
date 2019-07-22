@@ -1,7 +1,7 @@
 import React, { Fragment, useState, Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { LoginForm, HelmetComponent } from '../Components'
+import { LoginForm, HelmetComponent, Loading } from '../Components'
 import forceLoggedIn from '../HOC/forceLoggedIn'
 import { isEmail, isLength } from 'validator'
 import { loginUser } from '../Store/actions'
@@ -19,7 +19,8 @@ class LoginPage extends Component {
       passwordValid: false,
       passwordInvalid: false,
       password: '',
-      formError: false
+      formError: false,
+      loading: false
     }
   }
 
@@ -54,14 +55,16 @@ class LoginPage extends Component {
 
   handleLogin = async (e) => {
     e.preventDefault()
-    this.setState({ errorCounter: this.state.errorCounter + 1 })
+    
+    this.setState({ errorCounter: this.state.errorCounter + 1, loading: true })
     if (this.state.errorCounter <= 2) {
       try {
         if (this.state.emailValid && this.state.passwordValid) {
           const res = await this.props.loginUser(this.state.email, this.state.password)
         }
       } catch (error) {
-        this.setState({ formError: true })
+
+        this.setState({ formError: true, loading: false })
       }
 
     } else {
@@ -70,8 +73,9 @@ class LoginPage extends Component {
   }
   render() {
     return !this.state.redirect ? (
-      <div className="pt-4 text-center">
+      <div className="pt-4 text-center" style={{position: 'relative'}}>
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
+        
         <LoginForm
           state={this.state}
           setState={this.setState}
@@ -79,7 +83,7 @@ class LoginPage extends Component {
           handleLogin={this.handleLogin}
         
         />
-
+        {this.state.loading && <Loading size={`10`} style={{ position: 'fixed', bottom: '10%', left: '48%', zIndex: '100' }} />}
         
       </div>
     )

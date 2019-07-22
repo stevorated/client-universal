@@ -6,6 +6,7 @@ import { elevationJs, transition, elevation, orange, mediaQueries } from '../Uti
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons'
+
 import forceLoggedIn from '../HOC/forceLoggedIn'
 import Logo from '../../assets/logos/logo5.png'
 const linkLogo = Logo.replace('build', '').replace('/public', '')

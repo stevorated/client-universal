@@ -22,6 +22,7 @@ const PORT = process.env.PORT || 8080
 
 const app = express()
 app.use(cookieParser())
+
 app.use(cors())
 app.use(express.static('build/public'))
 

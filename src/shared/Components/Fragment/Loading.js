@@ -7,7 +7,7 @@ export default function Loading(props) {
   const finalMargin = margin ? margin : 8
   return (
     <div className="text-center" style={{margin: `${finalMargin}rem`}}>
-    <Spinner style={{ width: `${finalSize}rem`, height: `${finalSize}rem` }} />{' '}
+    <Spinner style={{ width: `${finalSize}rem`, height: `${finalSize}rem` }} { ...props } />{' '}
     </div>
     )
   }

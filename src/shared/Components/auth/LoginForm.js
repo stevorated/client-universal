@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Container, Row, Col, Form, FormGroup, Label, Input, FormFeedback, Button } from 'reactstrap'
+import { Loading } from '../'
 import forceLoggedIn from '../../HOC/forceLoggedIn'
 import { Link } from 'react-router-dom'
 

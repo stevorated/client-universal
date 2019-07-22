@@ -1,6 +1,7 @@
 import { LOGIN_USER_MUT, LOGOUT_USER } from '../Apollo/Mutaions'
 
 export const registerUser = (data) => (dispatch, getState, client) => {
+
   dispatch({
     type: 'REGISTER_USER',
     payload: data
