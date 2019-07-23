@@ -2,14 +2,14 @@ import React from 'react'
 import { orange } from '../../Utils'
 export default function NotFound() {
   return (
-    <div className="permission_denied" style={{paddingTop: '10px'}}>
-      
-      <div id="particles-js"></div>
-      <div className="denied__wrapper">
+    <div className="permission_denied" style={{ paddingTop: '2px', overflowX: 'none' }}>
+
+      <div id="particles-js" style={{ overflowX: 'none' }}></div>
+      <div className="denied__wrapper" >
         <h1 >404</h1>
-        <h3>LOST IN <span>SPACE</span> Wisdom Of De Crowd?<br/> Hmm, looks like that page doesn't exist.</h3>
-        
-        <svg  id="planet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <h3>LOST IN <span>SPACE</span> Wisdom Of De Crowd?<br /> Hmm, looks like that page doesn't exist.</h3>
+
+        <svg id="planet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
           <circle className="saturn" cx="256" cy="256" r="149.536" fill="#FF4F54" />
           <g className="saturn-2" fill="#EA4753">
             <path d="M109.388 285.56c42.515 1.428 157.943-2.613 289.462-73.807-5.11-16.448-13.02-31.882-23.322-45.604-42.716 29.386-140.403 83.922-268.457 76.27-1.354 14.666-.508 29.175 2.318 43.14zM400.734 293.587c3.976-15.31 5.422-30.68 4.614-45.672-33.75 25.31-137.237 92.367-277.65 84.876 6.507 10.874 14.383 20.93 23.472 29.88 44.354.286 137.696-6.443 245.93-57.163 1.362-3.89 2.58-7.86 3.634-11.92zM245.488 405.184c35.427 2.537 69.784-7.742 97.543-27.59-27.972 11.533-60.787 21.76-97.542 27.59zM348.02 138.097c-15.645-12.225-33.99-21.522-54.434-26.832-71.883-18.667-145.126 18.253-174.25 84.01 49.02-1.676 133.073-12.256 228.685-57.178z" />
@@ -42,7 +42,7 @@ export default function NotFound() {
           <g>
             <path className="stars" fill="#FFF" d="M112.456 363.093c-.056 7.866-6.478 14.197-14.344 14.142 7.866.056 14.198 6.48 14.142 14.345.056-7.866 6.48-14.198 14.345-14.142-7.868-.057-14.2-6.48-14.144-14.345zM432.436 274.908c-.056 7.866-6.478 14.198-14.344 14.142 7.866.057 14.197 6.48 14.142 14.345.056-7.866 6.48-14.197 14.345-14.142-7.868-.056-14.2-6.48-14.144-14.345zM159.75 58.352c-.12 16.537-13.62 29.848-30.157 29.73 16.537.118 29.848 13.62 29.73 30.156.118-16.537 13.62-29.848 30.156-29.73-16.54-.117-29.85-13.62-29.73-30.156z" />
           </g>
-        </svg>  
+        </svg>
       </div>
     </div>
   )
