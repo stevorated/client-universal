@@ -2,7 +2,7 @@ import React from 'react'
 import { orange } from '../../Utils'
 export default function NotFound() {
   return (
-    <div className="permission_denied" style={{ paddingTop: '2px', overflowX: 'none' }}>
+    <div className="permission_denied animated fadeInDown turtle" style={{ paddingTop: '2px', overflowX: 'none' }}>
 
       <div id="particles-js" style={{ overflowX: 'none' }}></div>
       <div className="denied__wrapper" >
