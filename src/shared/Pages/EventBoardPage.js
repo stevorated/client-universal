@@ -20,7 +20,6 @@ class EventBoardPage extends Component {
       leaveClass: 'animated fadeOutUp',
       events: this.props.myEvents
     }
-    console.log(this.state)
   }
 
   render() {

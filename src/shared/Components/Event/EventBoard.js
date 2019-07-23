@@ -19,16 +19,18 @@ const EventBoard = (props) => {
       variables={{ limit: 6, skip: 0 }}
       onCompleted={
         ({ getMyEventsFeed }) => {
-          props.fetchMyEvents(getMyEventsFeed, props.events.length )
+          console.log(getMyEventsFeed)
+          props.fetchMyEvents(getMyEventsFeed, props.myEvents.length )
         }
       }
     // refetchQueries={[{query:GET_MA_POSTS, variables:{limit: 10, skip: 0 }}]}
     >
       {({ loading, error, data, fetchMore }) => {
         const handleFatchMore = () => {
+          console.log(props.myEvents.length)
           fetchMore({
             variables: {
-              skip: props.events.length
+              skip: props.myEvents.length
             },
             updateQuery: (prev, { fetchMoreResult }) => {
               if (!fetchMoreResult) return prev
@@ -52,8 +54,8 @@ const EventBoard = (props) => {
   )
 }
 
-const mapStateToProps = ({ events }) => {
-  return { events }
+const mapStateToProps = ({ myEvents }) => {
+  return { myEvents }
 }
 
 export default connect(mapStateToProps, { fetchMyEvents })(EventBoard)

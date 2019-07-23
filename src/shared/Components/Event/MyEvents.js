@@ -19,7 +19,7 @@ const MyEventsBoard = (props) => {
       variables={{ limit: 6, skip: 0}}
       onCompleted={
         ({ getMyEventsFeed }) => {
-          
+          console.log(getMyEventFeed)
           props.fetchMyEvents(getMyEventsFeed, props.myEvents.length )
         }
       }
@@ -32,6 +32,7 @@ const MyEventsBoard = (props) => {
               skip: props.myEvents.length
             },
             updateQuery: (prev, { fetchMoreResult }) => {
+              console.log('ya alla')
               if (!fetchMoreResult) return prev
               props.fetchMyEvents(
                 [...fetchMoreResult.getMyEventsFeed]
