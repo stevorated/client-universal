@@ -126,8 +126,8 @@ button.close {
 div#root {
   padding: 0rem!important;
 }
-.container-fluid, .container, .row, .col {
-  padding: 0.05rem;
+.container-fluid, .container, .row, .col, div {
+  padding: 0.05rem 0;
 }
 
 button.big-x {

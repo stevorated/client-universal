@@ -11,8 +11,7 @@ export default function EventMainCard(props) {
       <div>
         <h6 className="sigmar-one ml-3 text-left">{props.header}</h6>
       </div>
-      <hr />
-      
+      <hr />      
       <div className="mx-3" style={{ minHeight: '200px' }}>
         <p className="text-left lead mb-0" style={{fontWeight:'900'}}>Next Up</p>
         <hr className="noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.5' }} />
@@ -24,9 +23,7 @@ export default function EventMainCard(props) {
           <EventFormContainer className="text-center mr-4" round={false} buttonLabel="Add Event" buttonSize="sm" />
           <SquareButton size="sm" style={{ background: '#3b5998' }} className="">From Facebook</SquareButton>
         </div>
-      </div>
-
-      
+      </div>    
     </FlatCardStatic>
   )
 }
