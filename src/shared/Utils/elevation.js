@@ -5,7 +5,8 @@ export default [
   'box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.10), 0 6px 6px rgba(0, 0, 0, 0.10);',
   'box-shadow: 14px 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);',
   'box-shadow: 19px 19px 38px rgba(0, 0, 0, 0.30), 0 16px 12px rgba(0, 0, 0, 0.22);',
-  'box-shadow: .5px .5px .5px rgba(0, 0, 0, 0.12), .5px .5px .5px rgba(0, 0, 0, 0.12) ;'
+  'box-shadow: .5px .5px .5px rgba(0, 0, 0, 0.12), .5px .5px .5px rgba(0, 0, 0, 0.12);',
+  'box-shadow: 0px .5px 0px .5px rgba(0, 0, 0, 0.12), 0px .5px 0px .5px rgba(0, 0, 0, 0.12);'
 ]
 
 // export default [

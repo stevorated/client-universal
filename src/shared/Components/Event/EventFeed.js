@@ -9,6 +9,7 @@ import { FETCH_EVENTS } from '../../Store/Apollo/Queries'
 import styled from 'styled-components'
 import { Events } from '..'
 import { FlatCardStatic } from '../../Elements'
+import { orange } from '../../Utils'
 
 const EventFeed = (props) => {
   // const skip = props.events ? 1 : 0
@@ -18,8 +19,8 @@ const EventFeed = (props) => {
       query={FETCH_EVENTS}
       variables={{ limit: 6, skip: 0 }}
       onCompleted={
-        ({ getEvents }) => {
-          props.fetchEvents(getEvents, props.events.length )
+        ({ getEventsFeed }) => {
+          props.fetchEvents(getEventsFeed, props.events.length )
         }
       }
     // refetchQueries={[{query:GET_MA_POSTS, variables:{limit: 10, skip: 0 }}]}
@@ -33,7 +34,7 @@ const EventFeed = (props) => {
             updateQuery: (prev, { fetchMoreResult }) => {
               if (!fetchMoreResult) return prev
               props.fetchEvents(
-                [...fetchMoreResult.getEvents]
+                [...fetchMoreResult.getEventsFeed]
               ) 
             }
         })}
@@ -41,6 +42,8 @@ const EventFeed = (props) => {
         if (error) return <Loading />
         return (
           <FlatCardStatic className="mt-3 animated fadeIn slow" >
+            <p className="text-left lead mt-4 mb-0 mx-3" style={{fontWeight:'900'}}>All Of the Events</p>
+            <hr className="noPadding mx-3" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.5' }} />
             <Events eventFeedMode />
             <Button size="sm" className="my-5 btn-mainclr" onClick={handleFatchMore}>Load More</Button>
           </FlatCardStatic>

@@ -1,67 +1,63 @@
 import React, { Component } from 'react'
-import { Row, Col, Button } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { HelmetComponent } from '../Components'
-import { fetchFeed, clearFeed } from '../Store/actions'
+import { HelmetComponent, LittleMenu } from '../Components'
+import { fetchMyEvents, fetchFeed, clearFeed } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
-import { Menu, EventFormContainer, MyEvents } from '../Components'
-import NavComponent from '../Routes/NavComponent'
-import { mediaQueries, backClr } from '../Utils'
-import { FlatCard, SquareButton, Card } from '../Elements'
+import { Menu, EventBoard, EventMainCard } from '../Components'
+import { mediaQueries, orange } from '../Utils'
+import { FlatCardStatic } from '../Elements'
+import NextUpBoardContainer from '../Components/Event/NextUpBoardContainer'
+
 class EventBoardPage extends Component {
 
   constructor(props) {
     super(props)
     this.title = 'My Events'
     this.state = {
-      leaveClass: 'animated fadeOutUp'
+      leaveClass: 'animated fadeOutUp',
+      events: this.props.myEvents
     }
-  }
-  componentWillUnmount = () => {
-
+    console.log(this.state)
   }
 
   render() {
     return (
-      <Row className="text-center" >
+      <Row className="text-center"  >
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
-        <FloatLeft lg="3">
+        <FloatLeft lg="3" className="">
           <Menu />
         </FloatLeft>
-        <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
-          <FlatCard className=" py-5">
-
-          <h1 className="sigmar-one text-center">Your Events</h1>
-          <h3 className="mt-4 sigmar-one text-center">- filter -</h3>
-          <div className="text-center my-5">
-            
-          </div>
-          <h3 className="sigmar-one text-center">- add new events -</h3>
-          <div className="d-flex justify-content-center my-5">
-          <EventFormContainer className="text-center" round={false} buttonLabel="Add Event" buttonSize="sm" />
-          <SquareButton size="sm" style={{ background: '#3b5998' }} className="mx-2">From Facebook</SquareButton>
-          </div>
-          
-            <MyEvents />
-          </FlatCard>
+        <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-2" >
+          <EventMainCard header="Event Board" boardMode />
+          <EventBoard />
         </MainCol>
-        <Col lg="3" className="order-2 order-lg-3 mt-2 animated fadeIn">
+        <Col lg="3" className="order-2 order-lg-3 mt-lg-2 animated fadeIn px-2">
+          <FlatCardStatic style={{ minHeight: '200px' }} className="px-0 mt-3">
+            
 
+              <div className="mx-3 text-center">
+              <hr className="mx-2 noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.1' }} />
+              <LittleMenu items={['tonight', 'tomorow', 'week']} />
+              <hr className="noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.5' }} />
+              <NextUpBoardContainer events={this.props.myEvents} />            
+            </div>
+          </FlatCardStatic>
         </Col>
       </Row>
     )
   }
 }
 
-function mapStateToProps({ users, posts, feed }) {
-  return { users, posts, feed }
+function mapStateToProps({ myEvents }) {
+  return { myEvents }
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchFeed, clearFeed })(checkLoggedIn(requireAuth(EventBoardPage))),
-  loadData: ({ dispatch }) => dispatch(fetchFeed())
+  component: connect(mapStateToProps, { fetchMyEvents, clearFeed })(checkLoggedIn(requireAuth(EventBoardPage))),
+  loadData: ({ dispatch }) => dispatch(fetchMyEvents())
 }
 const FloatLeft = styled(Col)`
   position: static!important;

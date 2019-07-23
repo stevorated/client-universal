@@ -7,11 +7,6 @@ import { fetchFeed, clearFeed } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import { Menu, ProfileContainer, InfoContainer } from '../Components'
-// import FeedRigntBar from '../Components/Feed/FeedRigntBar'
-import FeedScrollQuery from '../Components/Feed/FeedScrollQuery'
-import FeedActivity from '../Components/Feed/FeedActivity'
-import FeedExtraRight from '../Components/Feed/FeedExtraRight'
-// import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import { mediaQs, mediaQueries } from '../Utils'
 

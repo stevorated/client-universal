@@ -4,7 +4,10 @@ import { connect } from 'react-redux'
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem, Input, Button, Label } from 'reactstrap'
 import { SearchBar } from '../Components'
 import styled from 'styled-components'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faBell, faUtensils, faFeather
+} from '@fortawesome/free-solid-svg-icons'
 import { elevationJs, orange, lightOrange, mediaQueries } from '../Utils'
 import { logoutUser } from '../Store/actions'
 import Logo from '../../assets/logos/logo7.png'
@@ -29,22 +32,22 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
   }
 
   const authBtn = auth ? (
-      <StyledNavLink className='nav-link' to="/logout" onClick={handleLogout}>Logout</StyledNavLink>
+    <NavLink className='nav-link mt-md-0 mt-2' to="/logout" onClick={handleLogout}>Logout</NavLink>
   ) : (
       <div className="d-md-flex">
-        <StyledNavLink className='nav-link' to="/privacy" onClick={handleClick}>Privacy</StyledNavLink>
-        <StyledNavLink className='nav-link' to="/login" onClick={handleClick}  >Login</StyledNavLink>
-        <StyledNavLink className='nav-link' to="/register" onClick={handleClick}  >Register</StyledNavLink>
+        <NavLink className='nav-link' to="/privacy" onClick={handleClick}>Privacy</NavLink>
+        <NavLink className='nav-link' to="/login" onClick={handleClick}  >Login</NavLink>
+        <NavLink className='nav-link' to="/register" onClick={handleClick}  >Register</NavLink>
       </div>
     )
   return (
     <Navbar className="text-capitalize " color="dark" style={elevationJs[4]} dark expand="md" fixed="top">
-      <StyledNavLink
+      <NavLink
         style={{ fontSize: '1.1rem', margin: '0', padding: '0' }}
         className="nav-link text-white"
         onClick={handleClick}
-        to={auth ? '/feed' : '/'}> <LogoImg className="ml-sm-0" src={linkLogo} alt=""/>
-      </StyledNavLink>
+        to={auth ? '/event-board' : '/'}> <LogoImg className="ml-sm-0" src={linkLogo} alt="" />
+      </NavLink>
       <NavbarToggler
         onClick={handleToggleNav}
       />
@@ -56,35 +59,80 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
           handleClick={handleClick} />
         <Nav className="ml-auto pr-4" navbar>
           {auth && <Fragment>
-            <NavItem>
-            <StyledNavLink
-              className='nav-link'
-              onClick={handleClick}
-              to='/my-profile'
-            >
-              Profile
-          </StyledNavLink>
-          </NavItem>
-          <NavItem>
-            <StyledNavLink
-              className='nav-link'
-              onClick={handleClick}
-              to='/feed'
-            >
-              Feed
-          </StyledNavLink>
-          </NavItem>
-          <NavItem>
-            <StyledNavLink
-              className='nav-link'
-              onClick={handleClick}
-              to='/event-feed'
-            >
-              Events
-          </StyledNavLink>
-          </NavItem>
-          </Fragment>}
 
+            <NavItem>
+              <NavLink
+                className='nav-link'
+                onClick={handleClick}
+                to='/notifications'
+              >
+                <StyledIcon className="mr-2" icon={faBell} size={'lg'} /><StyledSpan>Notifications</StyledSpan>
+              </NavLink>
+            </NavItem>
+
+            <NavItem>
+              <NavLink
+                className='nav-link'
+                onClick={handleClick}
+                to='/engage-gauge '
+              >
+                <StyledIcon className="mr-2" icon={faFeather} size={'lg'} /><StyledSpan>Engage Guage</StyledSpan>
+              </NavLink>
+            </NavItem>
+
+            <NavItem>
+              <NavLink
+                className='nav-link'
+                onClick={handleClick}
+                to='/event-feed'
+              >
+                Events
+            </NavLink>
+            </NavItem>
+
+            <NavItem>
+              <NavLink
+                className='nav-link'
+                onClick={handleClick}
+                to='/feed'
+              >
+                Feed
+          </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className='nav-link'
+                onClick={handleClick}
+                to='/my-profile'
+              >
+                Profile
+          </NavLink>
+            </NavItem>
+          </Fragment>}
+          <NavItem>
+            <StyledLine />
+          </NavItem>
+          <StyledNavItem>
+            <NavLink
+              className='nav-link'
+              onClick={handleClick}
+              to='/setings'
+            >
+              Setings
+            </NavLink>
+          </StyledNavItem>
+          <StyledNavItem>
+            <NavLink
+              className='nav-link'
+              onClick={handleClick}
+              to='/prefrences'
+            >
+              Prefrences
+            </NavLink>
+          </StyledNavItem>
+          <NavItem>
+            <StyledLine />
+          </NavItem>
           <NavItem>
             {authBtn}
           </NavItem>
@@ -100,8 +148,35 @@ function mapStateToProps({ auth }) {
 
 export default connect(mapStateToProps, { logoutUser })(NavbarComponent)
 
-const StyledNavLink = styled(NavLink)`
-/* color: ${lightOrange}; */
+const StyledNavItem = styled(NavItem)`
+    display: block;  
+    ${mediaQueries.md`
+    display: none;
+  `}
+`
+const StyledIcon = styled(FontAwesomeIcon)`
+    display: none;
+    ${mediaQueries.md`
+    display: block;  
+  `}
+`
+const StyledSpan = styled.span`
+    display: block; 
+    ${mediaQueries.md`
+     
+    display: none;
+  `}
+`
+
+const StyledLine = styled.hr`
+    display: block; 
+    background: white;
+    /* border: 2px solid white; */
+    /* width: 2px; */
+    /* ${mediaQueries.md`
+     
+    display: none;
+  `} */
 `
 
 const LogoImg = styled.img`

@@ -79,7 +79,7 @@ function Post(props) {
             {props.comments ? props.comments.length : '0'} Comments
             </Button>
             <div className="ml-auto" >
-              <LikePostMut post={props.id} likes={props.likes}  />
+              <LikePostMut post={props.id} likes={props.likes} myId={props.auth.id}  />
             </div>
           </div>
         </CardBody>

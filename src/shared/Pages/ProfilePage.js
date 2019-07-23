@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'reactstrap'
+import { Redirect } from 'react-router-dom'
+import { Container, Row, Col, Button } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { elevation } from '../Utils'
+
 import { HelmetComponent } from '../Components'
 import { fetchMyPosts } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
@@ -11,9 +16,12 @@ import { mediaQueries } from '../Utils'
 
 class ProfilePage extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.title = 'Profile Page'
+    this.state = {
+      redirect: false
+    }
   }
 
   componentDidMount() {
@@ -21,10 +29,18 @@ class ProfilePage extends Component {
     const postCount = this.props.posts.length || 5
     this.props.fetchMyPosts(postCount)
   }
-  
+
+  redirectBack = () => {
+    this.setState({ redirect: true })
+  }
   render() {
-    return(
+    return this.state.redirect ? <Redirect to="/feed" /> : (
       <ProfilePageRow className="animated fadeIn">
+        <FloatButton className="text-center animated flipInX">
+          <Button style={{ borderRadius: '100%', padding: '.7rem' }} className="btn-mainclr ml-auto" onClick={this.redirectBack}>
+            <FontAwesomeIcon icon={faHome} size="2x" />
+          </Button>
+        </FloatButton>
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatLeft lg="3">
           <ProfileContainer />
@@ -39,7 +55,7 @@ class ProfilePage extends Component {
         </Col>
       </ProfilePageRow>
     )
-  } 
+  }
 }
 
 function mapStateToProps({ users, posts }) {
@@ -47,7 +63,7 @@ function mapStateToProps({ users, posts }) {
 }
 
 export default {
-  component: connect(mapStateToProps, {fetchMyPosts})(checkLoggedIn(requireAuth(ProfilePage))),
+  component: connect(mapStateToProps, { fetchMyPosts })(checkLoggedIn(requireAuth(ProfilePage))),
   loadData: ({ dispatch }) => dispatch(fetchMyPosts())
 }
 
@@ -70,5 +86,15 @@ const FloatLeft = styled(Col)`
   position: fixed!important;
   `}
   `
-
+const FloatButton = styled.div`
+position: fixed!important;
+bottom: 1vh;
+right: 5vw;
+border-radius: 100%;
+z-index: 1;
+${elevation[5]}
+${mediaQueries.lg`
+  bottom: 6vh;
+  `}
+`
 

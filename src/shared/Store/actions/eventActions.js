@@ -26,3 +26,17 @@ export const fetchMyEvents = (data, limit) => async (dispatch, getState, client)
     payload: data
   })
 }
+
+export const fetchNextEvents = (data, limit) => async (dispatch, getState, client) => {
+  dispatch({
+    type: 'FETCH_NEXT_EVENTS',
+    payload: data
+  })
+}
+
+export const fetchMyNextEvents = (data, limit) => async (dispatch, getState, client) => {
+  dispatch({
+    type: 'FETCH_MY_NEXT_EVENTS',
+    payload: data
+  })
+}

@@ -16,19 +16,19 @@ const EventDetailsQuery = (props) => {
       query={FETCH_EVENTS}
       variables={{id: props.id}}
       onCompleted={
-        ({ getEvents }) => {
-          props.fetchEvent(getEvents)
+        ({ getEventsFeed }) => {
+          props.fetchEvent(getEventsFeed)
         }
       }
     >
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <Loading />
         if (error) return <Loading />
-        const { id } = data.getEvents[0]
+        const { id } = data.getEventsFeed[0]
       
         return (
           <StyledDiv className="text-center">
-            <EventDetails data={data.getEvents[0]} />
+            <EventDetails data={data.getEventsFeed[0]} />
           </StyledDiv>
         )
       }}

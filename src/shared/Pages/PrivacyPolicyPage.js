@@ -6,7 +6,7 @@ import { Transition } from 'react-transition-group'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from  '@fortawesome/free-solid-svg-icons'
-import { elevation } from '../Utils';
+import { elevation } from '../Utils'
 
 class PrivacyPolicyPage extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ export default {
 
 const FloatButton = styled.div`
   position: fixed!important;
-  bottom: 3vh;
+  bottom: 1vh;
   right: 5vw;
   border-radius: 100%;
   z-index: 100;

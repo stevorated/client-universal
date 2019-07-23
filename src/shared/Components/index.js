@@ -19,6 +19,7 @@ import MyEvents from './Event/MyEvents'
 import Event from './Event/Event'
 import Events from './Event/Events'
 import EventFeed from './Event/EventFeed'
+import EventBoard from './Event/EventBoard'
 import EventDetails from './Event/EventDetails'
 import EventDetailsQuery from './Event/EventDetailsQuery'
 import EventMainCard from './Event/EventMainCard'
@@ -67,6 +68,7 @@ export {
   Events,
   Event,
   EventFeed,
+  EventBoard,
   EventDetailsQuery,
   EventMainCard,
   EventDetails,

@@ -20,11 +20,8 @@ export default (state = null, { payload, type }) => {
       })
       return { ...state, posts: newposts }
     case 'FOLLOW_USER':
-      console.log(payload.userId)
-      console.log(state.following)
       const userObjArray = [{ id: payload.userId }]
       const filtered = state.following.filter((follow) => { return follow.id === payload.userId})
-      console.log(filtered)
       if(filtered.length > 0) {
         return {
           ...state,
