@@ -9,7 +9,6 @@ import { fetchNextEvents } from '../../Store/actions'
 import EventTable from './EventTable'
 
 function NextUpFeedContainer (props) {
-  console.log(props)
   return (
     <Query
       fetchPolicy='network-only' // IMPORTANT

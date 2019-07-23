@@ -16,7 +16,6 @@ function NextUpBoardContainer(props) {
       variables={{ limit: 5, skip: 0 }}
       onCompleted={
         ({ getMyEvents }) => {
-          console.log(getMyEvents)
           props.fetchMyNextEvents(getMyEvents)
         }
       }
