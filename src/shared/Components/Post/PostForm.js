@@ -24,7 +24,6 @@ export default function PostForm({id, errors, state, setFormState, createPost}) 
       setShowError(false)
       
     } else {
-      console.log('Form Too Long or roo short')
       setShowError(true)
     }
     // openForm()

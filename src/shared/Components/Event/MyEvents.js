@@ -31,7 +31,6 @@ const MyEventsBoard = (props) => {
               skip: props.myEvents.length
             },
             updateQuery: (prev, { fetchMoreResult }) => {
-              console.log('ya alla')
               if (!fetchMoreResult) return prev
               props.fetchMyEvents(
                 [...fetchMoreResult.getMyEventsFeed]

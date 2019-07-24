@@ -26,7 +26,6 @@ const EventBoard = (props) => {
     >
       {({ loading, error, data, fetchMore }) => {
         const handleFatchMore = () => {
-          console.log(props.myEvents.length)
           fetchMore({
             variables: {
               skip: props.myEvents.length

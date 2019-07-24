@@ -24,7 +24,6 @@ function DeleteCommentMutation(props) {
             if (loading) return <Loading size="1" margin=".5" />
             if (error) {
               for (let err of error.graphQLErrors) {
-                console.log(error)
                 return <Loading size="1" margin=".5" />
               }
             }
