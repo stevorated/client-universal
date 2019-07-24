@@ -24,11 +24,12 @@ function LoginForm(props) {
     <Container className="animated fadeIn">
       <Row className="d-flex justify-content-center py-3">
         <Col xs={10}>
+        <FbLogin />
           <Form
             onSubmit={props.handleLogin}
 
           >
-            <FbLogin />
+            
             <h6 className="mt-4 sigmar-one">- OR -</h6>
             <h1 className="sigmar-one mb-4 mt-4">better get typing ...</h1>
             <FormGroup>

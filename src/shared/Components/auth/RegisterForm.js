@@ -120,11 +120,11 @@ function RegisterForm({ state, handleFormState, register, errors }) {
     <Container className="animated fadeIn mb-5 pb-5">
       <Row className="d-flex justify-content-center py-3">
         <Col xs={10}>
+        <FbLogin register />
           <Form
             onSubmit={handleReg}
             method="post"
           >
-          <FbLogin register />
           <h6 className="mt-4 sigmar-one">- OR -</h6>
             <h1 className="sigmar-one mt-md-3 my-3 mb-md-4">Better get Typing..</h1>
             <FormGroup>
