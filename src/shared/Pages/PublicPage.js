@@ -34,7 +34,7 @@ function PublicPage(props) {
     setTimeout(() => setRedirect(true), 1200)
   }
   const handleFB = () => {
-    setWhere('/api/auth/fblogin')
+    setWhere('https://wisdomofdecrowd.com/api/auth/fblogin')
     setFadeOut('animated rollOut')
     setTimeout(() => setRedirect(true), 1200)
   }
