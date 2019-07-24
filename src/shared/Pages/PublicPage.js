@@ -34,7 +34,7 @@ function PublicPage(props) {
     setTimeout(() => setRedirect(true), 1200)
   }
   const handleFB = () => {
-    setWhere('/login')
+    setWhere('/api/auth/fblogin')
     setFadeOut('animated rollOut')
     setTimeout(() => setRedirect(true), 1200)
   }

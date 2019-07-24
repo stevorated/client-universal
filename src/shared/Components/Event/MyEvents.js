@@ -19,7 +19,6 @@ const MyEventsBoard = (props) => {
       variables={{ limit: 6, skip: 0}}
       onCompleted={
         ({ getMyEventsFeed }) => {
-          console.log(getMyEventFeed)
           props.fetchMyEvents(getMyEventsFeed, props.myEvents.length )
         }
       }
