@@ -52,11 +52,13 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
         onClick={handleToggleNav}
       />
       <Collapse isOpen={collapsed} navbar>
+      <StyledLine />
         {auth && <SearchBar
           setRedirect={setRedirect}
           setWhereTo={setWhereTo}
           whereTo={whereTo}
           handleClick={handleClick} />}
+          <StyledLine />
         <Nav className="ml-auto pr-4" navbar>
           {auth && <Fragment>
 
