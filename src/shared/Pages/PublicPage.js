@@ -9,6 +9,7 @@ import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons'
 
 import forceLoggedIn from '../HOC/forceLoggedIn'
 import Logo from '../../assets/logos/logo5.png'
+import { FbLogin } from '../Elements';
 const linkLogo = Logo.replace('build', '').replace('/public', '')
 
 const responseFacebook = (response) => {
@@ -47,16 +48,7 @@ function PublicPage(props) {
       </div>
       <Row className="mt-4">
         <Col md={4}>
-        <a href="https://wisdomofdecrowd.com/api/auth/fblogin">
-          <StyledBigButton
-            style={{ background: '#3b5998', color: 'white' }}
-            className="big-btn"
-            
-          >
-            <FontAwesomeIcon className="mr-3" icon={faFacebookSquare} size="lg" />
-            login with Facebook
-          </StyledBigButton>
-        </a>
+        <FbLogin />
         </Col>
         <Col md={4}>
           <OrHeader className="mt-4 sigmar-one">- OR -</OrHeader>

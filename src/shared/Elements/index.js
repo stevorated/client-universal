@@ -6,4 +6,6 @@ export * from './Images'
 export * from './Cards'
 export * from './Buttons'
 export * from './Styled'
+export * from './Text'
+
 export { Icon, Modal } 

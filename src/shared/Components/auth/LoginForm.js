@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Container, Row, Col, Form, FormGroup, Label, Input, FormFeedback, Button } from 'reactstrap'
+import styled from 'styled-components'
+
+
+import { mediaQueries } from '../../Utils'
+import { FbLogin } from '../../Elements'
 import { Loading } from '../'
 import forceLoggedIn from '../../HOC/forceLoggedIn'
 import { Link } from 'react-router-dom'
@@ -17,13 +22,15 @@ function LoginForm(props) {
   } = props.state
   return (
     <Container className="animated fadeIn">
-      <Row className="d-flex justify-content-center py-5">
+      <Row className="d-flex justify-content-center py-3">
         <Col xs={10}>
           <Form
             onSubmit={props.handleLogin}
-            
+
           >
-            <h1 className="display-4 sigmar-one mb-5 mt-2">Login</h1>
+            <FbLogin />
+            <h6 className="mt-4 sigmar-one">- OR -</h6>
+            <h1 className="sigmar-one mb-4 mt-4">better get typing ...</h1>
             <FormGroup>
               <Label for="email">Email</Label>
               <Input
@@ -52,12 +59,12 @@ function LoginForm(props) {
                 id="password"
                 placeholder="shh.. secret.."
               />
-              {formError && 
+              {formError &&
                 <FormFeedback className="mt-3"><strong>Wrong Details, check your password Or email</strong></FormFeedback>
               }
             </FormGroup>
             <Button className="btn-mainclr">Sign In</Button>
-            <p className="pt-3 mt-3 text-capitalize">Don't Have an Acount yet?<br/>no worries.. it's easy just click here to<Link className="sigmar-one orange-color-hover no-underline-hover" to="/register"> Register</Link></p>
+            <p className="pt-3 mt-3 text-capitalize">Don't Have an Acount yet?<br />no worries.. it's easy just click here to<Link className="sigmar-one orange-color-hover no-underline-hover" to="/register"> Register</Link></p>
           </Form>
         </Col>
       </Row>
@@ -68,4 +75,5 @@ function LoginForm(props) {
 function mapStateToProps({ auth }) {
   return { auth }
 }
+
 export default connect(mapStateToProps)(forceLoggedIn(LoginForm))

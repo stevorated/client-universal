@@ -22,7 +22,7 @@ const clientConfig = {
       'process.env.SITE_URL': JSON.stringify(process.env.SITE_URL),
       'process.env.API_BASE': JSON.stringify(process.env.API_BASE),
       'process.env.GRAPH_URL': JSON.stringify(process.env.GRAPH_URL),
-
+      'process.env.FB_LOGIN_URL': JSON.stringify(process.env.FB_LOGIN_URL),
     })
   ],
 }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Container, Row, Col, Form, FormGroup, Label, Input, FormFeedback, Button, FormText } from 'reactstrap'
 import { isEmail, isLength } from 'validator'
 import { registerUser } from '../../Store/actions'
+import { FbLogin } from '../../Elements'
 
 function RegisterForm({ state, handleFormState, register, errors }) {
 
@@ -123,7 +124,9 @@ function RegisterForm({ state, handleFormState, register, errors }) {
             onSubmit={handleReg}
             method="post"
           >
-            <h1 className="sigmar-one mt-md-3 mb-1 mb-md-4">Register</h1>
+          <FbLogin register />
+          <h6 className="mt-4 sigmar-one">- OR -</h6>
+            <h1 className="sigmar-one mt-md-3 my-3 mb-md-4">Better get Typing..</h1>
             <FormGroup>
               <Label for="fname-reg">first name</Label>
               <Input
@@ -207,6 +210,7 @@ function RegisterForm({ state, handleFormState, register, errors }) {
             {submitError && <p className="my-3 text-danger smallText">You Have Errors In your form Or Stuff missing..</p>}
             <Button className="btn-mainclr">Sign In</Button>
             <p className="pt-3">Already Have an Acount? <Link className="sigmar-one orange-color-hover no-underline-hover" to="/login">Login</Link></p>
+
           </Form>
         </Col>
       </Row>

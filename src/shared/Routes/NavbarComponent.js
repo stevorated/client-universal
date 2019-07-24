@@ -35,9 +35,9 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
     <NavLink className='nav-link mt-md-0 mt-2' to="/logout" onClick={handleLogout}>Logout</NavLink>
   ) : (
       <div className="d-md-flex">
-        <NavLink className='nav-link' to="/privacy" onClick={handleClick}>Privacy</NavLink>
         <NavLink className='nav-link' to="/login" onClick={handleClick}  >Login</NavLink>
         <NavLink className='nav-link' to="/register" onClick={handleClick}  >Register</NavLink>
+        <NavLink className='nav-link' to="/privacy" onClick={handleClick}>Privacy</NavLink>
       </div>
     )
   return (
@@ -52,11 +52,11 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
         onClick={handleToggleNav}
       />
       <Collapse isOpen={collapsed} navbar>
-        <SearchBar
+        {auth && <SearchBar
           setRedirect={setRedirect}
           setWhereTo={setWhereTo}
           whereTo={whereTo}
-          handleClick={handleClick} />
+          handleClick={handleClick} />}
         <Nav className="ml-auto pr-4" navbar>
           {auth && <Fragment>
 
@@ -108,28 +108,29 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
                 Profile
           </NavLink>
             </NavItem>
+
+            <NavItem>
+              <StyledLine />
+            </NavItem>
+            <StyledNavItem>
+              <NavLink
+                className='nav-link'
+                onClick={handleClick}
+                to='/setings'
+              >
+                Setings
+            </NavLink>
+            </StyledNavItem>
+            <StyledNavItem>
+              <NavLink
+                className='nav-link'
+                onClick={handleClick}
+                to='/prefrences'
+              >
+                Prefrences
+            </NavLink>
+            </StyledNavItem>
           </Fragment>}
-          <NavItem>
-            <StyledLine />
-          </NavItem>
-          <StyledNavItem>
-            <NavLink
-              className='nav-link'
-              onClick={handleClick}
-              to='/setings'
-            >
-              Setings
-            </NavLink>
-          </StyledNavItem>
-          <StyledNavItem>
-            <NavLink
-              className='nav-link'
-              onClick={handleClick}
-              to='/prefrences'
-            >
-              Prefrences
-            </NavLink>
-          </StyledNavItem>
           <NavItem>
             <StyledLine />
           </NavItem>
