@@ -34,10 +34,10 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
   const authBtn = auth ? (
     <NavLink className='nav-link mt-md-0 mt-2' to="/logout" onClick={handleLogout}>Logout</NavLink>
   ) : (
-      <div className="d-md-flex">
-        <NavLink className='nav-link' to="/login" onClick={handleClick}  >Login</NavLink>
-        <NavLink className='nav-link' to="/register" onClick={handleClick}  >Register</NavLink>
-        <NavLink className='nav-link' to="/privacy" onClick={handleClick}>Privacy</NavLink>
+      <div className="d-md-flex mt-2 mt-md-0">
+        <NavLink className='nav-link my-1 my-md-0' to="/login" onClick={handleClick}  >Login</NavLink>
+        <NavLink className='nav-link my-1 my-md-0' to="/register" onClick={handleClick}  >Register</NavLink>
+        <NavLink className='nav-link my-1 my-md-0' to="/privacy" onClick={handleClick}>Privacy</NavLink>
       </div>
     )
   return (
@@ -52,13 +52,13 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
         onClick={handleToggleNav}
       />
       <Collapse isOpen={collapsed} navbar>
-      <StyledLine />
+      {auth && <StyledLine />}
         {auth && <SearchBar
           setRedirect={setRedirect}
           setWhereTo={setWhereTo}
           whereTo={whereTo}
           handleClick={handleClick} />}
-          <StyledLine />
+          {auth && <StyledLine />}
         <Nav className="ml-auto pr-4" navbar>
           {auth && <Fragment>
 
