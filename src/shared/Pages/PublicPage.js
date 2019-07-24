@@ -34,7 +34,7 @@ function PublicPage(props) {
     setTimeout(() => setRedirect(true), 1200)
   }
   const handleFB = () => {
-    setWhere('https://wisdomofdecrowd.com/api/auth/fblogin')
+    setWhere('')
     setFadeOut('animated rollOut')
     setTimeout(() => setRedirect(true), 1200)
   }
@@ -47,14 +47,16 @@ function PublicPage(props) {
       </div>
       <Row className="mt-4">
         <Col md={4}>
+        <a href="https://wisdomofdecrowd.com/api/auth/fblogin">
           <StyledBigButton
             style={{ background: '#3b5998', color: 'white' }}
-            onClick={handleFB}
             className="big-btn"
+            
           >
             <FontAwesomeIcon className="mr-3" icon={faFacebookSquare} size="lg" />
             login with Facebook
           </StyledBigButton>
+        </a>
         </Col>
         <Col md={4}>
           <OrHeader className="mt-4 sigmar-one">- OR -</OrHeader>
