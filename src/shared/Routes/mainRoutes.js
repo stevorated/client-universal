@@ -1,5 +1,5 @@
 import {
-  TestPage,
+  FbLoginCheck,
   LoginPage,
   RegisterPage,
   PublicPage, 
@@ -79,9 +79,9 @@ const routes = [
         ...LoginPage
       },
       {
-        path: '/test',
+        path: '/fblanding',
         exact: true,
-        ...TestPage
+        ...FbLoginCheck
       },
       {
         path: '/preferences',

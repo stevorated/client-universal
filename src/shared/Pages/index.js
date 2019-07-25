@@ -3,7 +3,7 @@ import PublicPage from './PublicPage'
 import LoginPage from './LoginPage'
 import RegisterPage from './RegisterPage'
 import NotFoundPage from './NotFoundPage'
-import TestPage from './TestPage'
+import FbLoginCheck from './FbLoginCheck'
 import FeedPage from './FeedPage'
 import UserProfilePage from './UserProfilePage'
 import PrivacyPolicyPage from './PrivacyPolicyPage'
@@ -16,7 +16,7 @@ import EngagePage from './EngagePage'
 import EventPage from './EventPage'
 
 export {
-  TestPage,
+  FbLoginCheck,
   ProfilePage,
   PublicPage,
   LoginPage,
