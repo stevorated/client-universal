@@ -61,9 +61,9 @@ app.get('*', async (req, res) => {
 
   const promises = await matchRoutes(routes, req.path)
     .map(({ route }) => {
-      console.log(route.loadData(store))
       return route.loadData ? route.loadData(store) : null
     }).map(promise => {
+      console.log(promise)
       if (promise) {
         return new Promise((resolve, rej) => {
           promise.then(resolve).catch(resolve)
