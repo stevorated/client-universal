@@ -47,7 +47,7 @@ function mapStateToProps({ users, posts, feed, auth }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { })(checkLoggedIn(requireAuth(FeedPage))),
+  component: connect(mapStateToProps, { })(requireAuth(checkLoggedIn(FeedPage))),
   loadData: ({ dispatch }) => dispatch(fetchFeed())
 }
 const FloatLeft = styled(Col)`
