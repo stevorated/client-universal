@@ -1,6 +1,8 @@
 export default (state = null, { payload, type }) => {
+  console.log('type:', type)
   switch (type) {
     case 'FETCH_CURRENT_USER':
+      console.log(Date.now(), 'FETCH_CURRENT_USER', payload)
       return payload.me || false
     case 'LOGIN_USER':
       return payload.signIn || false
