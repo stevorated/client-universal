@@ -63,9 +63,9 @@ app.get('*', async (req, res) => {
     .map(({ route }) => {
       return route.loadData ? route.loadData(store) : null
     }).map(promise => {
-      console.log(promise)
       if (promise) {
         return new Promise((resolve, rej) => {
+          console.log(resolve)
           promise.then(resolve).catch(resolve)
         })
       }
