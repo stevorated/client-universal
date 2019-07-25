@@ -59,18 +59,18 @@ class TestPage extends Component {
   }
   render() {
     // return <Redirect to="/" />
-    // return (
-    //   <Container className="p-4 text-center">
-    //     <HelmetComponent pageTitle="admins" ogTitle="admins" />
+    return (
+      <Container className="p-4 text-center">
+        <HelmetComponent pageTitle="admins" ogTitle="admins" />
 
-    //     <canvas style={{background:'white', minHeight: '100px'}} id="canvas"></canvas>
-    //     <button onClick={this.handleClick}>Draw</button>
-    //     <h1>Protected list</h1>
-    //     <h6>{this.props.auth.id}</h6>
+        <canvas style={{background:'white', minHeight: '100px'}} id="canvas"></canvas>
+        <button onClick={this.handleClick}>Draw</button>
+        <h1>Protected list</h1>
+        <h6>{this.props.auth.id}</h6>
 
-    //     {this.renderQuery()} 
-    //   </Container>
-    // )
+        {this.renderQuery()} 
+      </Container>
+    )
   }
 }
 
