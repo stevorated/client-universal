@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { fetchCurrentUser } from '../Store/actions'
+import { fetchCurrentUser, fetchUsers } from '../Store/actions'
 import { HelmetComponent, Loading } from '../Components'
 import { Container } from 'reactstrap'
 
 class FbLoginCheck extends Component {
+
   constructor(props) {
     super(props)
   }
+
   componentDidMount() {
+    this.props.fetchUsers()
     this.props.fetchCurrentUser()
   }
   render() {
+    // return <Redirect to="/" />
     return (
       <Container className="p-4 text-center">
         <HelmetComponent pageTitle="admins" ogTitle="admins" />
@@ -28,7 +32,8 @@ function mapStateToProps({ auth }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchCurrentUser })(FbLoginCheck),
+  component: connect(mapStateToProps, { fetchCurrentUser, fetchUsers })(FbLoginCheck),
+  loadData: ({ dispatch }) => dispatch(fetchUsers())
 }
 
 

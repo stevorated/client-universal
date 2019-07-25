@@ -1,7 +1,7 @@
-import { LOGIN_USER_MUT, LOGOUT_USER } from '../Apollo/Mutaions'
+import { LOGIN_USER_MUT, LOGOUT_USER} from '../Apollo/Mutaions'
+import { GET_ME } from '../Apollo/Queries'
 
 export const fetchCurrentUser = () => async (dispatch, getState, client) => {
-  try { 
     const {data} = await client.query({
       query: GET_ME,
     })
@@ -9,9 +9,6 @@ export const fetchCurrentUser = () => async (dispatch, getState, client) => {
       type: 'FETCH_CURRENT_USER', 
       payload: data
     })
-  } catch (e) {
-
-  }
 }
 
 export const registerUser = (data) => (dispatch, getState, client) => {
