@@ -63,6 +63,7 @@ class TestPage extends Component {
       <Container className="p-4 text-center">
         <HelmetComponent pageTitle="admins" ogTitle="admins" />
         <h1>Test Page</h1>
+        <Redirect to="/" />
       </Container>
     )
   }
