@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Container } from 'reactstrap'
 import { renderRoutes } from 'react-router-config'
 import { fetchCurrentUser } from './Store/actions'
@@ -9,8 +10,9 @@ import ScrollToTop from './Elements/ScrollToTop'
 //   Socket('http://127.0.0.1:9999')
 // }
 
-function App({ route }) {
-
+function App(props) {
+  console.log('App:', props.auth)
+  const { route } = props
   return (
     <Container fluid className="mx-0" style={{minHeight: '95vh', marginTop: '3.2rem', marginLeft: '0!important', marginRight: '0!important', padding: '0', color: `${black}`}}>
     <ScrollToTop>
@@ -20,7 +22,11 @@ function App({ route }) {
   )
 }
 
+const mapStateToProps = ({ auth }) => {
+  return { auth }
+}
+
 export default {
-  component: App,
+  component: connect(mapStateToProps)(App),
   loadData: ({dispatch}) => dispatch(fetchCurrentUser())
 }

@@ -1,5 +1,5 @@
 export default (state = null, { payload, type }) => {
-  console.log('type:', type)
+  console.log('type:', type, payload)
   switch (type) {
     case 'FETCH_CURRENT_USER':
       return payload.me || false
