@@ -43,7 +43,7 @@ export default function renderer(req, store, client, context) {
           wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
             '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
           wf.type = 'text/javascript';
-          wf.async = 'true';
+          wf.async = 'true';z
           var s = document.getElementsByTagName('script')[0];
           s.parentNode.insertBefore(wf, s);
         })(); </script>
@@ -71,3 +71,15 @@ export default function renderer(req, store, client, context) {
   `
 }
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
