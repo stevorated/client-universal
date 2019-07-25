@@ -6,17 +6,13 @@ import { HelmetComponent, Loading } from '../Components'
 import { Container } from 'reactstrap'
 
 class FbLoginCheck extends Component {
-
   constructor(props) {
     super(props)
   }
-
-
   componentDidMount() {
     this.props.fetchCurrentUser()
   }
   render() {
-    // return <Redirect to="/" />
     return (
       <Container className="p-4 text-center">
         <HelmetComponent pageTitle="admins" ogTitle="admins" />

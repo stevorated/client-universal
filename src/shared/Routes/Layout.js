@@ -24,7 +24,6 @@ const MainContent = ({ whereTo, redirect, setRedirect }) => {
 }
 
 function Layout(props) {
-  console.log('auth:', props.auth)
   const [whereTo, setWhereTo] = useState('')
   const [redirect, setRedirect] = useState(false)
   const handleLeave = () => {

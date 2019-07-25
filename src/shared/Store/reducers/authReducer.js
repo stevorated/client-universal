@@ -2,7 +2,6 @@ export default (state = null, { payload, type }) => {
   
   switch (type) {
     case 'FETCH_CURRENT_USER':
-      console.log('type:', type, payload)
       return payload.me || false
     case 'FETCH_MY_DETAILS':
       return payload.me || false
