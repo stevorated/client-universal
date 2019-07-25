@@ -65,7 +65,6 @@ app.get('*', async (req, res) => {
     }).map(promise => {
       if (promise) {
         return new Promise((resolve, rej) => {
-          console.log(resolve)
           promise.then(resolve).catch(resolve)
         })
       }
