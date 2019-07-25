@@ -45,7 +45,10 @@ function mapStateToProps({ users, posts, feed }) {
 
 export default {
   component: connect(mapStateToProps, {fetchFeed, clearFeed})(checkLoggedIn(requireAuth(CalanderPage))),
-  loadData: ({ dispatch }) => dispatch(fetchFeed())
+  loadData: ({ dispatch }) => {
+    dispatch(fetchCurrentUser())
+    dispatch(fetchFeed())
+  }
 }
 const FloatLeft = styled(Col)`
   position: static!important;
