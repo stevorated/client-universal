@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { fetchCurrentUser, fetchUsers } from '../Store/actions'
+import { fetchCurrentUser } from '../Store/actions'
 import { HelmetComponent, Loading } from '../Components'
 import { Container } from 'reactstrap'
 
@@ -12,7 +12,6 @@ class FbLoginCheck extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchUsers()
     this.props.fetchCurrentUser()
   }
   render() {
@@ -32,8 +31,7 @@ function mapStateToProps({ auth }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchCurrentUser, fetchUsers })(FbLoginCheck),
-  loadData: ({ dispatch }) => dispatch(fetchUsers())
+  component: connect(mapStateToProps, { fetchCurrentUser })(FbLoginCheck)
 }
 
 
