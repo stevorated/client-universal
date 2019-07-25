@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "env-cmd npm-run-all -s build serve",
-    "build": "env-cmd webpack --progress --max_old_space_size=512",
+    "build": "env-cmd webpack --progress",
     "serve": "env-cmd node build/server.js",
     "dev": "env-cmd npm-run-all --parallel dev:*",
     "dev:build": "env-cmd webpack  --watch",
