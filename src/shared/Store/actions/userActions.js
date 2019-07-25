@@ -24,11 +24,10 @@ export const fetchCurrentUser = () => async (dispatch, getState, client) => {
 
 export const fetchMyDetails = () => async (dispatch, getState, client) => {
   const { data } = await client.query({
-    query: GET_MA_DETAILS,
-    notifyOnNetworkStatusChange
+    query: GET_ME
   })
   dispatch({
-    type: FETCH_MY_DETAILS, 
+    type: 'FETCH_MY_DETAILS', 
     payload: data
   })
 }
