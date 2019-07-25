@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { Button } from 'reactstrap'
 import { fetchUsers } from '../Store/actions'
 import { HelmetComponent} from '../Components'
@@ -13,7 +14,7 @@ class TestPage extends Component {
   
   constructor(props) {
     super(props)
-    
+    console.log(this.props)
   }
 
 
@@ -56,19 +57,19 @@ class TestPage extends Component {
     // ctx.fillRect(10, 10, 150, 100);
   }
   render() {
-    
-    return (
-      <Container className="p-4 text-center">
-        <HelmetComponent pageTitle="admins" ogTitle="admins" />
+    // return <Redirect to="/" />
+    // return (
+    //   <Container className="p-4 text-center">
+    //     <HelmetComponent pageTitle="admins" ogTitle="admins" />
         
-        <canvas style={{background:'white', minHeight: '100px'}} id="canvas"></canvas>
-        <button onClick={this.handleClick}>Draw</button>
-        <h1>Protected list</h1>
-        <h6>{this.props.auth.id}</h6>
+    //     <canvas style={{background:'white', minHeight: '100px'}} id="canvas"></canvas>
+    //     <button onClick={this.handleClick}>Draw</button>
+    //     <h1>Protected list</h1>
+    //     <h6>{this.props.auth.id}</h6>
         
-        {this.renderQuery()} 
-      </Container>
-    )
+    //     {this.renderQuery()} 
+    //   </Container>
+    // )
   }
 }
 
