@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Button } from 'reactstrap'
-import { fetchUsers } from '../Store/actions'
-import { HelmetComponent} from '../Components'
+import { fetchUsers, fetchCurrentUser } from '../Store/actions'
+import { HelmetComponent } from '../Components'
 import requireAuth from '../HOC/requireAuth'
 import { Container } from 'reactstrap'
 import FileInputContainer from '../Components/Fragment/FileInputContainer'
@@ -11,7 +11,7 @@ import Avatar from '../../assets/logos/new_logo.png'
 const imgAvatar = Avatar.replace('build', '').replace('/public', '')
 
 class TestPage extends Component {
-  
+
   constructor(props) {
     super(props)
     console.log(this.props)
@@ -20,10 +20,11 @@ class TestPage extends Component {
 
   componentDidMount() {
     this.props.fetchUsers()
+    this.props.fetchCurrentUser()
   }
 
   renderQuery() {
-    return this.props.users.map(({ id, fname, lname, username})=>{
+    return this.props.users.map(({ id, fname, lname, username }) => {
       return <h4 key={id}>{fname} {lname} {username}</h4>
     })
   }
@@ -50,8 +51,8 @@ class TestPage extends Component {
       // using the element's width and height properties - lets draw one 
       // on top in the corner:
       // ctx.fillRect(100, 0, 0, 0);
-      ctx.drawImage(this, 10,10);
-}
+      ctx.drawImage(this, 10, 10);
+    }
 
     // ctx.fillStyle = 'green';
     // ctx.fillRect(10, 10, 150, 100);
@@ -61,12 +62,12 @@ class TestPage extends Component {
     // return (
     //   <Container className="p-4 text-center">
     //     <HelmetComponent pageTitle="admins" ogTitle="admins" />
-        
+
     //     <canvas style={{background:'white', minHeight: '100px'}} id="canvas"></canvas>
     //     <button onClick={this.handleClick}>Draw</button>
     //     <h1>Protected list</h1>
     //     <h6>{this.props.auth.id}</h6>
-        
+
     //     {this.renderQuery()} 
     //   </Container>
     // )
@@ -78,7 +79,7 @@ function mapStateToProps({ users, auth }) {
 }
 
 export default {
-  component: connect(mapStateToProps, {fetchUsers})(requireAuth(TestPage)),
+  component: connect(mapStateToProps, { fetchUsers, fetchCurrentUser })(TestPage),
   loadData: ({ dispatch }) => dispatch(fetchUsers())
 }
 
