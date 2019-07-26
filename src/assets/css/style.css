@@ -20,11 +20,6 @@ body {
   /* line-height: 1.34; */
 }
 
-@media not all and (pointer: coarse) {
-  button:hover {
-    background-color: white;
-  }
-}
 
 ::selection {
   color: white ;
