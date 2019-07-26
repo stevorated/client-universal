@@ -15,6 +15,7 @@ export default (ChildComponent) => {
         <Query
         query={GET_ME}
         pollInterval={8000}
+        onError={(error)=> {console.log('error in checkLoggedIn')}}
       >
         {({ loading, error, data, startPolling, stopPolling }) => {
           if (error) {
