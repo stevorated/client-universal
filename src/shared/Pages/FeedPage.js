@@ -21,9 +21,6 @@ class FeedPage extends Component {
     this.title = 'Feed'
   }
 
-  componentDidMount(){
-    this.props.fetchCurrentUser()
-  }
   render() {
     return (
       <Row className="">
