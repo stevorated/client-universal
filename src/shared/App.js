@@ -27,5 +27,6 @@ const mapStateToProps = ({ auth }) => {
 }
 
 export default {
-  component: connect(mapStateToProps)(App)
+  component: connect(mapStateToProps)(App),
+  loadData: ({dispatch}) => dispatch(fetchCurrentUser())
 }
