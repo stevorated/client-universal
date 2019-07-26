@@ -22,7 +22,7 @@ class FeedPage extends Component {
   }
 
   componentDidMount(){
-    // this.props.fetchCurrentUser()
+    this.props.fetchCurrentUser()
   }
   render() {
     return (
