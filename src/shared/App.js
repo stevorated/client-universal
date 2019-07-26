@@ -13,6 +13,7 @@ import ScrollToTop from './Elements/ScrollToTop'
 function App(props) {
   // console.log(props.auth)
   try {
+    if(!props.auth)
     props.fetchCurrentUser()
   } catch (e) {
     
