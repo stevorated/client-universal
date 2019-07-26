@@ -12,6 +12,7 @@ import ScrollToTop from './Elements/ScrollToTop'
 
 function App(props) {
   // console.log(props.auth)
+  props.fetchCurrentUser()
   const { route } = props
   return (
     <Container fluid className="mx-0" style={{minHeight: '95vh', marginTop: '3.2rem', marginLeft: '0!important', marginRight: '0!important', padding: '0', color: `${black}`}}>
@@ -27,6 +28,6 @@ const mapStateToProps = ({ auth }) => {
 }
 
 export default {
-  component: connect(mapStateToProps)(App),
+  component: connect(mapStateToProps, { fetchCurrentUser })(App),
   loadData: ({dispatch}) => dispatch(fetchCurrentUser())
 }
