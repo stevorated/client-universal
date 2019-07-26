@@ -63,7 +63,7 @@ function mapStateToProps({ users, posts }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchMyPosts })(checkLoggedIn(requireAuth(ProfilePage))),
+  component: connect(mapStateToProps, { fetchMyPosts })(requireAuth(checkLoggedIn(ProfilePage))),
   loadData: ({ dispatch }) => dispatch(fetchMyPosts())
 }
 
