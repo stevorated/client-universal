@@ -18,7 +18,7 @@ class FbLoginCheck extends Component {
     // return <Redirect to="/" />
     return (
       <Container className="p-4 text-center">
-        <HelmetComponent pageTitle="admins" ogTitle="admins" />
+        <HelmetComponent pageTitle="redirect" ogTitle="redirect" />
         <h2>Workin on it...</h2>
         <Loading size="5" margin="5" />
         <Redirect to="/" />
