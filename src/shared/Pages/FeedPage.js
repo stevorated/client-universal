@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { HelmetComponent } from '../Components'
-import { fetchFeed } from '../Store/actions'
+import { fetchFeed, fetchCurrentUser } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import { Menu} from '../Components'
@@ -19,6 +19,10 @@ class FeedPage extends Component {
   constructor(props) {
     super(props)
     this.title = 'Feed'
+  }
+
+  componentDidMount(){
+    this.props.fetchCurrentUser()
   }
   render() {
     return (
@@ -47,8 +51,11 @@ function mapStateToProps({ users, posts, feed, auth }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { })(checkLoggedIn(requireAuth(FeedPage))),
-  loadData: ({ dispatch }) => dispatch(fetchFeed())
+  component: connect(mapStateToProps, { fetchCurrentUser })(checkLoggedIn(requireAuth(FeedPage))),
+  loadData: ({ dispatch }) => {
+    dispatch(fetchCurrentUser())
+    dispatch(fetchFeed())
+  }
 }
 const FloatLeft = styled(Col)`
   position: static!important;
