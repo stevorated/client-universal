@@ -33,7 +33,7 @@ function ProfileContainer({ auth, profilePosts, profileMode, profileDetails }) {
     let postCount = posts ? posts.length : 0
     let followersCount = followers ? followers.length : 0
     let followingCount = following ? following.length : 0
-    if (details.length === 0) return <Loading />
+    // if (details.length === 0) return <Loading />
     return (
       <div className="m-0 text-left">
         {details !== undefined &&
