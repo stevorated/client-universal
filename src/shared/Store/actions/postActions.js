@@ -2,19 +2,22 @@ import { GET_MA_DETAILS, GET_ME, GET_USERS, GET_MA_POSTS, GET_POSTS, FETCH_FEED 
 
 
 export const fetchMyPosts = (count = 5) => async (dispatch, getState, client) => {
-  if(count > 10) {
-    count = 10  
-  }
+  try {
+    if(count > 10) {
+      count = 10  
+    }
+    const {data} = await client.query({
+      query: GET_MA_POSTS,
+      variables: { limit: count }
+      // fetchPolicy: 'network-only'
+    })
+    dispatch({
+      type: 'FETCH_MY_POSTS',
+      payload: data
+    })
+  } catch (err) {
 
-  const {data} = await client.query({
-    query: GET_MA_POSTS,
-    variables: { limit: count }
-    // fetchPolicy: 'network-only'
-  })
-  dispatch({
-    type: 'FETCH_MY_POSTS',
-    payload: data
-  })
+  }
 }
 
 export const clearFeed = () => async (dispatch, getState, client) => {
@@ -24,17 +27,22 @@ export const clearFeed = () => async (dispatch, getState, client) => {
 }
 
 export const fetchFeed = (BrowserData, count = 5) => async (dispatch, getState, client) => {
-  if(count > 10) {
-    count = 10  
+
+  try {
+    if(count > 10) {
+      count = 10  
+    }
+    const data = BrowserData ? BrowserData : await client.query({
+      query: FETCH_FEED,
+      variables: { limit: count }
+    })
+    dispatch({
+      type: 'FETCH_FEED',
+      payload: data
+    })
+  } catch (err) {
+
   }
-  const data = BrowserData ? BrowserData : await client.query({
-    query: FETCH_FEED,
-    variables: { limit: count }
-  })
-  dispatch({
-    type: 'FETCH_FEED',
-    payload: data
-  })
 }
 
 export const fetchMoreMyPosts = (data) => async (dispatch, getState, client) => {
