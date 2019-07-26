@@ -26,12 +26,6 @@ const MainContent = ({ whereTo, redirect, setRedirect }) => {
 function Layout(props) {
   const [whereTo, setWhereTo] = useState('')
   const [redirect, setRedirect] = useState(false)
-  const handleLeave = () => {
-    setTimeout(() => {
-      setShow(false)
-    }, 1000)
-
-  }
   return (
     <Fragment>
       <NavbarComponent
