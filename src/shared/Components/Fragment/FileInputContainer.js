@@ -48,10 +48,15 @@ function FileInputContainer(props) {
           scaleY
         }
         const logs = document.getElementById('res')
-        logs.append(`${data.file.name} `)
-        logs.append(`${data.file.size} `)
-        logs.append(`${data.file.type} `)
-        const uploadedFile = await props.uploadFile(data)
+        logs.append(`${data.height} `)
+        logs.append(`${data.width} `)
+        logs.append(`${data.x} `)
+        logs.append(`${data.y} `)
+        logs.append(`${data.scaleX} `)
+        logs.append(`${data.scaleY} `)
+        logs.append(`${data.unit} `)
+        logs.append(`${data.aspect} `)
+        await props.uploadFile(data)
         // if(uploadedFile) {
         //   // props.toggle()
         //   console.log(uploadedFile)
