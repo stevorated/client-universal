@@ -29,7 +29,7 @@ function FileInputContainer(props) {
       const img = new Image()
       img.src = preview
 
-      img.onload = (e) => {
+      img.onload = async (e) => {
         const image = e.target
         const { unit, height, width, aspect, x, y } = crop
 
@@ -48,15 +48,16 @@ function FileInputContainer(props) {
           scaleY
         }
 
-        const uploadedFile = props.uploadFile(data)
+        const uploadedFile = await props.uploadFile(data)
         if(uploadedFile) {
           // props.toggle()
-          console.log(data)
+          console.log(uploadedFile)
           const logs = document.getElementById('res')
           console.log(logs)
           logs.append(`${data.file.name}, `)
           logs.append(`${data.file.size}, `)
           logs.append(`${data.file.type}, `)
+          logs.append(uploadedFile)
           // data.file.map((item) => {
             
           // })
