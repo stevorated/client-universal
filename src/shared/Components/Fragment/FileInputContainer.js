@@ -47,7 +47,7 @@ function FileInputContainer(props) {
           scaleX,
           scaleY
         }
-        await props.uploadFile(data)
+        props.uploadFile(data)
       }
       
       props.toggle()
