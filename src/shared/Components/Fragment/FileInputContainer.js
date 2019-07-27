@@ -51,7 +51,7 @@ function FileInputContainer(props) {
           scaleY
         }
 
-        await props.uploadFile(data).then(setTimeout(() => props.toggle(), 1000))
+        await props.uploadFile(data).then(setTimeout(() => props.toggle(), 3000))
       }
       // props.toggle()
 
