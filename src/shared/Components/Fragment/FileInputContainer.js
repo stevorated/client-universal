@@ -47,6 +47,7 @@ function FileInputContainer(props) {
           scaleX,
           scaleY
         }
+        console.log(data)
         props.uploadFile(data)
       }
       
