@@ -47,22 +47,23 @@ function FileInputContainer(props) {
           scaleX,
           scaleY
         }
-
+        const logs = document.getElementById('res')
+        logs.append(`${data.file.name}`)
         const uploadedFile = await props.uploadFile(data)
-        if(uploadedFile) {
-          // props.toggle()
-          console.log(uploadedFile)
-          const logs = document.getElementById('res')
-          console.log(logs)
-          logs.append(`${data.file.name}, `)
-          logs.append(`${data.file.size}, `)
-          logs.append(`${data.file.type}, `)
-          logs.append(uploadedFile)
+        // if(uploadedFile) {
+        //   // props.toggle()
+        //   console.log(uploadedFile)
+        //   
+        //   console.log(logs)
+        //   logs.append(`${data.file.name}, `)
+        //   logs.append(`${data.file.size}, `)
+        //   logs.append(`${data.file.type}, `)
+        //   logs.append(uploadedFile)
           // data.file.map((item) => {
             
           // })
-        } else {
-        }
+        // } else {
+        // }
       }
       
       // props.toggle()
