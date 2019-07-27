@@ -35,7 +35,7 @@ function CropFileInput(props) {
         if (!allowed().includes(type)) {
           props.setError(`only files of type ${allowed().join(', ')} are allowed`)
         } else if (size > props.limit) {
-          props.setError('File Too Big! (only filed under 2MB)')
+          props.setError('File Too Big! (only filed under 4MB)')
         } else {
           props.setError('')
           props.setFileData({ file: rawFile, size: sizeString })

@@ -48,7 +48,9 @@ function FileInputContainer(props) {
           scaleY
         }
         const logs = document.getElementById('res')
-        logs.append(`${data.file.name}`)
+        logs.append(`${data.file.name} `)
+        logs.append(`${data.file.size} `)
+        logs.append(`${data.file.type} `)
         const uploadedFile = await props.uploadFile(data)
         // if(uploadedFile) {
         //   // props.toggle()
