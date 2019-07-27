@@ -14,6 +14,7 @@ function CropFileInput(props) {
   }
   const onDrop = useCallback(async (acceptedFiles) => {
     props.setValid(false)
+    // console.log(acceptedFiles[0])
     const rawFile = acceptedFiles[0]
     // CREATE ALLOWED ARRAY
     const allowed = () => {
@@ -28,7 +29,7 @@ function CropFileInput(props) {
     
     const { size, name } = rawFile
     const sizeString = `${size.toString()} Kb`
-    const type = name.split('.').pop()
+    const type = name.split('.').pop().toLowerCase()
     switch (props.uploadType) {
       case 'avatar':
       case 'eventImage':

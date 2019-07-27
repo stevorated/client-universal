@@ -34,7 +34,7 @@ function FileInput(props) {
     
     const { size, name } = rawFile
     const sizeString = `${size.toString()} Kb`
-    const type = name.split('.').pop()
+    const type = name.split('.').pop().toLowerCase()
     // INIT
     previewLabel.innerHTML = ''
     preview.src = undefined

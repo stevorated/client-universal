@@ -18,7 +18,7 @@ function FileInputContainer(props) {
     height: 100,
     aspect: props.round ? 1 / 1 : 16 / 9
   })
-
+  console.log(fileData)
   const handleSubmitAvatar = async (e) => {
     e.preventDefault()
     if (valid && reactCropPreview.length > 0) {
@@ -47,28 +47,10 @@ function FileInputContainer(props) {
           scaleX,
           scaleY
         }
-        const logs = document.getElementById('res')
-        logs.append(`${data.height} `)
-        logs.append(`${data.width} `)
-        logs.append(`${data.x} `)
-        logs.append(`${data.y} `)
-        logs.append(`${data.scaleX} `)
-        logs.append(`${data.scaleY} `)
-        logs.append(`${data.unit} `)
-        logs.append(`${data.aspect} `)
-        const uploadedFile = await props.uploadFile(data)
-        if(uploadedFile) {
-          // props.toggle()
-          const logs2 = document.getElementById('res2')
-          logs2.append(`${data.file.name}, `)
-          logs2.append(`${data.file.size}, `)
-          logs2.append(`${data.file.type}, `)
-          logs2.append(uploadedFile)
-        } else {
-        }
+        await props.uploadFile(data)
       }
       
-      // props.toggle()
+      props.toggle()
       
     } else {
       setValid(false)
@@ -77,8 +59,6 @@ function FileInputContainer(props) {
   }
   return (
     <Container >
-    <p  style={{whiteSpace: 'pre-wrap'}} className = "lo-text" id="res"></p>
-    <p  style={{whiteSpace: 'pre-wrap'}} className = "lo-text" id="res2"></p>
       <form onSubmit={handleSubmitAvatar}>
         <CropFileInput
           className="m-5"
