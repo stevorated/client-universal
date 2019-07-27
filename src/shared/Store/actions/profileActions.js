@@ -1,4 +1,5 @@
 import { GET_USER } from '../Apollo/Queries'
+import { NetworkStatus } from 'apollo-client';
 
 export const fetchUsersPosts = (data, id) => async (dispatch, getState, client) => {
   if(data.length) {
@@ -9,7 +10,8 @@ export const fetchUsersPosts = (data, id) => async (dispatch, getState, client) 
   } else {
     const refetchData = await client.query({
       query: GET_USER,
-      variables: { id }
+      variables: { id },
+      fetchPolicy: 'network-only'
     })
     dispatch({
       type: 'FETCH_PROFILE',
