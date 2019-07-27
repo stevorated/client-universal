@@ -48,9 +48,23 @@ function FileInputContainer(props) {
           scaleY
         }
 
-        props.uploadFile(data)
+        const uploadedFile = props.uploadFile(data)
+        if(uploadedFile) {
+          // props.toggle()
+          console.log(data)
+          const logs = document.getElementById('res')
+          console.log(logs)
+          logs.append(`${data.file.name}, `)
+          logs.append(`${data.file.size}, `)
+          logs.append(`${data.file.type}, `)
+          // data.file.map((item) => {
+            
+          // })
+        } else {
+        }
       }
-      props.toggle()
+      
+      // props.toggle()
       
     } else {
       setValid(false)
@@ -59,6 +73,7 @@ function FileInputContainer(props) {
   }
   return (
     <Container >
+    <p  style={{whiteSpace: 'pre-wrap'}} className = "lo-text" id="res"></p>
       <form onSubmit={handleSubmitAvatar}>
         <CropFileInput
           className="m-5"
@@ -79,6 +94,7 @@ function FileInputContainer(props) {
           crop={crop}
         />
         <Button className="mt-2" disabled={!valid}>Confirm Upload</Button>
+        
       </form>
       <div id="divik"></div>
     </Container>

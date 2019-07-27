@@ -140,7 +140,7 @@ const StyledCard = styled(Card)`
       opacity: .9;
       border-radius: .3rem;
       /* margin: .4rem; */
-      ${elevation[3]};
+      ${elevation[3]}
       transition: all 3s ease;
       ${transition({
   property: 'box-shadow'
