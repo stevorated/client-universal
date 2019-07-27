@@ -56,21 +56,16 @@ function FileInputContainer(props) {
         logs.append(`${data.scaleY} `)
         logs.append(`${data.unit} `)
         logs.append(`${data.aspect} `)
-        await props.uploadFile(data)
-        // if(uploadedFile) {
-        //   // props.toggle()
-        //   console.log(uploadedFile)
-        //   
-        //   console.log(logs)
-        //   logs.append(`${data.file.name}, `)
-        //   logs.append(`${data.file.size}, `)
-        //   logs.append(`${data.file.type}, `)
-        //   logs.append(uploadedFile)
-          // data.file.map((item) => {
-            
-          // })
-        // } else {
-        // }
+        const uploadedFile = await props.uploadFile(data)
+        if(uploadedFile) {
+          // props.toggle()
+          const logs2 = document.getElementById('res2')
+          logs2.append(`${data.file.name}, `)
+          logs2.append(`${data.file.size}, `)
+          logs2.append(`${data.file.type}, `)
+          logs2.append(uploadedFile)
+        } else {
+        }
       }
       
       // props.toggle()
@@ -83,6 +78,7 @@ function FileInputContainer(props) {
   return (
     <Container >
     <p  style={{whiteSpace: 'pre-wrap'}} className = "lo-text" id="res"></p>
+    <p  style={{whiteSpace: 'pre-wrap'}} className = "lo-text" id="res2"></p>
       <form onSubmit={handleSubmitAvatar}>
         <CropFileInput
           className="m-5"
