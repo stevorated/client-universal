@@ -18,7 +18,7 @@ function FileInputContainer(props) {
     height: 100,
     aspect: props.round ? 1 / 1 : 16 / 9
   })
-  console.log(fileData)
+
   const handleSubmitAvatar = async (e) => {
     e.preventDefault()
     if (valid && reactCropPreview.length > 0) {
@@ -29,7 +29,7 @@ function FileInputContainer(props) {
       const img = new Image()
       img.src = preview
 
-      img.onload = async (e) => {
+      img.onload = (e) => {
         const image = e.target
         const { unit, height, width, aspect, x, y } = crop
 
@@ -47,10 +47,9 @@ function FileInputContainer(props) {
           scaleX,
           scaleY
         }
-        
+
         props.uploadFile(data)
       }
-      
       props.toggle()
       
     } else {
@@ -80,7 +79,6 @@ function FileInputContainer(props) {
           crop={crop}
         />
         <Button className="mt-2" disabled={!valid}>Confirm Upload</Button>
-        
       </form>
       <div id="divik"></div>
     </Container>
