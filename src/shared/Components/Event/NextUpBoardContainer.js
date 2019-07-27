@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { connect } from 'react-redux'
-import { Table } from 'reactstrap'
-import EventTableItems from './EventTableItems'
 import { FETCH_MY_NEXT_EVENTS } from '../../Store/Apollo/Queries'
 import { Loading } from '..'
 import { fetchMyNextEvents } from '../../Store/actions'

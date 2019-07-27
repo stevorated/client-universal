@@ -7,7 +7,7 @@ export default function LittleMenu(props) {
   const children = () => {
     return props.items.map(item => {
       return (
-        <MenuItemButton key={item} className="lo-text">{item}</MenuItemButton>
+        <MenuItemButton key={item}>{item}</MenuItemButton>
       )
     })
   }

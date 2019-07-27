@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Post } from '../../Components'
 import Avatar from '../../../assets/logos/new_logo.png'
+import Loading from '../Fragment/SmallLoading';
 const imgAvatar = Avatar.replace('build', '').replace('/public', '')
 
 function Posts(props) {
@@ -30,6 +31,9 @@ function Posts(props) {
         const linkUrl = avatar ?  `${process.env.API_BASE}${avatar.url}` : null
         return <Post key={`${id}-profile`} profileMode={true} linkUrl={linkUrl} body={body} name={name} comments={comments} createdAt={createdAt} id={id} createdBy={createdBy} likes={likes} />
       })
+    } else {
+      // console.log(profilePosts)
+      <Loading />
     }
   }
     return ( 

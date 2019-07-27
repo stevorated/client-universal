@@ -18,7 +18,7 @@ function ProfileScrollContainer(props) {
     fetchPolicy='network-only' // IMPORTANT
     query={FETCH_USERS_POSTS}
     variables={{ id: props.id, limit:5, skip: 0 }}
-    onCompleted={({getUsersPosts}) => props.fetchUsersPosts(getUsersPosts)}
+    onCompleted={({getUsersPosts}) => props.fetchUsersPosts(getUsersPosts, props.id)}
     // refetchQueries={[{query:GET_MA_POSTS, variables:{limit: 10, skip: 0 }}]}
     >
     {({ loading, error, data, fetchMore }) => {
@@ -34,7 +34,7 @@ function ProfileScrollContainer(props) {
               return prev
             }
             props.fetchUsersPosts(
-              [...fetchMoreResult.getUsersPosts]
+              [...fetchMoreResult.getUsersPosts], props.id
             ) 
           }
         })

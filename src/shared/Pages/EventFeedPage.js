@@ -38,7 +38,7 @@ class EventFeedPage extends Component {
           <FlatCardStatic style={{ minHeight: '200px' }} className="px-0 mt-3">
           <div className="mx-3 text-center">     
             <hr className="mx-2 noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.1' }} />
-            <LittleMenu items={['likes', 'posts', 'views']} />
+            <LittleMenu items={['following', 'by Date', ' by Views']} />
             <hr className="noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.5' }} />
             <NextUpFeedContainer events={this.props.events}/>
           </div>

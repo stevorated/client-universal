@@ -12,7 +12,7 @@ function RefetchQuery(props) {
     query={FETCH_USERS_POSTS}
     variables={{ id: props.id, limit: 5, skip: 0 }}
     onCompleted={({getUsersPosts}) => {
-      props.fetchUsersPosts(getUsersPosts)
+      props.fetchUsersPosts(getUsersPosts, props.id)
     }}
     onError={()=> console.log('error referching more posts.. try later')}
     >

@@ -139,7 +139,7 @@ const StyledCard = styled(Card)`
       background: whitesmoke;
       opacity: .9;
       border-radius: .3rem;
-      margin: .4rem;
+      /* margin: .4rem; */
       ${elevation[3]};
       transition: all 3s ease;
       ${transition({

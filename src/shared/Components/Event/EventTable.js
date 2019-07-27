@@ -10,7 +10,7 @@ import { fetchEvents } from '../../Store/actions'
 function EventTable(props) {
   return (
     <Fragment>    
-      <Table hover size="sm" className="text-left">
+      <Table responsive hover size="sm" className="text-left mt-2">
         <thead>
           <tr>
             <th scope="row">Event</th>
@@ -22,7 +22,7 @@ function EventTable(props) {
           <EventTableItems events={props.events} />
         </tbody>
       </Table>
-      {!props.events.length && <div className="text-center py-3">None</div>}
+      {!props.events.length && <div className="py-3">None</div>}
     </Fragment>
   )
 }

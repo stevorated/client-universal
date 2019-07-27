@@ -202,6 +202,30 @@ export const FETCH_USERS_POSTS = gql`
 }
 `
 
+export const GET_USER = gql`
+query user ($id: ID!) {
+  user (id: $id) {
+    id
+    email
+    fname
+    lname
+    avatar {
+      url
+    }
+    username
+    posts { 
+      id
+    }
+    following {
+      id
+    }
+    followers {
+      id
+    }
+  }
+}
+`
+
 export const GET_ME = gql`
 {
   me {

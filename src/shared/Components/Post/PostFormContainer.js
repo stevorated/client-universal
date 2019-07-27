@@ -56,7 +56,7 @@ class PostFormContainer extends Component {
                 }
               }
               return( 
-                <div className="p-2">
+                <Fragment>
                   <PostForm
                   id={this.props.id}
                   state={this.state} 
@@ -65,7 +65,7 @@ class PostFormContainer extends Component {
                   // myProfile={this.props.myProfile}
                   // profileMode={this.props.profileMode}
                   />
-                </div>
+                </Fragment>
               ) 
             }}
             

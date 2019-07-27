@@ -33,13 +33,11 @@ class EventBoardPage extends Component {
           <EventMainCard header="Event Board" boardMode />
           <EventBoard />
         </MainCol>
-        <Col lg="3" className="order-2 order-lg-3 mt-lg-2 animated fadeIn px-2">
-          <FlatCardStatic style={{ minHeight: '200px' }} className="px-0 mt-3">
-            
-
-              <div className="mx-3 text-center">
+        <Col lg="3" className="order-2 order-lg-3 mt-lg-2 animated fadeIn">
+          <FlatCardStatic style={{ minHeight: '200px' }} className="px-0 mt-3  mr-lg-2">
+              <div className="mx-2 text-center">
               <hr className="mx-2 noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.1' }} />
-              <LittleMenu items={['tonight', 'tomorow', 'week']} />
+              <LittleMenu items={['Up next', 'Saved']} />
               <hr className="noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.5' }} />
               <NextUpBoardContainer events={this.props.myEvents} />            
             </div>
