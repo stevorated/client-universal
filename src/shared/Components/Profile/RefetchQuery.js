@@ -14,7 +14,7 @@ function RefetchQuery(props) {
     onCompleted={({getUsersPosts}) => {
       props.fetchUsersPosts(getUsersPosts, props.id)
     }}
-    onError={()=> console.log('error referching more posts.. try later')}
+    // onError={()=> console.log('error referching more posts.. try later')}
     >
     {({ loading, error, data, fetchMore }) => {
       return ''

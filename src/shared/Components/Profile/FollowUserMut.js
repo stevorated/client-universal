@@ -12,7 +12,7 @@ import { orange } from '../../Utils'
 
 function FollowUserMut(props) {
   const { user, followers, followUserAction, myId } = props
-  console.log(followers)
+  // console.log(followers)
   const iLike = followers && followers.length && followers.filter(
     follow => {
     return follow.id === myId

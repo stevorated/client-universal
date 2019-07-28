@@ -16,7 +16,7 @@ import Avatar from '../../../assets/logos/new_logo.png'
 const imgAvatar = Avatar.replace('build', '').replace('/public', '')
 
 function Post(props) {
-  console.log(props.comments)
+  // console.log(props.comments)
   const [ animation, setAnimation ] = useState('')
   const [ showForm, setShowForm ] = useState(false)
   const [ showComments, setShowComments ] = useState(props.show || false)

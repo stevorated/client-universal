@@ -9,7 +9,7 @@ if(process.env.NODE_ENV !== 'production') {
   console.log('url:', process.env.GRAPH_URL)
   console.log(process.env.NODE_ENV)
 } else {
-  console.log('prod')
+  // console.log('prod')
 }
 const isProd = process.env.NODE_ENV === 'production'
 const cache = new InMemoryCache({

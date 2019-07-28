@@ -19,7 +19,7 @@ export default (ChildComponent) => {
         {({ loading, error, data, startPolling, stopPolling }) => {
           if (error) {
             // console.log('HOC ERROR', error)
-            console.log('loggin OUt')
+            console.log('loggin you OUt')
             {this.props.checkUserLoggedOut()}
             return <Redirect to="/login" />
           }else {

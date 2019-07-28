@@ -33,7 +33,7 @@ export const clearUsersPostsAndRefetch = (id) => async (dispatch, getState, clie
 }
 
 export const followUserAction = (data, userId) => async (dispatch, getState, client) => {
-  console.log('FOLLOW_USER')
+  // console.log('FOLLOW_USER')
   dispatch({
     type: 'FOLLOW_USER',
     payload: {
