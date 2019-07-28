@@ -16,9 +16,10 @@ import Avatar from '../../../assets/logos/new_logo.png'
 const imgAvatar = Avatar.replace('build', '').replace('/public', '')
 
 function Post(props) {
+  console.log(props.comments)
   const [ animation, setAnimation ] = useState('')
   const [ showForm, setShowForm ] = useState(false)
-  const [ showComments, setShowComments ] = useState(false)
+  const [ showComments, setShowComments ] = useState(props.show || false)
   const [ hideDeletedPost, setHideDeletedPost ] = useState(false)
   const MyPost = props.createdBy.id === props.auth.id
   const profileUrl = `/profile/${props.createdBy.id}`

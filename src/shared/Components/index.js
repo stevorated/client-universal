@@ -24,8 +24,10 @@ import EventDetails from './Event/EventDetails'
 import EventDetailsQuery from './Event/EventDetailsQuery'
 import EventMainCard from './Event/EventMainCard'
 import LittleMenu from './Fragment/LittleMenu'
-import { Menu } from './Feed'
-
+import NotificationsContainer from './Notifications/NotificationsContainer'
+import SinglePostContainer from './Feed/SinglePostContainer'
+import EventExtra from './Event/EventExtra'
+import CalanderContainer from './Calander/CalanderContainer'
 import {
   PostForm,
   Posts,
@@ -58,7 +60,6 @@ export {
   SearchBar,
   SearchBarSuggest,
   ProfileScrollContainer,
-  Menu,
   AddImageModal,
   PrivacyPolicy,
   EventFormContainer,
@@ -72,5 +73,9 @@ export {
   EventDetailsQuery,
   EventMainCard,
   EventDetails,
-  LittleMenu
+  LittleMenu,
+  NotificationsContainer,
+  SinglePostContainer,
+  EventExtra,
+  CalanderContainer
 }

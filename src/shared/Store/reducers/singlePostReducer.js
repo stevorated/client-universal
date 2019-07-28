@@ -2,13 +2,10 @@ const initialState = []
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
+    case 'FETCH_SINGLE_POST': 
+      return payload
     case 'CLEAR_FEED':
-      return []
-    case 'FETCH_FEED':
-        
-
-    case 'CREATE_POST':
-      return [...payload.concat(state)]
+      return initialState
     case 'LIKE_POST':
       return state.map((post)=> {
         if(post.id !== payload.post) {

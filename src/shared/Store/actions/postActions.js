@@ -1,12 +1,17 @@
 import { GET_MA_DETAILS, GET_ME, GET_USERS, GET_MA_POSTS, GET_POSTS, FETCH_FEED } from '../Apollo/Queries'
 
-
+export const fetchPost = (data) => async (dispatch, getState, client) => {
+  dispatch({
+    type: 'FETCH_SINGLE_POST',
+    payload: data
+  })
+}
 export const fetchMyPosts = (count = 5) => async (dispatch, getState, client) => {
   try {
-    if(count > 10) {
-      count = 10  
+    if (count > 10) {
+      count = 10
     }
-    const {data} = await client.query({
+    const { data } = await client.query({
       query: GET_MA_POSTS,
       variables: { limit: count }
       // fetchPolicy: 'network-only'
@@ -29,8 +34,8 @@ export const clearFeed = () => async (dispatch, getState, client) => {
 export const fetchFeed = (BrowserData, count = 5) => async (dispatch, getState, client) => {
 
   try {
-    if(count > 10) {
-      count = 10  
+    if (count > 10) {
+      count = 10
     }
     const data = BrowserData ? BrowserData : await client.query({
       query: FETCH_FEED,
@@ -57,7 +62,7 @@ export const createPost = (data) => async (dispatch, getState, client) => {
     type: 'CREATE_POST',
     payload: [data]
   })
-} 
+}
 
 export const likePostAction = (data, post) => async (dispatch, getState, client) => {
   // console.log(data.likes)
@@ -68,7 +73,7 @@ export const likePostAction = (data, post) => async (dispatch, getState, client)
 }
 
 export const deletePostAction = (id) => async (dispatch, getState, client) => {
-  
+
   await dispatch({
     type: 'DELETE_POST',
     payload: id

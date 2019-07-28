@@ -1,29 +1,27 @@
 import React, { Component } from 'react'
 import { Row, Col, Button } from 'reactstrap'
+import { Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUndo } from '@fortawesome/free-solid-svg-icons'
 
-import { HelmetComponent } from '../Components'
 import { fetchFeed, clearFeed } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
-import { EventFormContainer, EventDetailsQuery } from '../Components'
+import { HelmetComponent, SinglePostContainer } from '../Components'
 import Menu from '../Routes/Menu'
 import NavComponent from '../Routes/NavComponent'
 import { mediaQueries, backClr, elevation } from '../Utils'
 import { FlatCard } from '../Elements'
-
-class EventPage extends Component {
+class SinglePostPage extends Component {
 
   constructor(props) {
     super(props)
     this.id = props.match.params.id
-    this.title = `Event ${this.id}`
+    this.title = `Post ${this.id}`
     this.state = {
-      redirect: false 
+      redirect: false
     }
   }
 
@@ -33,7 +31,7 @@ class EventPage extends Component {
 
   render() {
     return this.state.redirect ? <Redirect to="/notifications" /> : (
-      <Row  >
+      <Row>
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatButton className="text-center animated flipInX">
           <Button style={{ borderRadius: '100%', padding: '.7rem' }} className="btn-mainclr ml-auto" onClick={this.redirectBack}>
@@ -44,20 +42,19 @@ class EventPage extends Component {
           <Menu />
         </FloatLeft>
         <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
-          <EventDetailsQuery id={this.id}  />
+          <SinglePostContainer id={this.id} />
         </MainCol>
       </Row>
     )
   }
 }
 
-function mapStateToProps({ users, posts, feed }) {
-  return { users, posts, feed }
+function mapStateToProps({ feed }) {
+  return { feed }
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchFeed, clearFeed })(checkLoggedIn(requireAuth(EventPage))),
-  loadData: ({ dispatch }) => dispatch(fetchFeed())
+  component: connect(mapStateToProps, { fetchFeed })(checkLoggedIn(requireAuth(SinglePostPage)))
 }
 const FloatLeft = styled(Col)`
   position: static!important;
@@ -72,7 +69,6 @@ const MainCol = styled(Col)`
   padding-right: 2rem;
   `}
 `
-
 const FloatButton = styled.div`
 position: fixed!important;
 bottom: 1vh;
@@ -84,3 +80,4 @@ ${mediaQueries.lg`
   bottom: 6vh;
   `}
 `
+

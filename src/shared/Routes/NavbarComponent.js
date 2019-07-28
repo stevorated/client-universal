@@ -6,7 +6,7 @@ import { SearchBar } from '../Components'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  faBell, faUtensils, faFeather
+  faBell, faUtensils, faFeather, faCalendar, faCalendarAlt
 } from '@fortawesome/free-solid-svg-icons'
 import { elevationJs, orange, lightOrange, mediaQueries } from '../Utils'
 import { logoutUser } from '../Store/actions'
@@ -79,6 +79,16 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
                 to='/engage-gauge '
               >
                 <StyledIcon className="mr-2" icon={faFeather} size={'lg'} /><StyledSpan>Engage Guage</StyledSpan>
+              </NavLink>
+            </NavItem>
+            
+            <NavItem>
+              <NavLink
+                className='nav-link'
+                onClick={handleClick}
+                to='/calander'
+              >
+                <StyledIcon className="mr-2" icon={faCalendarAlt} size={'lg'} /><StyledSpan>Calander</StyledSpan>
               </NavLink>
             </NavItem>
 

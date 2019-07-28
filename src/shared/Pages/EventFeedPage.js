@@ -1,26 +1,22 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import styled from 'styled-components'
-import { connect } from 'react-redux'
-import { HelmetComponent, LittleMenu } from '../Components'
+
+import { HelmetComponent, EventExtra } from '../Components'
 import { fetchFeed, clearFeed } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
-import { Menu, EventFormContainer, EventFeed, EventMainCard } from '../Components'
-import NavComponent from '../Routes/NavComponent'
-import { mediaQueries, backClr, black, absolute, orange } from '../Utils'
-import { FlatCard, FlatCardStatic, SquareButton } from '../Elements'
-import { relative } from 'path';
+import { EventFeed, EventMainCard } from '../Components'
+import Menu from '../Routes/Menu'
+import { mediaQueries } from '../Utils'
 import NextUpFeedContainer from '../Components/Event/NextUpFeedContainer'
 
 class EventFeedPage extends Component {
 
   constructor(props) {
     super(props)
-    this.title = 'My Events'
-    this.state = {
-      leaveClass: 'animated fadeOutUp'
-    }
+    this.title = 'Event Feed'
   }
 
   render() {
@@ -35,14 +31,9 @@ class EventFeedPage extends Component {
           <EventFeed />
         </MainCol>
         <Col lg="3" className="order-2 order-lg-3 mt-lg-2 animated fadeIn">
-          <FlatCardStatic style={{ minHeight: '200px' }} className="px-0 mt-3">
-          <div className="mx-3 text-center">     
-            <hr className="mx-2 noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.1' }} />
-            <LittleMenu items={['following', 'by Date', 'by Views']} />
-            <hr className="noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.5' }} />
-            <NextUpFeedContainer events={this.props.events}/>
-          </div>
-          </FlatCardStatic>
+          <EventExtra items={['New', 'Popular']}>
+            <NextUpFeedContainer events={this.props.events} />
+          </EventExtra>
         </Col>
       </Row>
     )

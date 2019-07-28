@@ -2,29 +2,30 @@ import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { HelmetComponent } from '../Components'
-import { fetchFeed, clearFeed } from '../Store/actions'
+import { HelmetComponent, NotificationsContainer } from '../Components'
+import { fetchMyNotifications } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import Menu from '../Routes/Menu'
 
-import { mediaQueries } from '../Utils'
+import { mediaQs, mediaQueries } from '../Utils'
 
-class EngagePage extends Component {
+class NotificationsPage extends Component {
 
   constructor (props) {
     super(props)
-    this.title = 'Prefs'
+    this.title = 'notifications'
   }
 
   render() {
     return(
-      <Row className="">
+      <Row className="text-center">
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatLeft lg="3">
           <Menu />
         </FloatLeft>
-        <Col lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
+        <Col lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-4 mb-5" >
+          <NotificationsContainer />
         </Col>
         <Col lg="3" className="order-2 order-lg-3 mt-2 animated fadeIn">
         </Col>
@@ -33,13 +34,13 @@ class EngagePage extends Component {
   } 
 }
 
-function mapStateToProps({ users, posts, feed }) {
-  return { users, posts, feed }
+function mapStateToProps({ }) {
+  return {  }
 }
 
 export default {
-  component: connect(mapStateToProps, {fetchFeed, clearFeed})(checkLoggedIn(requireAuth(EngagePage))),
-  loadData: ({ dispatch }) => dispatch(fetchFeed())
+  component: connect(mapStateToProps, { })(checkLoggedIn(requireAuth(NotificationsPage))),
+  loadData: ({ dispatch }) => dispatch(fetchMyNotifications())
 }
 const FloatLeft = styled(Col)`
   position: static!important;

@@ -14,7 +14,9 @@ import {
   EventBoardPage,
   SettingsPage,
   EngagePage,
-  EventPage
+  EventPage,
+  NotificationsPage,
+  SinglePostPage
 } from '../Pages'
 import App from '../App'
 
@@ -53,9 +55,19 @@ const routes = [
         ...EventPage,
       },
       {
+        path: '/post/:id',
+        exact: true,
+        ...SinglePostPage,
+      },
+      {
         path: '/engage-gauge',
         exact: true,
         ...EngagePage,
+      },
+      {
+        path: '/notifications',
+        exact: true,
+        ...NotificationsPage,
       },
       {
         path: '/settings',

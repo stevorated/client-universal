@@ -16,20 +16,9 @@ function Events(props) {
     else if (eventFeedMode) {
       return events.map((event) => {
         const { id } = event
-        // console.log(event)
         return (<Event key={`events-${id}`} {...event} />)
       })
     }
-    // } 
-    // else if(profileEventsMode) {
-    //   return profileEvents.map(({ id, body, comments, createdAt, createdBy }) => {
-    //     const myEvent = auth.id === createdBy.id
-    //     const name = `${createdBy.fname} ${createdBy.lname}`
-    //     const cover = coverPhoto ?  `${config.api}${coverPhoto.url}` : null
-    //     const thumb = thumbnil ?  `${config.api}${thumbnil.url}` : null
-    //     return <Event key={`${id}-profile`} profileMode={true} cover={cover} thumbnil={thumbnil} name={name} createdAt={createdAt} id={id} createdBy={createdBy} />
-    //   })
-    // }
   }
     return (
       <Container className="">

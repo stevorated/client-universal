@@ -14,6 +14,8 @@ import EventBoardPage from './EventBoardPage'
 import SettingsPage from './SettingsPage'
 import EngagePage from './EngagePage'
 import EventPage from './EventPage'
+import NotificationsPage from './NotificationsPage'
+import SinglePostPage from './SinglePostPage'
 
 export {
   FbLoginCheck,
@@ -31,5 +33,7 @@ export {
   EventBoardPage,
   SettingsPage,
   EngagePage,
-  EventPage
+  EventPage,
+  NotificationsPage,
+  SinglePostPage
 }

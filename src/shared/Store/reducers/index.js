@@ -10,6 +10,8 @@ import singleEventReducer from './singleEventReducer'
 import profileDataReducer from './profileData'
 import nextFeedReducer from './nextFeedReducer'
 import nextBoardReducer from './nextBoardReducer'
+import notificationsReducer from './notificationsReducer'
+import singlePostReducer from './singlePostReducer'
 const appReducer = combineReducers({
   users: userReducer,
   auth: authReducer,
@@ -21,7 +23,9 @@ const appReducer = combineReducers({
   nextBoardEvents: nextBoardReducer,
   myEvents: myEventsReducer,
   events: eventReducer,
-  event: singleEventReducer
+  event: singleEventReducer,
+  myNotifications: notificationsReducer,
+  singlePost: singlePostReducer
 })
 
 export default (state, action) => {

@@ -7,6 +7,7 @@ export * from './commentActions'
 export * from './profileActions'
 export * from './fileActions'
 export * from './eventActions'
+export * from './notificationsActions'
 
 export const pushError = (error) => (dispatch, getState, client) => {
   dispatch({

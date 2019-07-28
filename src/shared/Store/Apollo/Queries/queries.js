@@ -362,8 +362,8 @@ query ($limit: Int, $skip: Int){
 `
 
 export const FETCH_FEED = gql`
-query getFeed ($limit: Int, $skip: Int) {
-  getPosts(limit: $limit, skip: $skip) {
+query getFeed ($limit: Int, $skip: Int, $id: ID) {
+  getPosts(limit: $limit, skip: $skip, id: $id) {
     id
     body
     createdAt
