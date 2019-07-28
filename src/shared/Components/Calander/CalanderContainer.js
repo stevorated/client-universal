@@ -59,7 +59,7 @@ export default function CalanderContainer(props) {
     <FlatCardStatic {...props} className="">
       <h1 className="text-capitalize mb-0">{props.name}'s Calander</h1>
       <Line />
-      <CalanderDiv className="mt-5 mx-lg-4" fluid>
+      <CalanderDiv className="mt-5 mr-lg-4">
         <CalanderHeaders />
         { renderDays(weeksArray) }
       </CalanderDiv>

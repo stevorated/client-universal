@@ -32,7 +32,7 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
   }
 
   const authBtn = auth ? (
-    <NavLink className='nav-link mt-md-0 mt-2' to="/logout" onClick={handleLogout}>Logout</NavLink>
+    <NavLink className='nav-link mt-md-0 mt-0' to="/logout" onClick={handleLogout}>Logout</NavLink>
   ) : (
       <div className="d-md-flex mt-2 mt-md-0">
         <NavLink className='nav-link my-1 my-md-0' to="/login" onClick={handleClick}  >Login</NavLink>
@@ -122,7 +122,7 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
             </NavItem>
 
             <NavItem>
-              <StyledLine />
+              <StyledLine className="noPadding mt-2" />
             </NavItem>
             <StyledNavItem>
               <NavLink
@@ -144,7 +144,7 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
             </StyledNavItem>
           </Fragment>}
           <NavItem>
-            <StyledLine />
+            <StyledLine className="noPadding"/>
           </NavItem>
           <NavItem>
             {authBtn}
