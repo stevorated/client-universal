@@ -12,7 +12,8 @@ function NextUpBoardContainerSide(props) {
     <Query
       fetchPolicy='network-only' // IMPORTANT
       query={FETCH_MY_NEXT_EVENTS}
-      variables={{ limit: 5, skip: 0, suggested: props.suggested }}
+      variables={variables}
+      // onError={(e)=> console.log('ERROR')}
       onCompleted={
         ({ getMyEvents }) => {
           props.fetchMyNextEvents(getMyEvents)
