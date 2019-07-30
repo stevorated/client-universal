@@ -3,11 +3,30 @@ import styled from 'styled-components'
 import { elevation, transition } from '../../Utils'
 
 export default function LittleMenu(props) {
+  // console.log(props)
+  
   
   const children = () => {
     return props.items.map(item => {
+      const handleChange = () => {
+        props.handleChangeState(item)
+      }
+      const check = (
+        props.boardMode && props.suggested && item === 'suggested') 
+      || 
+      (props.boardMode && !props.suggested && item !== 'suggested')
+      const check2 = (
+        props.feedMode && props.byCreatedAt && item === 'new') 
+        || 
+        (props.feedMode && !props.byCreatedAt && item !== 'new')
+        // console.log(item, check2)
+      const active = check ? true : false
+      const active2 = check2 ? true : false
+      const activeStyle = active ? 'active-button' : ''
+      const activeStyle2 = active2 ? 'active-button' : ''
+
       return (
-        <MenuItemButton key={item}>{item}</MenuItemButton>
+        <MenuItemButton className={`${activeStyle} ${activeStyle2}`} value={item} onClick={handleChange} key={item}>{item}</MenuItemButton>
       )
     })
   }

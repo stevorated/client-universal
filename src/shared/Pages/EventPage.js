@@ -10,11 +10,10 @@ import { HelmetComponent } from '../Components'
 import { fetchFeed, clearFeed } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
-import { EventFormContainer, EventDetailsQuery } from '../Components'
+import { EventDetailsQuery } from '../Components'
 import Menu from '../Routes/Menu'
-import NavComponent from '../Routes/NavComponent'
 import { mediaQueries, backClr, elevation } from '../Utils'
-import { FlatCard } from '../Elements'
+
 
 class EventPage extends Component {
 
@@ -32,12 +31,12 @@ class EventPage extends Component {
   }
 
   render() {
-    return this.state.redirect ? <Redirect to="/notifications" /> : (
+    return this.state.redirect ? <Redirect to="/calander" /> : (
       <Row  >
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatButton className="text-center animated flipInX">
-          <Button style={{ borderRadius: '100%', padding: '.7rem' }} className="btn-mainclr ml-auto" onClick={this.redirectBack}>
-            <FontAwesomeIcon icon={faUndo} size="2x" />
+          <Button style={{ borderRadius: '100%', padding: '1rem' }} className="btn-mainclr" onClick={this.redirectBack}>
+            <FontAwesomeIcon icon={faUndo} size="lg" />
           </Button>
         </FloatButton>
         <FloatLeft lg="3">

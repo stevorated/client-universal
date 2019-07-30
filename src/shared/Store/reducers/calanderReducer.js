@@ -1,8 +1,11 @@
+import moment from 'moment'
+
 export default (state = [], { type, payload }) => {
   switch (type) {
-    case 'FETCH_MY_EVENTS':
-      return state[0] === undefined ? payload : [...state.concat(payload)]
+    case 'FETCH_CALNDER_EVENTS':
+      return payload
     case 'CREATE_EVENT':
+      payload[0].day = parseInt(moment(payload[0].startDate).format('D'))
       return [...payload.concat(state)]
     case 'FOLLOW_EVENT':
       return state.map((event)=> {

@@ -34,14 +34,14 @@ class SinglePostPage extends Component {
       <Row>
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatButton className="text-center animated flipInX">
-          <Button style={{ borderRadius: '100%', padding: '.7rem' }} className="btn-mainclr ml-auto" onClick={this.redirectBack}>
+          <Button style={{ borderRadius: '100%', padding: '.7rem' }} className="btn-mainclr ml-auto" onClick={this.props.history.goBack}>
             <FontAwesomeIcon icon={faUndo} size="2x" />
           </Button>
         </FloatButton>
         <FloatLeft lg="3">
           <Menu />
         </FloatLeft>
-        <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
+        <MainCol lg="9" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-4" >
           <SinglePostContainer id={this.id} />
         </MainCol>
       </Row>

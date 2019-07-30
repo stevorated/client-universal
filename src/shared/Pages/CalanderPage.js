@@ -1,41 +1,76 @@
-import React, { Component } from 'react'
-import { Container, Row, Col, Card } from 'reactstrap'
+import React, { Component, Fragment } from 'react'
+import { Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { HelmetComponent, CalanderContainer } from '../Components'
-import { fetchFeed, clearFeed, fetchCurrentUser } from '../Store/actions'
+import { HelmetComponent, CalanderContainer, Events } from '../Components'
+import { fetchCurrentUser, fetchCalanderEvents } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import Menu from '../Routes/Menu'
-
-import { mediaQs, mediaQueries } from '../Utils'
+import moment from 'moment'
+import { mediaQueries } from '../Utils'
+import Loading from '../Components/Fragment/SmallLoading';
 
 class CalanderPage extends Component {
-
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.title = 'Calander'
     this.fname = this.props.auth.fname
+    // this.month = moment().startOf('M').format('YYYY-MM-DD')
+    this.state = {
+      targetMonth: moment().startOf('M').format('YYYY-MM-DD'),
+      dayInfocus: null,
+      eventsInFocus: [],
+      loading: false
+    }
+  }
+
+  dayOfWeek = (date) => {
+    const rawDay = moment(date).day()
+    if (rawDay === 7) return 1
+    else return rawDay + 1
+  }
+
+  handleChangeMonth = (e) => {
+    const target = e.target.value
+    this.setState({ targetMonth: target, dayInFocus: null, eventsInFocus: [] })
+  }
+
+  handleChangeDayFocus = (events, date) => {
+    this.setState({ loading: true, eventsInFocus: events, dayInFocus: date })
+    setTimeout(() => {
+      this.setState({loading: false})
+    }, 2000)
   }
 
   render() {
-    return(
-      <Row>
-        <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
-        <FloatLeft lg="3">
-          <Menu />
-        </FloatLeft>
-        <Col lg="12" className="order-3 order-lg-2 animated fadeIn  mt-lg-4 mb-5" >
-          <CalanderContainer 
-          className="" 
-          name={this.fname} 
-          days={31}
-          startDay={4}
-          />
-        </Col>
-      </Row>
+    return (
+      <Fragment>
+        <Row className="mb-0 pb-5">
+          <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
+          <FloatLeft lg="3">
+            <Menu />
+          </FloatLeft>
+          <Col lg="9" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-3" >
+
+            <CalanderContainer
+              className=""
+              name={this.fname}
+              targetMonth={this.state.targetMonth}
+              // dayInfocus={this.state.dayInfocus}
+              handleChangeMonth={this.handleChangeMonth}
+              handleChangeDayFocus={this.handleChangeDayFocus}
+              dayInFocus={this.state.eventsInFocus.length
+                ? parseInt(moment(this.state.eventsInFocus[0].startDate).format('DD'))
+                : ''}
+              eventsInFocus={this.state.eventsInFocus}
+              loading={this.state.loading}
+            />
+          </Col>
+        </Row>
+      </Fragment>
     )
-  } 
+  }
 }
 
 function mapStateToProps({ auth }) {
@@ -48,13 +83,13 @@ export default {
     dispatch(fetchCurrentUser())
   }
 }
+
 const FloatLeft = styled(Col)`
   position: static!important;
   top: 3.5rem;
   left: 0rem;
   ${mediaQueries.lg`
-  display: none;
+    position: fixed!important;
   `}
   `
-
 

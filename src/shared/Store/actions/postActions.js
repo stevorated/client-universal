@@ -1,5 +1,6 @@
 import { GET_MA_DETAILS, GET_ME, GET_USERS, GET_MA_POSTS, GET_POSTS, FETCH_FEED } from '../Apollo/Queries'
 
+
 export const fetchPost = (data) => async (dispatch, getState, client) => {
   dispatch({
     type: 'FETCH_SINGLE_POST',
@@ -32,15 +33,14 @@ export const clearFeed = () => async (dispatch, getState, client) => {
 }
 
 export const fetchFeed = (BrowserData, count = 5) => async (dispatch, getState, client) => {
-
   try {
     if (count > 10) {
       count = 10
     }
     const data = BrowserData ? BrowserData : await client.query({
       query: FETCH_FEED,
-      variables: { limit: count }
-    })
+      variables: { limit: 5 }
+    }).getPosts
     dispatch({
       type: 'FETCH_FEED',
       payload: data

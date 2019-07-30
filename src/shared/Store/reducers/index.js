@@ -12,6 +12,8 @@ import nextFeedReducer from './nextFeedReducer'
 import nextBoardReducer from './nextBoardReducer'
 import notificationsReducer from './notificationsReducer'
 import singlePostReducer from './singlePostReducer'
+import calanderReducer from './calanderReducer'
+
 const appReducer = combineReducers({
   users: userReducer,
   auth: authReducer,
@@ -25,7 +27,8 @@ const appReducer = combineReducers({
   events: eventReducer,
   event: singleEventReducer,
   myNotifications: notificationsReducer,
-  singlePost: singlePostReducer
+  singlePost: singlePostReducer,
+  calander: calanderReducer
 })
 
 export default (state, action) => {

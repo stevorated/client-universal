@@ -10,16 +10,28 @@ import { EventBoard, EventMainCard } from '../Components'
 import Menu from '../Routes/Menu'
 import { mediaQueries, orange } from '../Utils'
 import { FlatCardStatic } from '../Elements'
-import NextUpBoardContainer from '../Components/Event/NextUpBoardContainer'
+import NextUpBoardContainerSide from '../Components/Event/NextUpBoardContainerSide'
 
 class EventBoardPage extends Component {
 
   constructor(props) {
     super(props)
+    this.menuItems= ['suggested', 'past']
     this.title = 'EventBoard'
     this.state = {
-      events: this.props.myEvents
+      events: this.props.myEvents,
+      suggested: true,
     }
+  }
+
+  handleChangeState = (value) => {
+    if(value !== 'suggested' && this.state.suggested) {
+      this.setState({suggested: !this.state.suggested})
+    }
+    if(value === 'suggested' && !this.state.suggested) {
+      this.setState({suggested: !this.state.suggested})
+    }
+
   }
 
   render() {
@@ -29,13 +41,13 @@ class EventBoardPage extends Component {
         <FloatLeft lg="3" className="">
           <Menu />
         </FloatLeft>
-        <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-2" >
-          <EventMainCard header="Event Board" boardMode />
+        <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-2" >
+          <EventMainCard header="Event Board" title="Followed Event Coming up" boardMode />
           <EventBoard />
         </MainCol>
         <Col lg="3" className="order-2 order-lg-3 mt-lg-2 animated fadeIn">
-          <EventExtra items={['Up next', 'Saved']}>
-            <NextUpBoardContainer events={this.props.myEvents} />
+          <EventExtra boardMode={true} suggested={this.state.suggested} handleChangeState={this.handleChangeState} items={['suggested', 'past']}>
+            <NextUpBoardContainerSide suggested={this.state.suggested} events={this.props.myEvents} />
           </EventExtra>
         </Col>
       </Row>

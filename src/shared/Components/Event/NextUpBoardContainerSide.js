@@ -6,12 +6,13 @@ import { Loading } from '..'
 import { fetchMyNextEvents } from '../../Store/actions'
 import EventTable from './EventTable'
 
-function NextUpBoardContainer(props) {  
+function NextUpBoardContainerSide(props) { 
+  const variables = props.suggested ? { limit: 5, skip: 0, suggested: true } : { limit: 5, skip: 0, past: true }
   return (
     <Query
       fetchPolicy='network-only' // IMPORTANT
       query={FETCH_MY_NEXT_EVENTS}
-      variables={{ limit: 5, skip: 0, followed: true }}
+      variables={{ limit: 5, skip: 0, suggested: props.suggested }}
       onCompleted={
         ({ getMyEvents }) => {
           props.fetchMyNextEvents(getMyEvents)
@@ -33,4 +34,4 @@ const mapStateToProps = ({ events, myEvents, nextBoardEvents }) => {
   return { events, myEvents, nextBoardEvents }
 }
 
-export default connect(mapStateToProps, { fetchMyNextEvents })(NextUpBoardContainer)
+export default connect(mapStateToProps, { fetchMyNextEvents })(NextUpBoardContainerSide)

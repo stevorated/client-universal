@@ -1,5 +1,16 @@
 import gql from 'graphql-tag'
 
+export const FOLLOW_EVENT_MUT = gql`
+  mutation followEvent ($event: ID!) {
+    followEvent (event: $event) {
+      id
+      followers {
+        id
+      }
+    }
+  }
+`
+
 export const FOLLOW_USER_MUT = gql`
   mutation ($id: ID!) {
     follow (id: $id) {

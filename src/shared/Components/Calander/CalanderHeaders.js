@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 
 export default function CalanderHeaders() {
@@ -18,7 +18,7 @@ export default function CalanderHeaders() {
 
 const BorderColHeader = styled(Col)`
 vertical-align: middle!important;
-border: 1px solid black;
+border: .4px solid lightgray;
 grid-gap: 0;
 grid-row-gap: 0;
 font-weight: 700;

@@ -1,6 +1,5 @@
 import React from 'react'
 import EventFormContainer from './EventFormContainer'
-import EventCarousel from './EventCarousel'
 import { FlatCardStatic, SquareButton } from '../../Elements'
 import NextUpFeedContainer from './NextUpFeedContainer'
 import { orange } from '../../Utils'
@@ -13,7 +12,7 @@ export default function EventMainCard(props) {
       </div>
       <hr />      
       <div className="mx-3" style={{ minHeight: '200px' }}>
-        <p className="text-left lead mb-0" style={{fontWeight:'900'}}>Next Up</p>
+        <p className="text-left lead mb-0" style={{fontWeight:'900'}}>{props.title}</p>
         <hr className="noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.5' }} />
         {props.feedMode ? <NextUpFeedContainer /> : <NextUpBoardContainer />} 
         <hr style={{ margin: '0' }} />

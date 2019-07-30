@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Mutation, ApolloConsumer } from 'react-apollo'
 import { createEventAction } from '../../Store/actions'
 import { CREATE_EVENT } from '../../Store/Apollo/Mutaions'
+import { FETCH_CALANDER_EVENTS } from '../../Store/Apollo/Queries'
 import EventFormModal from './EventFormModal'
 
 class EventFormContainer extends Component {
@@ -19,7 +20,7 @@ class EventFormContainer extends Component {
               mutation={CREATE_EVENT}
               onCompleted={({createEvent}) => this.props.createEventAction(createEvent)}     
               refetchQueries={[
-                // {query: FETCH_USERS_POSTS, variables: { id: this.props.id }}
+                {query: FETCH_CALANDER_EVENTS }
               ]}
               >
               {(createEvent, {loading, error}) => {

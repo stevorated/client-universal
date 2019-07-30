@@ -1,3 +1,17 @@
+export const followEventAction = (data, event) => async (dispatch, getState, client) => {
+  dispatch({
+    type: 'FOLLOW_EVENT',
+    payload: { data, event }
+  })
+}
+
+export const fetchCalanderEvents = (data) => (dispatch, getState, client) => {
+  dispatch({
+    type: 'FETCH_CALNDER_EVENTS',
+    payload: data
+  })
+}
+
 export const createEventAction = (data) => (dispatch, getState, client) => {
   dispatch({
     type: 'CREATE_EVENT',

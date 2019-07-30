@@ -48,7 +48,7 @@ function mapStateToProps({ users, posts, feed, auth }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchCurrentUser })(checkLoggedIn(requireAuth(FeedPage))),
+  component: connect(mapStateToProps, { fetchCurrentUser, fetchFeed })(checkLoggedIn(requireAuth(FeedPage))),
   loadData: ({ dispatch }) => {
     dispatch(fetchCurrentUser())
     dispatch(fetchFeed())

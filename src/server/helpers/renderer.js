@@ -65,6 +65,7 @@ export default function renderer(req, store, client, context) {
         <script>
           window.__APOLLO_STATE__ = ${serialize(client.extract())}
         </script>
+        <script src="https://kit.fontawesome.com/ba8dc12f24.js"></script>
         <script src="/bundle.js"></script>
       </body>
     </html>

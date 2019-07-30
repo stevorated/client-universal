@@ -9,7 +9,7 @@ function Events(props) {
   const renderQuery = () => {
     if(myEventsMode) {
       return myEvents.map((event) => {
-        const { id, name, venue, address, coverPhoto, thumbnil, createdAt, createdBy } = event
+        const { id } = event
         return (<Event key={`myEvents-${id}`} {...event} />)
       })
     }

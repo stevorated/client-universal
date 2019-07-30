@@ -40,7 +40,7 @@ function PublicPage(props) {
     setTimeout(() => setRedirect(true), 1200)
   }
   return redirect ? <Redirect to={where} /> : (
-    <Container style={{ minHeight: '90vh' }} className={`animated fadeIn slow text-center ${fadeOut}`}>
+    <Container style={{ minHeight: '90vh', paddingTop: '1rem' }} className={`animated fadeIn slow text-center ${fadeOut}`}>
       <HelmetComponent pageTitle={title} ogTitle={title} />
       <div className="mt-5">
         <h1 className="welcome-to">- Welcome to -</h1>

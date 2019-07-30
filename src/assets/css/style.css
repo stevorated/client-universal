@@ -27,11 +27,23 @@ body {
 }
 
 a.active {
-  color: rgb(223, 221, 221)!important;
+  color: rgb(218, 218, 218)!important;
   font-weight: 700;
 
 }
 
+.active-border {
+  border: 2px solid #c9783e!important;
+}
+
+.active-button {
+  background: lightgray!important;
+  font-weight: 600;
+}
+.dayGray {
+  background: #b9b1b1;
+  opacity: .9;
+}
 
 /* textarea:active, textarea:focus {
   outline-color: #c9783e!important;
@@ -129,7 +141,7 @@ div#root {
   padding: 0rem!important;
 }
 .container-fluid, .container, .row, .col, div {
-  padding: 0.05rem 0;
+  padding: 0;
 }
 
 button.big-x {
