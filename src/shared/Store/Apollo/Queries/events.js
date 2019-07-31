@@ -38,8 +38,8 @@ query getMonthsEvents ($month: String, $skip: Int, $limit: Int) {
 `
 
 export const FETCH_MY_NEXT_EVENTS = gql`
-query ($skip: Int, $limit: Int, $followed:Boolean, $suggested: Boolean) {
-  getMyEvents (skip: $skip, limit: $limit, followed: $followed, suggested: $suggested) {
+query ($skip: Int, $limit: Int, $followed:Boolean, $suggested: Boolean, $past: Boolean) {
+  getMyEvents (skip: $skip, limit: $limit, followed: $followed, suggested: $suggested, past: $past) {
     id
     name
     fbId

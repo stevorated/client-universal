@@ -60,7 +60,7 @@ export const MenuCard = styled.div `
       opacity: .5;
       /* border-radius: .3rem; */
       padding: 0.5rem;
-      margin-bottom: .3rem;
+      /* margin-bottom: .3rem; */
       ${elevation[1]}
       transition: all 3s ease;
       ${transition({

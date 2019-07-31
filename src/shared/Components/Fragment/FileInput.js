@@ -1,11 +1,9 @@
 import React, { useCallback, useState } from 'react'
 import { connect } from 'react-redux'
 import { useDropzone } from 'react-dropzone'
-import { uploadFile } from '../../Store/actions'
-import { Image } from 'reactstrap'
 import styled from 'styled-components'
-import { black, elevation } from '../../Utils'
-import ReactCrop from 'react-image-crop'
+import { uploadFile } from '../../Store/actions'
+import { elevation } from '../../Utils'
 
 function FileInput(props) {
   const [ imgSrc, setImgSrc ] = useState(null)

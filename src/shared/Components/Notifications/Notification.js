@@ -18,7 +18,7 @@ export default function Notification(props) {
   }
   if(props.action === 'Create-Event' && props.event) {whereTo = `/event/${props.event.id}`}
   return redirect ? <Redirect to={whereTo} /> : (
-    <HoverCard style={{cursor: 'pointer'}} onClick={setRedirect}>
+    <HoverCard className="mt-2" style={{cursor: 'pointer'}} onClick={setRedirect}>
       <CardBody>
         <CardText className="text-left"><strong>{fname} {lname}</strong> {body} <span className="lo-text">{timeAgo(Date.now(), createdAt)}</span></CardText>
       </CardBody>

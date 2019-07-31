@@ -53,9 +53,9 @@ export default function CalanderDay(props) {
           autohide={true} 
           >
             <img src={thumbnil} width="100px" alt="" />
-            <div>{event.name}</div>
-            <div>{event.venue}</div>
-            <div>{event.startDate}</div>
+            <div style={{fontWeight: '600'}}>{event.name}</div>
+            <div>{event.venue}({event.address})</div>
+            <div>{event.startTime}, {moment(event.startDate).format('DD MMMM YYYY')}</div>
             <div></div>
           </Tooltip>
         </DayEvent>

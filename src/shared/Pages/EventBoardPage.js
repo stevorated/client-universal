@@ -42,7 +42,7 @@ class EventBoardPage extends Component {
           <Menu />
         </FloatLeft>
         <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-2" >
-          <EventMainCard header="Event Board" title="Followed Event Coming up" boardMode />
+          <EventMainCard className="capitalize" header="Event Board" title="Followed Events Coming up soon " boardMode />
           <EventBoard />
         </MainCol>
         <Col lg="3" className="order-2 order-lg-3 mt-lg-2 animated fadeIn">

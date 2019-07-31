@@ -24,9 +24,6 @@ export default function getCroppedImg(imageFile, crop, fileName) {
       )
 }
 
-  // As Base64 string
-  // const base64Image = canvas.toDataURL('image/jpeg')
-
   // As a blob
   return new Promise((resolve, reject) => {
     canvas.toBlob(blob => {
@@ -35,7 +32,3 @@ export default function getCroppedImg(imageFile, crop, fileName) {
     }, 'image/jpeg')
   })
 }
-
-// async test() {
-//   const croppedImg = await getCroppedImg(image, crop, fileName)
-// }

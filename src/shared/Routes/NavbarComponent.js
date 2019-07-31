@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBell, faUtensils, faFeather, faCalendar, faCalendarAlt
 } from '@fortawesome/free-solid-svg-icons'
-import { elevationJs, orange, lightOrange, mediaQueries } from '../Utils'
+import { elevationJs, orange, lightOrange, mediaQueries, white } from '../Utils'
 import { logoutUser } from '../Store/actions'
 import Logo from '../../assets/logos/logo7.png'
 const linkLogo = Logo.replace('build', '').replace('/public', '')
@@ -41,6 +41,7 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
       </div>
     )
   return (
+    <Fragment>
     <Navbar className="text-capitalize " color="dark" style={elevationJs[4]} dark expand="md" fixed="top">
       <NavLink
         style={{ fontSize: '1.1rem', margin: '0', padding: '0' }}
@@ -51,6 +52,7 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
       <NavbarToggler
         onClick={handleToggleNav}
       />
+      
       <Collapse isOpen={collapsed} navbar>
       {auth && <StyledLine />}
         {auth && <SearchBar
@@ -72,7 +74,7 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
               </NavLink>
             </NavItem>
 
-            <NavItem>
+            {/* <NavItem>
               <NavLink
                 className='nav-link'
                 onClick={handleClick}
@@ -80,7 +82,7 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
               >
                 <StyledIcon className="mr-2" icon={faFeather} size={'lg'} /><StyledSpan>Engage Guage</StyledSpan>
               </NavLink>
-            </NavItem>
+            </NavItem> */}
             
             <NavItem>
               <NavLink
@@ -151,7 +153,19 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
           </NavItem>
         </Nav>
       </Collapse>
+      
     </Navbar>
+    <OpositeStyledLink 
+      to="/notifications"
+      onClick={handleClick}
+    >
+      
+      <OpositeStyledIcon
+        icon={faBell}
+        
+        />
+    </OpositeStyledLink>
+  </Fragment>  
   )
 }
 
@@ -173,6 +187,27 @@ const StyledIcon = styled(FontAwesomeIcon)`
     display: block;  
   `}
 `
+
+const OpositeStyledIcon = styled(FontAwesomeIcon)`
+    font-size: 1.5rem;
+    position: fixed;
+    color: grey;
+    z-index: 100000;
+    right: 85px;
+    top: 15px;
+    display: block;
+    ${mediaQueries.md`
+    display: none;
+  `}
+`
+const OpositeStyledLink = styled(Link)`
+    
+    display: block;
+    ${mediaQueries.md`
+    display: none;
+  `}
+`
+
 const StyledSpan = styled.span`
     display: block; 
     ${mediaQueries.md`

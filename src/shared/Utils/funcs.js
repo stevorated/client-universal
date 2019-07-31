@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import moment from 'moment'
 
 export const isObjectID = (id) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -6,6 +7,23 @@ export const isObjectID = (id) => {
   } else {
     return true
   }
+}
+
+export const dayOfWeek = (date) => {
+  const rawDay = moment(date).day()
+  if (rawDay === 7) return 1
+  else return rawDay + 1
+}
+
+export const makeMonthsArray = (start, months) => {
+  let i
+  let arr = []
+  for (i = 0; i < months + 1; i++) {
+    const monthToAddDate = moment(start).add(i, 'M').format('YYYY-MM-DD')
+    const monthToAddText = moment(start).add(i, 'M').format('MMMM YY')
+    arr.push({ monthToAddDate, monthToAddText })
+  }
+  return arr
 }
 
 export const daysArray = (max, start) => {

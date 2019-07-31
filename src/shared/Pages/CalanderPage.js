@@ -3,20 +3,18 @@ import { Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { HelmetComponent, CalanderContainer, Events } from '../Components'
-import { fetchCurrentUser, fetchCalanderEvents } from '../Store/actions'
+import { fetchCurrentUser } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import Menu from '../Routes/Menu'
 import moment from 'moment'
 import { mediaQueries } from '../Utils'
-import Loading from '../Components/Fragment/SmallLoading';
 
 class CalanderPage extends Component {
   constructor(props) {
     super(props)
     this.title = 'Calander'
     this.fname = this.props.auth.fname
-    // this.month = moment().startOf('M').format('YYYY-MM-DD')
     this.state = {
       targetMonth: moment().startOf('M').format('YYYY-MM-DD'),
       dayInfocus: null,
@@ -52,7 +50,6 @@ class CalanderPage extends Component {
             <Menu />
           </FloatLeft>
           <Col lg="9" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-3" >
-
             <CalanderContainer
               className=""
               name={this.fname}

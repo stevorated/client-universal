@@ -10,7 +10,8 @@ function NextUpBoardContainerSide(props) {
   const variables = props.suggested ? { limit: 5, skip: 0, suggested: true } : { limit: 5, skip: 0, past: true }
   return (
     <Query
-      fetchPolicy='network-only' // IMPORTANT
+      // fetchPolicy='network-only' // IMPORTANT
+      fetchPolicy='cache-and-network'
       query={FETCH_MY_NEXT_EVENTS}
       variables={variables}
       // onError={(e)=> console.log('ERROR')}

@@ -12,7 +12,8 @@ function NextUpFeedContainerSide (props) {
   const variables = props.byCreatedAt ? { limit: 5, skip: 0, byCreatedAt: true } : { limit: 5, skip: 0, byPopular: true }
   return (
     <Query
-      fetchPolicy='network-only' // IMPORTANT
+      // fetchPolicy='network-only' // IMPORTANT
+      fetchPolicy='cache-and-network'
       query={FETCH_NEXT_EVENTS}
       variables={variables}
       onCompleted={

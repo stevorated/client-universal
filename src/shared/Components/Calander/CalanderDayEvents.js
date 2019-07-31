@@ -13,7 +13,7 @@ function CalanderDayEvents(props) {
       })
     }
     return (
-      <div id="cander-day-events" className="mx-md-2">
+      <div id="cander-day-events" className="mx-md-2 animated slideInTop">
         <CustomCardColumns md={6} xl={4}>
           {renderQuery()}
         </CustomCardColumns>

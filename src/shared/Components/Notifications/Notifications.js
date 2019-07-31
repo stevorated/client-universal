@@ -15,7 +15,7 @@ function Notifications(props) {
       })
   }
     return (
-      <div>
+      <div className="pt-2">
         { renderQuery() }
       </div>
     )

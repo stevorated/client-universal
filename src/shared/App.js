@@ -12,8 +12,7 @@ import moment from 'moment'
 // }
 
 function App(props) {
-  console.log(moment('2019-08-04').format('X'))
-  // console.log(props.auth)
+
   try {
     if(!props.auth)
     props.fetchCurrentUser()

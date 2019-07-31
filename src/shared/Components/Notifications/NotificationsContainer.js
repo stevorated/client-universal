@@ -45,8 +45,8 @@ const NotificationsContainer = (props) => {
         if (error) return <Loading />
         return (
           <StyledDiv className="text-center">
-            <FlatCardStatic>
-              <p className="text-left lead mb-0 mt-lg-4" style={{fontWeight:'900'}}>Notifications</p>
+            <FlatCardStatic className="">
+              <div className="text-left lead mb-0 mt-lg-4 mt-2" style={{fontWeight:'900'}}>Notifications</div>
               <hr className="noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.5' }} />
               <Notifications myNotifications={props.myNotifications} />
               <Button className="my-3" onClick={handleFatchMore}>More..</Button>
@@ -67,7 +67,6 @@ export default connect(mapStateToProps, { fetchMyNotifications })(NotificationsC
 const StyledDiv = styled.div `
   margin: 0;
   padding: 0;
-  display: block;
 `
 
 

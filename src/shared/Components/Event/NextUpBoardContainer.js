@@ -9,7 +9,8 @@ import EventTable from './EventTable'
 function NextUpBoardContainer(props) {  
   return (
     <Query
-      fetchPolicy='network-only' // IMPORTANT
+      // fetchPolicy='network-only' // IMPORTANT
+      fetchPolicy='cache-and-network'
       query={FETCH_MY_NEXT_EVENTS}
       variables={{ limit: 5, skip: 0, followed: true }}
       onCompleted={

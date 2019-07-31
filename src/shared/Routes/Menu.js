@@ -32,8 +32,8 @@ function Menu({ logoutUser }) {
     await logoutUser()
   }
   return (
-    <MenuCard className="text-center" style={{borderRadius: 'none'}}>
-      <h3 className="header-4 mt-3" style={{color: `${orange}`}}>Menu</h3>
+    <MenuCard className="text-center mb-0" style={{borderRadius: 'none'}}>
+      <h3 className="header-4 mt-3" style={{color: `${orange}`, fontWeight: '600'}}>Menu</h3>
       <hr className="lead mb-3" style={{ color: `${orange}`, borderWidth: '2px', borderColor: `${orange}` }} />
       <Container>
         <Row >
@@ -47,11 +47,10 @@ function Menu({ logoutUser }) {
           </Col>
           <Col lg={12} xs={6} className="p-0 pb-2">
             <StyledList className="p-0 m-0">
-            
-            <MenuItem icon={faUserAlt} text="Profile" to="/my-profile" />
-            <MenuItem icon={faBrain} text="Engage Page" to="/engage-gauge "/>
-            <MenuItem icon={faWrench} text="Settings" to="/settings " />
-            <MenuItem icon={faAirFreshener} text="Privacy" to="/privacy" />
+              <MenuItem icon={faUserAlt} text="Profile" to="/my-profile" />
+              <MenuItem icon={faBrain} text="Engage Page" to="/engage-gauge "/>
+              <MenuItem icon={faWrench} text="Settings" to="/settings " />
+              <MenuItem icon={faAirFreshener} text="Privacy" to="/privacy" />
             </StyledList>
           </Col>
         </Row>

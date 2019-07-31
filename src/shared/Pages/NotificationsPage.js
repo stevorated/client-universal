@@ -24,10 +24,8 @@ class NotificationsPage extends Component {
         <FloatLeft lg="3">
           <Menu />
         </FloatLeft>
-        <Col lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-4 mb-5" >
+        <Col lg="9" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
           <NotificationsContainer />
-        </Col>
-        <Col lg="3" className="order-2 order-lg-3 mt-2 animated fadeIn">
         </Col>
       </Row>
     )

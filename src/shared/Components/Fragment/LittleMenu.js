@@ -26,7 +26,7 @@ export default function LittleMenu(props) {
       const activeStyle2 = active2 ? 'active-button' : ''
 
       return (
-        <MenuItemButton className={`${activeStyle} ${activeStyle2}`} value={item} onClick={handleChange} key={item}>{item}</MenuItemButton>
+        <MenuItemButton className={`text-capitalize ${activeStyle} ${activeStyle2}`} value={item} onClick={handleChange} key={item}>{item}</MenuItemButton>
       )
     })
   }

@@ -25,13 +25,14 @@ class EventFormModal extends Component {
       address: '',
       addressValid: null,
       description: '',
-      descriptionValid: '',
+      descriptionValid: null,
+      addBands: false,
       band1: '',
       band2: '',
       band3: '',
       status1: false,
       status2: false,
-      imageValid: false,
+      imageValid: null,
       imageData: {}
 
     }
@@ -54,7 +55,9 @@ class EventFormModal extends Component {
       name,
       nameValid,
       description,
+      descriptionValid,
       imageData,
+      imageValid,
       venue,
       venueValid,
       address,
@@ -68,9 +71,17 @@ class EventFormModal extends Component {
       endTime
      } = this.state
 
+     
+
+     if(!imageValid) {
+       console.log('imageValid')
+       return this.setState({imageValid: false})
+      }
     if(!nameValid) return this.setState({nameValid: false})
     if(!venueValid) return this.setState({venueValid: false})
     if(!addressValid) return this.setState({addressValid: false})
+    if(!descriptionValid) return this.setState({descriptionValid: false})
+
 
     this.props.createEvent({variables: {
       fbId,
@@ -107,13 +118,23 @@ class EventFormModal extends Component {
     )
 
   render() {
+    const { nameValid, descriptionValid, venueValid, addressValid, imageValid } = this.state
+    const check = nameValid && descriptionValid && venueValid && addressValid && imageValid
+     let label = check ? 'Publish' : 'Publich (not ready)'
+     console.log(check)
     const { buttonLabel, buttonSize, iconSize , icon, className, round } = this.props
     return (
-      <div className="">
+      <div className="text-center">
         { 
           this.modalBtn
         }
-        <Modal returnFocusAfterClose={false} isOpen={this.state.modal} toggle={this.toggle} className={className}>
+        <Modal 
+        style={{zIndex: '2000000000'}} 
+        returnFocusAfterClose={false} 
+        isOpen={this.state.modal} 
+        toggle={this.toggle} 
+        className={`${className} mx-auto mt-5`}
+        >
           <ModalHeader className="sigmar-one" toggle={this.toggle}>
             {buttonLabel}          
           </ModalHeader>
@@ -128,8 +149,8 @@ class EventFormModal extends Component {
             today={this.today}
             />
             </ModalBody>
-            <div className="d-flex">
-              <Button className="m-2 ml-auto">Create</Button>
+            <div className="d-flex" style={{transition: 'all 1s ease-out'}} >
+              <StyledButton className="btn-mainclr m-2 ml-auto">{label}</StyledButton>
             </div>
           </Form>
         </Modal>
@@ -148,4 +169,10 @@ color: ${white};
 `
 const StyledIconRound = styled(FontAwesomeIcon)`
 color: ${white};
+
+`
+
+const StyledButton = styled(Button)`
+border: none;
+
 `
