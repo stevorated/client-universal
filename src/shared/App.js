@@ -5,12 +5,14 @@ import { renderRoutes } from 'react-router-config'
 import { fetchCurrentUser } from './Store/actions'
 import { black } from './Utils'
 import ScrollToTop from './Elements/ScrollToTop'
+import moment from 'moment'
 // import Socket from './Store/sockets/socket'
 // if (__isBrowser__) {
 //   Socket('http://127.0.0.1:9999')
 // }
 
 function App(props) {
+  console.log(moment('2019-08-04').format('X'))
   // console.log(props.auth)
   try {
     if(!props.auth)

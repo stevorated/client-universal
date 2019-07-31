@@ -9,6 +9,7 @@ import moment from 'moment'
 import { RoundButton, SquareButton } from '../../Elements'
 
 class EventFormModal extends Component {
+
   constructor(props) {
     super(props)
     this.today = moment().format('YYYY-MM-DD')
@@ -32,6 +33,7 @@ class EventFormModal extends Component {
       status2: false,
       imageValid: false,
       imageData: {}
+
     }
   }
 
@@ -78,6 +80,7 @@ class EventFormModal extends Component {
       venue,
       address,
       artists: [band1, band2, band3],
+      startTimestamp: parseInt(moment(startDate).format('X')),
       startDate,
       startTime,
       endDate,

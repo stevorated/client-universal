@@ -41,6 +41,7 @@ mutation (
   $venue: String!,
   $address: String,
   $artists: [String!]!,
+  $startTimestamp: Int,
   $startDate: String!,
   $startTime: String!,
   $endDate: String,
@@ -54,6 +55,7 @@ mutation (
   venue: $venue,
   address: $address,
   artists: $artists,
+  startTimestamp: $startTimestamp
   startDate: $startDate,
   startTime: $startTime,
   endDate: $endDate,
@@ -72,6 +74,7 @@ mutation (
     venue
     address
     artists
+    
     startDate
     startTime
     endDate
