@@ -30,9 +30,6 @@ export const loginUser = (email, password) => async (dispatch, getState, client)
     variables: {email, password},
     mutation: LOGIN_USER_MUT
   })
-
-  console.log(data)
-  
   dispatch({
     type: 'LOGIN_USER',
     payload: data

@@ -19,7 +19,6 @@ class EventPage extends Component {
 
   constructor(props) {
     super(props)
-    console.log(this.props.history)
     this.id = props.match.params.id
     this.title = `Event ${this.id}`
     this.state = {

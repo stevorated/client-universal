@@ -22,7 +22,6 @@ const NotificationsContainer = (props) => {
       variables={{ limit: 9, skip: 1}}
       onCompleted={
         ({ getLastNotifications }) => {
-          console.log(getLastNotifications)
           props.fetchMyNotifications(getLastNotifications, props.myNotifications.length )
         }
       }

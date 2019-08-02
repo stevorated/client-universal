@@ -6,7 +6,6 @@ import Notification from './Notification'
 
 function Notifications(props) {
   const { myNotifications } = props
-  console.log(props)
   const renderQuery = () => {
       return myNotifications.map((notification) => {
         return <Notification auth={props.auth} key={`myNotifications-${notification.id}`} {...notification} />

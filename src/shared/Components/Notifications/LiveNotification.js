@@ -15,7 +15,6 @@ const LiveNotification = props => {
       variables={{ limit: 1, skip: 0 }}
       pollInterval={400}
       onCompleted={({ getLastNotifications }) => {
-        console.log(getLastNotifications)
         props.fetchFirstNotifications(
           getLastNotifications,
           props.myNotifications.length
