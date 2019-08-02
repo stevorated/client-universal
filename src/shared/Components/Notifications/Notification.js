@@ -8,7 +8,7 @@ import { timeAgo, elevation } from '../../Utils'
 export default function Notification(props) {
 
   const [ redirect, setRedirect ] = useState(false)
-  const { id, originId, createdAt,event,post, from, to, unread, type, lastAction } = props
+  const { id, originId, createdAt,event,post,comment, from, to, unread, type, lastAction } = props
   const setWhereTo = () => {
     switch (type) {
       case 'PostLikes':
