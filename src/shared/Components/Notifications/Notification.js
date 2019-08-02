@@ -62,7 +62,7 @@ export default function Notification(props) {
         }
       case 'Comment':
         if (lastAction === 'Create-Comment') {
-          const text = `commented "${post.body}" on ${to.fname} ${to.lname}'s post `
+          const text = ` commented "${post.body}" on ${to.fname} ${to.lname}'s post `
           return <CardText><FromNameLink />{text}<br /><span className="lo-text">{timeAgo(Date.now(), createdAt)}</span></CardText>
         } else {
           const text = `uncommented "${post.body}" on ${to.fname} ${to.lname}'s post `
