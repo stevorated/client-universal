@@ -13,7 +13,7 @@ const LiveNotification = props => {
       // fetchPolicy='network-only' // IMPORTANT
       query={GET_NOTIFICATIONS}
       variables={{ limit: 1, skip: 0 }}
-      pollInterval={400}
+      pollInterval={40000}
       onCompleted={({ getLastNotifications }) => {
         props.fetchFirstNotifications(
           getLastNotifications,
