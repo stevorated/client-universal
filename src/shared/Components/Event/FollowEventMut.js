@@ -21,16 +21,15 @@ function FollowEventMut(props) {
           mutation={FOLLOW_EVENT_MUT}
           variables={{ event }}
           onCompleted={async ({ followEvent }) => {
-            // console.log(followEvent)
             props.followEventAction(followEvent, event)
             setIFollow(!iFollow)
           }}
         // refetchQueries={[{ query: FETCH_FEED }, { query: GET_MA_POSTS }]}
         >
           {(followEvent, { loading, error, called }) => {
-            if (loading) return <Button style={{background: 'none', border: 'none'}} size="sm" onClick={followEvent}>
-              <Loading margin="0" style={{ color: black , height: '1rem', width: '1rem' }} />
-            </Button>
+            if (loading) return <Loading customLoader size="1" margin="0" style={{ color: black , height: '1rem', width: '1rem' }} />
+            // <Button style={{background: 'none', border: 'none'}} size="sm" onClick={followEvent}>
+            // </Button>
             return iFollow 
               ? <StyledIcon size={props.size} className={props.className}  onClick={followEvent} size="lg" icon={faHeart} style={{color: orange, cursor: 'pointer'}} /> 
               : <FontAwesomeIcon size={props.size} className={props.className} onClick={followEvent} size="lg" icon={faHeart} style={{color: black, cursor: 'pointer'}} />

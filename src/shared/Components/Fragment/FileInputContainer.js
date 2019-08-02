@@ -51,7 +51,7 @@ function FileInputContainer(props) {
           scaleY
         }
 
-        await props.uploadFile(data).then(setTimeout(() => props.toggle(), 7000))
+        return props.uploadFile(data).then(setTimeout(() => props.toggle(), 2000))
       }
       // props.toggle()
 
@@ -62,7 +62,7 @@ function FileInputContainer(props) {
   }
   return (
     <Container >
-      {loading ? <Loading /> : <Fragment >
+      {loading ? <Loading size="7" customLoader={true} /> : <Fragment >
         <form onSubmit={handleSubmitAvatar}>
           <CropFileInput
             className="m-5"

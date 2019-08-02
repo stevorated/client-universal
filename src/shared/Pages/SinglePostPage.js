@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUndo } from '@fortawesome/free-solid-svg-icons'
+import { faUndo, faBell } from '@fortawesome/free-solid-svg-icons'
 
 import { fetchFeed, clearFeed } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
@@ -34,8 +34,8 @@ class SinglePostPage extends Component {
       <Row>
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatButton className="text-center animated flipInX">
-          <Button style={{ borderRadius: '100%', padding: '.7rem' }} className="btn-mainclr ml-auto" onClick={this.props.history.goBack}>
-            <FontAwesomeIcon icon={faUndo} size="2x" />
+          <Button style={{ borderRadius: '100%', padding: '.7rem' }} className="btn-mainclr ml-auto" onClick={this.redirectBack}>
+            <FontAwesomeIcon icon={faBell} size="2x" />
           </Button>
         </FloatButton>
         <FloatLeft lg="3">

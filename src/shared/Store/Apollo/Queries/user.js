@@ -20,6 +20,9 @@ export const GET_ME = gql`
     followers {
       id
     }
+    seen {
+      id
+    }
   }
 }
 `
@@ -40,6 +43,9 @@ export const GET_MA_DETAILS = gql`
       id
     }
     followers {
+      id
+    }
+    seen {
       id
     }
   }

@@ -226,6 +226,9 @@ export const LOGIN_USER_MUT = gql`
     followers {
       id
     }
+    seen {
+      id
+    }
   }
 }
 `

@@ -10,7 +10,6 @@ import FollowEventMut from './FollowEventMut'
 import moment from 'moment'
 
 function Event(props) {
-  // console.log(props)
 
   const { id, coverPhoto, name, startDate, startTime, venue, address, followers } = props
   const when = moment(startDate).format('DD MMMM')

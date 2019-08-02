@@ -69,7 +69,6 @@ function EventForm(props) {
         break
       case 'description':
         if (lengthTest(4,1000)) {
-          console.log(value, props.state)
           props.handleFormState({ descriptionValid: true })
         } else {
           props.handleFormState({ descriptionValid: false })
@@ -185,14 +184,16 @@ function EventForm(props) {
         </Col>
         <Col md={3}>
           <FormGroup>
-            <div>+ End Time?</div>
+            <div>+ End Time? (Not available yet, Comming Soon!)</div>
           </FormGroup>
         </Col>
       </Row>
+      <FontAwesomeIcon color={orange} icon={faPlusCircle} size="lg" onClick={toggleAddBands} /> 
+        { !props.state.addBands ? <span className="ml-2 mt-3">add bands</span> : <span className="ml-2 mt-3">or not?...</span> }
       <Row form>
-          <FontAwesomeIcon color={orange} icon={faPlusCircle} size="lg" onClick={toggleAddBands} /> 
-        { !props.state.addBands ? <span className="ml-2">add bands</span> : <span className="ml-2">or not?...</span> }
-        {props.state.addBands && (<><Col md={4}>
+        {props.state.addBands && (
+        <>
+        <Col className="animated slideInRight mt-3" md={4}>
           <FormGroup>
             <Label for="band1">Band 1</Label>
             <Input type="text" name="band1" id="band1"
@@ -200,7 +201,7 @@ function EventForm(props) {
               onChange={handleChangeInput} />
           </FormGroup>
         </Col>
-        <Col md={4}>
+        <Col className="animated slideInUp mt-3" md={4}>
           <FormGroup>
             <Label for="band2">Band 2</Label>
             <Input type="text" name="band2" id="band2"
@@ -208,7 +209,7 @@ function EventForm(props) {
               onChange={handleChangeInput} />
           </FormGroup>
         </Col>
-        <Col md={4}>
+        <Col className="animated slideInLeft mt-3" md={4}>
           <FormGroup>
             <Label for="band3">Band 3</Label>
             <Input type="text" name="band3" id="band3"

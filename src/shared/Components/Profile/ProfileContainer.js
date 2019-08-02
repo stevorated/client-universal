@@ -69,9 +69,9 @@ function ProfileContainer({ auth, profilePosts, profileMode, profileDetails }) {
               <hr className="noPadding" />
               <div className="d-flex mb-2 small-text mt-2">
                 {!myProfile && <FollowUserMut user={id} followersCount={followersCount} followers={followers} myId={auth.id} />}
-                {myProfile && <StyledButton size="sm" className="btn-mainclr mt-2 ml-1">Update details</StyledButton>}
+                {/* {myProfile && <StyledButton size="sm" className="btn-mainclr mt-2 ml-1">Update details</StyledButton>} */}
                 <div className="ml-auto">
-                  <StyledButton size="sm" className="btn-mainclr mt-2 mr-2">Go to</StyledButton>
+                  {/* <StyledButton size="sm" className="btn-mainclr mt-2 mr-2">Go to</StyledButton> */}
                 </div>
               </div>
             </Container>

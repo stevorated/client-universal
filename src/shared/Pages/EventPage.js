@@ -19,6 +19,7 @@ class EventPage extends Component {
 
   constructor(props) {
     super(props)
+    console.log(this.props.history)
     this.id = props.match.params.id
     this.title = `Event ${this.id}`
     this.state = {
@@ -35,14 +36,14 @@ class EventPage extends Component {
       <Row  >
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatButton className="text-center animated flipInX">
-          <Button style={{ borderRadius: '100%', padding: '1rem' }} className="btn-mainclr" onClick={this.redirectBack}>
+          <Button style={{ borderRadius: '100%', padding: '1rem' }} className="btn-mainclr" onClick={() => this.props.history.push('/notifications')}>
             <FontAwesomeIcon icon={faUndo} size="lg" />
           </Button>
         </FloatButton>
         <FloatLeft lg="3">
           <Menu />
         </FloatLeft>
-        <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
+        <MainCol lg="9" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
           <EventDetailsQuery id={this.id}  />
         </MainCol>
       </Row>

@@ -41,10 +41,12 @@ export default {
   loadData: ({ dispatch }) => dispatch(fetchMyNotifications())
 }
 const FloatLeft = styled(Col)`
+  display: none;
   position: static!important;
   top: 3.5rem;
   left: 0rem;
   ${mediaQueries.lg`
+  display: block;
   position: fixed!important;
   `}
   `

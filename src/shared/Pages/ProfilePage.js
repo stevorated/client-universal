@@ -34,7 +34,7 @@ class ProfilePage extends Component {
     this.setState({ redirect: true })
   }
   render() {
-    return this.state.redirect ? <Redirect to="/feed" /> : (
+    return this.state.redirect ? <Redirect to="/event-board" /> : (
       <ProfilePageRow className="animated fadeIn">
         <FloatButton className="text-center animated flipInX">
           <Button style={{ borderRadius: '100%', padding: '.7rem' }} className="btn-mainclr ml-auto" onClick={this.redirectBack}>
@@ -97,4 +97,3 @@ ${mediaQueries.lg`
   bottom: 6vh;
   `}
 `
-

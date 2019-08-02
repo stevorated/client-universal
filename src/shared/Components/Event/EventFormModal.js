@@ -74,7 +74,6 @@ class EventFormModal extends Component {
      
 
      if(!imageValid) {
-       console.log('imageValid')
        return this.setState({imageValid: false})
       }
     if(!nameValid) return this.setState({nameValid: false})
@@ -121,7 +120,6 @@ class EventFormModal extends Component {
     const { nameValid, descriptionValid, venueValid, addressValid, imageValid } = this.state
     const check = nameValid && descriptionValid && venueValid && addressValid && imageValid
      let label = check ? 'Publish' : 'Publich (not ready)'
-     console.log(check)
     const { buttonLabel, buttonSize, iconSize , icon, className, round } = this.props
     return (
       <div className="text-center">

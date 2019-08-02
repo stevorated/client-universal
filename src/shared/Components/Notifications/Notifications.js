@@ -6,12 +6,10 @@ import Notification from './Notification'
 
 function Notifications(props) {
   const { myNotifications } = props
-  
+  console.log(props)
   const renderQuery = () => {
       return myNotifications.map((notification) => {
-        if(notification.post || notification.event) {
-          return (<Notification key={`myNotifications-${notification.id}`} {...notification} />)
-        }
+        return <Notification auth={props.auth} key={`myNotifications-${notification.id}`} {...notification} />
       })
   }
     return (
@@ -21,9 +19,9 @@ function Notifications(props) {
     )
   }
 
-function mapStateToProps({ myNotifications }) {
+function mapStateToProps({ myNotifications, auth }) {
 
-  return { myNotifications }
+  return { myNotifications, auth }
 }
 
 export default connect(mapStateToProps)(Notifications)

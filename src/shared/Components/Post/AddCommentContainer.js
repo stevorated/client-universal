@@ -41,7 +41,7 @@ class AddCommentContainer extends Component {
             ]}     
             >
             {(createComment, {loading, error}) => {
-              // if (loading) return <Loading />
+              if (loading) return <Loading margin="0" size="3" customLoader={true} noText={true} />
               if (error) {
                 for (let err of error.graphQLErrors) {
                   // console.log(err.extensions.exception.errors)
