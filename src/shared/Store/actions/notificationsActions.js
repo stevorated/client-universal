@@ -23,7 +23,6 @@ export const countNewNotifications= (data, seen) => async (dispatch, getState, c
 
   const filteredData = data.filter((item)=> seenArray.includes(item.originId))
   const diff = seen.length > 10 ? 10 - filteredData.length : data.length - seen.length || 0
-  console.log(seen, data, diff)
   dispatch({
     type: 'COUNT_NEW_NOTIFICATIONS',
     payload: diff
