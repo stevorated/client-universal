@@ -26,7 +26,7 @@ function CalanderContainer(props) {
       }
     >
       {({ loading, error, data, fetchMore }) => {
-        if (loading) return <Loading size="1" margin="1" />
+        if (loading) return <Loading customLoader="true" size="8" margin="8" />
         if (error) return <Loading size="1" margin="1" />
         return (
         <Calander

@@ -44,7 +44,7 @@ function Comments(props) {
       {renderQuery()}
       <StyledLink to="#" onClick={openForm} className="m-2 small-text">{showForm ? 'Hide' : 'Comment'}</StyledLink>
       {showForm && <Card className="pt-3 mt-2" >
-      <AddCommentContainer 
+      <AddCommentContainer
       id={id} 
       openForm={openForm} 
       setShowComments={setShowComments} 

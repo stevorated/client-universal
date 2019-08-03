@@ -40,7 +40,7 @@ function ProfileScrollContainer(props) {
         })
       }
       return (
-        <StyledDiv className="text-center">
+        <StyledDiv className="text-center mt-3">
         <PostFormContainer 
         profileMode={true} 
         id={props.id} 

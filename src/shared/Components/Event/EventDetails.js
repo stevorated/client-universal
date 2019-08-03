@@ -14,7 +14,7 @@ import { black, elevation, transition, timeAgo } from '../../Utils'
 function Event(props) {
   const { name, venue, address, description, startDate, startTime, coverPhoto } = props.data
   return (
-        <StyledCard  style={{minHeight: '100vh',  marginTop: '.2rem'}}>
+        <StyledCard  style={{minHeight: '50vh',  marginTop: '.1rem'}}>
           <CardImg top src={coverPhoto && `${process.env.API_BASE}${coverPhoto.url}`} alt="card img" />
           <hr className="noPadding"/>
           <CardBody style={{minHeight: '100vh'}}>

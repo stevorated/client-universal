@@ -13,7 +13,7 @@ const LiveNotification = props => {
       // fetchPolicy='network-only' // IMPORTANT
       query={GET_NOTIFICATIONS}
       variables={{ limit: 1, skip: 0 }}
-      pollInterval={40000}
+      pollInterval={5000}
       onCompleted={({ getLastNotifications }) => {
         props.fetchFirstNotifications(
           getLastNotifications,
@@ -34,12 +34,4 @@ const mapStateToProps = ({ myNotifications, auth }) => {
   return { myNotifications, auth }
 }
 
-export default connect(
-  mapStateToProps,
-  { fetchFirstNotifications }
-)(LiveNotification)
-
-const StyledDiv = styled.div`
-  margin: 0;
-  padding: 0;
-`
+export default connect(mapStateToProps,{ fetchFirstNotifications })(LiveNotification)

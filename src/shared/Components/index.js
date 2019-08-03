@@ -28,6 +28,7 @@ import NotificationsContainer from './Notifications/NotificationsContainer'
 import SinglePostContainer from './Feed/SinglePostContainer'
 import EventExtra from './Event/EventExtra'
 import CalanderContainer from './Calander/CalanderContainer'
+import LiveNotificationCount from './Notifications/LiveNotificationCount'
 import {
   PostForm,
   Posts,
@@ -77,5 +78,6 @@ export {
   NotificationsContainer,
   SinglePostContainer,
   EventExtra,
-  CalanderContainer
+  CalanderContainer,
+  LiveNotificationCount
 }

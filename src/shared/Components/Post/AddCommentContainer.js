@@ -58,7 +58,7 @@ class AddCommentContainer extends Component {
                 }
               }
               return( 
-              <AddCommentForm 
+              <AddCommentForm
               id={this.props.id}
               openForm={this.props.openForm} 
               state={this.state} 

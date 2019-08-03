@@ -2,23 +2,31 @@ import React, { useState, Fragment } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem, Input, Button, Label } from 'reactstrap'
-import { SearchBar } from '../Components'
+import { SearchBar, LiveNotificationCount } from '../Components'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBell, faUtensils, faFeather, faCalendar, faCalendarAlt
 } from '@fortawesome/free-solid-svg-icons'
 import { elevationJs, orange, lightOrange, mediaQueries, white } from '../Utils'
-import { logoutUser } from '../Store/actions'
+import { logoutUser, clearNewNotifications } from '../Store/actions'
 import Logo from '../../assets/logos/logo7.png'
 const linkLogo = Logo.replace('build', '').replace('/public', '')
-function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo }) {
+function NavbarComponent(props) {
+  const { newNotificationsCount, auth, logoutUser, setRedirect, setWhereTo, whereTo, clearNewNotifications } = props
 
   const [collapsed, toggleNavbar] = useState(false)
 
   const handleToggleNav = () => toggleNavbar(!collapsed)
 
   const handleClick = () => {
+    if (collapsed === true) {
+      toggleNavbar(!collapsed)
+    }
+  }
+
+  const handleClickAndClearNotifications = () => {
+    clearNewNotifications()
     if (collapsed === true) {
       toggleNavbar(!collapsed)
     }
@@ -66,11 +74,30 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
 
             <NavItem>
               <NavLink
+                style={{position: 'relative'}}
                 className='nav-link'
-                onClick={handleClick}
+                onClick={handleClickAndClearNotifications}
                 to='/notifications'
               >
+                {newNotificationsCount > 0 && <div style={{
+                  // padding: '10px',
+                  color: 'black',
+                  fontSize: '9px',
+                  fontWeight: '900',
+                  width: '13px',
+                  height: '13px',
+                  position: 'absolute',
+                  zIndex: '10000000000',
+                  top: '0',
+                  left: '0',
+                  borderRadius: '100%',
+                  background: orange
+                  }}>
+                  {newNotificationsCount > 0  && 
+                    <div className="text-center">{newNotificationsCount < 10 ? newNotificationsCount : '10+'}</div> }</div>}
+                {auth && <LiveNotificationCount />}
                 <StyledIcon className="mr-2" icon={faBell} size={'lg'} /><StyledSpan>Notifications</StyledSpan>
+                
               </NavLink>
             </NavItem>
 
@@ -162,18 +189,36 @@ function NavbarComponent({ auth, logoutUser, setRedirect, setWhereTo, whereTo })
       
       <OpositeStyledIcon
         icon={faBell}
-        
+        onClick={handleClickAndClearNotifications}
         />
+        {newNotificationsCount > 0 && <div style={{
+                  // padding: '10px',
+                  color: 'black',
+                  fontSize: '9px',
+                  fontWeight: '900',
+                  width: '13px',
+                  height: '13px',
+                  position: 'fixed',
+                  right: '95px',
+                  top: '12px',
+                  zIndex: '10000000000',
+                  // top: '0',
+                  // left: '0',
+                  borderRadius: '100%',
+                  background: orange
+                  }}>
+                  {newNotificationsCount > 0  && 
+                    <div className="pl-1">{newNotificationsCount}</div> }</div>}
     </OpositeStyledLink>
   </Fragment>  
   )
 }
 
-function mapStateToProps({ auth }) {
-  return { auth }
+function mapStateToProps({ auth, newNotificationsCount }) {
+  return { auth, newNotificationsCount }
 }
 
-export default connect(mapStateToProps, { logoutUser })(NavbarComponent)
+export default connect(mapStateToProps, { logoutUser, clearNewNotifications })(NavbarComponent)
 
 const StyledNavItem = styled(NavItem)`
     display: block;  

@@ -34,7 +34,7 @@ function Post(props) {
   const animatedClass = 'animated fadeIn slow'
   const PostedTime = timeAgo(Date.now(),props.createdAt)
   return !hideDeletedPost ? (
-    <div className={` text-center`}>
+    <div className={` text-center mb-3`}>
       <StyledCard  >
         <CardBody>
           {MyPost && <DeletePostMutation 
@@ -150,4 +150,3 @@ const StyledCard = styled(Card)`
             ${elevation[4]};
       }
 `
-

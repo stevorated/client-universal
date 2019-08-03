@@ -41,7 +41,7 @@ class SinglePostPage extends Component {
         <FloatLeft lg="3">
           <Menu />
         </FloatLeft>
-        <MainCol lg="9" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-4" >
+        <MainCol lg="9" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-5 mt-2" >
           <SinglePostContainer id={this.id} />
         </MainCol>
       </Row>
@@ -65,6 +65,7 @@ const FloatLeft = styled(Col)`
   `}
   `
 const MainCol = styled(Col)`
+padding-bottom: 100px;
   ${mediaQueries.lg`
   padding-right: 2rem;
   `}
@@ -80,4 +81,3 @@ ${mediaQueries.lg`
   bottom: 6vh;
   `}
 `
-
