@@ -7,9 +7,9 @@ import reducers from '../../shared/Store/reducers'
 export default client => {
   const store = createStore(
     reducers,
-    composeWithDevTools(
-      applyMiddleware(thunk.withExtraArgument(client))
-      )
+    process.env.NODE_ENV === 'production' 
+  ? applyMiddleware(thunk.withExtraArgument(client))
+  : composeWithDevTools(applyMiddleware(thunk.withExtraArgument(client)))
     )
   return store
 }

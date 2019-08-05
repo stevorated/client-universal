@@ -18,7 +18,9 @@ import '../assets/css/style.css'
 const store = createStore(
   reducers,
   window.__INITIAL_STATE__,
-  composeWithDevTools(applyMiddleware(thunk.withExtraArgument(client)))
+  process.env.NODE_ENV === 'production' 
+  ? applyMiddleware(thunk.withExtraArgument(client))
+  : composeWithDevTools(applyMiddleware(thunk.withExtraArgument(client)))
 )
 
 hydrate(
