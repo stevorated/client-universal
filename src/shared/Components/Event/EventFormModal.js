@@ -119,7 +119,7 @@ class EventFormModal extends Component {
   render() {
     const { nameValid, descriptionValid, venueValid, addressValid, imageValid } = this.state
     const check = nameValid && descriptionValid && venueValid && addressValid && imageValid
-     let label = check ? 'Publish' : 'Publich (not ready)'
+     let label = check ? 'Publish' : 'Publish (form not good)'
     const { buttonLabel, buttonSize, iconSize , icon, className, round } = this.props
     return (
       <div className="text-center">

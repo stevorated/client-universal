@@ -18,7 +18,8 @@ function LoginForm(props) {
     password,
     passwordValid,
     passwordInvalid,
-    formError
+    formError,
+    formInvalid
   } = props.state
   return (
     <Container className="animated fadeIn">
@@ -58,8 +59,13 @@ function LoginForm(props) {
                 id="password"
                 placeholder="shh.. secret.."
               />
-              {formError &&
+              {
+                formError &&
                 <FormFeedback className="mt-3"><strong>Wrong Details, check your password Or email</strong></FormFeedback>
+              }
+              {
+                formInvalid && 
+                <p>This can't really be it, check what you typed again plz</p>
               }
             </FormGroup>
             <Button className="btn-mainclr">Sign In</Button>

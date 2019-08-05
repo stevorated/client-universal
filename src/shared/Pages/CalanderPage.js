@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { HelmetComponent, CalanderContainer, Events } from '../Components'
-import { fetchCurrentUser } from '../Store/actions'
+import { fetchCurrentUser, logoutUser } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import Menu from '../Routes/Menu'
@@ -47,7 +47,7 @@ class CalanderPage extends Component {
         <Row className="mb-0 pb-5">
           <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
           <FloatLeft lg="3">
-            <Menu />
+            <Menu logoutUser={this.props.logoutUser} />
           </FloatLeft>
           <Col lg="9" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-3" >
             <CalanderContainer
@@ -75,7 +75,7 @@ function mapStateToProps({ auth }) {
 }
 
 export default {
-  component: connect(mapStateToProps, {})(requireAuth(checkLoggedIn(CalanderPage))),
+  component: connect(mapStateToProps, { logoutUser  })(requireAuth(checkLoggedIn(CalanderPage))),
   loadData: ({ dispatch }) => {
     dispatch(fetchCurrentUser())
   }
@@ -89,4 +89,3 @@ const FloatLeft = styled(Col)`
     position: fixed!important;
   `}
   `
-

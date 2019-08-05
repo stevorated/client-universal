@@ -18,7 +18,7 @@ function MenuItem({ icon, text, to = "/", handleLogout }) {
   )
 }
 
-export default connect()(MenuItem)
+export default MenuItem
 
 const StyledListItem = styled.li`
   /* border: 5px solid black; */
@@ -43,7 +43,7 @@ const StyledListItem = styled.li`
   }
 `
 
-const StyledNavLink = styled(NavLink)`
+const StyledNavLink = styled(Link)`
   color: #c9783e;
   display: block;
   &:active {

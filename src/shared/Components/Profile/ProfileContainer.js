@@ -8,7 +8,6 @@ import styled from 'styled-components'
 import FollowUserMut from './FollowUserMut'
 import { mediaQueries } from '../../Utils'
 import Avatar from '../../../assets/logos/new_logo.png'
-import { array } from 'prop-types';
 const imgAvatar = Avatar.replace('build', '').replace('/public', '')
 
 function ProfileContainer({ auth, profilePosts, profileMode, profileDetails }) {

@@ -44,7 +44,7 @@ export default function Calander(props) {
       </CalanderDiv>
       {eventsInFocus.length > 0 && (
         <div className="animated slideInDown mt-4">
-          <h3>{moment(eventsInFocus[0].startDate).format('MMMM DD')}'s events</h3>
+          <h3 className="text-center">{moment(eventsInFocus[0].startDate).format('MMMM DD')}'s events</h3>
           <Line />
           {props.loading 
           ? <Loading className="animated fadeIn" margin={0} /> 
@@ -74,5 +74,3 @@ const CalanderTitle = styled.h3`
 const Select = styled.select`
 font: 3rem;
 `
-
-

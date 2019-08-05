@@ -50,7 +50,7 @@ export default function CalanderDay(props) {
             target={`event-day-div-${event.id}`}
             toggle={toggle}
             isOpen={tooltipOpen}
-          autohide={true} 
+            autohide={true} 
           >
             <img src={thumbnil} width="100px" alt="" />
             <div style={{fontWeight: '600'}}>{event.name}</div>

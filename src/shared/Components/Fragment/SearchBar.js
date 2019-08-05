@@ -8,7 +8,7 @@ import { isMongoId } from 'validator'
 import styled from 'styled-components'
 import { clearUsersPosts } from '../../Store/actions'
 import SearchBarSuggest from './SearchBarSuggest'
-import { set } from 'mongoose';
+import { mediaQueries } from '../../Utils'
 
 function SearchBar({ setRedirect, setWhereTo, clearUsersPosts, handleClick }) {
 
@@ -63,7 +63,7 @@ function SearchBar({ setRedirect, setWhereTo, clearUsersPosts, handleClick }) {
     <Nav className="ml-auto mb-0" navbar>
       <Form onSubmit={handleSubmit}>
         <div className="d-flex justify-content-center mb-0">
-          <Input  
+          <ReactiveInput  
             onKeyUp={handleKeyUps}
             autoComplete="off"
             value={searchTerm}
@@ -95,4 +95,12 @@ export default connect(undefined, { clearUsersPosts })(SearchBar)
 const SearchButton = styled(Button)`
   border-radius: 50%;
   margin-left: 1rem;
+  
+`
+
+const ReactiveInput = styled(Input)`
+  width: 55%;
+  ${mediaQueries.xl`
+  width: 100%;
+  `}
 `

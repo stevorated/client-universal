@@ -3,7 +3,6 @@ import {
   elevation,
   transition,
   black,
-  white,
   orange,
   mediaQueries
 } from '../Utils'
@@ -28,7 +27,7 @@ export const Card = styled.div `
 
 export const FlatCard = styled.div `
       color: ${black};
-      background: whitesmoke ;
+      background: whitesmoke;
       opacity: .9;
       border-radius: .3rem;
       padding: 0.5rem;
@@ -45,7 +44,7 @@ export const FlatCard = styled.div `
 
 export const FlatCardStatic = styled.div `
       color: ${black};
-      background: whitesmoke ;
+      background: whitesmoke;
       opacity: .9;
       border-radius: .3rem;
       padding: 0.5rem;
@@ -73,4 +72,3 @@ export const MenuCard = styled.div `
       border-radius: .3rem;
       `}
 `
-

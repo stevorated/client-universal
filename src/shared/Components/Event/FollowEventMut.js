@@ -31,8 +31,8 @@ function FollowEventMut(props) {
             // <Button style={{background: 'none', border: 'none'}} size="sm" onClick={followEvent}>
             // </Button>
             return iFollow 
-              ? <StyledIcon size={props.size} className={props.className}  onClick={followEvent} size="lg" icon={faHeart} style={{color: orange, cursor: 'pointer'}} /> 
-              : <FontAwesomeIcon size={props.size} className={props.className} onClick={followEvent} size="lg" icon={faHeart} style={{color: black, cursor: 'pointer'}} />
+              ? <StyledIcon size={props.size} className={props.className} style={props.style}  onClick={followEvent} size="lg" icon={faHeart} style={{color: orange, cursor: 'pointer'}} /> 
+              : <FontAwesomeIcon size={props.size} className={props.className} style={props.style} onClick={followEvent} size="lg" icon={faHeart} style={{color: black, cursor: 'pointer'}} />
                 
         
           }}

@@ -125,6 +125,11 @@ query ($skip: Int, $limit: Int $id: ID) {
     }
     followers {
       id
+      fname
+      lname
+      avatar {
+        url
+      }
     }
     venue
     address

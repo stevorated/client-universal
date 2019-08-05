@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUndo, faBell } from '@fortawesome/free-solid-svg-icons'
 
-import { fetchFeed, clearFeed } from '../Store/actions'
+import { fetchFeed, clearFeed, logoutUser } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import { HelmetComponent, SinglePostContainer } from '../Components'
@@ -39,7 +39,7 @@ class SinglePostPage extends Component {
           </Button>
         </FloatButton>
         <FloatLeft lg="3">
-          <Menu />
+          <Menu logoutUser={this.props.logoutUser}/>
         </FloatLeft>
         <MainCol lg="9" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-5 mt-2" >
           <SinglePostContainer id={this.id} />
@@ -54,7 +54,7 @@ function mapStateToProps({ feed }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchFeed })(checkLoggedIn(requireAuth(SinglePostPage)))
+  component: connect(mapStateToProps, { fetchFeed, logoutUser })(checkLoggedIn(requireAuth(SinglePostPage)))
 }
 const FloatLeft = styled(Col)`
   position: static!important;

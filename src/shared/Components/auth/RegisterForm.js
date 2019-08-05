@@ -5,6 +5,7 @@ import { Container, Row, Col, Form, FormGroup, Label, Input, FormFeedback, Butto
 import { isEmail, isLength } from 'validator'
 import { registerUser } from '../../Store/actions'
 import { FbLogin } from '../../Elements'
+import { orange, red, arsenic, lightOrange } from '../../Utils'
 
 function RegisterForm({ state, handleFormState, register, errors }) {
 
@@ -27,7 +28,10 @@ function RegisterForm({ state, handleFormState, register, errors }) {
     passwordGood,
     passwordError,
     submitError,
-    submitErrorMsg
+    submitErrorMsg,
+    weak,
+    better,
+    great
   } = state
 
   const handleReg = async (e) => {
@@ -103,12 +107,40 @@ function RegisterForm({ state, handleFormState, register, errors }) {
         }
         return handleFormState(newData)
       case 'password':
-        if (value && !value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*^?&#])[A-Za-z\d@$!%#*^?&]{8,30}$/)) {
-          handleFormState({ passwordError: true })
-          handleFormState({ passwordGood: false })
-        } else if (value && value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*^?&#])[A-Za-z\d@$!%#*^?&]{8,30}$/)) {
-          handleFormState({ passwordError: false })
-          handleFormState({ passwordGood: true })
+        if (value && !value.match(/^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d@$!%#*^?&]{6,30}$/)) {
+          handleFormState({ 
+            passwordError: true,
+            passwordGood: false,
+            weak: null,
+            better: null,
+            great: null
+           })
+        }
+        else if (value && value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*^?&#])[A-Za-z\d@$!%#*^?&]{8,30}$/)) {
+          handleFormState({ 
+            passwordError: false,
+            passwordGood: true,
+            great: true,
+            better: null,
+            weak: null
+           })
+        }
+        else if (value && value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%#*^?&]{8,30}$/)) {
+          handleFormState({ 
+            passwordError: false,
+            passwordGood: true,
+            great: null,
+            better: true,
+            weak: null
+           })
+        } else if (value && value.match(/^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d@$!%#*^?&]{6,30}$/)) {
+          handleFormState({ 
+            passwordError: false,
+            passwordGood: true,
+            great: null,
+            better: null,
+            weak: true
+           })
         }
         return handleFormState(newData)
       default:
@@ -204,7 +236,41 @@ function RegisterForm({ state, handleFormState, register, errors }) {
                 id="password-reg"
                 placeholder="shh.. secret.."
               />
-              {passwordError && <FormFeedback>password must be between 8 and 30 characters long<br />& must contain at least one uppercase letter, one lowercase letter, one number and one special character</FormFeedback>}
+              {weak && 
+              <p 
+              style={{ 
+                border: '2px solid black', 
+                background: red}} 
+              className="text-capitalize smallText mt-2 p-1">
+              <span
+              style={{fontWeight: '700'}} >
+                yeah, it's good enough 
+              </span> but you should really choose a better password, add characters, maybe a number?
+                </p>}
+              {better &&
+                <p 
+                style={{ 
+                  border: '2px solid black'
+                  }} 
+                className="text-capitalize smallText bg-warning mt-2 p-1">
+              <span
+              style={{fontWeight: '700'}} >
+                ok.. now that seems better
+              </span> you can add special characters to make it even better
+                </p>}
+              {great &&  
+              <p style={{ 
+                fontWeight: '700',
+                border: '2px solid black', 
+                background: lightOrange
+              }} 
+              className="text-capitalize mt-2 p-1">
+              <span
+              style={{fontWeight: '900', fontSize: '1.5rem'}} >
+                Wow! 
+              </span><br /> now that's what i call a great password! <br /> <span style={{fontSize: '1.3rem'}}>Go ahead tiger</span>
+              </p>}
+              {passwordError && <FormFeedback>password must be between 6 and 30 characters long<br />& must contain at least one uppercase letter.</FormFeedback>}
               {errors && (errors.password && <FormFeedback>{errors.password.message}</FormFeedback>)}
             </FormGroup>
             {submitError && <p className="my-3 text-danger smallText">You Have Errors In your form Or Stuff missing..</p>}

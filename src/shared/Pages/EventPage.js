@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUndo } from '@fortawesome/free-solid-svg-icons'
 
 import { HelmetComponent } from '../Components'
-import { fetchFeed, clearFeed } from '../Store/actions'
+import { fetchFeed, clearFeed, logoutUser } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import { EventDetailsQuery } from '../Components'
@@ -32,7 +32,7 @@ class EventPage extends Component {
 
   render() {
     return this.state.redirect ? <Redirect to="/calander" /> : (
-      <Row  >
+      <Row >
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatButton className="text-center animated flipInX">
           <Button style={{ borderRadius: '100%', padding: '1rem' }} className="btn-mainclr" onClick={() => this.props.history.push('/notifications')}>
@@ -40,9 +40,9 @@ class EventPage extends Component {
           </Button>
         </FloatButton>
         <FloatLeft lg="3">
-          <Menu />
+          <Menu  logoutUser={this.props.logoutUser} />
         </FloatLeft>
-        <MainCol lg="9" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
+        <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
           <EventDetailsQuery id={this.id}  />
         </MainCol>
       </Row>
@@ -55,7 +55,7 @@ function mapStateToProps({ users, posts, feed }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchFeed, clearFeed })(checkLoggedIn(requireAuth(EventPage))),
+  component: connect(mapStateToProps, { fetchFeed, clearFeed, logoutUser })(checkLoggedIn(requireAuth(EventPage))),
   loadData: ({ dispatch }) => dispatch(fetchFeed())
 }
 const FloatLeft = styled(Col)`

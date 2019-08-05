@@ -231,7 +231,7 @@ export default function Notification(props) {
         {!checkSeen && (
           <div
             style={{ fontWeight: "800" }}
-            className="text-center p-1 mb-3"
+            className="text-left p-1 mb-3"
           >
             <span style={{opacity: '.7'}} className="mr-2 p-1">New!</span> 
             <Line />

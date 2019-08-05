@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { HelmetComponent } from '../Components'
-import { fetchFeed, clearFeed } from '../Store/actions'
+import { fetchFeed, clearFeed, logoutUser } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import Menu from '../Routes/Menu'
@@ -22,7 +22,7 @@ class EngagePage extends Component {
       <Row className="">
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatLeft lg="3">
-          <Menu />
+          <Menu logoutUser={this.props.logoutUser} />
         </FloatLeft>
         <Col lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
         </Col>
@@ -38,7 +38,7 @@ function mapStateToProps({ users, posts, feed }) {
 }
 
 export default {
-  component: connect(mapStateToProps, {fetchFeed, clearFeed})(checkLoggedIn(requireAuth(EngagePage))),
+  component: connect(mapStateToProps, {fetchFeed, clearFeed, logoutUser})(checkLoggedIn(requireAuth(EngagePage))),
   loadData: ({ dispatch }) => dispatch(fetchFeed())
 }
 const FloatLeft = styled(Col)`
@@ -49,5 +49,3 @@ const FloatLeft = styled(Col)`
   position: fixed!important;
   `}
   `
-
-

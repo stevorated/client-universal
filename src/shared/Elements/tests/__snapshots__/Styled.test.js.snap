@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DateSquareStyle /> matches snapshot and has proper style 1`] = `
+.c0 {
+  width: 75px;
+  height: 75px;
+  background: red;
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`<Line /> matches snapshot 1`] = `
+<hr
+  className="noPadding undefined"
+  style={
+    Object {
+      "borderColor": "#c9783e",
+      "borderWidth": "2px",
+      "color": "#c9783e",
+      "opacity": "0.5",
+    }
+  }
+/>
+`;

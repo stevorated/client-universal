@@ -47,7 +47,7 @@ const NotificationsContainer = (props) => {
         return (
           <StyledDiv className="text-center">
             <FlatCardStatic className="">
-              <div className="text-left lead mb-0 mt-lg-4 mt-2" style={{fontWeight:'900'}}>Notifications</div>
+              <div className="text-left lead mb-0 mt-lg-4 mt-3" style={{fontWeight:'900'}}>Notifications</div>
               <hr className="noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.5' }} />
               <LiveNotification />
               <Notifications myNotifications={props.myNotifications} />

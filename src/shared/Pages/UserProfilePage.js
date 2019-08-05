@@ -8,9 +8,9 @@ import styled from 'styled-components'
 import { mediaQs } from '../Utils'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import requireAuth from '../HOC/requireAuth'
-import { clearUsersPosts } from '../Store/actions'
+import { clearUsersPosts, logoutUser } from '../Store/actions'
 import { FeedActivity, FeedExtraRight } from '../Components/Feed'
-class UserProfilePage extends Component {
+export class UserProfilePage extends Component {
   constructor(props) {
     super(props)
     this.title = 'profile page'
@@ -27,7 +27,7 @@ class UserProfilePage extends Component {
       <Row className="animated fadeIn">
       <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
       <FloatLeft lg="3">
-        <Menu />
+        <Menu logoutUser={this.props.logoutUser} />
       </FloatLeft>
       <Col lg="6" className="offset-xl-3 order-3 order-lg-2" >
         <ProfileContainer id={this.id} profileMode={true} />
@@ -44,7 +44,7 @@ class UserProfilePage extends Component {
 }
 
 export default  {
-  component: connect(undefined, {clearUsersPosts})(checkLoggedIn(requireAuth(UserProfilePage)))
+  component: connect(undefined, {clearUsersPosts, logoutUser})(checkLoggedIn(requireAuth(UserProfilePage)))
 } 
 
 const FloatLeft = styled(Col)`

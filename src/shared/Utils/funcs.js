@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose/browser'
 import moment from 'moment'
 
 export const isObjectID = (id) => {
@@ -43,7 +43,7 @@ export const daysArray = (max, start) => {
   return removeExtraArray(sliceArray(arr, 7))
 }
 
-const sliceArray = (arr, chunk) => {
+export const sliceArray = (arr, chunk) => {
   let finalArr = []
   let i, j, tempArray
   for (i = 0, j = arr.length; i < j; i += chunk) {

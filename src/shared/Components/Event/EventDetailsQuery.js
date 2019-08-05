@@ -8,6 +8,7 @@ import { Loading } from '..'
 import { FETCH_EVENTS } from '../../Store/Apollo/Queries'
 import styled from 'styled-components'
 import EventDetails from './EventDetails'
+import EventGoing from './EventGoing'
 
 const EventDetailsQuery = (props) => {
   return (
@@ -29,6 +30,8 @@ const EventDetailsQuery = (props) => {
         return (
           <StyledDiv className="text-center">
             <EventDetails data={data.getEventsFeed[0]} />
+            <EventGoing data={data.getEventsFeed[0]} />
+            
           </StyledDiv>
         )
       }}
@@ -47,5 +50,3 @@ const StyledDiv = styled.div `
   padding: 0;
   display: block;
 `
-
-

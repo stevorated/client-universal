@@ -1,11 +1,13 @@
-import Icon from './Icon'
-import Modal from './Modal'
+import Icon from './CustomIcons'
 import ScrollToTop from './ScrollToTop'
+import DateSquare from './DateSquare'
+
 export * from './FormInputs'
 export * from './Images'
 export * from './Cards'
 export * from './Buttons'
 export * from './Styled'
 export * from './Text'
+export * from './DateSquare'
 
-export { Icon, Modal } 
+export { DateSquare, Icon, ScrollToTop } 

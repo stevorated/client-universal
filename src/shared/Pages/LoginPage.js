@@ -20,7 +20,8 @@ class LoginPage extends Component {
       passwordInvalid: false,
       password: '',
       formError: false,
-      loading: false
+      loading: false,
+      formInvalid: null
     }
   }
 
@@ -39,10 +40,10 @@ class LoginPage extends Component {
         break
       case 'password':
         this.setState({ passwordInvalid: false, passwordValid: false })
-        if (input && !input.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*^?&#])[A-Za-z\d@$!%#*^?&]{8,30}$/)) {
+        if (input && !input.match(/^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d@$!%#*^?&]{6,30}$/)) {
           // setPasswordError(true)
           this.setState({ passwordInvalid: true })
-        } else if (input && input.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*^?&#])[A-Za-z\d@$!%#*^?&]{8,30}$/)) {
+        } else if (input && input.match(/^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d@$!%#*^?&]{6,30}$/)) {
           this.setState({ passwordInvalid: false })
           this.setState({ passwordValid: true })
         }
@@ -56,18 +57,20 @@ class LoginPage extends Component {
   handleLogin = async (e) => {
     e.preventDefault()
     
-    this.setState({ errorCounter: this.state.errorCounter + 1, loading: true })
+    this.setState({ errorCounter: this.state.errorCounter + 1, formInvalid: true })
     if (this.state.errorCounter <= 2) {
       try {
         if (this.state.emailValid && this.state.passwordValid) {
+          this.setState({loading: true})
           const res = await this.props.loginUser(this.state.email, this.state.password)
         }
       } catch (error) {
 
-        this.setState({ formError: true, loading: false })
+        this.setState({ loading: false })
       }
 
     } else {
+      console.log('SHIIITT')
       this.setState({ redirect: true })
     }
   }

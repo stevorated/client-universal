@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { HelmetComponent, LittleMenu, EventExtra } from '../Components'
-import { fetchMyEvents, fetchFeed, clearFeed } from '../Store/actions'
+import { fetchMyEvents, fetchFeed, clearFeed, logoutUser } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import { EventBoard, EventMainCard } from '../Components'
@@ -39,7 +39,7 @@ class EventBoardPage extends Component {
       <Row className="text-center"  >
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatLeft lg="3" className="">
-          <Menu />
+          <Menu  logoutUser={this.props.logoutUser} />
         </FloatLeft>
         <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-2" >
           <EventMainCard className="capitalize" header="Event Board" title="Followed Events Coming up soon " boardMode />
@@ -60,7 +60,7 @@ function mapStateToProps({ myEvents }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchMyEvents, clearFeed })(checkLoggedIn(requireAuth(EventBoardPage))),
+  component: connect(mapStateToProps, { fetchMyEvents, clearFeed, logoutUser })(checkLoggedIn(requireAuth(EventBoardPage))),
   loadData: ({ dispatch }) => dispatch(fetchMyEvents())
 }
 const FloatLeft = styled(Col)`
@@ -76,5 +76,3 @@ const MainCol = styled(Col)`
   padding-right: 2rem;
   `}
 `
-
-

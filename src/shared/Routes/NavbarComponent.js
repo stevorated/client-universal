@@ -84,19 +84,18 @@ function NavbarComponent(props) {
                   color: 'black',
                   fontSize: '9px',
                   fontWeight: '900',
-                  width: '13px',
-                  height: '13px',
+                  width: '14px',
+                  height: '14px',
                   position: 'absolute',
                   zIndex: '10000000000',
                   top: '0',
-                  left: '0',
+                  left: '4px',
                   borderRadius: '100%',
                   background: orange
                   }}>
-                  {newNotificationsCount > 0  && 
-                    <div className="text-center">{newNotificationsCount < 10 ? newNotificationsCount : '10+'}</div> }</div>}
+                    <div className="text-center">{newNotificationsCount < 10 ? newNotificationsCount : '10+'}</div> </div>}
                 {auth && <LiveNotificationCount />}
-                <StyledIcon className="mr-2" icon={faBell} size={'lg'} /><StyledSpan>Notifications</StyledSpan>
+                <StyledIcon className="mr-0" icon={faBell} size={'lg'} /><StyledSpan>Notifications</StyledSpan>
                 
               </NavLink>
             </NavItem>
@@ -117,7 +116,7 @@ function NavbarComponent(props) {
                 onClick={handleClick}
                 to='/calander'
               >
-                <StyledIcon className="mr-2" icon={faCalendarAlt} size={'lg'} /><StyledSpan>Calander</StyledSpan>
+                <StyledIcon className="mr-0" icon={faCalendarAlt} size={'lg'} /><StyledSpan>Calander</StyledSpan>
               </NavLink>
             </NavItem>
 
@@ -182,7 +181,7 @@ function NavbarComponent(props) {
       </Collapse>
       
     </Navbar>
-    <OpositeStyledLink 
+    {auth && <OpositeStyledLink 
       to="/notifications"
       onClick={handleClick}
     >
@@ -194,10 +193,10 @@ function NavbarComponent(props) {
         {newNotificationsCount > 0 && <div style={{
                   // padding: '10px',
                   color: 'black',
-                  fontSize: '9px',
+                  fontSize: '10px',
                   fontWeight: '900',
-                  width: '13px',
-                  height: '13px',
+                  width: '14px',
+                  height: '14px',
                   position: 'fixed',
                   right: '95px',
                   top: '12px',
@@ -209,7 +208,7 @@ function NavbarComponent(props) {
                   }}>
                   {newNotificationsCount > 0  && 
                     <div className="pl-1">{newNotificationsCount}</div> }</div>}
-    </OpositeStyledLink>
+    </OpositeStyledLink>}
   </Fragment>  
   )
 }

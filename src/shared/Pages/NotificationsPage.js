@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { HelmetComponent, NotificationsContainer } from '../Components'
-import { fetchMyNotifications } from '../Store/actions'
+import { fetchMyNotifications, logoutUser } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import Menu from '../Routes/Menu'
@@ -22,7 +22,7 @@ class NotificationsPage extends Component {
       <Row className="text-center">
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatLeft lg="3">
-          <Menu />
+          <Menu  logoutUser={this.props.logoutUser} />
         </FloatLeft>
         <Col lg="9" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
           <NotificationsContainer />
@@ -37,7 +37,7 @@ function mapStateToProps({ }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { })(checkLoggedIn(requireAuth(NotificationsPage))),
+  component: connect(mapStateToProps, { logoutUser})(checkLoggedIn(requireAuth(NotificationsPage))),
   loadData: ({ dispatch }) => dispatch(fetchMyNotifications())
 }
 const FloatLeft = styled(Col)`
@@ -50,5 +50,3 @@ const FloatLeft = styled(Col)`
   position: fixed!important;
   `}
   `
-
-

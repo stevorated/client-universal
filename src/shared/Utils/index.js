@@ -11,5 +11,6 @@ export * from './positions'
 export * from './colors'
 export * from './funcs'
 export * from './timeAgo'
+export * from './moments'
 
 export {getCroppedImg, Portal, mediaQueries, mediaQs,Toggle, elevationJs, elevation, transition, colors }

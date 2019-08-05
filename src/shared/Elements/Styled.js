@@ -10,4 +10,10 @@ color: ${black};
   text-decoration: none;
 }
 `
-export const Line = () => <hr className="noPadding" style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.5' }} />
+export const Line = ({className}) => <hr className={`noPadding ${className}`} style={{ color: orange, borderWidth: '2px', borderColor: orange, opacity: '0.5' }} />
+
+export const DateSquareStyle  = styled.div`
+width: 75px;
+height: 75px;
+background: red;
+`

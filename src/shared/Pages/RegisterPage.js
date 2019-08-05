@@ -32,7 +32,10 @@ class RegisterPage extends Component {
     submitError: null,
     showServerError: true,
     showEmailError: true,
-    loading: false
+    loading: false,
+    weak: null,
+    better: null,
+    great: null
   }
   
   handleFormState = (data) => {

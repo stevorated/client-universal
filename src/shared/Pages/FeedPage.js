@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { HelmetComponent } from '../Components'
-import { fetchFeed, fetchCurrentUser } from '../Store/actions'
+import { fetchFeed, fetchCurrentUser, logoutUser } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import Menu from '../Routes/Menu'
@@ -26,7 +26,7 @@ class FeedPage extends Component {
       <Row className="">
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatLeft lg="3">
-          <Menu />
+          <Menu  logoutUser={this.props.logoutUser} />
         </FloatLeft>
         <Col lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
           <FeedScrollQuery />
@@ -48,7 +48,7 @@ function mapStateToProps({ users, posts, feed, auth }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchCurrentUser, fetchFeed })(checkLoggedIn(requireAuth(FeedPage))),
+  component: connect(mapStateToProps, { fetchCurrentUser, fetchFeed, logoutUser })(checkLoggedIn(requireAuth(FeedPage))),
   loadData: ({ dispatch }) => {
     dispatch(fetchCurrentUser())
     dispatch(fetchFeed())
@@ -62,5 +62,3 @@ const FloatLeft = styled(Col)`
   position: fixed!important;
   `}
   `
-
-

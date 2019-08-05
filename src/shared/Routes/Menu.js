@@ -1,9 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Container, Col, Row } from 'reactstrap'
 import { MenuCard } from '../Elements'
-import { mediaQs } from '../Utils'
-import { logoutUser } from '../Store/actions'
 import {
   faBrain,
   faCookieBite,
@@ -27,10 +24,7 @@ import MenuItem from '../Components/Feed/MenuItem'
 import { orange } from '../Utils'
 // import { black, white, elevation } from '../../Utils'
 
-function Menu({ logoutUser }) {
-  const handleLogout = async () => {
-    await logoutUser()
-  }
+function Menu(props) {
   return (
     <MenuCard className="text-center mb-0" style={{borderRadius: 'none'}}>
       <h3 className="header-4 mt-3" style={{color: `${orange}`, fontWeight: '600'}}>Menu</h3>
@@ -63,7 +57,7 @@ const StyledList = styled.ul`
   display: block;
 `
 
-export default connect(undefined, { logoutUser })(Menu)
+export default Menu
 
 // <hr style={{ color: 'white', borderWidth: '2px', borderColor: 'white' }} />
 

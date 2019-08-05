@@ -4,7 +4,7 @@ import { Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 
 import { HelmetComponent, EventExtra } from '../Components'
-import { fetchFeed, clearFeed } from '../Store/actions'
+import { fetchFeed, clearFeed, logoutUser } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import { EventFeed, EventMainCard } from '../Components'
@@ -40,7 +40,7 @@ class EventFeedPage extends Component {
       <Row className="text-center" >
         <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
         <FloatLeft lg="3" className="">
-          <Menu />
+          <Menu logoutUser={this.props.logoutUser}  />
         </FloatLeft>
         <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-2" >
           <EventMainCard header="Event Feed" title="Next Up" feedMode />
@@ -61,7 +61,7 @@ function mapStateToProps({ events }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchFeed, clearFeed })(checkLoggedIn(requireAuth(EventFeedPage))),
+  component: connect(mapStateToProps, { fetchFeed, clearFeed, logoutUser })(checkLoggedIn(requireAuth(EventFeedPage))),
   loadData: ({ dispatch }) => dispatch(fetchFeed())
 }
 const FloatLeft = styled(Col)`
@@ -77,5 +77,3 @@ const MainCol = styled(Col)`
   padding-right: 2rem;
   `}
 `
-
-

@@ -8,7 +8,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { elevation } from '../Utils'
 
 import { HelmetComponent } from '../Components'
-import { fetchMyPosts } from '../Store/actions'
+import { fetchMyPosts, logoutUser } from '../Store/actions'
 import requireAuth from '../HOC/requireAuth'
 import checkLoggedIn from '../HOC/checkLoggedIn'
 import { ProfileContainer, ScrollContainer, InfoContainer } from '../Components'
@@ -63,7 +63,7 @@ function mapStateToProps({ users, posts }) {
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchMyPosts })(checkLoggedIn(requireAuth(ProfilePage))),
+  component: connect(mapStateToProps, { fetchMyPosts, logoutUser })(checkLoggedIn(requireAuth(ProfilePage))),
   loadData: ({ dispatch }) => dispatch(fetchMyPosts())
 }
 
