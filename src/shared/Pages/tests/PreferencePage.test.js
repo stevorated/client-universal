@@ -29,42 +29,8 @@ describe('<PreferencesPage />', () => {
   })
   it('Should render witout errors', ()=> {
     const mainDiv = findByTestAttr(component,'testShallowMain')
-    const mainCol = findByTestAttr(component,'mainCol')
-    const leftCol = findByTestAttr(component,'leftCol')
-    const rightCol = findByTestAttr(component,'rightCol')
-    const helmet = findByTestAttr(component,'helmet')
 
     expect(mainDiv.length).toBe(1)
-    expect(mainCol.length).toBe(1)
-    expect(leftCol.length).toBe(1)
-    expect(rightCol.length).toBe(1)
-    expect(helmet.length).toBe(1)
-  })
-  it('Should render witout errors', ()=> {
-    const mainDiv = findByTestAttr(component,'testShallowMain')
-    const mainCol = findByTestAttr(component,'mainCol')
-    const leftCol = findByTestAttr(component,'leftCol')
-    const rightCol = findByTestAttr(component,'rightCol')
-    const helmet = findByTestAttr(component,'helmet')
-
-    expect(mainDiv.length).toBe(1)
-    expect(mainCol.length).toBe(1)
-    expect(leftCol.length).toBe(1)
-    expect(rightCol.length).toBe(1)
-    expect(helmet.length).toBe(1)
-  })
-  it('Should render witout errors', ()=> {
-    const mainDiv = findByTestAttr(component,'testShallowMain')
-    const mainCol = findByTestAttr(component,'mainCol')
-    const leftCol = findByTestAttr(component,'leftCol')
-    const rightCol = findByTestAttr(component,'rightCol')
-    const helmet = findByTestAttr(component,'helmet')
-
-    expect(mainDiv.length).toBe(1)
-    expect(mainCol.length).toBe(1)
-    expect(leftCol.length).toBe(1)
-    expect(rightCol.length).toBe(1)
-    expect(helmet.length).toBe(1)
   })
   it('Should render Cols components witout errors', ()=> {
 
