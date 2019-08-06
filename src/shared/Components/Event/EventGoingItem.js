@@ -8,7 +8,7 @@ import { black } from "../../Utils"
 
 
 export default function EventGoingItem(props) {
-  console.log(props)
+  // console.log(props)
   const {id, avatar, fname, lname} = props.follower
   console.log(fname, lname)
   return (

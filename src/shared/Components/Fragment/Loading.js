@@ -15,6 +15,7 @@ export default function Loading(props) {
         />
       ) : (
         <Spinner
+          data-test="loading"
           style={{
             color: orange,
             width: `${finalSize}rem`,

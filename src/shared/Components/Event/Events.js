@@ -1,24 +1,16 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
+import { Container, Row, CardColumns } from 'reactstrap'
 import styled from 'styled-components'
 import { Event } from '../../Components'
-import { Container, Row, Col, CardColumns } from 'reactstrap'
 import { mediaQueries } from '../../Utils'
+
 function Events(props) {
-  const { auth, myEventsMode, myEvents, eventFeedMode, events } = props
+  const { events } = props
   const renderQuery = () => {
-    if(myEventsMode) {
-      return myEvents.map((event) => {
-        const { id } = event
-        return (<Event key={`myEvents-${id}`} {...event} />)
-      })
-    }
-    else if (eventFeedMode) {
-      return events.map((event) => {
-        const { id } = event
-        return (<Event key={`events-${id}`} {...event} />)
-      })
-    }
+    return events.map((event) => {
+      const { id } = event
+      return (<Event key={`events-${id}`} {...event} />)
+    })
   }
     return (
       <Container className="">
@@ -31,12 +23,7 @@ function Events(props) {
     )
   }
 
-function mapStateToProps({ events, myEvents, auth }) {
-
-  return { events, myEvents, auth }
-}
-
-export default connect(mapStateToProps)(Events)
+export default Events
 
 
 const CustomCardColumns = styled(CardColumns)`

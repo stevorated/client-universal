@@ -4,8 +4,8 @@ export default (state = initialState, { type, payload }) => {
   switch (type) {
     case 'CLEAR_FEED':
       return []
-    case 'FETCH_FEED':  
-      return state[0] === undefined ? payload : [...state.concat(payload)]
+    case 'FETCH_FEED':
+      return state === initialState ? payload : [...state.concat(payload)]
     case 'CREATE_POST':
       return [...payload.concat(state)]
     case 'LIKE_POST':
@@ -55,4 +55,3 @@ export default (state = initialState, { type, payload }) => {
       return state
   }
 }
-

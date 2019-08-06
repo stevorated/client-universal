@@ -47,7 +47,7 @@ function EventDetails(props) {
             fontSize: '1.1rem',
             marginBottom: '0'
           }}>Description</CardTitle>
-          <CardText>Event Owner: <Link to={`/profile/${createdBy.id}`}>{createdBy.fname} {createdBy.lname}</Link></CardText>
+          <CardText>hosted by: <Link to={`/profile/${createdBy.id}`}>{createdBy.fname} {createdBy.lname}</Link></CardText>
           <CardText>{description}</CardText>
         </div>
       </CardBody>

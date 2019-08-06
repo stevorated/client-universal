@@ -26,7 +26,8 @@ function LikePostMut(props) {
           mutation={LIKE_POST_MUT}
           variables={{ id: post }}
           onCompleted={async ({ likePost }) => {
-            props.likePostAction(likePost, post)
+            props.handleAction('likePostAction', { data: likePost, post })
+            // props.likePostAction(likePost, post)
             setILike(!iLike)
           }}
           // refetchQueries={[{ query: FETCH_FEED }, { query: GET_MA_POSTS }]}
@@ -92,7 +93,4 @@ function LikePostMut(props) {
   )
 }
 
-export default connect(
-  undefined,
-  { likePostAction }
-)(LikePostMut)
+export default LikePostMut

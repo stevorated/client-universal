@@ -7,16 +7,6 @@ export const fetchUsersPosts = (data, id) => async (dispatch, getState, client) 
       type: 'FETCH_PROFILE_POSTS',
       payload: data
     })
-  } else {
-    const refetchData = await client.query({
-      query: GET_USER,
-      variables: { id },
-      fetchPolicy: 'network-only'
-    })
-    dispatch({
-      type: 'FETCH_PROFILE',
-      payload: [refetchData.data.user]
-    })
   }
 }
 

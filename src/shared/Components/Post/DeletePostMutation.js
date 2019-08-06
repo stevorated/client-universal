@@ -1,14 +1,13 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import { Mutation, ApolloConsumer } from 'react-apollo'
 
 import DeletePostPopover from './DeletePostPopover'
 import { Loading } from '../'
 import { DELETE_POST_MUT } from '../../Store/Apollo/Mutaions'
 import { GET_MA_POSTS, FETCH_FEED } from '../../Store/Apollo/Queries'
-import { deletePostAction } from '../../Store/actions'
 
 function DeletePostMutation(props) {
+  // console.log(props)
   const { post } = props
   return (
     <ApolloConsumer>
@@ -17,7 +16,9 @@ function DeletePostMutation(props) {
           mutation={DELETE_POST_MUT}
           variables={{ post }}
           onCompleted={async ({ deletePost }) => {
-            props.deletePostAction(props.post)
+            if(deletePost) {
+              props.handleAction('deletePostAction', { data: props.post })
+            }
           }}
           refetchQueries={[{ query: FETCH_FEED }, { query: GET_MA_POSTS }]}
         >
@@ -36,4 +37,4 @@ function DeletePostMutation(props) {
   )
 }
 
-export default connect(undefined, { deletePostAction })(DeletePostMutation)
+export default DeletePostMutation

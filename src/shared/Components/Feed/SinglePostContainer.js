@@ -1,34 +1,35 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Button } from 'reactstrap'
-import { connect } from 'react-redux'
-import { Query } from 'react-apollo'
-import { fetchPost } from '../../Store/actions'
-import { Posts } from '../Post'
-import { Loading } from '../'
-import { FETCH_FEED } from '../../Store/Apollo/Queries'
-import styled from 'styled-components'
+import React from "react"
+import { connect } from "react-redux"
+import { Query } from "react-apollo"
+import { fetchPost } from "../../Store/actions"
+import { Posts } from "../Post"
+import { Loading } from "../"
+import { FETCH_FEED } from "../../Store/Apollo/Queries"
+import styled from "styled-components"
 
-const SinglePostContainer = (props) => {
+const SinglePostContainer = props => {
   return (
     <Query
-      
-      // fetchPolicy='network-only' // IMPORTANT
       query={FETCH_FEED}
-      variables={{ id: props.id, limit: 1, skip: 0}}
-      onCompleted={
-        ({ getPosts }) => {
-          props.fetchPost(getPosts)
-        }
-      }
-    // refetchQueries={[{query:GET_MA_POSTS, variables:{limit: 10, skip: 0 }}]}
+      variables={{ id: props.id, limit: 1, skip: 0 }}
+      onCompleted={({ getPosts }) => {
+        props.handleAction('fetchPost', { data: getPosts })
+      }}
     >
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <Loading />
         if (error) return <Loading />
         return (
           <StyledDiv className="text-center">
-            <Posts singlePostMode={true} show />
+            <Posts
+              mode="singlePost"
+              myId={props.myId}
+              myAvatar={props.myAvatar}
+              posts={props.singlePost}              
+              handleAction={props.handleAction}
+              singlePostMode={true}
+              show
+            />
           </StyledDiv>
         )
       }}
@@ -36,16 +37,17 @@ const SinglePostContainer = (props) => {
   )
 }
 
-const mapStateToProps = ({ singlePost }) => {
-  return { singlePost }
+const mapStateToProps = ({ singlePost, auth }) => {
+  return { singlePost, auth }
 }
 
-export default connect(mapStateToProps, { fetchPost })(SinglePostContainer)
+export default connect(
+  mapStateToProps,
+  { fetchPost }
+)(SinglePostContainer)
 
-const StyledDiv = styled.div `
+const StyledDiv = styled.div`
   margin: 0;
   padding: 0;
   display: block;
 `
-
-

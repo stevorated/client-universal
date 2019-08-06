@@ -1,32 +1,35 @@
-import ProfilePage from './ProfilePage'
-import PublicPage from './PublicPage'
-import LoginPage from './LoginPage'
-import RegisterPage from './RegisterPage'
-import NotFoundPage from './NotFoundPage'
-import FbLoginCheck from './FbLoginCheck'
-import FeedPage from './FeedPage'
-import UserProfilePage from './UserProfilePage'
-import PrivacyPolicyPage from './PrivacyPolicyPage'
-import CalanderPage from './CalanderPage'
-import PreferencesPage from './PreferencesPage'
-import EventFeedPage from './EventFeedPage'
-import EventBoardPage from './EventBoardPage'
-import SettingsPage from './SettingsPage'
-import EngagePage from './EngagePage'
-import EventPage from './EventPage'
-import NotificationsPage from './NotificationsPage'
-import SinglePostPage from './SinglePostPage'
+//both
+import NotFoundPage from './sharedPages/NotFoundPage'
+import PrivacyPolicyPage from './sharedPages/PrivacyPolicyPage'
+//public
+import FbLoginCheck from './publicPages/FbLoginCheck'
+import PublicPage from './publicPages/PublicPage'
+import LoginPage from './publicPages/LoginPage'
+import RegisterPage from './publicPages/RegisterPage'
+// private
+import ProfilePage from './privatePages/ProfilePage'
+import FeedPage from './privatePages/FeedPage'
+import UserProfilePage from './privatePages/UserProfilePage'
+import CalanderPage from './privatePages/CalanderPage'
+import PreferencesPage from './privatePages/PreferencesPage'
+import EventFeedPage from './privatePages/EventFeedPage'
+import EventBoardPage from './privatePages/EventBoardPage'
+import SettingsPage from './privatePages/SettingsPage'
+import EngagePage from './privatePages/EngagePage'
+import EventPage from './privatePages/EventPage'
+import NotificationsPage from './privatePages/NotificationsPage'
+import SinglePostPage from './privatePages/SinglePostPage'
 
 export {
+  NotFoundPage,
+  PrivacyPolicyPage,
   FbLoginCheck,
-  ProfilePage,
   PublicPage,
   LoginPage,
   RegisterPage,
-  NotFoundPage,
+  ProfilePage,
   FeedPage,
   UserProfilePage,
-  PrivacyPolicyPage,
   CalanderPage,
   PreferencesPage,
   EventFeedPage,
@@ -35,5 +38,5 @@ export {
   EngagePage,
   EventPage,
   NotificationsPage,
-  SinglePostPage
+  SinglePostPage,
 }

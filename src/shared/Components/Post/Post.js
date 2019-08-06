@@ -1,28 +1,32 @@
-import React, { Fragment, useState, useEffect  } from 'react'
-import { connect } from 'react-redux'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  Col, Row, Card, CardTitle, CardSubtitle, CardText, Button, CardBody
+  Card,
+  CardTitle,
+  CardText,
+  Button,
+  CardBody
 } from 'reactstrap'
 import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBeer } from '@fortawesome/free-solid-svg-icons'
 import LikePostMut from './LikePostMut'
-import { Comments, AddCommentForm, AddCommentContainer, DeletePostMutation } from './'
+import {
+  Comments,
+  AddCommentContainer,
+  DeletePostMutation
+} from './'
 import { SmallProfileImg, StyledLink } from '../../Elements'
 import { black, elevation, transition, timeAgo } from '../../Utils'
 
-import Avatar from '../../../assets/logos/new_logo.png'
-const imgAvatar = Avatar.replace('build', '').replace('/public', '')
-
 function Post(props) {
-  // console.log(props.comments)
-  const [ animation, setAnimation ] = useState('')
-  const [ showForm, setShowForm ] = useState(false)
-  const [ showComments, setShowComments ] = useState(props.show || false)
-  const [ hideDeletedPost, setHideDeletedPost ] = useState(false)
-  const MyPost = props.createdBy.id === props.auth.id
-  const profileUrl = `/profile/${props.createdBy.id}`
+  // console.log(props)
+  const { avatarUrl, myPost, myId, post, name, show } = props
+  const { createdBy, createdAt, id, body, comments, likes } = post
+
+  const [animation, setAnimation] = useState('')
+  const [showForm, setShowForm] = useState(false)
+  const [showComments, setShowComments] = useState(show || false)
+  const [hideDeletedPost, setHideDeletedPost] = useState(false)
+  const profileUrl = `/profile/${createdBy.id}`
 
   const openForm = () => {
     setShowForm(!showForm)
@@ -30,123 +34,130 @@ function Post(props) {
   const toggleComments = () => {
     setShowComments(!showComments)
   }
-  
-  const animatedClass = 'animated fadeIn slow'
-  const PostedTime = timeAgo(Date.now(),props.createdAt)
+
+  const PostedTime = timeAgo(Date.now(), createdAt)
   return !hideDeletedPost ? (
     <div className={` text-center mb-3`}>
-      <StyledCard  >
+      <StyledCard>
         <CardBody>
-          {MyPost && <DeletePostMutation 
-          hideDeletedPost={hideDeletedPost}
-          setHideDeletedPost={setHideDeletedPost}
-          post={props.id}
-          close />}
+          {myPost && (
+            <DeletePostMutation
+              handleAction={props.handleAction}
+              hideDeletedPost={hideDeletedPost}
+              setHideDeletedPost={setHideDeletedPost}
+              post={id}
+              close
+            />
+          )}
           <div className="d-flex">
-            <ProfileLink to={profileUrl} >
+            <ProfileLink to={profileUrl}>
               <SmallProfileImg
                 className="mr-3"
-                src={props.linkUrl ? props.linkUrl : imgAvatar}
-                alt=".." />
+                src={avatarUrl}
+                alt=".."
+              />
             </ProfileLink>
             <div>
               <CardTitle className="mb-0 text-capitalize">
-                <ProfileLink to={profileUrl}>{props.name}</ProfileLink>
+                <ProfileLink to={profileUrl}>{name}</ProfileLink>
                 <span className="lo-text"> posted</span>
               </CardTitle>
               <CreatedAt className="ml-0 pl-0">{PostedTime}</CreatedAt>
             </div>
           </div>
-          {props.body.length > 20 
-          ?
-          <CardText style={{whiteSpace: 'pre-wrap'}} className="mb-4 mt-2 text-left ml-2">
-            {props.body}
-          </CardText>
-          :
-          <CardText className="mb-4 mt-2 text-left ml-2">
-           {props.body}
-          </CardText> 
-          }
+          {body.length > 20 ? (
+            <CardText
+              style={{ whiteSpace: 'pre-wrap' }}
+              className="mb-4 mt-2 text-left ml-2"
+            >
+              {body}
+            </CardText>
+          ) : (
+            <CardText className="mb-4 mt-2 text-left ml-2">{body}</CardText>
+          )}
           <div className="d-flex">
-            <Button 
-            size="sm" 
-            className={`px-2 btn-mainclr ${animation}`}
-            onClick={ props.comments.length >0 ? toggleComments : (()=>{
-              setAnimation(animation + ' animated shake ')
-              setTimeout(()=> {
-                setAnimation('')
-              }, 1000)
-            })}>
-            {props.comments ? props.comments.length : '0'} Comments
+            <Button
+              size="sm"
+              className={`px-2 btn-mainclr ${animation}`}
+              onClick={
+                comments.length > 0
+                  ? toggleComments
+                  : () => {
+                      setAnimation(animation + ' animated shake ')
+                      setTimeout(() => {
+                        setAnimation('')
+                      }, 1000)
+                    }
+              }
+            >
+              {comments ? comments.length : '0'} Comments
             </Button>
-            <div className="ml-auto" >
-              <LikePostMut post={props.id} likes={props.likes} myId={props.auth.id}  />
+            <div className="ml-auto">
+              <LikePostMut
+                myId={myId}
+                post={id}
+                likes={likes}
+                handleAction={props.handleAction}
+              />
             </div>
           </div>
         </CardBody>
-        {showForm && 
+        {showForm && (
           <AddCommentContainer
-          commentCount={props.comments.length}
-          setShowComments={setShowComments}
-          setShowForm={setShowForm}
-          feedMode={props.feedMode}
-          myPostsMode={props.myPostsMode}
-          profileMode={props.profileMode}
-          createdBy={props.createdBy}
-          id={props.id} 
-          openForm={openForm} />}
+            handleAction={props.handleAction}
+            commentCount={comments.length}
+            setShowComments={setShowComments}
+            setShowForm={setShowForm}
+            createdBy={createdBy}
+            id={id}
+            openForm={openForm}
+          />
+        )}
       </StyledCard>
-      {!showComments && 
-        <StyledLink 
-        to="#" 
-        onClick={openForm} 
-        className="small-text">
-        {showForm ? 'Hide' : 'Add a Comment'}
-        </StyledLink>}
-      {showComments &&  
-        <Comments 
-        feedMode={props.feedMode} 
-        myPostsMode={props.myPostsMode}  
-        profileMode={props.profileMode}
-        comments={props.comments} 
-        id={props.id} 
-        post={props.id}
-        />}
+      {!showComments && (
+        <StyledLink to="#" onClick={openForm} className="small-text">
+          {showForm ? 'Hide' : 'Add a Comment'}
+        </StyledLink>
+      )}
+      {showComments && (
+        <Comments
+          myId={props.myId}
+          myAvatar={props.myAvatar}
+          handleAction={props.handleAction}
+          comments={comments}
+          id={id}
+          post={id}
+        />
+      )}
     </div>
-  ) : (
-    <span className="animated fadeOut turtle">Done, Hope Your're Happy ..</span>
-  )
+  ) : null
 }
 
-function mapStateToProps({auth}){
-  return { auth }
-}
- 
-export default connect(mapStateToProps)(Post)
+export default Post
 
 const ProfileLink = styled(Link)`
-color: ${black};
-&:hover {
-  text-decoration: none;
-}
+  color: ${black};
+  &:hover {
+    text-decoration: none;
+  }
 `
 
 const CreatedAt = styled.p`
-font-size: .6rem;
-text-align: left;
+  font-size: 0.6rem;
+  text-align: left;
 `
 const StyledCard = styled(Card)`
-      color: ${black};
-      background: whitesmoke;
-      opacity: .9;
-      border-radius: .3rem;
-      /* margin: .4rem; */
-      ${elevation[3]}
-      transition: all 3s ease;
-      ${transition({
-  property: 'box-shadow'
-})};
-      &:hover {
-            ${elevation[4]};
-      }
+  color: ${black};
+  background: whitesmoke;
+  opacity: 0.9;
+  border-radius: 0.3rem;
+  /* margin: .4rem; */
+  ${elevation[3]}
+  transition: all 3s ease;
+  ${transition({
+    property: 'box-shadow'
+  })};
+  &:hover {
+    ${elevation[4]};
+  }
 `

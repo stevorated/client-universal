@@ -85,7 +85,7 @@ exports[`<PreferencesPage /> matches Snapshot 1`] = `
 
 <div
   className="text-center row"
-  data-test="testShallowMain"
+  data-test="main-div"
 >
   <div />
   <div

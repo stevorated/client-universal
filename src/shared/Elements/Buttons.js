@@ -26,6 +26,7 @@ export const FbLogin = (props) => {
   return (
     <a href={process.env.FB_LOGIN_URL}>
     <StyledBigButton
+      data-test="fb-login"
       style={{ background: '#3b5998', color: 'white' }}
       className="big-btn"
       

@@ -1,12 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
 import { Mutation, ApolloConsumer } from 'react-apollo'
 
 import DeleteCommentPopover from './DeleteCommentPopover'
 import { Loading } from '../'
 import { DELETE_COMMENT_MUT } from '../../Store/Apollo/Mutaions'
 import { GET_MA_POSTS, FETCH_FEED } from '../../Store/Apollo/Queries'
-import { deleteCommentAction } from '../../Store/actions'
+
 
 function DeleteCommentMutation(props) {
   return (
@@ -16,7 +15,7 @@ function DeleteCommentMutation(props) {
           mutation={DELETE_COMMENT_MUT}
           variables={{ id: props.comment }}
           onCompleted={({ deleteComment }) => {
-            props.deleteCommentAction(props.comment, props.post)
+            props.handleAction('deleteCommentAction', { comment: props.comment, post: props.post })
           }}
           refetchQueries={[{ query: FETCH_FEED }, { query: GET_MA_POSTS }]}
         >
@@ -28,17 +27,13 @@ function DeleteCommentMutation(props) {
               }
             }
             return (
-              <DeleteCommentPopover
-                deleteComment={deleteComment}
-                {...props}
-              />
+              <DeleteCommentPopover deleteComment={deleteComment} {...props} />
             )
           }}
         </Mutation>
       )}
     </ApolloConsumer>
   )
-
 }
 
-export default connect(undefined, { deleteCommentAction })(DeleteCommentMutation)
+export default DeleteCommentMutation

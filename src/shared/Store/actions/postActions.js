@@ -33,17 +33,26 @@ export const clearFeed = () => async (dispatch, getState, client) => {
 }
 
 export const fetchFeed = (BrowserData, count = 5) => async (dispatch, getState, client) => {
+  // console.log(BrowserData)
+  if(BrowserData) {
+    return dispatch({
+      type: 'FETCH_FEED',
+      payload: BrowserData
+    })
+  }
   try {
     if (count > 10) {
       count = 10
     }
-    const data = BrowserData ? BrowserData : await client.query({
+    const queryFeed = await client.query({
       query: FETCH_FEED,
       variables: { limit: 5 }
-    }).getPosts
+    })
+    const res = queryFeed.data.getPosts
+    // const data = BrowserData ? BrowserData : res 
     dispatch({
       type: 'FETCH_FEED',
-      payload: data
+      payload: res
     })
   } catch (err) {
 

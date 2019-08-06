@@ -9,11 +9,13 @@ import { timeAgo } from '../../Utils'
 import Avatar from '../../../assets/logos/new_logo.png'
 const imgAvatar = Avatar.replace('build', '').replace('/public', '')
 
-export default function Comment({ id, body, createdAt, name, profileImgUrl, createdBy, myComment, post }) {
+export default function Comment(props) {
+  const { id, body, createdAt, name, profileImgUrl, myComment, post } = props
   const PostedTime = timeAgo(Date.now(), createdAt)
   return (
     <FlatCard className="bg-white animated fadeIn mt-1" >
       {myComment && <DeleteCommentMutation
+        handleAction={props.handleAction}
         post={post}
         comment={id}
         close />}

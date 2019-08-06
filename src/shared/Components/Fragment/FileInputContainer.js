@@ -4,8 +4,7 @@ import CropFileInput from './CropFileInput'
 import { connect } from 'react-redux'
 import { uploadFile } from '../../Store/actions'
 import { getCroppedImg } from '../../Utils'
-import Loading from './Loading';
-
+import Loading from './Loading'
 
 function FileInputContainer(props) {
   const reactCropPreview = document.getElementsByClassName('ReactCrop__image')
@@ -21,7 +20,7 @@ function FileInputContainer(props) {
     aspect: props.round ? 1 / 1 : 16 / 9
   })
 
-  const handleSubmitAvatar = async (e) => {
+  const handleSubmitAvatar = async e => {
     e.preventDefault()
     if (valid && reactCropPreview.length > 0) {
       const previewWidth = reactCropPreview[0].width
@@ -31,7 +30,7 @@ function FileInputContainer(props) {
       const img = new Image()
       img.src = preview
 
-      img.onload = async (e) => {
+      img.onload = async e => {
         setLoading(true)
         const image = e.target
         const { unit, height, width, aspect, x, y } = crop
@@ -51,42 +50,48 @@ function FileInputContainer(props) {
           scaleY
         }
 
-        return props.uploadFile(data).then(setTimeout(() => props.toggle(), 2000))
+        return props
+          .uploadFile(data)
+          .then(setTimeout(() => props.toggle(), 2000))
       }
       // props.toggle()
-
     } else {
       setValid(false)
     }
-
   }
   return (
-    <Container >
-      {loading ? <Loading size="7" customLoader={true} /> : <Fragment >
-        <form onSubmit={handleSubmitAvatar}>
-          <CropFileInput
-            className="m-5"
-            {...props}
-            round={true}
-            valid={valid}
-            setValid={setValid}
-            error={error}
-            setError={setError}
-            setFileData={setFileData}
-            height={310}
-            width={310}
-            showText={true}
-            fileData={fileData}
-            setPreview={setPreview}
-            preview={preview}
-            setCrop={setCrop}
-            crop={crop}
-          />
-          <Button className="mt-2" disabled={!valid}>Confirm Upload</Button>
-        </form>
-      </Fragment>}
+    <Container>
+      {loading ? (
+        <Loading size="7" customLoader={true} />
+      ) : (
+        <Fragment>
+          <form onSubmit={handleSubmitAvatar}>
+            <CropFileInput
+              className="m-5"
+              {...props}
+              round={true}
+              valid={valid}
+              setValid={setValid}
+              error={error}
+              setError={setError}
+              setFileData={setFileData}
+              height={310}
+              width={310}
+              showText={true}
+              fileData={fileData}
+              setPreview={setPreview}
+              preview={preview}
+              setCrop={setCrop}
+              crop={crop}
+            />
+            <Button className="mt-2" disabled={!valid}>
+              Confirm Upload
+            </Button>
+          </form>
+        </Fragment>
+      )}
 
-      <div id="divik"></div>
+      <div id="divik" />
     </Container>
   )
 }
@@ -95,4 +100,7 @@ function mapStateToProps({ auth }) {
   return { auth }
 }
 
-export default connect(mapStateToProps, { uploadFile })(FileInputContainer)
+export default connect(
+  mapStateToProps,
+  { uploadFile }
+)(FileInputContainer)

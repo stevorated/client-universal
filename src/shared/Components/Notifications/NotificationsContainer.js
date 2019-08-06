@@ -42,7 +42,7 @@ const NotificationsContainer = (props) => {
             }
           })
         }
-        if (loading) return <Loading />
+        // if (loading) return <Loading />
         if (error) return <Loading />
         return (
           <StyledDiv className="text-center">

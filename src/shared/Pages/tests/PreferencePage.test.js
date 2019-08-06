@@ -7,46 +7,48 @@ import configureStore from 'redux-mock-store'
 
 import { PreferencesPage } from '../PreferencesPage'
 import { findByTestAttr } from '../../../tests/utils'
+
 const initialState = {}
 const mockStore = configureStore()
-let component, store, tree;
+let component, store, tree
 
 const setupShallowRender = (props = {}) => {
   return shallow(<PreferencesPage />)
 }
 
 describe('<PreferencesPage />', () => {
-  beforeEach(() => {  //creates the store with any initial state or middleware needed  
+  beforeEach(() => {
+    //creates the store with any initial state or middleware needed
     store = mockStore(initialState)
     component = setupShallowRender()
     tree = renderer.create(
       <BrowserRouter>
-        <PreferencesPage store={store}/>
-      </BrowserRouter>)
-   })
-  it('matches Snapshot', ()=> {
+        <PreferencesPage store={store} />
+      </BrowserRouter>
+    )
+  })
+  it('matches Snapshot', () => {
     expect(tree).toMatchSnapshot()
   })
-  it('Should render witout errors', ()=> {
-    const mainDiv = findByTestAttr(component,'testShallowMain')
+  it('Should render witout errors', () => {
+    const mainDiv = findByTestAttr(component, 'main-div')
 
     expect(mainDiv.length).toBe(1)
   })
-  it('Should render Cols components witout errors', ()=> {
-
-    const mainCol = findByTestAttr(component,'mainCol')
-    const leftCol = findByTestAttr(component,'leftCol')
-    const rightCol = findByTestAttr(component,'rightCol')
+  it('Should render Cols components witout errors', () => {
+    const mainCol = findByTestAttr(component, 'mainCol')
+    const leftCol = findByTestAttr(component, 'leftCol')
+    const rightCol = findByTestAttr(component, 'rightCol')
 
     expect(mainCol.length).toBe(1)
     expect(leftCol.length).toBe(1)
     expect(rightCol.length).toBe(1)
-
   })
-  it('Should render helmet component witout errors', ()=> {
-
-    const helmet = findByTestAttr(component,'helmet')
+  it('Should render helmet component witout errors', () => {
+    const helmet = findByTestAttr(component, 'helmet')
 
     expect(helmet.length).toBe(1)
+    expect(helmet.props().pageTitle).toBe(component.instance().title)
+    expect(helmet.props().ogTitle).toBe(component.instance().title)
   })
 })
