@@ -145,14 +145,15 @@ class EventFormModal extends Component {
           returnFocusAfterClose={false}
           isOpen={this.state.modal}
           toggle={this.toggle}
-          className={`${className} mx-auto mt-5`}
+          style={{marginTop: '60px', paddingBottom: '60px', maxHeight: '70vh'}}
+          className={`${className} mx-auto`}
         >
           <ModalHeader className="sigmar-one" toggle={this.toggle}>
             {buttonLabel}
           </ModalHeader>
           <Form className="small-text" onSubmit={this.handleSubmit}>
             <ModalBody
-              style={{ maxHeight: 'calc(100vh - 180px)', overflowY: 'auto' }}
+              style={{ maxHeight: 'calc(95vh - 180px)', overflowY: 'auto' }}
             >
               <EventForm
                 Type="create"
@@ -164,7 +165,7 @@ class EventFormModal extends Component {
               />
             </ModalBody>
             <div className="d-flex" style={{ transition: 'all 1s ease-out' }}>
-              <StyledButton className="btn-mainclr m-2 ml-auto">
+              <StyledButton className="btn-mainclr mb-4 mx-auto">
                 {label}
               </StyledButton>
             </div>

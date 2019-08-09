@@ -14,8 +14,8 @@ function Events(props) {
     })
   }
     return (
-      <Container className="">
-        <Row className="p-4">
+      <Container>
+        <Row className="p-md-4 m-auto">
           <CustomCardColumns md={6} xl={4}>
             {renderQuery()}
           </CustomCardColumns>
@@ -28,7 +28,8 @@ export default Events
 
 
 const CustomCardColumns = styled(CardColumns)`
-
+width: 100%;
+margin: 3px;
 -moz-column-count:    1;
 -webkit-column-count: 1;
 column-count:         1;

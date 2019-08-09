@@ -2,12 +2,12 @@ import React, { Fragment, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Col, Tooltip } from 'reactstrap'
 import styled from 'styled-components'
-import { orange, elevation } from '../../Utils'
+import { orange, elevation, mediaQueries } from '../../Utils'
 import moment from 'moment'
+import EventBracket from './EventBracket'
 export default function CalanderDay(props) {
   const { month, day, events, date, handleChangeDayFocus } = props
-  // console.log(props)
-  
+  // console.log(props.myId)
   const loadDay = () => {
     handleChangeDayFocus(events, date)
   }
@@ -16,6 +16,9 @@ export default function CalanderDay(props) {
   const renderEvents = () => {
   
     return events.map((event) => {
+      // console.log(event.followers)
+      const followedEvent = event.followers.find((follow)=> follow.id === props.myId) ? true : false
+      const thumbnil = `${process.env.API_BASE}${event.thumbnil.url}`
       const [redirect, setRedirect] = useState(false)
       const [tooltipOpen, setTooltipOpen] = useState(false)
       const toggle = () => {
@@ -33,18 +36,8 @@ export default function CalanderDay(props) {
 
       
       
-
-      const thumbnil = `${process.env.API_BASE}${event.thumbnil.url}`
       return redirect ? <Redirect key={`${event.id}-redirect`} to={`/event/${event.id}`} /> : (
-        <DayEvent  data-test="calanderDay" key={event.id} className={`text-left lo-text`}>
-          <div
-            id={`event-day-div-${event.id}`}
-            className="py-2 mx-2"
-            // onClick={toggleRedirect}
-          >
-            {event.name}
-          </div>
-
+        <EventBracket data-test="calanderDay" key={event.id} {...event} followedEvent={followedEvent}>
           <Tooltip
             placement="right"
             target={`event-day-div-${event.id}`}
@@ -52,13 +45,17 @@ export default function CalanderDay(props) {
             isOpen={tooltipOpen}
             autohide={true} 
           >
-            <img src={thumbnil} width="100px" alt="" />
+            <img src={thumbnil} width="100%" alt="" />
             <div style={{fontWeight: '600'}}>{event.name}</div>
             <div>{event.venue}({event.address})</div>
             <div>{event.startTime}, {moment(event.startDate).format('DD MMMM YYYY')}</div>
             <div></div>
           </Tooltip>
-        </DayEvent>
+
+        </EventBracket>
+
+          
+
         )
     })
   }
@@ -92,21 +89,4 @@ const DayNumber = styled.div`
   font-weight: 700;
   left: 1px;
   top: 1px;
-`
-
-const DayEvent = styled.div`
-  ${elevation[3]};
-  /* cursor: pointer; */
-  word-break: break-all;
-  background: ${orange};
-  font-weight: 600;
-  margin: .4rem .1rem;
-  min-height: 1rem;
-  border-radius: .2rem;
-  opacity: .8;
-  transition: all .4s ease-in;
-  /* &:hover {
-    ${elevation[5]}
-    transform: translateY(-.2rem)
-  } */
 `

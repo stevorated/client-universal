@@ -28,7 +28,7 @@ function FollowEventMut(props) {
         // refetchQueries={[{ query: FETCH_FEED }, { query: GET_MA_POSTS }]}
         >
           {(followEvent, { loading, error, called }) => {
-            if (loading) return <Loading customLoader size="1" margin="0" style={{ color: black , height: '1rem', width: '1rem' }} />
+            if (loading) return <Loading noloadingtext={true} customLoader size="1" margin="0" style={{ color: black , height: '1rem', width: '1rem' }} />
             // <Button style={{background: 'none', border: 'none'}} size="sm" onClick={followEvent}>
             // </Button>
             return iFollow 

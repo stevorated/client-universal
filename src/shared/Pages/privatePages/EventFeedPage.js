@@ -23,8 +23,13 @@ class EventFeedPage extends Component {
     this.menuItems = ['new', 'popular']
     this.title = 'Event Feed'
     this.state = {
-      byCreatedAt: true
+      byCreatedAt: true,
+      loadMore: true
     }
+  }
+
+  setLoadMore = (res) => {
+    this.setState({ loadMore: res })  
   }
 
   handleChangeState = value => {
@@ -39,19 +44,19 @@ class EventFeedPage extends Component {
   handleAction = (type, payload) => {
     switch (type) {
       case 'fetchNextEvents':
-        console.log('fetchNextEvents')
+        // console.log('fetchNextEvents')
         this.props.fetchNextEvents(payload.data)
         break
       case 'fetchEvents':
-        console.log('fetchEvents')
+        // console.log('fetchEvents')
         this.props.fetchEvents(payload.data, payload.count)
         break
       case 'createEventAction':
-        console.log('createEventAction')
+        // console.log('createEventAction')
         this.props.createEventAction(payload.data)
         break
       case 'followEventAction':
-        console.log('followEventAction')
+        // console.log('followEventAction')
         this.props.followEventAction(payload.data, payload.event)
         break
       default:
@@ -84,7 +89,8 @@ class EventFeedPage extends Component {
             myId={this.props.auth.id}
             events={this.props.events}
             handleAction={this.handleAction}
-            fetchEvents={this.props.fetchEvents}
+            loadMore={this.state.loadMore}
+            setLoadMore={this.setLoadMore}
           />
         </MainCol>
         <Col lg="3" className="order-2 order-lg-3 mt-lg-2 mt-0 animated fadeIn">
@@ -119,7 +125,7 @@ export default {
   loadData: ({ dispatch }) => dispatch(fetchEvents())
 }
 const FloatLeft = styled(Col)`
-  position: static !important;
+  position: static!important;
   top: 3.5rem;
   left: 0rem;
   ${mediaQueries.lg`
@@ -127,7 +133,7 @@ const FloatLeft = styled(Col)`
   `}
 `
 const MainCol = styled(Col)`
-  ${mediaQueries.lg`
+  /* ${mediaQueries.lg`
   padding-right: 2rem;
-  `}
+  `} */
 `

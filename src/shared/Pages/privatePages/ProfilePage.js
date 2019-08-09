@@ -29,7 +29,8 @@ export class ProfilePage extends Component {
     super(props)
     this.title = 'Profile Page'
     this.state = {
-      redirect: false
+      redirect: false,
+      loadMore: true
     }
     
     // console.log(this.props)
@@ -82,7 +83,9 @@ export class ProfilePage extends Component {
     }
   }
 
-
+  setLoadMore = (res) => {
+    this.setState({ loadMore: res })
+  }
 
   render() {
     const { auth, profilePosts, profileDetails, posts } = this.props
@@ -111,6 +114,8 @@ export class ProfilePage extends Component {
         </FloatLeft>
         <Col lg="6" data-test="mainCol" className="offset-lg-3 order-3 order-lg-2">
           <ScrollContainer
+            setLoadMore={this.setLoadMore}
+            loadMore={this.state.loadMore}
             data-test="scroll"
             myId={auth.id}
             myAvatar={auth.avatar && auth.avatar.url}

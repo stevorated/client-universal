@@ -15,6 +15,8 @@ function ScrollContainer(props) {
         handleAction={props.handleAction}
       />
       <QueryMorePosts
+        setLoadMore={props.setLoadMore}
+        loadMore={props.loadMore}
         myId={props.myId}
         myAvatar={props.myAvatar}
         posts={props.posts}

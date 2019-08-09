@@ -16,7 +16,6 @@ import {
 import Loading from '../Fragment/Loading'
 
 export default function Calander(props) {
-  // console.log(props)
   const { targetMonth, eventsInFocus } = props
   const monthsOptions = makeMonthsArray('2019-07-01', 10)
   const targetMonthNum = moment(targetMonth).format('M')
@@ -44,7 +43,7 @@ export default function Calander(props) {
   }
 
   return (
-    <FlatCardStatic data-test="calander" className={props.className}>
+    <FlatCardStatic data-test="calander" className={`${props.className} pb-5`}>
       <div className="d-flex my-3">
         <Select
           style={{ fontSize: '1.5rem' }}
@@ -81,6 +80,7 @@ export default function Calander(props) {
             <Loading className="animated fadeIn" margin={0} />
           ) : (
             <CalanderDayEvents
+              myId={props.myId}
               events={eventsInFocus}
               handleAction={props.handleAction}
             />
@@ -94,14 +94,6 @@ export default function Calander(props) {
 const CalanderDiv = styled.div`
   grid-gap: 0 !important;
   grid-row-gap: 0 !important;
-`
-
-const CalanderTitle = styled.h3`
-  margin-top: 1rem;
-  font-size: 2rem;
-  ${mediaQueries.md`
-  font-size: 3rem;
-  `}
 `
 
 const Select = styled.select`

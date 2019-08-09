@@ -12,7 +12,7 @@ import { PostFormContainer } from '../Post'
 import styled from 'styled-components'
 import Notifications from './Notifications'
 import { orange } from '../../Utils'
-import LiveNotification from './LiveNotification'
+import InfiniteScroll from 'react-infinite-scroller'
 
 const NotificationsContainer = props => {
   return (
@@ -29,13 +29,15 @@ const NotificationsContainer = props => {
       // refetchQueries={[{query:GET_MA_POSTS, variables:{limit: 10, skip: 0 }}]}
     >
       {({ loading, error, data, fetchMore }) => {
-        const handleFatchMore = () => {
+        const handlefetchMore = () => {
           fetchMore({
             variables: {
               skip: props.myNotifications.length
             },
             updateQuery: (prev, { fetchMoreResult }) => {
-              if (!fetchMoreResult) return prev
+              if (!fetchMoreResult.getLastNotifications.length) {
+                  props.setLoadMore(false)
+                }
               props.handleAction('fetchMyNotifications', {
                 data: [...fetchMoreResult.getLastNotifications]
               })
@@ -69,9 +71,15 @@ const NotificationsContainer = props => {
                 myId={props.myId}
                 seen={props.seen}
               />
-              <Button className="my-3" onClick={handleFatchMore}>
-                More..
-              </Button>
+              {props.loadMore && <InfiniteScroll
+              children={[]}
+              pageStart={0}
+              loadMore={handlefetchMore}
+              hasMore={props.loadMore}
+              loader={
+                <Loading key={`${Date.now()}-loading-infinite-feed`} />
+              }
+            />}
             </FlatCardStatic>
           </StyledDiv>
         )

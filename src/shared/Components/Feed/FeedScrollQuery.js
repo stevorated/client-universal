@@ -1,22 +1,25 @@
-import React from "react"
-import { Button } from "reactstrap"
-import { Query } from "react-apollo"
-import { Posts } from "../Post"
-import { Loading } from "../"
-import { FETCH_FEED } from "../../Store/Apollo/Queries"
-import { PostFormContainer } from "../Post"
-import styled from "styled-components"
+import React, { useState } from 'react'
+import { Button } from 'reactstrap'
+import { Query } from 'react-apollo'
+import { Posts } from '../Post'
+import { Loading } from '../'
+import { FETCH_FEED } from '../../Store/Apollo/Queries'
+import { PostFormContainer } from '../Post'
+import styled from 'styled-components'
+import InfiniteScroll from 'react-infinite-scroller'
 
 const FeedScrollQuery = props => {
-  // console.log(props)
   return (
     <Query
       query={FETCH_FEED}
       variables={{ limit: 5, skip: 0 }}
       onCompleted={({ getPosts }) => {
         if (!props.posts.length) {
-          // console.log(getPosts)  
-          props.handleAction('fetchFeed', {data: getPosts, count: props.posts.length})
+          // console.log(getPosts)
+          props.handleAction('fetchFeed', {
+            data: getPosts,
+            count: props.posts.length
+          })
         }
       }}
     >
@@ -27,8 +30,10 @@ const FeedScrollQuery = props => {
               skip: props.posts.length
             },
             updateQuery: (prev, { fetchMoreResult }) => {
-              if (!fetchMoreResult) return prev
-              props.handleAction('fetchFeed', { data: [...fetchMoreResult.getPosts] })
+              if (!fetchMoreResult.getPosts.length) return props.setLoadMore(false)
+              props.handleAction('fetchFeed', {
+                data: [...fetchMoreResult.getPosts]
+              })
             }
           })
         }
@@ -36,10 +41,10 @@ const FeedScrollQuery = props => {
         if (error) return <p>{error}</p>
         return (
           <StyledDiv className="text-center">
-            <PostFormContainer 
-              feedMode={true} 
+            <PostFormContainer
+              feedMode={true}
               handleAction={props.handleAction}
-              />
+            />
             <Posts
               mode="feed"
               feedMode={true}
@@ -48,13 +53,19 @@ const FeedScrollQuery = props => {
               posts={props.posts}
               handleAction={props.handleAction}
             />
-            <Button
-              size="sm"
-              className="my-5 btn-mainclr"
-              onClick={handlefetchMore}
-            >
-              Load More
-            </Button>
+            {props.loadMore && <InfiniteScroll
+              children={[]}
+              pageStart={0}
+              loadMore={handlefetchMore}
+              hasMore={true}
+              loader={
+                <Loading
+                  margin="0"
+                  className={props.fadeoutLoader ? 'animated slideOutLeft' : ''}
+                  key={`${Date.now()}-loading-infinite-feed`}
+                />
+              }
+            />}
           </StyledDiv>
         )
       }}

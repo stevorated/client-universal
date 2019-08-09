@@ -33,11 +33,11 @@ class EventPage extends Component {
   handleAction = (type, payload) => {
     switch (type) {
       case 'fetchEvent':
-        console.log('fetchEvent')
+        // console.log('fetchEvent')
         this.props.fetchEvent(payload.data)
         break
       case 'followEventAction':
-        console.log('followEventAction')
+        // console.log('followEventAction')
         this.props.followEventAction(payload.data)
         break
       default:

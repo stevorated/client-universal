@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Query } from 'react-apollo'
 import { fetchMoreMyPosts } from '../../Store/actions'
 import { Button } from 'reactstrap'
+import InfiniteScroll from 'react-infinite-scroller'
 // import Posts from '.'
 import { Posts, Loading } from '../'
 
@@ -21,13 +22,13 @@ const QueryMorePosts = props => {
       // refetchQueries={[{query:GET_MA_POSTS, variables:{limit: 10, skip: 0 }}]}
     >
       {({ loading, error, data, fetchMore }) => {
-        const handleFatchMore = () => {
+        const handleFetchMore = () => {
           fetchMore({
             variables: {
               skip: length
             },
             updateQuery: (prev, { fetchMoreResult }) => {
-              if (!fetchMoreResult) return prev
+              if (!fetchMoreResult.getMyPosts.length) return props.setLoadMore(false)
               props.handleAction('fetchMoreMyPosts', {
                 data: [...fetchMoreResult.getMyPosts]
               })
@@ -48,19 +49,16 @@ const QueryMorePosts = props => {
               myAvatar={props.myAvatar}
               posts={props.posts}
               handleAction={props.handleAction}
-              // fetchPosts={props.fetchPosts}
-              // deletePostAction={props.deletePostAction}
-              // likePostAction={props.likePostAction}
-              // deleteCommentAction={props.deleteCommentAction}
-              // pushComment={props.pushComment}
             />
-            <Button
-              size="sm"
-              className="mb-5 btn-mainclr"
-              onClick={handleFatchMore}
-            >
-              get More
-            </Button>
+            {props.loadMore && <InfiniteScroll
+              children={[]}
+              pageStart={0}
+              loadMore={handleFetchMore}
+              hasMore={true}
+              loader={
+                <Loading margin="1" key={`${Date.now()}-loading-infinite-profile`} />
+              }
+            />}
           </Fragment>
         )
       }}

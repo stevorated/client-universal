@@ -6,7 +6,7 @@ import { HelmetComponent, LittleMenu, EventExtra } from '../../Components'
 import { fetchMyEvents, fetchMyNextEvents, createEventAction, followEventAction } from '../../Store/actions'
 import requireAuth from '../../HOC/requireAuth'
 import checkLoggedIn from '../../HOC/checkLoggedIn'
-import { EventBoard, EventMainCard } from '../../Components'
+import { EventBoard, EventsFeed, EventMainCard } from '../../Components'
 import Menu from '../../Routes/Menu'
 import { mediaQueries, orange } from '../../Utils'
 import { FlatCardStatic } from '../../Elements'
@@ -18,9 +18,14 @@ class EventBoardPage extends Component {
     this.menuItems = ['suggested', 'past']
     this.title = 'EventBoard'
     this.state = {
-      suggested: true
+      suggested: true,
+      loadMore: true
     }
     // console.log(this.props)
+  }
+
+  setLoadMore = (res) => {
+    this.setState({ loadMore: res })  
   }
 
   handleChangeState = value => {
@@ -80,9 +85,11 @@ class EventBoardPage extends Component {
             myId={this.props.auth.id}
             events={this.props.myEvents}
             handleAction={this.handleAction}
+            loadMore={this.state.loadMore}
+            setLoadMore={this.setLoadMore}
           />
         </MainCol>
-        <Col lg="3" className="order-2 order-lg-3 mt-lg-2 animated fadeIn">
+        <Col lg="3" className="order-2 order-lg-3 mt-lg-2 mt-0 animated fadeIn">
           <EventExtra
             myId={this.props.auth.id}
             boardMode={true}
@@ -115,7 +122,7 @@ export default {
   loadData: ({ dispatch }) => dispatch(fetchMyEvents())
 }
 const FloatLeft = styled(Col)`
-  position: static !important;
+  position: static!important;
   top: 3.5rem;
   left: 0rem;
   ${mediaQueries.lg`
@@ -123,7 +130,8 @@ const FloatLeft = styled(Col)`
   `}
 `
 const MainCol = styled(Col)`
-  ${mediaQueries.lg`
+  /* margin: 0; */
+  /* ${mediaQueries.lg`
   padding-right: 2rem;
-  `}
+  `} */
 `

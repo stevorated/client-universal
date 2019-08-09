@@ -44,8 +44,8 @@ export class CalanderPage extends Component {
         this.props.fetchCalanderEvents(payload.data)
         break
       case 'followEventAction':
-        // console.log('fetchCalanderEvents')
-        this.props.followEventAction(payload.data)
+        // console.log('followEventAction')
+        this.props.followEventAction(payload.data, payload.event)
         break
       default:
         console.log('unKnownAction', type, payload)
@@ -56,7 +56,7 @@ export class CalanderPage extends Component {
   render() {
     return (
       <Fragment>
-        <Row data-test="mainDiv" className="mb-0 pb-5">
+        <Row data-test="mainDiv" className="mb-0">
           <HelmetComponent
             data-test="helmet"
             pageTitle={this.title}
@@ -72,6 +72,7 @@ export class CalanderPage extends Component {
           >
             <CalanderContainer
               data-test="calanderContainer"
+              myId={this.props.auth.id}
               calander={this.props.calander}
               handleAction={this.handleAction}
               name={this.fname}

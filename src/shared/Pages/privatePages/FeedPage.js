@@ -24,6 +24,18 @@ export class FeedPage extends Component {
   constructor(props) {
     super(props)
     this.title = 'Feed'
+    this.state = {
+      loadMore: true,
+      fadeOutLoader: false
+    }
+  }
+
+  setLoadMore = (res) => {
+    this.setState({ loadMore: res })  
+  }
+
+  setFadeoutLoader = (res) => {
+    this.setState({ fadeOutLoader: res })  
   }
   
   handleAction = (type, payload) => {
@@ -80,6 +92,10 @@ export class FeedPage extends Component {
             myAvatar={this.props.auth.avatar && this.props.auth.avatar.url}
             posts={this.props.feed}
             handleAction={this.handleAction}
+            loadMore={this.state.loadMore}
+            setLoadMore={this.setLoadMore}
+            fadeOutLoader={this.state.fadeOutLoader}
+            setFadeoutLoader={this.setFadeoutLoader}
           />
         </Col>
         <Col

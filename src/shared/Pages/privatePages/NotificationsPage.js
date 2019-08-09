@@ -21,16 +21,19 @@ export class NotificationsPage extends Component {
   constructor(props) {
     super(props)
     this.title = 'notifications'
+    this.state = {
+      loadMore: true
+    }
   }
 
   handleAction = (type, payload) => {
     switch (type) {
       case 'fetchMyNotifications':
-        console.log('fetchMyNotifications')
+        // console.log('fetchMyNotifications')
         this.props.fetchMyNotifications(payload.data, payload.count)
         break
       case 'fetchFirstNotifications':
-        console.log('fetchFirstNotifications')
+        // console.log('fetchFirstNotifications')
         this.props.fetchFirstNotifications(payload.data)
         break
       default:
@@ -38,7 +41,12 @@ export class NotificationsPage extends Component {
         break
     }
   }
-
+  setLoadMore = (data) => {
+    setTimeout(() => {
+      this.setState({ loadMore: data })
+    }, 500);
+    
+  }
   render() {
     return (
       <Row data-test="mainDiv" className="text-center">
@@ -56,6 +64,7 @@ export class NotificationsPage extends Component {
           className="offset-lg-3 order-3 order-lg-2 animated fadeIn"
         >
           <LiveNotification
+            data-test="liveNotificationContainer"
             handleAction={this.handleAction}
             myNotifications={this.props.myNotifications}
             seen={this.props.auth.seen}
@@ -67,6 +76,8 @@ export class NotificationsPage extends Component {
             handleAction={this.handleAction}
             seen={this.props.auth.seen}
             myId={this.props.auth.id}
+            setLoadMore={this.setLoadMore}
+            loadMore={this.state.loadMore}
           />
         </Col>
       </Row>

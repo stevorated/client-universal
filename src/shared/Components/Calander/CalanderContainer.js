@@ -26,10 +26,11 @@ function CalanderContainer(props) {
       }
     >
       {({ loading, error, data, fetchMore }) => {
-        // if (loading) return <Loading customLoader="true" size="8" margin="8" />
+        if (loading) return <Loading style={{position: 'absolute', top: '50vh'}} customLoader="true" size="8" margin="8" />
         if (error) return <Loading size="1" margin="1" />
         return (
         <Calander
+        myId={props.myId}
         handleAction={props.handleAction}
         handleChangeMonth={props.handleChangeMonth}
         handleChangeDayFocus={props.handleChangeDayFocus}
@@ -38,6 +39,7 @@ function CalanderContainer(props) {
         events={props.calander} 
         targetMonth={props.targetMonth}
         />
+        
         )
       }}
     </Query>

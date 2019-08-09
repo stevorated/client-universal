@@ -10,11 +10,11 @@ function CalanderDayEvents(props) {
   const renderQuery = () => {
       return props.events.map((event) => {
         const { id } = event
-        return (<Event handleAction={props.handleAction} key={`day-events-${id}`} {...event} />)
+        return (<Event className="mx-0" myId={props.myId} handleAction={props.handleAction} key={`day-events-${id}`} {...event} />)
       })
     }
     return (
-      <div id="cander-day-events" className="mx-md-2 animated slideInTop">
+      <div id="cander-day-events" className="mx-md-2 animated fadeIn slideInTop">
         <CustomCardColumns md={6} xl={4}>
           {renderQuery()}
         </CustomCardColumns>
@@ -26,7 +26,6 @@ export default CalanderDayEvents
 
 
 const CustomCardColumns = styled(CardColumns)`
-
 -moz-column-count:    1;
 -webkit-column-count: 1;
 column-count:         1;

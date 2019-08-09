@@ -10,7 +10,6 @@ import { black } from "../../Utils"
 export default function EventGoingItem(props) {
   // console.log(props)
   const {id, avatar, fname, lname} = props.follower
-  console.log(fname, lname)
   return (
     <Col className="d-flex" xs={3}>
     <Link
