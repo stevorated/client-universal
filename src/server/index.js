@@ -71,7 +71,7 @@ app.get('*', async (req, res) => {
     })
 
   await Promise.all(promises).then(() => {
-    console.log(promises)
+    // console.log(promises)
     const context = {}
     
     if (context.url) {

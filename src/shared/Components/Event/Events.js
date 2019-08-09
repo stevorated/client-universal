@@ -8,6 +8,7 @@ function Events(props) {
   // console.log(props)
   const { events } = props
   const renderQuery = () => {
+    if(!events.length) return <p>You Haven't created any yet <br/> click the Create button to create one</p>
     return events.map((event) => {
       
       const { id } = event
