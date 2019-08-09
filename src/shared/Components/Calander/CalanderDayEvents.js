@@ -14,7 +14,7 @@ function CalanderDayEvents(props) {
       })
     }
     return (
-      <div id="cander-day-events" className="mx-md-2 animated fadeIn slideInTop">
+      <div id="cander-day-events" className="mx-md-2 animated fadeIn slideInTop my-3">
         <CustomCardColumns md={6} xl={4}>
           {renderQuery()}
         </CustomCardColumns>

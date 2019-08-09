@@ -11,6 +11,7 @@ import { FlatCardStatic } from '../../Elements'
 import { orange } from '../../Utils'
 
 const EventBoard = props => {
+  // console.log(props)
   return (
     <Query
       query={FETCH_MY_EVENTS}

@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment, createRef } from 'react'
 import { Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { HelmetComponent, CalanderContainer, Events } from '../../Components'
+import { HelmetComponent, CalanderContainer, Events, ScrollTo } from '../../Components'
 import { fetchCalanderEvents, followEventAction } from '../../Store/actions'
 import requireAuth from '../../HOC/requireAuth'
 import checkLoggedIn from '../../HOC/checkLoggedIn'
@@ -13,6 +13,7 @@ import { mediaQueries } from '../../Utils'
 export class CalanderPage extends Component {
   constructor(props) {
     super(props)
+    this.ref = createRef()
     this.title = 'Calander'
     this.fname = this.props.auth.fname
     this.state = {
@@ -30,11 +31,19 @@ export class CalanderPage extends Component {
     this.setState({ targetMonth: target, dayInFocus: null, eventsInFocus: [] })
   }
 
+  scrollToBottom = (ref) => {
+    // console.log('scrolll')
+    ref.current.scrollIntoView({ behavior: 'smooth' })
+  }
+
   handleChangeDayFocus = (events, date) => {
     this.setState({ loading: true, eventsInFocus: events, dayInFocus: date })
     setTimeout(() => {
       this.setState({ loading: false })
     }, 2000)
+    setTimeout(()=> {
+      this.scrollToBottom(this.ref)
+    }, 500)
   }
 
   handleAction = (type, payload) => {
@@ -90,6 +99,7 @@ export class CalanderPage extends Component {
               eventsInFocus={this.state.eventsInFocus}
               loading={this.state.loading}
             />
+            <ScrollTo scroll={this.ref} />
           </Col>
         </Row>
       </Fragment>

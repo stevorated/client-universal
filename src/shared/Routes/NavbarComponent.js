@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react"
+import React, { useState, Fragment, createRef } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { connect } from "react-redux"
 import {
@@ -8,7 +8,7 @@ import {
   Nav,
   NavItem
 } from "reactstrap"
-import { SearchBar, LiveNotificationCount } from "../Components"
+import { SearchBar, LiveNotificationCount, ScrollTo } from "../Components"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -29,12 +29,17 @@ function NavbarComponent(props) {
     whereTo,
     clearNewNotifications
   } = props
-
+  const scroll = createRef()
+  const scrollToTop = (ref) => {
+    // console.log('scrolll')
+    ref.current.scrollIntoView({ behavior: 'smooth' })
+  }
   const [collapsed, toggleNavbar] = useState(false)
 
   const handleToggleNav = () => toggleNavbar(!collapsed)
 
   const handleClick = () => {
+    scrollToTop(scroll)
     if (collapsed === true) {
       toggleNavbar(!collapsed)
     }
@@ -89,6 +94,9 @@ function NavbarComponent(props) {
   )
   return (
     <Fragment>
+      <div style={{position: 'absolute', top: '-10vh', height: '0'}}>
+        <ScrollTo scroll={scroll} />
+      </div>
       <Navbar
         className="text-capitalize "
         color="dark"

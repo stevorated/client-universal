@@ -29,6 +29,7 @@ import EventExtra from './Event/EventExtra'
 import CalanderContainer from './Calander/CalanderContainer'
 import LiveNotification from './Notifications/LiveNotification'
 import LiveNotificationCount from './Notifications/LiveNotificationCount'
+import ScrollTo from './Fragment/ScrollTo'
 import {
   PostForm,
   Posts,
@@ -79,5 +80,6 @@ export {
   EventExtra,
   CalanderContainer,
   LiveNotificationCount,
-  LiveNotification
+  LiveNotification,
+  ScrollTo
 }

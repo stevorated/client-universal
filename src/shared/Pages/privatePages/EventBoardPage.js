@@ -40,19 +40,19 @@ class EventBoardPage extends Component {
   handleAction = (type, payload) => {
     switch (type) {
       case 'fetchMyNextEvents':
-        console.log('fetchMyNextEvents')
+        // console.log('fetchMyNextEvents')
         this.props.fetchMyNextEvents(payload.data)
         break
       case 'fetchMyEvents':
-        console.log('fetchMyEvents')
+        // console.log('fetchMyEvents')
         this.props.fetchMyEvents(payload.data, payload.count)
         break
       case 'createEventAction':
-        console.log('createEventAction')
+        // console.log('createEventAction')
         this.props.createEventAction(payload.data)
         break
       case 'followEventAction':
-        console.log('followEventAction')
+        // console.log('followEventAction')
         this.props.followEventAction(payload.data, payload.event)
         break
       default:

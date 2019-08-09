@@ -37,7 +37,7 @@ const EventFeed = props => {
                 props.handleAction('fetchEvents', {
                 data: [...fetchMoreResult.getEventsFeed]
               })
-              }, 500)
+              }, 100)
               
             }
           })

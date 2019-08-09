@@ -16,7 +16,7 @@ import FollowEventMut from "./FollowEventMut"
 import moment from "moment"
 
 function Event(props) {
-  // console.log(props)
+  // console.log(followers, myId)
   const {
     myId,
     id,
