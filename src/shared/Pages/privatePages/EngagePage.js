@@ -10,7 +10,7 @@ import Menu from '../../Routes/Menu'
 
 import { mediaQueries } from '../../Utils'
 
-class EngagePage extends Component {
+export class EngagePage extends Component {
 
   constructor (props) {
     super(props)
@@ -19,27 +19,26 @@ class EngagePage extends Component {
 
   render() {
     return(
-      <Row className="">
-        <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
-        <FloatLeft lg="3">
+      <Row data-test="mainDiv" className="">
+        <HelmetComponent data-test="helmet" pageTitle={this.title} ogTitle={this.title} />
+        <FloatLeft data-test="leftCol" lg="3">
           <Menu />
         </FloatLeft>
-        <Col lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
+        <Col data-test="mainCol" lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
         </Col>
-        <Col lg="3" className="order-2 order-lg-3 mt-2 animated fadeIn">
+        <Col data-test="rightCol" lg="3" className="order-2 order-lg-3 mt-2 animated fadeIn">
         </Col>
       </Row>
     )
   } 
 }
 
-function mapStateToProps({ users, posts, feed }) {
-  return { users, posts, feed }
+function mapStateToProps({  }) {
+  return {  }
 }
 
 export default {
-  component: connect(mapStateToProps, {fetchFeed, clearFeed, logoutUser})(checkLoggedIn(requireAuth(EngagePage))),
-  loadData: ({ dispatch }) => dispatch(fetchFeed())
+  component: connect(mapStateToProps, {})(checkLoggedIn(requireAuth(EngagePage)))
 }
 const FloatLeft = styled(Col)`
   position: static!important;

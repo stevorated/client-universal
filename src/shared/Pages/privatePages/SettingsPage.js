@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { HelmetComponent } from '../../Components'
@@ -8,9 +8,9 @@ import requireAuth from '../../HOC/requireAuth'
 import checkLoggedIn from '../../HOC/checkLoggedIn'
 import Menu from '../../Routes/Menu'
 
-import { mediaQs, mediaQueries } from '../../Utils'
+import { mediaQueries } from '../../Utils'
 
-class SettingsPage extends Component {
+export class SettingsPage extends Component {
 
   constructor (props) {
     super(props)
@@ -25,28 +25,27 @@ class SettingsPage extends Component {
 
   render() {
     return(
-      <Row className="text-center">
-        <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
-        <FloatLeft lg="3">
+      <Row data-test="mainDiv" className="text-center">
+        <HelmetComponent data-test="helmet" pageTitle={this.title} ogTitle={this.title} />
+        <FloatLeft data-test="leftCol" lg="3">
           <Menu />
         </FloatLeft>
-        <Col lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
+        <Col data-test="mainCol" lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
           <h1>SETTINGS</h1>
         </Col>
-        <Col lg="3" className="order-2 order-lg-3 mt-2 animated fadeIn">
+        <Col data-test="rightCol" lg="3" className="order-2 order-lg-3 mt-2 animated fadeIn">
         </Col>
       </Row>
     )
   } 
 }
 
-function mapStateToProps({ users, posts, feed }) {
-  return { users, posts, feed }
+function mapStateToProps({ }) {
+  return { }
 }
 
 export default {
-  component: connect(mapStateToProps, {fetchFeed, clearFeed, logoutUser})(checkLoggedIn(requireAuth(SettingsPage))),
-  loadData: ({ dispatch }) => dispatch(fetchFeed())
+  component: connect(mapStateToProps, {})(checkLoggedIn(requireAuth(SettingsPage)))
 }
 const FloatLeft = styled(Col)`
   position: static!important;

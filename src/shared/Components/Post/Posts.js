@@ -11,7 +11,8 @@ function Posts(props) {
     myId,
     posts,
     mode,
-    myAvatar
+    myAvatar,
+    show
   } = props
 
   const renderQuery = () => {
@@ -30,6 +31,7 @@ function Posts(props) {
         const avatarUrl = myPost ? myAvatarUrl : postAvatarUrl
         return (
           <Post
+            data-test="post"
             myId={props.myId}
             myAvatar={props.myAvatar}
             key={key}
@@ -39,7 +41,7 @@ function Posts(props) {
             feedMode={true}
             post={post}
             mode={mode}
-            
+            show={show}
             handleAction={props.handleAction}
 
             // likePostAction={props.likePostAction}

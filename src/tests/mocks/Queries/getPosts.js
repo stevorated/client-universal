@@ -1,16 +1,6 @@
 import { FETCH_FEED } from '../../../shared/Store/Apollo/Queries'
 
-export const FETCH_FEED_MOCK = [
-  {
-    request: {
-      query: FETCH_FEED,
-      variables: { limit: 5, skip: 0 }
-    },
-    result: {
-      data: { getPosts }
-    }
-  }
-]
+
 
 export const getPosts = [
   {
@@ -372,5 +362,17 @@ export const getPosts = [
       ]
     },
     comments: []
+  }
+]
+
+export const FETCH_FEED_MOCK = [
+  {
+    request: {
+      query: FETCH_FEED,
+      variables: { limit: 5, skip: 0 }
+    },
+    result: {
+      data: { getPosts }
+    }
   }
 ]

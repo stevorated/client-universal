@@ -8,6 +8,7 @@ import { FETCH_FEED } from "../../Store/Apollo/Queries"
 import styled from "styled-components"
 
 const SinglePostContainer = props => {
+  // console.log(props)
   return (
     <Query
       query={FETCH_FEED}
@@ -22,6 +23,7 @@ const SinglePostContainer = props => {
         return (
           <StyledDiv className="text-center">
             <Posts
+              data-test="posts"
               mode="singlePost"
               myId={props.myId}
               myAvatar={props.myAvatar}
@@ -37,14 +39,7 @@ const SinglePostContainer = props => {
   )
 }
 
-const mapStateToProps = ({ singlePost, auth }) => {
-  return { singlePost, auth }
-}
-
-export default connect(
-  mapStateToProps,
-  { fetchPost }
-)(SinglePostContainer)
+export default SinglePostContainer
 
 const StyledDiv = styled.div`
   margin: 0;

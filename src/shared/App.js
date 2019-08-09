@@ -11,6 +11,9 @@ import ScrollToTop from './Elements/ScrollToTop'
 // }
 
 function App(props) {
+  const { auth, feed } = props
+  // console.log(JSON.stringify(auth))
+  // console.log(JSON.stringify(feed))
   // console.log(props)
   try {
     if (!props.auth) props.fetchCurrentUser()
@@ -34,8 +37,8 @@ function App(props) {
   )
 }
 
-const mapStateToProps = ({ auth }) => {
-  return { auth }
+const mapStateToProps = ({ auth, feed }) => {
+  return { auth, feed }
 }
 
 export default {

@@ -15,17 +15,18 @@ function NextUpFeedContainer (props) {
       fetchPolicy='cache-and-network'
       query={FETCH_NEXT_EVENTS}
       variables={{ limit: 5, skip: 0 }}
-      onCompleted={
-        ({ getEvents }) => {
-          props.fetchNextEvents(getEvents)
-        }
-      }
+      // onCompleted={
+      //   ({ getEvents }) => {
+      //     props.handleAction('fetchNextEvents', { data: getEvents })
+      //     // props.fetchNextEvents(getEvents)
+      //   }
+      // }
     >
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <Loading size="1" margin="1" />
         if (error) return <Loading size="1" margin="1" />
         return (
-          <EventTable events={data.getEvents} />
+          <EventTable myId={props.myId} events={data.getEvents} />
         )
       }}
     </Query>
@@ -33,8 +34,4 @@ function NextUpFeedContainer (props) {
 
 }
 
-const mapStateToProps = ({ events, myEvents, nextEvents }) => {
-  return { events, myEvents, nextEvents }
-}
-
-export default connect(mapStateToProps, { fetchNextEvents })(NextUpFeedContainer)
+export default NextUpFeedContainer

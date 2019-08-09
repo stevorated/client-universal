@@ -6,10 +6,11 @@ import { Container, Row, Col, CardColumns } from 'reactstrap'
 import { mediaQueries } from '../../Utils'
 
 function CalanderDayEvents(props) {
+  // console.log(props)
   const renderQuery = () => {
       return props.events.map((event) => {
         const { id } = event
-        return (<Event key={`day-events-${id}`} {...event} />)
+        return (<Event handleAction={props.handleAction} key={`day-events-${id}`} {...event} />)
       })
     }
     return (
@@ -21,12 +22,7 @@ function CalanderDayEvents(props) {
     )
   }
 
-function mapStateToProps({ }) {
-
-  return { }
-}
-
-export default connect(mapStateToProps)(CalanderDayEvents)
+export default CalanderDayEvents
 
 
 const CustomCardColumns = styled(CardColumns)`

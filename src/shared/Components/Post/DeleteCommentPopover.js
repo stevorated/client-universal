@@ -29,7 +29,7 @@ export default class DeleteCommentPopover extends Component {
         }}>
         <UncontrolledPopover
           backdrop="true"
-          className="text-capitalized"
+          className="text-capitalized animated fadeIn"
           placement="top-end"
           isOpen={this.state.counter >= 1 && this.state.showPopUp}
           triger="focus"

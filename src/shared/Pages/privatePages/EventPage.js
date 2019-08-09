@@ -7,12 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUndo } from '@fortawesome/free-solid-svg-icons'
 
 import { HelmetComponent } from '../../Components'
-import { fetchFeed, clearFeed, logoutUser } from '../../Store/actions'
+import { followEventAction, fetchEvent } from '../../Store/actions'
 import requireAuth from '../../HOC/requireAuth'
 import checkLoggedIn from '../../HOC/checkLoggedIn'
 import { EventDetailsQuery } from '../../Components'
 import Menu from '../../Routes/Menu'
-import { mediaQueries, backClr, elevation } from '../../Utils'
+import { mediaQueries, elevation } from '../../Utils'
 
 
 class EventPage extends Component {
@@ -30,33 +30,47 @@ class EventPage extends Component {
     this.setState({ redirect: true })
   }
 
+  handleAction = (type, payload) => {
+    switch (type) {
+      case 'fetchEvent':
+        console.log('fetchEvent')
+        this.props.fetchEvent(payload.data)
+        break
+      case 'followEventAction':
+        console.log('followEventAction')
+        this.props.followEventAction(payload.data)
+        break
+      default:
+        console.log('unKnownAction', type, payload)
+        break
+    }
+  }
   render() {
     return this.state.redirect ? <Redirect to="/calander" /> : (
-      <Row >
-        <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
-        <FloatButton className="text-center animated flipInX">
+      <Row data-test="mainDiv">
+        <HelmetComponent data-test="helmet" pageTitle={this.title} ogTitle={this.title} />
+        <FloatButton data-test="floatBtn" className="text-center animated flipInX">
           <Button style={{ borderRadius: '100%', padding: '1rem' }} className="btn-mainclr" onClick={() => this.props.history.push('/notifications')}>
             <FontAwesomeIcon icon={faUndo} size="lg" />
           </Button>
         </FloatButton>
-        <FloatLeft lg="3">
+        <FloatLeft data-test="leftCol" lg="3">
           <Menu />
         </FloatLeft>
-        <MainCol lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
-          <EventDetailsQuery id={this.id}  />
+        <MainCol data-test="mainCol" lg="6" className="offset-lg-3 order-3 order-lg-2 animated fadeIn" >
+          <EventDetailsQuery myId={this.props.auth.id} id={this.id} handleAction={this.handleAction}  />
         </MainCol>
       </Row>
     )
   }
 }
 
-function mapStateToProps({ users, posts, feed }) {
-  return { users, posts, feed }
+function mapStateToProps({ auth }) {
+  return { auth }
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchFeed, clearFeed, logoutUser })(checkLoggedIn(requireAuth(EventPage))),
-  loadData: ({ dispatch }) => dispatch(fetchFeed())
+  component: connect(mapStateToProps, { fetchEvent, followEventAction })(checkLoggedIn(requireAuth(EventPage)))
 }
 const FloatLeft = styled(Col)`
   position: static!important;

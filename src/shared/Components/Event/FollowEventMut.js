@@ -21,7 +21,8 @@ function FollowEventMut(props) {
           mutation={FOLLOW_EVENT_MUT}
           variables={{ event }}
           onCompleted={async ({ followEvent }) => {
-            props.followEventAction(followEvent, event)
+            // props.followEventAction(followEvent, event)
+            props.handleAction('followEventAction', { data: followEvent, event })
             setIFollow(!iFollow)
           }}
         // refetchQueries={[{ query: FETCH_FEED }, { query: GET_MA_POSTS }]}

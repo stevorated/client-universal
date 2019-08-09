@@ -11,7 +11,7 @@ import { Line, DateSquare, DateSquareStyle } from '../../Elements'
 import { black, elevation, transition, formatDateAndDay, formatDate } from '../../Utils'
 
 function EventDetails(props) {
-  const { auth } = props
+  const { myId } = props
   const { id, name, venue, address, description, startDate, startTime, coverPhoto, createdBy, followers } = props.data
   const date = formatDate(startDate)
   return (
@@ -19,7 +19,7 @@ function EventDetails(props) {
       <CardImg top src={coverPhoto && `${process.env.API_BASE}${coverPhoto.url}`} alt="card img" />
       <CardBody style={{minHeight: '50vh', position: 'relative'}}>
         <div style={{position: 'absolute', right: '1rem'}}>
-          <FollowEventMut myId={auth.id} followers={followers} event={id} />
+          <FollowEventMut handleAction={props.handleAction} myId={myId} followers={followers} event={id} />
         </div>
         <div className="d-flex">
           <DateSquareStyle>
@@ -55,11 +55,7 @@ function EventDetails(props) {
   )
 }
 
-function mapStateToProps({ auth }) {
-  return { auth }
-}
-
-export default connect(mapStateToProps)(EventDetails)
+export default EventDetails
 
 const CreatedAt = styled.p`
 font-size: .6rem;

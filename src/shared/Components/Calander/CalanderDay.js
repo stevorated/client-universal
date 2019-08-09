@@ -36,7 +36,7 @@ export default function CalanderDay(props) {
 
       const thumbnil = `${process.env.API_BASE}${event.thumbnil.url}`
       return redirect ? <Redirect key={`${event.id}-redirect`} to={`/event/${event.id}`} /> : (
-        <DayEvent key={event.id} className={`text-left lo-text`}>
+        <DayEvent  data-test="calanderDay" key={event.id} className={`text-left lo-text`}>
           <div
             id={`event-day-div-${event.id}`}
             className="py-2 mx-2"
@@ -66,7 +66,7 @@ export default function CalanderDay(props) {
   const styledDay = date > day && day !== null && month === currentMonth ? 'dayGray' : ''
   return (
     <BorderCol key={`${day}-calander`} className={`${styledDay} ${active}`} onClick={loadDay}>
-      <DayNumber className={`ml-1`}>{day}</DayNumber>
+      <DayNumber data-test="dayNumber" className={`ml-1`}>{day}</DayNumber>
       {day && <div style={{ marginTop: '2rem' }}>
         {renderEvents()}
       </div>}

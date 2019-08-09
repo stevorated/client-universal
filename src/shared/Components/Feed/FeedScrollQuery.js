@@ -14,7 +14,8 @@ const FeedScrollQuery = props => {
       query={FETCH_FEED}
       variables={{ limit: 5, skip: 0 }}
       onCompleted={({ getPosts }) => {
-        if (!props.posts.length) {  
+        if (!props.posts.length) {
+          // console.log(getPosts)  
           props.handleAction('fetchFeed', {data: getPosts, count: props.posts.length})
         }
       }}
@@ -32,7 +33,7 @@ const FeedScrollQuery = props => {
           })
         }
         if (loading) return <Loading />
-        if (error) return <Loading />
+        if (error) return <p>{error}</p>
         return (
           <StyledDiv className="text-center">
             <PostFormContainer 

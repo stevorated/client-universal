@@ -1,23 +1,16 @@
-import React, { Component, Fragment, useState } from 'react'
-import { connect } from 'react-redux'
+import React, { Fragment } from 'react'
 import { Mutation, ApolloConsumer } from 'react-apollo'
 import { Button } from 'reactstrap'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faBeer } from '@fortawesome/free-solid-svg-icons'
-// import { Loading } from '../'
+import styled from 'styled-components'
+import { Loading } from '../'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLightbulb, faTired } from '@fortawesome/free-solid-svg-icons'
 import { FOLLOW_USER_MUT } from '../../Store/Apollo/Mutaions'
-// import { GET_MA_POSTS, FETCH_FEED } from '../../Store/Apollo/Queries'
-import { followUserAction } from '../../Store/actions'
 import { orange } from '../../Utils'
 
 function FollowUserMut(props) {
-  const { user, followers, followUserAction, myId } = props
-  // console.log(followers)
-  const iLike = followers && followers.length && followers.filter(
-    follow => {
-    return follow.id === myId
-    }).length > 0
-    ? true : false
+  const { iLike, user, followers, followUserAction, myId, handleAction } = props
+  // console.log(props)
   return (
     <ApolloConsumer>
       {client => (
@@ -25,19 +18,44 @@ function FollowUserMut(props) {
           mutation={FOLLOW_USER_MUT}
           variables={{ id: user }}
           onCompleted={async ({ follow }) => {
-            followUserAction(follow, user)
+            handleAction('followUserAction', { follow, user })
           }}
-          // refetchQueries={[{ query: FETCH_FEED }, { query: GET_MA_POSTS }]}
         >
           {(follow, { loading, error, called }) => {
-            
+            if (loading) return <Loading margin=".4" size="1" />
             if (error) {
               for (let err of error.graphQLErrors) {
                 // console.log(`${err.extensions.exception.errors}`)
               }
             }
-            if(iLike) return <Button size="sm" className="btn-mainclr mt-2 ml-1" onClick={follow}>unfollow</Button>
-            return <Button size="sm" outline style={{color: orange, outlineColor: orange, borderColor: orange}} className="mt-2 ml-1" onClick={follow}>follow</Button>
+            if (iLike)
+              return (
+                <LikeButtonOn
+                  size="sm"
+                  outline
+                  className="text-capitalize mx-2 ml-1 animated flipInX"
+                  onClick={follow}
+                >
+                  be tired
+                  <UnlikeButtonIcon className="ml-2" icon={faTired} size="1x" />
+                </LikeButtonOn>
+              )
+            return (
+              <LikeButtonOff
+                size="md"
+                className="text-capitalize btn-mainclr ml-1 my-1 animated flipInX"
+                onClick={follow}
+              >
+                be inspired
+                <FontAwesomeIcon
+
+                  color="yellow"
+                  className="ml-2"
+                  icon={faLightbulb}
+                  size="lg"
+                />
+              </LikeButtonOff>
+            )
           }}
         </Mutation>
       )}
@@ -45,4 +63,27 @@ function FollowUserMut(props) {
   )
 }
 
-export default connect(undefined, { followUserAction })(FollowUserMut)
+export default FollowUserMut
+
+const LikeButtonOff = styled(Button)`
+  &:active {
+    background: none !important;
+  }
+  &:focus {
+    background: none;
+  }
+
+  &:hover {
+    /* background: none; */
+  }
+`
+const LikeButtonOn = styled(Button)`
+  transition: all 0.1s ease;
+  &:hover {
+    font-size: 1rem;
+  }
+`
+
+const UnlikeButtonIcon = styled(FontAwesomeIcon)`
+  /* font-size: .2rem; */
+`

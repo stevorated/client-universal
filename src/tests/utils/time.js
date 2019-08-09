@@ -1,3 +1,3 @@
-// exports.setTimeout = function() {
-//   return global.setTimeout.apply(global, arguments);
-// };
+exports.setTimeout = function() {
+  return global.setTimeout.apply(global, arguments);
+};

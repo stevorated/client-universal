@@ -15,7 +15,6 @@ import PrivacyPolicy from './privacyPolicy/PrivacyPolicy'
 import EventFormContainer from './Event/EventFormContainer'
 import EventForm from './Event/EventForm'
 import EventFormModal from './Event/EventFormModal'
-import MyEvents from './Event/MyEvents'
 import Event from './Event/Event'
 import Events from './Event/Events'
 import EventFeed from './Event/EventFeed'
@@ -28,6 +27,7 @@ import NotificationsContainer from './Notifications/NotificationsContainer'
 import SinglePostContainer from './Feed/SinglePostContainer'
 import EventExtra from './Event/EventExtra'
 import CalanderContainer from './Calander/CalanderContainer'
+import LiveNotification from './Notifications/LiveNotification'
 import LiveNotificationCount from './Notifications/LiveNotificationCount'
 import {
   PostForm,
@@ -66,7 +66,6 @@ export {
   EventFormContainer,
   EventForm,
   EventFormModal,
-  MyEvents,
   Events,
   Event,
   EventFeed,
@@ -79,5 +78,6 @@ export {
   SinglePostContainer,
   EventExtra,
   CalanderContainer,
-  LiveNotificationCount
+  LiveNotificationCount,
+  LiveNotification
 }

@@ -42,6 +42,7 @@ function Post(props) {
         <CardBody>
           {myPost && (
             <DeletePostMutation
+              data-test="deletePostBtn"
               handleAction={props.handleAction}
               hideDeletedPost={hideDeletedPost}
               setHideDeletedPost={setHideDeletedPost}
@@ -121,9 +122,11 @@ function Post(props) {
       )}
       {showComments && (
         <Comments
+          data-test="comments"
           myId={props.myId}
           myAvatar={props.myAvatar}
           handleAction={props.handleAction}
+          setShowComments={setShowComments}
           comments={comments}
           id={id}
           post={id}

@@ -8,34 +8,29 @@ import { Loading } from '..'
 import { fetchNextEvents } from '../../Store/actions'
 import EventTable from './EventTable'
 
-function NextUpFeedContainerSide (props) {
-  const variables = props.byCreatedAt ? { limit: 5, skip: 0, byCreatedAt: true } : { limit: 5, skip: 0, byPopular: true }
+function NextUpFeedContainerSide(props) {
+  const variables = props.byCreatedAt
+    ? { limit: 5, skip: 0, byCreatedAt: true }
+    : { limit: 5, skip: 0, byPopular: true }
   return (
     <Query
       // fetchPolicy='network-only' // IMPORTANT
-      fetchPolicy='cache-and-network'
+      fetchPolicy="cache-and-network"
       query={FETCH_NEXT_EVENTS}
       variables={variables}
-      onCompleted={
-        ({ getEvents }) => {
-          props.fetchNextEvents(getEvents)
-        }
-      }
+      onCompleted={({ getEvents }) => {
+        // props.fetchNextEvents(getEvents)
+        // props.handleAction('fetchNextEvents', { data: getEvents })
+      }}
     >
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <Loading size="1" margin="1" />
         if (error) return <Loading size="1" margin="1" />
-        return (
-          <EventTable events={data.getEvents} />
-        )
+        return <EventTable events={data.getEvents} />
       }}
     </Query>
   )
-
 }
 
-const mapStateToProps = ({ events, myEvents, nextEvents }) => {
-  return { events, myEvents, nextEvents }
-}
 
-export default connect(mapStateToProps, { fetchNextEvents })(NextUpFeedContainerSide)
+export default NextUpFeedContainerSide

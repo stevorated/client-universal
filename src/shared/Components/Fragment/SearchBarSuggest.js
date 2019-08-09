@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { SmallLoading , Posts } from '..'
 import { Query } from 'react-apollo'
 import { SEARCH_USER } from '../../Store/Apollo/Queries'
-import { clearUsersPosts, clearUsersPostsAndRefetch } from '../../Store/actions'
+import { clearUsersPostsAndRefetch } from '../../Store/actions'
 import styled from 'styled-components'
 import { black, ceruleam, mediaQs } from '../../Utils'
 
@@ -65,10 +65,7 @@ function SearchBarSuggest(props) {
   )
 }
 
-const mapStateToProps = ({ profilePosts}) => {
-  return {profilePosts}
-}
-export default connect(mapStateToProps, { clearUsersPosts, clearUsersPostsAndRefetch })(SearchBarSuggest)
+export default connect(undefined, { clearUsersPostsAndRefetch })(SearchBarSuggest)
 
 
 const FlyingSuggest = styled.div `

@@ -32,9 +32,9 @@ import Avatar from "../../../assets/logos/new_logo.png"
 const imgAvatar = Avatar.replace("build", "").replace("/public", "")
 
 function EventGoing(props) {
-  const { data } = props
+  const { data, myId } = props
   const { followers } = data
-  const filteredFollowers = followers.filter((follower) => follower.id !== props.auth.id)
+  const filteredFollowers = followers.filter((follower) => follower.id !== myId)
   const slicedFollowers = sliceArray(filteredFollowers, 4)
   const rowAllowed = 2
   let rowCount = 0
@@ -71,11 +71,7 @@ function EventGoing(props) {
   )
 }
 
-function mapStateToProps({ auth }) {
-  return { auth }
-}
-
-export default connect(mapStateToProps)(EventGoing)
+export default EventGoing
 
 const CreatedAt = styled.p`
   font-size: 0.6rem;

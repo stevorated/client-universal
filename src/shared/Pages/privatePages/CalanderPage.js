@@ -1,24 +1,24 @@
-import React, { Component, Fragment } from "react"
-import { Row, Col } from "reactstrap"
-import styled from "styled-components"
-import { connect } from "react-redux"
-import { HelmetComponent, CalanderContainer, Events } from "../../Components"
-import { fetchCurrentUser, logoutUser } from "../../Store/actions"
-import requireAuth from "../../HOC/requireAuth"
-import checkLoggedIn from "../../HOC/checkLoggedIn"
-import Menu from "../../Routes/Menu"
-import moment from "moment"
-import { mediaQueries } from "../../Utils"
+import React, { Component, Fragment } from 'react'
+import { Row, Col } from 'reactstrap'
+import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { HelmetComponent, CalanderContainer, Events } from '../../Components'
+import { fetchCalanderEvents, followEventAction } from '../../Store/actions'
+import requireAuth from '../../HOC/requireAuth'
+import checkLoggedIn from '../../HOC/checkLoggedIn'
+import Menu from '../../Routes/Menu'
+import moment from 'moment'
+import { mediaQueries } from '../../Utils'
 
-class CalanderPage extends Component {
+export class CalanderPage extends Component {
   constructor(props) {
     super(props)
-    this.title = "Calander"
+    this.title = 'Calander'
     this.fname = this.props.auth.fname
     this.state = {
       targetMonth: moment()
-        .startOf("M")
-        .format("YYYY-MM-DD"),
+        .startOf('M')
+        .format('YYYY-MM-DD'),
       dayInfocus: null,
       eventsInFocus: [],
       loading: false
@@ -37,20 +37,43 @@ class CalanderPage extends Component {
     }, 2000)
   }
 
+  handleAction = (type, payload) => {
+    switch (type) {
+      case 'fetchCalanderEvents':
+        // console.log('fetchCalanderEvents')
+        this.props.fetchCalanderEvents(payload.data)
+        break
+      case 'followEventAction':
+        // console.log('fetchCalanderEvents')
+        this.props.followEventAction(payload.data)
+        break
+      default:
+        console.log('unKnownAction', type, payload)
+        break
+    }
+  }
+
   render() {
     return (
       <Fragment>
-        <Row className="mb-0 pb-5">
-          <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
-          <FloatLeft lg="3">
+        <Row data-test="mainDiv" className="mb-0 pb-5">
+          <HelmetComponent
+            data-test="helmet"
+            pageTitle={this.title}
+            ogTitle={this.title}
+          />
+          <FloatLeft data-test="leftCol" lg="3">
             <Menu />
           </FloatLeft>
           <Col
+            data-test="mainCol"
             lg="9"
             className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-3"
           >
             <CalanderContainer
-              className=""
+              data-test="calanderContainer"
+              calander={this.props.calander}
+              handleAction={this.handleAction}
               name={this.fname}
               targetMonth={this.state.targetMonth}
               // dayInfocus={this.state.dayInfocus}
@@ -59,9 +82,9 @@ class CalanderPage extends Component {
               dayInFocus={
                 this.state.eventsInFocus.length
                   ? parseInt(
-                      moment(this.state.eventsInFocus[0].startDate).format("DD")
+                      moment(this.state.eventsInFocus[0].startDate).format('DD')
                     )
-                  : ""
+                  : ''
               }
               eventsInFocus={this.state.eventsInFocus}
               loading={this.state.loading}
@@ -73,18 +96,15 @@ class CalanderPage extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth }
+function mapStateToProps({ auth, calander }) {
+  return { auth, calander }
 }
 
 export default {
   component: connect(
     mapStateToProps,
-    { logoutUser }
-  )(requireAuth(checkLoggedIn(CalanderPage))),
-  loadData: ({ dispatch }) => {
-    dispatch(fetchCurrentUser())
-  }
+    { fetchCalanderEvents, followEventAction }
+  )(requireAuth(checkLoggedIn(CalanderPage)))
 }
 
 const FloatLeft = styled(Col)`

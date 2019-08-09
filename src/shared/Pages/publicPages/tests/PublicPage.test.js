@@ -6,7 +6,7 @@ import 'jest-styled-components'
 import configureStore from 'redux-mock-store'
 
 import { PublicPage } from '../PublicPage'
-import { findByTestAttr } from '../../../tests/utils'
+import { findByTestAttr } from '../../../../tests/utils'
 
 const initialState = {}
 const mockStore = configureStore()

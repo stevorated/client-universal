@@ -10,8 +10,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import { Loading } from "../"
 import { LIKE_POST_MUT } from "../../Store/Apollo/Mutaions"
-import { GET_MA_POSTS, FETCH_FEED } from "../../Store/Apollo/Queries"
-import { likePostAction } from "../../Store/actions"
 
 function LikePostMut(props) {
   const { post, likes, myId } = props
@@ -40,9 +38,10 @@ function LikePostMut(props) {
                   className="btn-mainclr ml-2 px-2"
                   onClick={likePost}
                 >
-                  {likes.length} Likes
+                  {likes.length} Cheers
                   {iLike ? (
                     <FontAwesomeIcon
+                      data-test="likedIcon"
                       icon={faBeer}
                       className="ml-2 text-warning"
                     />
@@ -70,13 +69,15 @@ function LikePostMut(props) {
             return (
               <Fragment>
                 <Button
+                  data-test="likePostBtn"
                   size="sm"
                   className="btn-mainclr ml-2 px-2"
                   onClick={likePost}
                 >
-                  {likes.length} Likes
+                  {likes.length} Cheers
                   {iLike ? (
                     <FontAwesomeIcon
+                      data-test="likedIcon"
                       icon={faBeer}
                       className="ml-2 text-warning"
                     />

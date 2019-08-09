@@ -199,6 +199,21 @@ export const REGISTER_USER_MUT = gql`
     fname
     lname
     username
+    avatar {
+      url
+    }
+    posts {
+      id
+    }
+    following {
+      id
+    }
+    followers {
+      id
+    }
+    seen {
+      id
+    }
   }
 }
 `

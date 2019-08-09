@@ -5,11 +5,12 @@ import { Event } from '../../Components'
 import { mediaQueries } from '../../Utils'
 
 function Events(props) {
+  // console.log(props)
   const { events } = props
   const renderQuery = () => {
     return events.map((event) => {
       const { id } = event
-      return (<Event key={`events-${id}`} {...event} />)
+      return (<Event key={`events-${id}`} {...event} handleAction={props.handleAction} />)
     })
   }
     return (

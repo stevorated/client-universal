@@ -240,8 +240,8 @@ function RegisterForm({ state, handleFormState, register, errors }) {
               <p 
               style={{ 
                 border: '2px solid black', 
-                background: red}} 
-              className="text-capitalize smallText mt-2 p-1">
+                }} 
+              className="text-capitalize smallText bg-warning mt-2 p-1">
               <span
               style={{fontWeight: '700'}} >
                 yeah, it's good enough 

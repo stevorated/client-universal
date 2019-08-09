@@ -27,4 +27,4 @@ function EventTable(props) {
   )
 }
 
-export default connect(undefined, { })(EventTable)
+export default EventTable

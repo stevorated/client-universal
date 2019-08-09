@@ -18,8 +18,6 @@ import styled from "styled-components"
 
 export default function PostForm(props) {
   const {
-    id,
-    errors,
     state,
     setFormState,
     createPost
@@ -46,8 +44,6 @@ export default function PostForm(props) {
 
   const handleOnChange = e => {
     setShowError(false)
-    // setShowError(false)
-    setFormState({ retry: false })
     const value = e.target.value
     const name = e.target.name
     const newData = {
@@ -62,6 +58,7 @@ export default function PostForm(props) {
           <CardSubtitle className="mb-1">Share Your Wisdom</CardSubtitle>
           <Form onSubmit={handleSubmit}>
             <StyledInput
+              data-test="postFormInput"
               id="post_form_input"
               value={state.body}
               invalid={showError}
@@ -73,6 +70,7 @@ export default function PostForm(props) {
               rows="2"
             />
             <FormFeedback
+              data-test="postFormError"
               style={{ top: '50%', right: '0' }}
               tooltip
               placement="left"
@@ -81,7 +79,7 @@ export default function PostForm(props) {
               Wisdom must be between 2 and 500 lettes long
             </FormFeedback>
             <div className="d-flex">
-              <Button size="sm" className="btn-mainclr px-4 m-auto px-2">
+              <Button data-test="postBtn" size="sm" className="btn-mainclr px-4 m-auto px-2">
                 Post
               </Button>
             </div>

@@ -25,12 +25,7 @@ export class FeedPage extends Component {
     super(props)
     this.title = 'Feed'
   }
-  // fetchFeed,
-  // createPost,
-  // deletePostAction,
-  // likePostAction,
-  // deleteCommentAction,
-  // pushComment
+  
   handleAction = (type, payload) => {
     switch (type) {
       case 'fetchFeed':
@@ -85,12 +80,6 @@ export class FeedPage extends Component {
             myAvatar={this.props.auth.avatar && this.props.auth.avatar.url}
             posts={this.props.feed}
             handleAction={this.handleAction}
-            fetchPosts={this.props.fetchFeed}
-            createPost={this.props.createPost}
-            deletePostAction={this.props.deletePostAction}
-            deleteCommentAction={this.props.deleteCommentAction}
-            likePostAction={this.props.likePostAction}
-            pushComment={this.props.pushComment}
           />
         </Col>
         <Col

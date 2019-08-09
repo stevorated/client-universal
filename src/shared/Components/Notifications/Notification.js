@@ -212,9 +212,9 @@ export default function Notification(props) {
   }
 
   const count =
-    props.auth.seen &&
-    props.auth.seen.length &&
-    props.auth.seen.filter(item => {
+    props.seen &&
+    props.seen.length &&
+    props.seen.filter(item => {
       return item.id === originId
     }).length
   const checkSeen = count ? true : false
@@ -223,6 +223,7 @@ export default function Notification(props) {
     <Redirect to={whereTo} />
   ) : (
     <HoverCard
+      data-test="notification"
       className={`mt-2 ${checkSeen ? "" : "bgNewNotification"}`}
       style={{ cursor: "pointer" }}
       onClick={setRedirect}

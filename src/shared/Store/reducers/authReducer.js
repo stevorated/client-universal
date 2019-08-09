@@ -24,19 +24,25 @@ export default (state = null, { payload, type }) => {
       return { ...state, posts: newposts }
     case 'FOLLOW_USER':
       const userObjArray = [{ id: payload.userId }]
-      const filtered = state.following.filter((follow) => { return follow.id === payload.userId})
-      if(filtered.length > 0) {
-        return {
+      const filtered = state.following && state.following.length && state.following.filter((follow) => { return follow.id === payload.userId})
+      if(filtered === undefined) return {
+        ...state,
+        following: [userObjArray]
+      }
+      if(filtered) {
+        const res = {
           ...state,
           following: state.following.filter(follow => {
             return follow.id !== payload.userId
           })
         }
+        return res
       } else {
-        return {
+        const res = {
           ...state,
           following: userObjArray.concat(state.following)
         }
+        return res
       }
     default:
       return state

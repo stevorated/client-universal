@@ -14,19 +14,21 @@ const EventBoard = props => {
       variables={{ limit: 6, skip: 0 }}
       onCompleted={({ getMyEventsFeed }) => {
         if (!props.events.length) {
-          props.fetchMyEvents(getMyEventsFeed, props.events.length)
+          props.handleAction('fetchMyEvents', { data: getMyEventsFeed, count: props.events.length })
+          // props.fetchMyEvents(getMyEventsFeed, props.events.length)
         }
       }}
     >
       {({ loading, error, data, fetchMore }) => {
-        const handleFatchMore = () => {
+        const handleFetchMore = () => {
           fetchMore({
             variables: {
               skip: props.events.length
             },
             updateQuery: (prev, { fetchMoreResult }) => {
               if (!fetchMoreResult) return prev
-              props.fetchMyEvents([...fetchMoreResult.getMyEventsFeed])
+              props.handleAction('fetchMyEvents', { data: [...fetchMoreResult.getMyEventsFeed], count: props.events.length })
+              // props.fetchMyEvents([...fetchMoreResult.getMyEventsFeed])
             }
           })
         }
@@ -49,11 +51,11 @@ const EventBoard = props => {
                 opacity: "0.5"
               }}
             />
-            <Events events={props.events} />
+            <Events handleAction={props.handleAction} events={props.events} myId={props.myId} />
             <Button
               size="sm"
               className="my-5 btn-mainclr"
-              onClick={handleFatchMore}
+              onClick={handleFetchMore}
             >
               Load More
             </Button>

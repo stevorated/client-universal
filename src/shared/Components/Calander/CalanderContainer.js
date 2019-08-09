@@ -21,15 +21,16 @@ function CalanderContainer(props) {
             event.day = parseInt(moment(event.startDate).format('D'))
             return event
           })
-          props.fetchCalanderEvents(data)
+          props.handleAction('fetchCalanderEvents', { data })
         }
       }
     >
       {({ loading, error, data, fetchMore }) => {
-        if (loading) return <Loading customLoader="true" size="8" margin="8" />
+        // if (loading) return <Loading customLoader="true" size="8" margin="8" />
         if (error) return <Loading size="1" margin="1" />
         return (
         <Calander
+        handleAction={props.handleAction}
         handleChangeMonth={props.handleChangeMonth}
         handleChangeDayFocus={props.handleChangeDayFocus}
         eventsInFocus={props.eventsInFocus} 
@@ -43,10 +44,4 @@ function CalanderContainer(props) {
   )
 }
 
-
-
-const mapStateToProps = ({ calander }) => {
-  return { calander }
-}
-
-export default connect(mapStateToProps, { fetchCalanderEvents })(CalanderContainer)
+export default CalanderContainer

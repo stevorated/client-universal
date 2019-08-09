@@ -6,20 +6,20 @@ import { Loading } from '..'
 import { fetchMyNextEvents } from '../../Store/actions'
 import EventTable from './EventTable'
 
-function NextUpBoardContainerSide(props) { 
-  const variables = props.suggested ? { limit: 5, skip: 0, suggested: true } : { limit: 5, skip: 0, past: true }
+function NextUpBoardContainerSide(props) {
+  const variables = props.suggested
+    ? { limit: 5, skip: 0, suggested: true }
+    : { limit: 5, skip: 0, past: true }
   return (
     <Query
       // fetchPolicy='network-only' // IMPORTANT
-      fetchPolicy='cache-and-network'
+      fetchPolicy="cache-and-network"
       query={FETCH_MY_NEXT_EVENTS}
       variables={variables}
       // onError={(e)=> console.log('ERROR')}
-      onCompleted={
-        ({ getMyEvents }) => {
-          props.fetchMyNextEvents(getMyEvents)
-        }
-      }
+      // onCompleted={({ getMyEvents }) => {
+      //   // props.handleAction('fetchMyNextEvents', { data: getMyEvents })
+      // }}
     >
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <Loading size="1" margin="1" />
@@ -30,10 +30,4 @@ function NextUpBoardContainerSide(props) {
   )
 }
 
-
-
-const mapStateToProps = ({ events, myEvents, nextBoardEvents }) => {
-  return { events, myEvents, nextBoardEvents }
-}
-
-export default connect(mapStateToProps, { fetchMyNextEvents })(NextUpBoardContainerSide)
+export default NextUpBoardContainerSide

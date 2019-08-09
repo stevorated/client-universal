@@ -18,7 +18,7 @@ const EventDetailsQuery = (props) => {
       variables={{id: props.id}}
       onCompleted={
         ({ getEventsFeed }) => {
-          props.fetchEvent(getEventsFeed)
+          props.handleAction('fetchEvent', { data: getEventsFeed })
         }
       }
     >
@@ -29,8 +29,8 @@ const EventDetailsQuery = (props) => {
       
         return (
           <StyledDiv className="text-center">
-            <EventDetails data={data.getEventsFeed[0]} />
-            <EventGoing data={data.getEventsFeed[0]} />
+            <EventDetails handleAction={props.handleAction} myId={props.myId} data={data.getEventsFeed[0]} />
+            <EventGoing myId={props.myId} data={data.getEventsFeed[0]} />
             
           </StyledDiv>
         )
@@ -39,11 +39,7 @@ const EventDetailsQuery = (props) => {
   )
 }
 
-const mapStateToProps = ({ event }) => {
-  return { event }
-}
-
-export default connect(mapStateToProps, { fetchEvent })(EventDetailsQuery)
+export default EventDetailsQuery
 
 const StyledDiv = styled.div `
   margin: 0;

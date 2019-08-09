@@ -17,10 +17,9 @@ import requireAuth from '../../HOC/requireAuth'
 import checkLoggedIn from '../../HOC/checkLoggedIn'
 import { HelmetComponent, SinglePostContainer } from '../../Components'
 import Menu from '../../Routes/Menu'
-import NavComponent from '../../Routes/NavComponent'
-import { mediaQueries, backClr, elevation } from '../../Utils'
-import { FlatCard } from '../../Elements'
-class SinglePostPage extends Component {
+import { mediaQueries, elevation } from '../../Utils'
+
+export class SinglePostPage extends Component {
   constructor(props) {
     super(props)
     this.id = props.match.params.id
@@ -39,10 +38,6 @@ class SinglePostPage extends Component {
       case 'fetchPost':
         // console.log('handleFetchPost')
         this.props.fetchPost(payload.data)
-        break
-      case 'createPost':
-        // console.log('handleCreatePost')
-        this.props.createPost(payload.data)
         break
       case 'deletePostAction':
         // console.log('handleDeletePostAction')
@@ -68,12 +63,13 @@ class SinglePostPage extends Component {
 
   render() {
     return this.state.redirect ? (
-      <Redirect to="/notifications" />
+      <Redirect data-test="redirect" to="/notifications" />
     ) : (
-      <Row>
-        <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
-        <FloatButton className="text-center animated flipInX">
+      <Row data-test="mainDiv">
+        <HelmetComponent data-test="helmet" pageTitle={this.title} ogTitle={this.title} />
+        <FloatButton data-test="floatBtn" className="text-center animated flipInX">
           <Button
+            data-test="backBtn"
             style={{ borderRadius: '100%', padding: '.7rem' }}
             className="btn-mainclr ml-auto"
             onClick={this.redirectBack}
@@ -81,24 +77,21 @@ class SinglePostPage extends Component {
             <FontAwesomeIcon icon={faBell} size="2x" />
           </Button>
         </FloatButton>
-        <FloatLeft lg="3">
+        <FloatLeft data-test="leftCol" lg="3">
           <Menu />
         </FloatLeft>
         <MainCol
+          data-test="mainCol"
           lg="9"
           className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-5 mt-2"
         >
           <SinglePostContainer
+            data-test="singlePostContainer"
             id={this.id}
             myId={this.props.auth.id}
             myAvatar={this.props.auth.avatar && this.props.auth.avatar.url}
-
+            singlePost={this.props.singlePost}
             handleAction={this.handleAction}
-
-            posts={this.props.singlePost}
-            deletePostAction={this.props.deletePostAction}
-            deleteCommentAction={this.props.deleteCommentAction}
-            likePostAction={this.props.likePostAction}
           />
         </MainCol>
       </Row>

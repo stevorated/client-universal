@@ -61,6 +61,7 @@ class PostFormContainer extends Component {
               return (
                 <Fragment>
                   <PostForm
+                    data-test="post-form"
                     id={this.props.id}
                     state={this.state}
                     setFormState={this.handleFormState}

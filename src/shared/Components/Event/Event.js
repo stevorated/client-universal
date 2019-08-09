@@ -16,7 +16,9 @@ import FollowEventMut from "./FollowEventMut"
 import moment from "moment"
 
 function Event(props) {
+  // console.log(props)
   const {
+    myId,
     id,
     coverPhoto,
     name,
@@ -57,11 +59,12 @@ function Event(props) {
             To Event
           </Button>
           <FollowEventMut
+            handleAction={props.handleAction}
             className="ml-auto"
             size="2x"
             followers={followers || []}
             event={id}
-            myId={props.auth.id}
+            myId={myId}
           />
         </div>
       </CardBody>
@@ -69,13 +72,8 @@ function Event(props) {
   )
 }
 
-//
 
-function mapStateToProps({ auth }) {
-  return { auth }
-}
-
-export default connect(mapStateToProps)(Event)
+export default Event
 
 const CreatedAt = styled.p`
   font-size: 0.6rem;

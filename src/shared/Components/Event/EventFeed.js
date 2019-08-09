@@ -16,7 +16,8 @@ const EventFeed = props => {
       variables={{ limit: 6, skip: 0 }}
       onCompleted={({ getEventsFeed }) => {
         if (!props.events.length) {
-          props.fetchEvents(getEventsFeed, props.events.length)
+          props.handleAction('fetchEvents', { data: getEventsFeed, count: props.events.length })
+          // props.fetchEvents(getEventsFeed, props.events.length)
         }
       }}
     >
@@ -28,7 +29,8 @@ const EventFeed = props => {
             },
             updateQuery: (prev, { fetchMoreResult }) => {
               if (!fetchMoreResult) return prev
-              props.fetchEvents([...fetchMoreResult.getEventsFeed])
+              // props.fetchEvents([...fetchMoreResult.getEventsFeed])
+              props.handleAction('fetchEvents', { data: [...fetchMoreResult.getEventsFeed] })
             }
           })
         }
@@ -51,7 +53,7 @@ const EventFeed = props => {
                 opacity: "0.5"
               }}
             />
-            <Events eventFeedMode events={props.events} />
+            <Events handleAction={props.handleAction} myId={props.myId} eventFeedMode events={props.events} />
             <Button
               size="sm"
               className="my-5 btn-mainclr"

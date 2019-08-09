@@ -24,13 +24,14 @@ import { mediaQueries } from '../../Utils'
 import Avatar from '../../../assets/logos/new_logo.png'
 const deafultImage = Avatar.replace('build', '').replace('/public', '')
 
-class ProfilePage extends Component {
+export class ProfilePage extends Component {
   constructor(props) {
     super(props)
     this.title = 'Profile Page'
     this.state = {
       redirect: false
     }
+    
     // console.log(this.props)
   }
 
@@ -84,10 +85,11 @@ class ProfilePage extends Component {
 
 
   render() {
+    const { auth, profilePosts, profileDetails, posts } = this.props
     return this.state.redirect ? (
       <Redirect to="/event-board" />
     ) : (
-      <Row className="animated fadeIn">
+      <Row data-test="mainDiv" className="animated fadeIn">
         <FloatButton className="text-center animated flipInX">
           <Button
             style={{ borderRadius: '100%', padding: '.7rem' }}
@@ -97,31 +99,26 @@ class ProfilePage extends Component {
             <FontAwesomeIcon icon={faHome} size="2x" />
           </Button>
         </FloatButton>
-        <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
-        <FloatLeft lg="3">
+        <HelmetComponent data-test="helmet" pageTitle={this.title} ogTitle={this.title} />
+        <FloatLeft data-test="leftCol" lg="3">
           <ProfileContainer
           
-          
+          details={auth}
+          auth={auth}
+          profileDetails={profileDetails}
+          profilePosts={profilePosts}
           />
         </FloatLeft>
-        <Col lg="6" className="offset-lg-3 order-3 order-lg-2">
+        <Col lg="6" data-test="mainCol" className="offset-lg-3 order-3 order-lg-2">
           <ScrollContainer
-            myId={this.props.auth.id}
-            myAvatar={this.props.auth.avatar && this.props.auth.avatar.url}
-            posts={this.props.posts}
-            fetchPosts={this.props.fetchMyPosts}
-            fetchMoreMyPosts={this.props.fetchMoreMyPosts}
-
+            data-test="scroll"
+            myId={auth.id}
+            myAvatar={auth.avatar && auth.avatar.url}
+            posts={posts}
             handleAction={this.handleAction}
-
-            createPost={this.props.createPost}
-            deletePostAction={this.props.deletePostAction}
-            likePostAction={this.props.likePostAction}
-            deleteCommentAction={this.props.deleteCommentAction}
-            pushComment={this.props.pushComment}
           />
         </Col>
-        <Col lg="3" className="order-2 order-lg-3 mt-lg-3 mt-1">
+        <Col lg="3" data-test="rightCol" className="order-2 order-lg-3 mt-lg-3 mt-1">
           <InfoContainer />
           <InfoContainer />
           <InfoContainer />
@@ -131,8 +128,8 @@ class ProfilePage extends Component {
   }
 }
 
-function mapStateToProps({ auth, posts }) {
-  return { auth, posts }
+function mapStateToProps({ auth, posts, profilePosts, profileDetails }) {
+  return { auth, posts, profilePosts, profileDetails }
 }
 
 export default {

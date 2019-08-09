@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Container, Row, Col } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
+
 import { ProfileScrollContainer } from '../../Components'
 import Menu from '../../Routes/Menu'
 import { HelmetComponent, ProfileContainer } from '../../Components'
@@ -8,7 +9,9 @@ import styled from 'styled-components'
 import { mediaQs } from '../../Utils'
 import checkLoggedIn from '../../HOC/checkLoggedIn'
 import requireAuth from '../../HOC/requireAuth'
+import { FeedActivity, FeedExtraRight } from '../../Components/Feed'
 import {
+  followUserAction,
   fetchUsersPosts,
   clearUsersPosts,
   createPost,
@@ -17,7 +20,6 @@ import {
   deleteCommentAction,
   pushComment
 } from '../../Store/actions'
-import { FeedActivity, FeedExtraRight } from '../../Components/Feed'
 
 export class UserProfilePage extends Component {
   constructor(props) {
@@ -28,15 +30,11 @@ export class UserProfilePage extends Component {
       id: props.match.params.id
     }
   }
+
   componentWillUnmount = () => {
     this.props.clearUsersPosts()
   }
-  // fetchUsersPosts,//
-  // createPost, //
-  // deletePostAction, //
-  // likePostAction, //
-  // deleteCommentAction, //
-  // pushComment //
+
   handleAction = (type, payload) => {
     switch (type) {
       case 'fetchUsersPosts':
@@ -63,6 +61,10 @@ export class UserProfilePage extends Component {
         // console.log('handleDeleteCommentAction')
         this.props.deleteCommentAction(payload.comment, payload.post)
         break
+      case 'followUserAction':
+        // console.log('handleFollowUserAction')
+        this.props.followUserAction(payload.follow, payload.user)
+        break
       default:
         console.log('unKnownAction', type, payload)
         break
@@ -70,29 +72,31 @@ export class UserProfilePage extends Component {
   }
 
   render() {
+    const { auth, profileDetails } = this.props
     return (
-      <Row className="animated fadeIn">
-        <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
-        <FloatLeft lg="3">
+      <Row data-test="mainDiv" className="animated fadeIn">
+        <HelmetComponent data-test="helmet" pageTitle={this.title} ogTitle={this.title} />
+        <FloatLeft data-test="leftCol" lg="3">
           <Menu />
         </FloatLeft>
-        <Col lg="6" className="offset-xl-3 order-3 order-lg-2">
-          <ProfileContainer id={this.id} profileMode={true} createPost={this.props.createPost} />
+        <Col data-test="mainCol" lg="6" className="offset-xl-3 order-3 order-lg-2">
+          <ProfileContainer 
+            id={this.id} 
+            myId={this.props.auth.id}
+            details={profileDetails}
+            auth={auth}
+            profileMode={true}
+            handleAction={this.handleAction}
+          />
           <ProfileScrollContainer
             id={this.id}
             myId={this.props.auth.id}
             myAvatar={this.props.auth.avatar && this.props.auth.avatar.url}
             posts={this.props.profilePosts}
-            fetchPosts={this.props.fetchUsersPosts}
-            createPost={this.props.createPost}
-            deletePostAction={this.props.deletePostAction}
-            likePostAction={this.props.likePostAction}
-            deleteCommentAction={this.props.deleteCommentAction}
-            pushComment={this.props.pushComment}
             handleAction={this.handleAction}
           />
         </Col>
-        <Col lg="3" className="order-2 order-lg-3 mt-lg-3">
+        <Col data-test="rightCol" lg="3" className="order-2 order-lg-3 mt-lg-3">
           <FeedActivity />
           <FeedExtraRight />
           <FeedExtraRight />
@@ -102,14 +106,15 @@ export class UserProfilePage extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, profilePosts }) => {
-  return { auth, profilePosts }
+const mapStateToProps = ({ auth, profilePosts, profileDetails }) => {
+  return { auth, profilePosts, profileDetails }
 }
 
 export default {
   component: connect(
     mapStateToProps,
     {
+      followUserAction,
       fetchUsersPosts,
       clearUsersPosts,
       createPost,

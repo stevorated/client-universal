@@ -13,25 +13,20 @@ function NextUpBoardContainer(props) {
       fetchPolicy='cache-and-network'
       query={FETCH_MY_NEXT_EVENTS}
       variables={{ limit: 5, skip: 0, followed: true }}
-      onCompleted={
-        ({ getMyEvents }) => {
-          props.fetchMyNextEvents(getMyEvents)
-        }
-      }
+      // onCompleted={
+      //   ({ getMyEvents }) => {
+      //     // props.handleAction('fetchMyNextEvents', { data: getMyEvents })
+      //     // props.fetchMyNextEvents(getMyEvents)
+      //   }
+      // }
     >
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <Loading size="1" margin="1" />
         if (error) return <Loading size="1" margin="1" />
-        return <EventTable events={data.getMyEvents} />
+        return <EventTable myId={props.myId} events={data.getMyEvents} />
       }}
     </Query>
   )
 }
 
-
-
-const mapStateToProps = ({ events, myEvents, nextBoardEvents }) => {
-  return { events, myEvents, nextBoardEvents }
-}
-
-export default connect(mapStateToProps, { fetchMyNextEvents })(NextUpBoardContainer)
+export default NextUpBoardContainer

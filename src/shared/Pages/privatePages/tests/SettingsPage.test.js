@@ -5,25 +5,25 @@ import renderer from 'react-test-renderer'
 import 'jest-styled-components'
 import configureStore from 'redux-mock-store'
 
-import { PreferencesPage } from '../PreferencesPage'
-import { findByTestAttr } from '../../../tests/utils'
+import { SettingsPage } from '../SettingsPage'
+import { findByTestAttr } from '../../../../tests/utils'
 
 const initialState = {}
 const mockStore = configureStore()
 let component, store, tree
 
 const setupShallowRender = (props = {}) => {
-  return shallow(<PreferencesPage />)
+  return shallow(<SettingsPage />)
 }
 
-describe('<PreferencesPage />', () => {
+describe('<SettingsPage />', () => {
   beforeEach(() => {
     //creates the store with any initial state or middleware needed
     store = mockStore(initialState)
     component = setupShallowRender()
     tree = renderer.create(
       <BrowserRouter>
-        <PreferencesPage store={store} />
+        <SettingsPage store={store} />
       </BrowserRouter>
     )
   })
@@ -31,8 +31,7 @@ describe('<PreferencesPage />', () => {
     expect(tree).toMatchSnapshot()
   })
   it('Should render witout errors', () => {
-    const mainDiv = findByTestAttr(component, 'main-div')
-
+    const mainDiv = findByTestAttr(component, 'mainDiv')
     expect(mainDiv.length).toBe(1)
   })
   it('Should render Cols components witout errors', () => {

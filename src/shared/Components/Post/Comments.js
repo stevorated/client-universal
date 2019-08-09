@@ -32,6 +32,7 @@ function Comments(props) {
       
       return (
         <Comment
+          data-test="comment"
           handleAction={props.handleAction}
           key={commentID}
           myId={myId}

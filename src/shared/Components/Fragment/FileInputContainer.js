@@ -96,11 +96,7 @@ function FileInputContainer(props) {
   )
 }
 
-function mapStateToProps({ auth }) {
-  return { auth }
-}
-
 export default connect(
-  mapStateToProps,
+  undefined,
   { uploadFile }
 )(FileInputContainer)
