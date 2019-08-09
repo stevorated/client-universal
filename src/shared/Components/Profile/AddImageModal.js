@@ -38,7 +38,8 @@ class AddImageModal extends React.Component {
           className={this.props.className}
         >
           <ModalHeader toggle={this.toggle}>Upload Profile Pic</ModalHeader>
-          <ModalBody>
+          <ModalBody
+          style={{ maxHeight: 'calc(95vh - 150px)', overflowY: 'auto' }}>
             <FileInputContainer
               limit="4000000"
               uploadType="avatar"
