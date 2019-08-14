@@ -20,7 +20,7 @@ import { mediaQueries } from '../../Utils'
 export class NotificationsPage extends Component {
   constructor(props) {
     super(props)
-    this.title = 'notifications'
+    this.title = 'Notifications'
     this.state = {
       loadMore: true
     }
@@ -41,9 +41,9 @@ export class NotificationsPage extends Component {
         break
     }
   }
-  setLoadMore = (data) => {
+  setLoadMore = (loadMore) => {
     setTimeout(() => {
-      this.setState({ loadMore: data })
+      this.setState({ loadMore })
     }, 500);
     
   }

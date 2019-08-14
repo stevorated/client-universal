@@ -16,8 +16,9 @@ import {
 import Loading from '../Fragment/Loading'
 
 export default function Calander(props) {
-  const { targetMonth, eventsInFocus } = props
-  const monthsOptions = makeMonthsArray('2019-07-01', 10)
+  const { targetMonth, eventsInFocus, oneMonthBack } = props
+
+  const monthsOptions = makeMonthsArray(oneMonthBack, 10)
   const targetMonthNum = moment(targetMonth).format('M')
   const startDay = dayOfWeek(targetMonth)
   const days = moment(targetMonth).daysInMonth()

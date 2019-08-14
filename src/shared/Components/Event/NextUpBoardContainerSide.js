@@ -24,7 +24,7 @@ function NextUpBoardContainerSide(props) {
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <Loading size="1" margin="1" />
         if (error) return <Loading size="1" margin="1" />
-        return <EventTable events={data.getMyEvents} />
+        return <EventTable handleAction={props.handleAction} events={data.getMyEvents} />
       }}
     </Query>
   )

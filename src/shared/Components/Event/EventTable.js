@@ -19,7 +19,7 @@ function EventTable(props) {
           </tr>
         </thead>
         <tbody>
-          <EventTableItems events={props.events} />
+          <EventTableItems handleAction={props.handleAction} events={props.events} />
         </tbody>
       </Table>
       {!props.events.length && <div className="py-3">None</div>}

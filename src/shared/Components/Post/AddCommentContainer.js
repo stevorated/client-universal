@@ -11,7 +11,6 @@ import { AddCommentForm, Loading } from '..'
 class AddCommentContainer extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props)
   }
   state = {
     formGood: false,

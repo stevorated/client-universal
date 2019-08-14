@@ -61,14 +61,14 @@ function LoginForm(props) {
               />
               {
                 formError &&
-                <FormFeedback className="mt-3"><strong>Wrong Details, check your password Or email</strong></FormFeedback>
+                <p style={{fontWeight: '900', fontSize: '1rem'}} className="text-danger mt-1">Wrong Details!</p>
               }
               {
                 formInvalid && 
-                <p>This can't really be it, check what you typed again plz</p>
+                <p  className='mt-1'>This can't really be it, check what you typed again plz</p>
               }
             </FormGroup>
-            <Button className="btn-mainclr">Sign In</Button>
+            <Button className="btn-mainclr mt-lg-2">Sign In</Button>
             <p className="pt-3 mt-3 text-capitalize">Don't Have an Acount yet?<br />no worries.. it's easy just click here to<Link className="sigmar-one orange-color-hover no-underline-hover" to="/register"> Register</Link></p>
           </Form>
         </Col>

@@ -7,6 +7,7 @@ import { fetchMyNextEvents } from '../../Store/actions'
 import EventTable from './EventTable'
 
 function NextUpBoardContainer(props) {  
+  // console.log(props)
   return (
     <Query
       // fetchPolicy='network-only' // IMPORTANT
@@ -21,9 +22,9 @@ function NextUpBoardContainer(props) {
       // }
     >
       {({ loading, error, data, fetchMore }) => {
-        if (loading) return <Loading size="1" margin="1" />
-        if (error) return <Loading size="1" margin="1" />
-        return <EventTable myId={props.myId} events={data.getMyEvents} />
+        if (loading) return <Loading customLoader="true" size="1" margin="1" />
+        if (error) return <Loading customLoader="true" size="1" margin="1" />
+        return <EventTable handleAction={props.handleAction} myId={props.myId} events={data.getMyEvents} />
       }}
     </Query>
   )

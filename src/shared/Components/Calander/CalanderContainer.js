@@ -14,32 +14,39 @@ function CalanderContainer(props) {
       // fetchPolicy='network-only' // IMPORTANT
       query={FETCH_CALANDER_EVENTS}
       variables={{ month: props.targetMonth }}
-      fetchPolicy='cache-and-network'
-      onCompleted={
-        ({ getMonthsEvents }) => {
-          const data = getMonthsEvents.map((event) => {
-            event.day = parseInt(moment(event.startDate).format('D'))
-            return event
-          })
-          props.handleAction('fetchCalanderEvents', { data })
-        }
-      }
+      fetchPolicy="cache-and-network"
+      onCompleted={({ getMonthsEvents }) => {
+        const data = getMonthsEvents.map(event => {
+          event.day = parseInt(moment(event.startDate).format('D'))
+          return event
+        })
+        props.handleAction('fetchCalanderEvents', { data })
+      }}
     >
       {({ loading, error, data, fetchMore }) => {
-        if (loading) return <Loading style={{position: 'absolute', top: '50vh'}} customLoader="true" size="8" margin="8" />
+        if (loading)
+          return (
+            <Loading
+              style={{ position: 'absolute', top: '50vh' }}
+              customLoader="true"
+              size="8"
+              margin="8"
+              noloadingtext="true"
+            />
+          )
         if (error) return <Loading size="1" margin="1" />
         return (
-        <Calander
-        myId={props.myId}
-        handleAction={props.handleAction}
-        handleChangeMonth={props.handleChangeMonth}
-        handleChangeDayFocus={props.handleChangeDayFocus}
-        eventsInFocus={props.eventsInFocus} 
-        loading={props.loading} 
-        events={props.calander} 
-        targetMonth={props.targetMonth}
-        />
-        
+          <Calander
+            myId={props.myId}
+            handleAction={props.handleAction}
+            handleChangeMonth={props.handleChangeMonth}
+            handleChangeDayFocus={props.handleChangeDayFocus}
+            eventsInFocus={props.eventsInFocus}
+            loading={props.loading}
+            events={props.calander}
+            targetMonth={props.targetMonth}
+            oneMonthBack={props.oneMonthBack}
+          />
         )
       }}
     </Query>

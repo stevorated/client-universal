@@ -3,6 +3,7 @@ const initialState = []
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case 'CREATE_POST':
+      if (!state.length) return payload
       if (state[0]) {
         return state[0].createdBy.id === payload[0].createdBy.id ? [...payload.concat(state)] : state
 
@@ -57,4 +58,3 @@ export default (state = initialState, { type, payload }) => {
       return state
   }
 }
-

@@ -6,6 +6,46 @@ export default (state = initialState, { type, payload }) => {
       return []
     case 'FETCH_FEED':
       return state === initialState ? payload : [...state.concat(payload)]
+    case 'UPDATE_CURRENT_USER':
+        const { fname, lname, username, bio } = payload
+        return state.map((post) => {
+          if(post.createdBy.id !== payload.id) return {
+            ...post,
+            comments: post.comments.map((comment)=> {
+              if (comment.createdBy.id !== payload.id) return comment
+              return {
+                ...comment,
+                createdBy: {
+                  ...comment.createdBy,
+                  fname,
+                  lname,
+                  username
+                }
+              }
+            })
+          }
+          return {
+            ...post,
+            createdBy: {
+              ...post.createdBy,
+              fname,
+              lname,
+              username
+            },
+            comments: post.comments.map((comment)=> {
+              if (comment.createdBy.id !== payload.id) return comment
+              return {
+                ...comment,
+                createdBy: {
+                  ...comment.createdBy,
+                  fname,
+                  lname,
+                  username
+                }
+              }
+            })
+          }
+        })
     case 'CREATE_POST':
       return [...payload.concat(state)]
     case 'LIKE_POST':

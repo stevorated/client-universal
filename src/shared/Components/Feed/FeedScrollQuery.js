@@ -38,7 +38,7 @@ const FeedScrollQuery = props => {
           })
         }
         if (loading) return <Loading />
-        if (error) return <p>{error}</p>
+        if (error) return null
         return (
           <StyledDiv className="text-center">
             <PostFormContainer
@@ -53,7 +53,7 @@ const FeedScrollQuery = props => {
               posts={props.posts}
               handleAction={props.handleAction}
             />
-            {props.loadMore && <InfiniteScroll
+            {props.loadMore && props.posts.length >= 5 && <InfiniteScroll
               children={[]}
               pageStart={0}
               loadMore={handlefetchMore}

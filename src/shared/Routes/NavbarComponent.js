@@ -53,10 +53,10 @@ function NavbarComponent(props) {
   }
 
   const handleLogout = async () => {
-    const res = await logoutUser()
     if (collapsed === true) {
       toggleNavbar(!collapsed)
     }
+    return logoutUser()
   }
 
   const authBtn = auth ? (
@@ -228,12 +228,12 @@ function NavbarComponent(props) {
                   <NavLink
                     className="nav-link"
                     onClick={handleClick}
-                    to="/setings"
+                    to="/settings"
                   >
-                    Setings
+                    Settings
                   </NavLink>
                 </StyledNavItem>
-                <StyledNavItem>
+                {/* <StyledNavItem>
                   <NavLink
                     className="nav-link"
                     onClick={handleClick}
@@ -241,7 +241,7 @@ function NavbarComponent(props) {
                   >
                     Prefrences
                   </NavLink>
-                </StyledNavItem>
+                </StyledNavItem> */}
               </Fragment>
             )}
             <NavItem>

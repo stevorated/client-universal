@@ -30,6 +30,13 @@ import CalanderContainer from './Calander/CalanderContainer'
 import LiveNotification from './Notifications/LiveNotification'
 import LiveNotificationCount from './Notifications/LiveNotificationCount'
 import ScrollTo from './Fragment/ScrollTo'
+import AlertComponent from './Fragment/AlertComponent'
+import UserSettingsFormContainer from './Settings/UserSettingsFormContainer'
+import ForgotPasswordContainer from './Settings/ForgotPasswordContainer'
+import ChangePasswordContainer from './Settings/ChangePasswordContainer'
+import ResetPasswordChangeForm from './Settings/ResetPasswordChangeForm'
+import ResetPasswordChangeFormContainer from './Settings/ResetPasswordChangeFormContainer'
+
 import {
   PostForm,
   Posts,
@@ -81,5 +88,11 @@ export {
   CalanderContainer,
   LiveNotificationCount,
   LiveNotification,
-  ScrollTo
+  ScrollTo,
+  AlertComponent,
+  UserSettingsFormContainer,
+  ForgotPasswordContainer,
+  ChangePasswordContainer,
+  ResetPasswordChangeForm,
+  ResetPasswordChangeFormContainer
 }

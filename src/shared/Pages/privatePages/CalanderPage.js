@@ -20,6 +20,9 @@ export class CalanderPage extends Component {
       targetMonth: moment()
         .startOf('M')
         .format('YYYY-MM-DD'),
+      oneMonthBack: moment()
+      .startOf('M').add(-2,'M')
+      .format('YYYY-MM-DD'),
       dayInfocus: null,
       eventsInFocus: [],
       loading: false
@@ -56,6 +59,10 @@ export class CalanderPage extends Component {
         // console.log('followEventAction')
         this.props.followEventAction(payload.data, payload.event)
         break
+      case 'redirect':
+        // console.log('followEventAction')
+        this.props.history.push(`/event/${payload.id}`)
+        break
       default:
         console.log('unKnownAction', type, payload)
         break
@@ -86,6 +93,7 @@ export class CalanderPage extends Component {
               handleAction={this.handleAction}
               name={this.fname}
               targetMonth={this.state.targetMonth}
+              oneMonthBack={this.state.oneMonthBack}
               // dayInfocus={this.state.dayInfocus}
               handleChangeMonth={this.handleChangeMonth}
               handleChangeDayFocus={this.handleChangeDayFocus}

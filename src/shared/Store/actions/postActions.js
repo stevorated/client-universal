@@ -9,12 +9,9 @@ export const fetchPost = (data) => async (dispatch, getState, client) => {
 }
 export const fetchMyPosts = (count = 5) => async (dispatch, getState, client) => {
   try {
-    if (count > 10) {
-      count = 10
-    }
     const { data } = await client.query({
       query: GET_MA_POSTS,
-      variables: { limit: count }
+      variables: { limit: 5 }
       // fetchPolicy: 'network-only'
     })
     dispatch({

@@ -42,7 +42,7 @@ const EventBoard = props => {
             }
           })
         }
-        if (loading) return <Loading />
+        {/* if (loading) return <Loading /> */}
         if (error) return <Loading />
         return (
           <FlatCardStatic className="mt-3 animated fadeIn slow">
@@ -66,7 +66,7 @@ const EventBoard = props => {
               events={props.events}
               myId={props.myId}
             />
-            {props.loadMore && (
+            {props.loadMore && props.events === 5 && (
               <InfiniteScroll
                 children={[]}
                 pageStart={0}

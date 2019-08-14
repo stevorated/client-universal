@@ -26,7 +26,7 @@ function NextUpFeedContainer (props) {
         if (loading) return <Loading size="1" margin="1" />
         if (error) return <Loading size="1" margin="1" />
         return (
-          <EventTable myId={props.myId} events={data.getEvents} />
+          <EventTable handleAction={props.handleAction} myId={props.myId} events={data.getEvents} />
         )
       }}
     </Query>

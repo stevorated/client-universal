@@ -1,13 +1,13 @@
 import React from 'react'
 import { orange } from '../../Utils'
-export default function NotFound() {
+export default function NotFound(props) {
   return (
     <div className="permission_denied animated fadeInDown turtle" style={{ paddingTop: '2px', overflowX: 'none' }}>
 
       <div id="particles-js" style={{ overflowX: 'none' }}></div>
       <div className="denied__wrapper" >
         <h1 >404</h1>
-        <h3>LOST IN <span>SPACE</span> Wisdom Of De Crowd?<br /> Hmm, looks like that page doesn't exist.</h3>
+        <h3>LOST IN <span>SPACE</span> Wisdom Of De Crowd?<br />{props.error}<br/><a href="/">Go Home...</a></h3>
 
         <svg id="planet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
           <circle className="saturn" cx="256" cy="256" r="149.536" fill="#FF4F54" />
@@ -47,4 +47,3 @@ export default function NotFound() {
     </div>
   )
 }
-

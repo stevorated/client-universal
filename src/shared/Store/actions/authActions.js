@@ -12,8 +12,15 @@ export const fetchCurrentUser = () => async (dispatch, getState, client) => {
     })
   } catch (e) {
 
-  }
-    
+  }   
+}
+
+export const updateCurrentUser = (data) => async (dispatch, getState, client) => {
+
+    dispatch({
+      type: 'UPDATE_CURRENT_USER', 
+      payload: data
+    })
 }
 
 export const registerUser = (data) => (dispatch, getState, client) => {
@@ -38,16 +45,19 @@ export const loginUser = (email, password) => async (dispatch, getState, client)
 
 export const logoutUser = () => async (dispatch, getState, client) => {
 
-  const {data} = await client.mutate({
+  await client.mutate({
     mutation: LOGOUT_USER
   })
-  dispatch({
-    type: 'LOGOUT_USER',
-    payload: null
-  })
+  setTimeout(()=> {
+    client.cache.reset()
+    client.resetStore()
+    dispatch({
+      type: 'LOGOUT_USER',
+      payload: null
+    })
+  }, 200)
+
   
-  client.cache.reset()
-  client.resetStore()
 }
 
 export const checkUserLoggedOut = () => async (dispatch, getState, client) => {

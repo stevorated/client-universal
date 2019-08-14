@@ -8,7 +8,7 @@ function Events(props) {
   // console.log(props)
   const { events } = props
   const renderQuery = () => {
-    if(!events.length) return <p>You Haven't created any yet <br/> click the Create button to create one</p>
+    if(!events.length) return null
     return events.map((event) => {
       
       const { id } = event
@@ -16,11 +16,12 @@ function Events(props) {
     })
   }
     return (
-      <Container>
+      <Container className="mt-3">
         <Row className="p-md-4 m-auto">
           <CustomCardColumns md={6} xl={4}>
             {renderQuery()}
           </CustomCardColumns>
+          {!renderQuery() && <p>You Haven't created any yet click the Create button to create one</p>}
         </Row>
       </Container> 
     )

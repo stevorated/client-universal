@@ -43,16 +43,11 @@ function Posts(props) {
             mode={mode}
             show={show}
             handleAction={props.handleAction}
-
-            // likePostAction={props.likePostAction}
-            // deleteCommentAction={props.deleteCommentAction}
-            // deletePostAction={props.deletePostAction}
-            // pushComment={props.pushComment}
           />
         )
       })
     } else {
-      return <Loading />
+      return <h4>You no posts Yet</h4>
     }
   }
   return (

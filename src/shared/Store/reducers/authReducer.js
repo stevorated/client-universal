@@ -3,6 +3,14 @@ export default (state = null, { payload, type }) => {
   switch (type) {
     case 'FETCH_CURRENT_USER':
       return payload.me || false
+    case 'UPDATE_CURRENT_USER':
+      return {
+        ...state,
+        fname: payload.fname,
+        lname: payload.lname,
+        username: payload.username,
+        bio: payload.bio
+      }
     case 'FETCH_MY_DETAILS':
       return payload.me || false
     case 'LOGIN_USER':

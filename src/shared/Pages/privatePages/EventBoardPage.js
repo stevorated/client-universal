@@ -16,7 +16,7 @@ class EventBoardPage extends Component {
   constructor(props) {
     super(props)
     this.menuItems = ['suggested', 'past']
-    this.title = 'EventBoard'
+    this.title = 'Event Board'
     this.state = {
       suggested: true,
       loadMore: true
@@ -24,8 +24,8 @@ class EventBoardPage extends Component {
     // console.log(this.props)
   }
 
-  setLoadMore = (res) => {
-    this.setState({ loadMore: res })  
+  setLoadMore = (loadMore) => {
+    this.setState({ loadMore })  
   }
 
   handleChangeState = value => {
@@ -55,6 +55,10 @@ class EventBoardPage extends Component {
         // console.log('followEventAction')
         this.props.followEventAction(payload.data, payload.event)
         break
+      case 'redirect':
+        // console.log('followEventAction')
+        this.props.history.push(`/event/${payload.id}`)
+        break
       default:
         console.log('unKnownAction', type, payload)
         break
@@ -70,7 +74,7 @@ class EventBoardPage extends Component {
         </FloatLeft>
         <MainCol
           lg="6"
-          className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-2"
+          className="offset-lg-3 order-3 order-lg-2 animated fadeIn"
         >
           <EventMainCard
             myId={this.props.auth.id}
@@ -89,7 +93,7 @@ class EventBoardPage extends Component {
             setLoadMore={this.setLoadMore}
           />
         </MainCol>
-        <Col lg="3" className="order-2 order-lg-3 mt-lg-2 mt-0 animated fadeIn">
+        <Col lg="3" className="order-2 order-lg-3 animated fadeIn">
           <EventExtra
             myId={this.props.auth.id}
             boardMode={true}

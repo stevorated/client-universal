@@ -4,7 +4,7 @@ import { orange } from "../../Utils"
 
 export default function Loading(props) {
   const { size, margin, customLoader, noloadingtext } = props
-  const finalSize = size ? size : 3
+  const finalSize = size ? size : 4
   const finalMargin = margin ? margin : 8
   return (
     <div className="text-center" style={{ margin: `${finalMargin}rem` }}>
@@ -24,7 +24,7 @@ export default function Loading(props) {
           {...props}
         />
       )}
-      {!noloadingtext && " Loading..."}
+      {!noloadingtext && <p>Loading...</p> }
     </div>
   )
 }

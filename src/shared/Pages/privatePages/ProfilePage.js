@@ -32,7 +32,7 @@ const deafultImage = Avatar.replace('build', '').replace('/public', '')
 export class ProfilePage extends Component {
   constructor(props) {
     super(props)
-    this.title = 'Profile Page'
+    this.title = 'Profile'
     this.scroll = createRef()
     this.state = {
       redirect: false,
@@ -40,12 +40,6 @@ export class ProfilePage extends Component {
     }
 
     // console.log(this.props)
-  }
-
-  componentDidMount() {
-    if (!this.props.posts.length) {
-      this.props.fetchMyPosts(this.props.posts.length)
-    }
   }
 
   redirectBack = () => {
@@ -61,7 +55,7 @@ export class ProfilePage extends Component {
     switch (type) {
       case 'fetchMyPosts':
         // console.log('fetchMyPosts')
-        this.props.fetchMyPosts(payload.data, payload.count)
+        // this.props.fetchMyPosts(payload.data, payload.count)
         break
       case 'fetchMoreMyPosts':
         // console.log('fetchMoreMyPosts')
@@ -93,8 +87,8 @@ export class ProfilePage extends Component {
     }
   }
 
-  setLoadMore = res => {
-    this.setState({ loadMore: res })
+  setLoadMore = loadMore => {
+    this.setState({ loadMore })
   }
 
   render() {
@@ -188,8 +182,8 @@ const FloatLeft = styled(Col)`
 `
 const FloatButton = styled.div`
   position: fixed !important;
-  bottom: 1vh;
-  right: 10vw;
+  bottom: 2vh;
+  right: 2vw;
   border-radius: 100%;
   z-index: 1;
   ${elevation[5]}

@@ -30,11 +30,8 @@ function Event(props) {
   } = props
 
   const when = moment(startDate).format("DD MMMM")
-  const [redirect, setRedirect] = useState(false)
-  
-  return redirect ? (
-    <Redirect to={`/event/${id}`} />
-  ) : (
+
+  return (
     <StyledCard className="p-1">
       <CardImg
         style={{ borderRadius: "5px 5px 0 0" }}
@@ -54,7 +51,7 @@ function Event(props) {
           <Button
             size="sm"
             className="mr-auto"
-            onClick={() => setRedirect(true)}
+            onClick={() => props.handleAction('redirect', { id })}
           >
             To Event
           </Button>

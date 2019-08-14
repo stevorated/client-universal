@@ -9,23 +9,25 @@ import FileInputContainer from '../Fragment/FileInputContainer'
 class AddImageModal extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      modal: false
-    }
+    // this.state = {
+    //   modal: false
+    // }
   }
 
-  toggle = () => {
-    this.setState(prevState => ({
-      modal: !prevState.modal
-    }))
-  }
+  // toggle = () => {
+  //   this.setState(prevState => ({
+  //     modal: !prevState.modal
+  //   }))
+  // }
 
   render() {
     return (
       <div>
-        <LittlePlusBtn onClick={this.toggle}>
-          {this.props.buttonLabel || <SmallIcon size="sm" icon={faPlus} />}
-        </LittlePlusBtn>
+        <LittlePlusBtnContainer>
+          <LittlePlusBtn onClick={this.props.toggle}>
+            {this.props.buttonLabel || <SmallIcon size="sm" icon={faPlus} />}
+          </LittlePlusBtn>
+        </LittlePlusBtnContainer>
         <Modal
           style={{
             marginTop: '60px',
@@ -33,8 +35,8 @@ class AddImageModal extends React.Component {
             maxHeight: '70vh'
           }}
           returnFocusAfterClose={false}
-          isOpen={this.state.modal}
-          toggle={this.toggle}
+          isOpen={this.props.modal}
+          toggle={this.props.toggle}
           className={this.props.className}
         >
           <ModalHeader toggle={this.toggle}>Upload Profile Pic</ModalHeader>
@@ -43,7 +45,7 @@ class AddImageModal extends React.Component {
             <FileInputContainer
               limit="4000000"
               uploadType="avatar"
-              toggle={this.toggle}
+              toggle={this.props.toggle}
               round={true}
             />
           </ModalBody>
@@ -56,20 +58,29 @@ class AddImageModal extends React.Component {
 export default AddImageModal
 
 const LittlePlusBtn = styled(Button)`
-  position: absolute;
+font-size: 1rem;
   background: ${black};
-  top: -0.5rem;
-  right: -1.2rem;
-  padding: 0.1rem 0.1rem;
+  padding: 0rem 0.3rem;
   z-index: 100;
-  margin: 3rem;
+  /* margin: .5rem; */
   border-radius: 100%;
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const SmallIcon = styled(FontAwesomeIcon)`
-  /* font-size: .7rem; */
-  display: block;
-  padding: 0.1rem;
-  padding: 0;
   color: yellow;
+  padding: 0rem;
+`
+const LittlePlusBtnContainer = styled.div`
+  position: absolute;
+  z-index: 100;
+  right: .3rem;
+  bottom: -.9rem;
+  /* margin: 3rem; */
+  border-radius: 100%;
+  &:hover {
+    cursor: pointer;
+  }
 `

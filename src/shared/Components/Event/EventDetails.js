@@ -17,7 +17,7 @@ function EventDetails(props) {
   return (
     <StyledCard>
       <CardImg top src={coverPhoto && `${process.env.API_BASE}${coverPhoto.url}`} alt="card img" />
-      <CardBody style={{minHeight: '50vh', position: 'relative'}}>
+      <CardBody style={{position: 'relative'}}>
         <div style={{position: 'absolute', right: '1rem'}}>
           <FollowEventMut handleAction={props.handleAction} myId={myId} followers={followers} event={id} />
         </div>

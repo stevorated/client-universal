@@ -10,7 +10,7 @@ function NotFoundPage({ staticContext = {} }) {
   return (
     <Fragment >
       <HelmetComponent pageTitle={title} ogTitle={title} />
-      <NotFound />
+      <NotFound error={` Hmm, looks like that page doesn't exist.`} />
     </Fragment>
   )
 }

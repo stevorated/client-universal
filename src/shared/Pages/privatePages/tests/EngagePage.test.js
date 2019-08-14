@@ -37,11 +37,9 @@ describe('<EngagePage />', () => {
   it('Should render Cols components witout errors', () => {
     const mainCol = findByTestAttr(component, 'mainCol')
     const leftCol = findByTestAttr(component, 'leftCol')
-    const rightCol = findByTestAttr(component, 'rightCol')
 
     expect(mainCol.length).toBe(1)
     expect(leftCol.length).toBe(1)
-    expect(rightCol.length).toBe(1)
   })
   it('Should render helmet component witout errors', () => {
     const helmet = findByTestAttr(component, 'helmet')

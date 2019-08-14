@@ -17,7 +17,9 @@ function DeletePostMutation(props) {
           variables={{ post }}
           onCompleted={async ({ deletePost }) => {
             if(deletePost) {
+              setTimeout(()=> {
               props.handleAction('deletePostAction', { data: props.post })
+              }, 200)
             }
           }}
           refetchQueries={[{ query: FETCH_FEED }, { query: GET_MA_POSTS }]}

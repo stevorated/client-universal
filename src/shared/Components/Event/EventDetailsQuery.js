@@ -9,7 +9,7 @@ import { FETCH_EVENTS } from '../../Store/Apollo/Queries'
 import styled from 'styled-components'
 import EventDetails from './EventDetails'
 import EventGoing from './EventGoing'
-
+import EventCardFeed from './EventCardFeed'
 const EventDetailsQuery = (props) => {
   return (
     <Query
@@ -31,7 +31,7 @@ const EventDetailsQuery = (props) => {
           <StyledDiv className="text-center">
             <EventDetails handleAction={props.handleAction} myId={props.myId} data={data.getEventsFeed[0]} />
             <EventGoing myId={props.myId} data={data.getEventsFeed[0]} />
-            
+            {/* <EventCardFeed /> */}
           </StyledDiv>
         )
       }}

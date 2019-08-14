@@ -13,7 +13,7 @@ const LiveNotificationCount = props => {
       // fetchPolicy='network-only' // IMPORTANT
       query={GET_NOTIFICATION_ARRAY}
       variables={{ limit: 10, skip: 0 }}
-      pollInterval={5000}
+      pollInterval={10000}
       onCompleted={({ getNotificationsCount }) => {
         props.countNewNotifications(getNotificationsCount, props.auth.seen)
       }}

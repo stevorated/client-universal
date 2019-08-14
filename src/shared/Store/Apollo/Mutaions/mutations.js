@@ -1,5 +1,26 @@
 import gql from 'graphql-tag'
 
+export const CHANGE_PASSWORD = gql`
+mutation ($password: String!, $newPassword: String!) {
+  changePassword (password: $password, newPassword: $newPassword)
+}
+
+`
+
+export const RESET_PASSWORD = gql`
+mutation ($token: String!, $newPassword: String!) {
+  resetPassword (token: $token, newPassword: $newPassword)
+}
+
+`
+
+export const START_RESET_PASSWORD = gql`
+mutation ($email: String!) {
+  startResetPassword (email: $email)
+}
+
+`
+
 export const FOLLOW_EVENT_MUT = gql`
   mutation followEvent ($event: ID!) {
     followEvent (event: $event) {
@@ -185,20 +206,22 @@ export const CREATE_COMMENT_MUT = gql`
 }
 `
 
-export const REGISTER_USER_MUT = gql`
- mutation ($fname: String!, $lname: String!, $username: String!, $email: String!, $password: String!) {
-  signUp (
+
+
+export const UPDATE_MY_PROFILE = gql`
+ mutation ($fname: String, $lname: String, $username: String, $bio: String) {
+  updateMyProfile (
     fname: $fname,
     lname: $lname,
     username: $username,
-    email: $email,
-    password: $password
+    bio: $bio
   ) {
     id
     email
     fname
     lname
     username
+    email_confirmed
     avatar {
       url
     }
@@ -214,6 +237,42 @@ export const REGISTER_USER_MUT = gql`
     seen {
       id
     }
+    bio
+  }
+}
+`
+
+export const REGISTER_USER_MUT = gql`
+ mutation ($fname: String!, $lname: String!, $username: String!, $email: String!, $password: String!) {
+  signUp (
+    fname: $fname,
+    lname: $lname,
+    username: $username,
+    email: $email,
+    password: $password
+  ) {
+    id
+    email
+    fname
+    lname
+    username
+    email_confirmed
+    avatar {
+      url
+    }
+    posts {
+      id
+    }
+    following {
+      id
+    }
+    followers {
+      id
+    }
+    seen {
+      id
+    }
+    bio
   }
 }
 `
@@ -229,6 +288,7 @@ export const LOGIN_USER_MUT = gql`
     fname
     lname
     username
+    email_confirmed
     avatar {
       url
     }

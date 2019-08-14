@@ -47,7 +47,7 @@ function EventGoing(props) {
   } )
 
   return (
-    <StyledCard style={{ marginTop: ".1rem", marginBottom: "250px" }}>
+    <StyledCard style={{ marginTop: ".1rem", marginBottom: '2rem' }}>
       <CardBody style={{ minHeight: "40vh" }}>
         <div className="d-flex">
           <CardTitle

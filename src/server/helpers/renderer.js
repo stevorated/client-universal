@@ -7,7 +7,9 @@ import { ApolloProvider } from 'react-apollo'
 import serialize from 'serialize-javascript'
 import { ServerStyleSheet } from 'styled-components'
 import Layout from '../../shared/Routes/Layout'
-
+const { API_BASE } = process.env
+const linkToFavicon = `${API_BASE}/public_images/favicon.png`
+console.log(linkToFavicon)
 export default function renderer(req, store, client, context) {
 
   // console.log(req.originalUrl)
@@ -49,7 +51,7 @@ export default function renderer(req, store, client, context) {
         })(); </script>
       <link href="https://fonts.googleapis.com/css?family=Sigmar+One&display=swap" rel="stylesheet">
 
-      <link rel="icon" href="/f575a04ebbb31b5798a4c54783e745a2.png" type="image/png"/>
+      <link rel="icon" href="${linkToFavicon}" type="image/png"/>
       ${helmet.title.toString()}
       ${helmet.meta.toString()}
       <link href="https://use.fontawesome.com/releases/v5.9.0/css/svg-with-js.css" rel="stylesheet"></link>
@@ -72,4 +74,3 @@ export default function renderer(req, store, client, context) {
   
   `
 }
-

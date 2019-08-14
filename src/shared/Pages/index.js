@@ -1,6 +1,7 @@
 //both
 import NotFoundPage from './sharedPages/NotFoundPage'
 import PrivacyPolicyPage from './sharedPages/PrivacyPolicyPage'
+import SomethingWentWrongPage from './sharedPages/SomethingWentWrongPage'
 //public
 import FbLoginCheck from './publicPages/FbLoginCheck'
 import PublicPage from './publicPages/PublicPage'
@@ -19,7 +20,7 @@ import EngagePage from './privatePages/EngagePage'
 import EventPage from './privatePages/EventPage'
 import NotificationsPage from './privatePages/NotificationsPage'
 import SinglePostPage from './privatePages/SinglePostPage'
-
+import ResetCallbackPage from './publicPages/ResetCallbackPage'
 export {
   NotFoundPage,
   PrivacyPolicyPage,
@@ -39,4 +40,6 @@ export {
   EventPage,
   NotificationsPage,
   SinglePostPage,
+  ResetCallbackPage,
+  SomethingWentWrongPage
 }

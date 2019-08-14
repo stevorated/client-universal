@@ -28,7 +28,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation, forward, re
   if (graphQLErrors){
     {!isProd && graphQLErrors.forEach((err)=> console.log(err.extensions.code))}
     if(graphQLErrors.find((err)=>err.extensions.code === 'UNAUTHENTICATED')) {
-      history.push('/')
+      // history.push('/')
     }
     graphQLErrors.map(({message, path, extensions, locations}) =>
     !isProd ? console.log(

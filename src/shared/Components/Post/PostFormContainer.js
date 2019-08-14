@@ -67,6 +67,7 @@ class PostFormContainer extends Component {
                     setFormState={this.handleFormState}
                     createPost={createPost}
                   />
+                  {loading && <Loading size="1" margin="0" />}
                 </Fragment>
               )
             }}

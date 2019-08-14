@@ -23,7 +23,7 @@ export class SinglePostPage extends Component {
   constructor(props) {
     super(props)
     this.id = props.match.params.id
-    this.title = `Post ${this.id}`
+    this.title = `Post`
     this.state = {
       redirect: false
     }

@@ -25,6 +25,7 @@ const EventFeed = props => {
       }}
     >
       {({ loading, error, data, fetchMore }) => {
+        if (loading) return <Loading />
         const handleFetchMore = () => {
           fetchMore({
             variables: {
@@ -42,7 +43,7 @@ const EventFeed = props => {
             }
           })
         }
-        if (loading) return <Loading />
+
         if (error) return <Loading />
         return (
           <FlatCardStatic className="mt-3 animated fadeIn slow">
@@ -68,7 +69,7 @@ const EventFeed = props => {
               events={props.events}
             />
 
-            {props.loadMore && (
+            {props.loadMore && props.events.length === 6 && (
               <InfiniteScroll
                 children={[]}
                 pageStart={0}

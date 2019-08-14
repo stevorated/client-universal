@@ -14,8 +14,8 @@ import {
   AddCommentContainer,
   DeletePostMutation
 } from './'
-import { SmallProfileImg, StyledLink } from '../../Elements'
-import { black, elevation, transition, timeAgo } from '../../Utils'
+import { SmallProfileImg, StyledLink, Line } from '../../Elements'
+import { black, elevation, transition, timeAgo, orange } from '../../Utils'
 
 function Post(props) {
   // console.log(props)
@@ -39,6 +39,7 @@ function Post(props) {
   return !hideDeletedPost ? (
     <div className={` text-center mb-3`}>
       <StyledCard>
+        {PostedTime === 'a few seconds ago' && <div><span style={{opacity: '.7', color: black}} className="mr-2 p-1">New!</span></div>}
         <CardBody>
           {myPost && (
             <DeletePostMutation

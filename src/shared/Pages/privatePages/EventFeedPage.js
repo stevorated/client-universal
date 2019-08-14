@@ -28,8 +28,8 @@ class EventFeedPage extends Component {
     }
   }
 
-  setLoadMore = (res) => {
-    this.setState({ loadMore: res })  
+  setLoadMore = loadMore => {
+    this.setState({ loadMore })
   }
 
   handleChangeState = value => {
@@ -59,6 +59,13 @@ class EventFeedPage extends Component {
         // console.log('followEventAction')
         this.props.followEventAction(payload.data, payload.event)
         break
+      case 'redirect':
+        // console.log('followEventAction')
+        setTimeout(() => {
+          
+          this.props.history.push(`/event/${payload.id}`)
+        }, 100)
+        break
       default:
         console.log('unKnownAction', type, payload)
         break
@@ -72,9 +79,9 @@ class EventFeedPage extends Component {
         <FloatLeft lg="3" className="">
           <Menu />
         </FloatLeft>
-        <MainCol
+        <Col
           lg="6"
-          className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-2"
+          className="offset-lg-3 order-3 order-lg-2 animated fadeIn"
         >
           <EventMainCard
             myId={this.props.auth.id}
@@ -92,8 +99,8 @@ class EventFeedPage extends Component {
             loadMore={this.state.loadMore}
             setLoadMore={this.setLoadMore}
           />
-        </MainCol>
-        <Col lg="3" className="order-2 order-lg-3 mt-lg-2 mt-0 animated fadeIn">
+        </Col>
+        <Col lg="3" className="order-2 order-lg-3 animated fadeIn">
           <EventExtra
             feedMode={true}
             byCreatedAt={this.state.byCreatedAt}
@@ -125,15 +132,10 @@ export default {
   loadData: ({ dispatch }) => dispatch(fetchEvents())
 }
 const FloatLeft = styled(Col)`
-  position: static!important;
+  position: static !important;
   top: 3.5rem;
   left: 0rem;
   ${mediaQueries.lg`
   position: fixed!important;
   `}
-`
-const MainCol = styled(Col)`
-  /* ${mediaQueries.lg`
-  padding-right: 2rem;
-  `} */
 `

@@ -18,19 +18,16 @@ export default class DeletePostPopover extends Component {
     }
   }
 
-  handleClick = () => {
+  handleClick = async () => {
     if (this.state.counter === 0) {
-      this.setState({ counter: 1, deleteMsg: 'You Sure?', showPopUp: true, fade: 'animated flipInX' })
-      setTimeout(()=> {
+      await setTimeout(()=> {
         this.setState({fade: ''})
-      }, 1000)
+      }, 100)
+      this.setState({ counter: 1, deleteMsg: 'You Sure?', showPopUp: true, fade: 'animated flipInX fast' })
     } else if (this.state.counter === 1) {
-      this.setState({ counter: 2, deleteMsg: 'Really?!', fade: 'animated flipInX' })
-      setTimeout(()=> {
-        this.setState({fade: ''})
-      }, 1000)
+      this.setState({ counter: 2, deleteMsg: 'Really?!' })
     } else {
-      this.props.deletePost()
+      await this.props.deletePost()
     }
   }
 
@@ -43,7 +40,7 @@ export default class DeletePostPopover extends Component {
 
         <UncontrolledPopover
           backdrop="true"
-          className={`text-right animated fadeIn fast`}
+          className={`text-right animated fadeIn faster`}
           placement="top-end"
           trigger="focus"
           isOpen={this.state.counter >= 1 && this.state.showPopUp}

@@ -2,10 +2,22 @@ import { GET_USER } from '../Apollo/Queries'
 import { NetworkStatus } from 'apollo-client';
 
 export const fetchUsersPosts = (data, id) => async (dispatch, getState, client) => {
+  
   if(data.length) {
     dispatch({
       type: 'FETCH_PROFILE_POSTS',
       payload: data
+    })
+  } else {
+
+    const res = await client.query({
+      query: GET_USER,
+      variables: { id }
+    })
+
+    dispatch({
+      type: 'FETCH_PROFILE',
+      payload: res.data.user
     })
   }
 }

@@ -3,6 +3,7 @@ import { Button } from 'reactstrap'
 import { Loading, Posts } from '..'
 import { Query } from 'react-apollo'
 import { FETCH_USERS_POSTS } from '../../Store/Apollo/Queries'
+import InfiniteScroll from 'react-infinite-scroller'
 import { PostFormContainer } from '../Post'
 import styled from 'styled-components'
 
@@ -16,24 +17,22 @@ function ProfileScrollContainer(props) {
       query={FETCH_USERS_POSTS}
       variables={{ id, limit: 5, skip: 0 }}
       onCompleted={({ getUsersPosts }) => {
-        if (!posts.length) {
           props.handleAction('fetchUsersPosts', { data: getUsersPosts, id })
-          // props.fetchPosts(getUsersPosts, id)
         }
-      }}
+      }
     >
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <Loading />
         const handleFetchMore = () => {
+          if (props.posts.length <= 5) return null
           fetchMore({
             variables: {
               id: props.id,
               skip: length
             },
             updateQuery: (prev, { fetchMoreResult }) => {
-              if (!fetchMoreResult) {
-                return prev
-              }
+              if (!fetchMoreResult.getUsersPosts.length) return props.setLoadMore(false)
+              {/* if (fetchMoreResult.getUsersPosts.length) return null */}
               props.handleAction('fetchUsersPosts', {
                 data: [...fetchMoreResult.getUsersPosts],
                 id
@@ -57,20 +56,16 @@ function ProfileScrollContainer(props) {
               myAvatar={props.myAvatar}
               posts={props.posts}
               handleAction={props.handleAction}
-
-              // fetchPosts={props.fetchPosts}
-              // deletePostAction={props.deletePostAction}
-              // likePostAction={props.likePostAction}
-              // deleteCommentAction={props.deleteCommentAction}
-              // pushComment={props.pushComment}
             />
-            <Button
-              size="sm"
-              className={`my-5 btn-mainclr`}
-              onClick={handleFetchMore}
-            >
-              Load More
-            </Button>
+            {props.loadMore && props.posts.length >= 5 && <InfiniteScroll
+              children={[]}
+              pageStart={0}
+              loadMore={handleFetchMore}
+              hasMore={props.loadMore}
+              loader={
+                <Loading margin="1" key={`${Date.now()}-loading-infinite-profile`} />
+              }
+            />}
           </StyledDiv>
         )
       }}

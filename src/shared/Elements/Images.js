@@ -12,6 +12,7 @@ transition: all .4s ease;
 &:hover {
   ${elevation[3]};
   filter: none;
+  cursor: pointer;
 }
 `
 
@@ -24,6 +25,6 @@ border-radius: 100%;
 transition: all .4s ease;
 &:hover {
   ${elevation[3]};
+  cursor: pointer;
 }
 `
-

@@ -17,7 +17,7 @@ function SearchBar({ setRedirect, setWhereTo, clearUsersPosts, handleClick }) {
   const [ showSuggest, setShowSuggest ] = useState(false)
   const [ searchTerm , setSearchTerm ] = useState('')
   const [ choices , setChoices ] = useState({})
-  
+  // console.log(pointer, keyPress, showSuggest,searchTerm, choices )
   const handleKeyUps = (e) => {
     switch (e.key) {
       case 'Escape':

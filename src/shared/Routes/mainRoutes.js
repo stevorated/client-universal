@@ -16,7 +16,9 @@ import {
   EngagePage,
   EventPage,
   NotificationsPage,
-  SinglePostPage
+  SinglePostPage,
+  ResetCallbackPage,
+  SomethingWentWrongPage
 } from '../Pages'
 import App from '../App'
 
@@ -28,6 +30,11 @@ const routes = [
         path: '/',
         exact: true,
         ...PublicPage
+      },
+      {
+        path: '/reset_pass_callback/:token',
+        exact: true,
+        ...ResetCallbackPage
       },
       {
         path: '/my-profile',
@@ -114,6 +121,11 @@ const routes = [
         path: '/profile/:id',
         exact: true,
         ...UserProfilePage,
+      },
+      {
+        path: '/somethingwentwrong',
+        exact: true,
+        ...SomethingWentWrongPage
       },
       {
         ...NotFoundPage

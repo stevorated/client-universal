@@ -21,8 +21,8 @@ const LiveNotification = props => {
       }}
     >
       {({ loading, error, data, fetchMore }) => {
-        if (loading) return <Loading />
-        if (error) return <Loading />
+        if (loading) return null
+        if (error) return null
         return <Fragment />
       }}
     </Query>

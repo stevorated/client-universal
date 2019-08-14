@@ -7,6 +7,8 @@ export const GET_ME = gql`
     email
     fname
     lname
+    username
+    email_confirmed
     avatar {
       url
     }
@@ -23,16 +25,19 @@ export const GET_ME = gql`
     seen {
       id
     }
+    bio
   }
 }
 `
 export const GET_MA_DETAILS = gql`
 {
   me {
+    id
     fname
     lname
     username
     email
+    email_confirmed
     avatar {
       url
     }
@@ -48,6 +53,7 @@ export const GET_MA_DETAILS = gql`
     seen {
       id
     }
+    bio
   }
 }
 `
@@ -60,6 +66,7 @@ query user ($id: ID!) {
     email
     fname
     lname
+    username
     avatar {
       url
     }
@@ -73,6 +80,7 @@ query user ($id: ID!) {
     followers {
       id
     }
+    bio
   }
 }
 `

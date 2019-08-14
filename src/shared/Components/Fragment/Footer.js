@@ -1,5 +1,5 @@
 import React, { useState }  from 'react'
-import { Navbar } from 'reactstrap'
+import { Navbar, Alert } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { mediaQueries } from '../../Utils'
@@ -12,6 +12,11 @@ function Footer () {
         className="nav-link text-white" 
         to="/">Wisdom Of De Crowd&copy;
         </StyledLink>
+        {/* <StyledLink 
+        className="nav-link text-white text-center" 
+        to="/">plz confirm your email
+        </StyledLink> */}
+
       </FooterNavbar>
     </FooterDiv>
   )

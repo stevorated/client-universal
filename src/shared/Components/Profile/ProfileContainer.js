@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col, Button } from 'reactstrap'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,6 +14,8 @@ const imgAvatar = Avatar.replace('build', '').replace('/public', '')
 const { API_BASE } = process.env
 function ProfileContainer(props) {
   // console.log(props)
+  const [ modalOpen, setModalOpen ] = useState(false)
+  const toggle = () => setModalOpen(!modalOpen)
   const { details, auth, myId } = props
   if (details !== undefined) {
     const {
@@ -24,8 +26,10 @@ function ProfileContainer(props) {
       posts,
       avatar,
       followers,
-      following
+      following,
+      bio
     } = details
+    console.log()
     // check if this is my user's profile
     const myProfile = id === auth.id ? true : false
     // check if my is an avatar avalible else send the default one
@@ -75,19 +79,21 @@ function ProfileContainer(props) {
                   </div>
                 </Col>
                 <Col className="text-right mt-4" xs="3" sm="4">
-                  {myProfile && <AddImageModal />}
-                  <div className="mt-1">
+                  
+                  <div className="mt-1" style={{ position: 'relative'}}>
+                  {myProfile && <AddImageModal toggle={toggle} modal={modalOpen} />}
                     <BigProfileImg
                       className="text-center mr-3"
                       src={imgUrl}
                       alt=""
+                      onClick={toggle}
                     />
+                    
                   </div>
                 </Col>
               </Row>
               <p className="lo-text text-left ml-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque,
-                tenetur?
+                {bio}
               </p>
               <div className="d-flex justify-content-around lo-text">
                 <div>{postCount} Wisdoms</div>

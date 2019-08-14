@@ -6,7 +6,7 @@ import { ProfileScrollContainer } from '../../Components'
 import Menu from '../../Routes/Menu'
 import { HelmetComponent, ProfileContainer } from '../../Components'
 import styled from 'styled-components'
-import { mediaQs } from '../../Utils'
+import { mediaQueries } from '../../Utils'
 import checkLoggedIn from '../../HOC/checkLoggedIn'
 import requireAuth from '../../HOC/requireAuth'
 import { FeedActivity, FeedExtraRight } from '../../Components/Feed'
@@ -27,7 +27,14 @@ export class UserProfilePage extends Component {
     this.title = 'profile page'
     this.id = props.match.params.id
     this.state = {
-      id: props.match.params.id
+      id: props.match.params.id,
+      loadMore: true
+    }
+  }
+
+  componentWillMount = () => {
+    if (!this.props.profileDetails) {
+      this.props.fetchUsersPosts(payload.data, payload.id)
     }
   }
 
@@ -71,17 +78,29 @@ export class UserProfilePage extends Component {
     }
   }
 
+  setLoadMore = loadMore => {
+    this.setState({ loadMore })
+  }
+
   render() {
     const { auth, profileDetails } = this.props
     return (
       <Row data-test="mainDiv" className="animated fadeIn">
-        <HelmetComponent data-test="helmet" pageTitle={this.title} ogTitle={this.title} />
+        <HelmetComponent
+          data-test="helmet"
+          pageTitle={this.title}
+          ogTitle={this.title}
+        />
         <FloatLeft data-test="leftCol" lg="3">
           <Menu />
         </FloatLeft>
-        <Col data-test="mainCol" lg="6" className="offset-xl-3 order-3 order-lg-2">
-          <ProfileContainer 
-            id={this.id} 
+        <Col
+          data-test="mainCol"
+          lg="6"
+          className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-3"
+        >
+          <ProfileContainer
+            id={this.id}
             myId={this.props.auth.id}
             details={profileDetails}
             auth={auth}
@@ -94,9 +113,15 @@ export class UserProfilePage extends Component {
             myAvatar={this.props.auth.avatar && this.props.auth.avatar.url}
             posts={this.props.profilePosts}
             handleAction={this.handleAction}
+            setLoadMore={this.setLoadMore}
+            loadMore={this.state.loadMore}
           />
         </Col>
-        <Col data-test="rightCol" lg="3" className="order-2 order-lg-3 mt-lg-3">
+        <Col
+          data-test="rightCol"
+          lg="3"
+          className="order-2 order-lg-3 mt-lg-2 animated fadeIn mt-lg-2"
+        >
           <FeedActivity />
           <FeedExtraRight />
           <FeedExtraRight />
@@ -128,16 +153,10 @@ export default {
 }
 
 const FloatLeft = styled(Col)`
-  position: fixed!important;
-  top: 4.8rem;
+  position: static !important;
+  top: 3.5rem;
   left: 0rem;
-  ${mediaQs.papabear`
-    position: static!important;
-  `}
-  ${mediaQs.brotherbear`
-    position: static!important;
-  `}
-  ${mediaQs.mamabear`
-    position: static!important;
-  `}
+  ${mediaQueries.lg`
+  position: fixed!important;
+`}
 `
