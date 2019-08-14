@@ -21,6 +21,11 @@ import '../assets/css/style.css'
 const PORT = process.env.PORT || 8080
 
 const app = express()
+app.disable('x-powered-by')
+app.use(function(req, res, next) {
+  res.removeHeader('X-Powered-By')
+  next()
+})
 app.use(cookieParser())
 
 app.use(cors())
