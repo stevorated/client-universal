@@ -7,7 +7,6 @@ import styled from 'styled-components'
 import UserSettingsForm from './UserSettingsForm'
 
 const UserSettingsFormContainer = props => {
-  const { fname, lname, username, bio } = props.state
   
   return (
     <ApolloConsumer>

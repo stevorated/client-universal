@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  
   Col,
   Row,
   Button,
@@ -9,7 +8,6 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText,
   FormFeedback,
   Alert
 } from 'reactstrap'
@@ -18,7 +16,7 @@ import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import { orange } from '../../Utils'
 
 export default function ChangePassword(props) {
-  console.log(props)
+  // console.log(props)
   const handleSubmit = e => {
 
     e.preventDefault()

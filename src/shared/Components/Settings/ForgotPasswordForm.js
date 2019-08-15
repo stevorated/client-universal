@@ -8,11 +8,8 @@ export default function ResetPasswordRequestForm(props) {
   // console.log(props)
   const handleSubmit = e => {
     e.preventDefault()
-    console.log('submit')
-
     props.handleState({ showErrors: true })
     if (props.state.myEmailGood) {
-      console.log('passed')
       props.startResetPassword()
     }
   }
@@ -23,15 +20,15 @@ export default function ResetPasswordRequestForm(props) {
       [name]: value
     }
     switch (name) {
-        case 'myEmail':
-          if (value && !isEmail(value)) {
-            props.handleState({ myEmailError: true })
-            props.handleState({ myEmailGood: false })
-          } else {
-            props.handleState({ myEmailError: false })
-            props.handleState({ myEmailGood: true })
-          }
-          return props.handleState(newData)
+      case 'myEmail':
+        if (value && !isEmail(value)) {
+          props.handleState({ myEmailError: true })
+          props.handleState({ myEmailGood: false })
+        } else {
+          props.handleState({ myEmailError: false })
+          props.handleState({ myEmailGood: true })
+        }
+        return props.handleState(newData)
       default:
         break
     }
@@ -40,12 +37,12 @@ export default function ResetPasswordRequestForm(props) {
 
   return (
     <Fragment>
-    <Form onSubmit={handleSubmit}>
-      <ModalBody>
-        <div>
-          Hey, are you sure? this operation can not be reversed!. if you choose to reset your password you will be sent a mail to confirm with all the further details.
+      <Form onSubmit={handleSubmit}>
+        <ModalBody>
+          <div>
+            Hey, are you sure? this operation can not be reversed!. if you choose to reset your password you will be sent a mail to confirm with all the further details.
         </div>
-        
+
           <FormGroup>
             <Label className="mt-3" for="myEmail">Insert your email</Label>
             <Input
@@ -61,18 +58,15 @@ export default function ResetPasswordRequestForm(props) {
             />
             {props.state.showErrors && <FormFeedback tooltip>this is an invalid email</FormFeedback>}
           </FormGroup>
-       
-      </ModalBody>
-
-
-      <ModalFooter>
-        <Button style={{ background: orange }}>
-          Yeah Cool
+        </ModalBody>
+        <ModalFooter>
+          <Button style={{ background: orange }}>
+            Yeah Cool
         </Button>{' '}
-        <Button type="button" color="secondary" onClick={props.toggle}>
-          Cancel
+          <Button type="button" color="secondary" onClick={props.toggle}>
+            Cancel
         </Button>
-      </ModalFooter>
+        </ModalFooter>
       </Form>
     </Fragment>
   )

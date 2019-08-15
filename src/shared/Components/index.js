@@ -36,6 +36,7 @@ import ForgotPasswordContainer from './Settings/ForgotPasswordContainer'
 import ChangePasswordContainer from './Settings/ChangePasswordContainer'
 import ResetPasswordChangeForm from './Settings/ResetPasswordChangeForm'
 import ResetPasswordChangeFormContainer from './Settings/ResetPasswordChangeFormContainer'
+import SummeryComponent from './Engage/SummeryComponent'
 
 import {
   PostForm,
@@ -94,5 +95,6 @@ export {
   ForgotPasswordContainer,
   ChangePasswordContainer,
   ResetPasswordChangeForm,
-  ResetPasswordChangeFormContainer
+  ResetPasswordChangeFormContainer,
+  SummeryComponent
 }

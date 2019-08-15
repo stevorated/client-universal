@@ -1,4 +1,5 @@
 import React from 'react'
+import { isLength } from 'validator'
 import {
   Col,
   Row,
@@ -7,12 +8,11 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText,
   FormFeedback
 } from 'reactstrap'
-import { isEmail, isLength } from 'validator'
-import { ModalComponent } from '../../Elements'
 import { orange } from '../../Utils'
+import { AlertComponent } from '..'
+
 const UserSettingsForm = props => {
   // console.log(props)
   // console.log(props.state)
@@ -26,7 +26,13 @@ const UserSettingsForm = props => {
     lname,
     username,
     bio,
+    changed
   } = props.state
+
+  const setHideMessage = (val) => {
+    handleState({ changed: !val })
+  }
+
   const handleSubmit = e => {
     e.preventDefault()
     // console.log(fnameGood, lnameGood, usernameGood)
@@ -56,11 +62,13 @@ const UserSettingsForm = props => {
         lnameActive: false,
         usernameActive: false,
         bioGood: false,
-        bioActive: false
+        bioActive: false,
+        changed: true,
       })
     }
   }
   const handleChangeInput = e => {
+    props.handleState({ changed: false })
     const name = e.target.name
     const value = e.target.value
     const newData = {
@@ -120,6 +128,7 @@ const UserSettingsForm = props => {
   }
   return (
     <Form onSubmit={handleSubmit}>
+      {changed && <AlertComponent alertText="details changed" setHideMessage={setHideMessage} />}
       <Row form>
         <Col md={6}>
           <FormGroup onClick={() => handleState({ fnameActive: true })}>

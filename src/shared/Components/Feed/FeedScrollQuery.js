@@ -14,13 +14,12 @@ const FeedScrollQuery = props => {
       query={FETCH_FEED}
       variables={{ limit: 5, skip: 0 }}
       onCompleted={({ getPosts }) => {
-        if (!props.posts.length) {
-          // console.log(getPosts)
-          props.handleAction('fetchFeed', {
-            data: getPosts,
-            count: props.posts.length
-          })
-        }
+        const existingPosts = props.posts.map((post) => post.id)
+        const diff = getPosts.filter(post => !existingPosts.includes(post.id))
+        props.handleAction('fetchFeed', {
+          data: diff,
+          count: props.posts.length
+        })
       }}
     >
       {({ loading, error, data, fetchMore }) => {

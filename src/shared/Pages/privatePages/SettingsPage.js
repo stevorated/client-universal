@@ -37,6 +37,7 @@ export class SettingsPage extends Component {
       usernameGood: null,
       bioError: null,
       bioGood: null,
+      changed: false,
 
       password: '',
       newPassword: '',

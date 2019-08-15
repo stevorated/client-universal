@@ -17,8 +17,10 @@ function ProfileScrollContainer(props) {
       query={FETCH_USERS_POSTS}
       variables={{ id, limit: 5, skip: 0 }}
       onCompleted={({ getUsersPosts }) => {
-          props.handleAction('fetchUsersPosts', { data: getUsersPosts, id })
-        }
+        const existingPosts = posts.map((post) => post.id)
+        const diff = getUsersPosts.filter(post => !existingPosts.includes(post.id))
+        props.handleAction('fetchUsersPosts', { data: diff, id })
+      }
       }
     >
       {({ loading, error, data, fetchMore }) => {
@@ -32,7 +34,7 @@ function ProfileScrollContainer(props) {
             },
             updateQuery: (prev, { fetchMoreResult }) => {
               if (!fetchMoreResult.getUsersPosts.length) return props.setLoadMore(false)
-              {/* if (fetchMoreResult.getUsersPosts.length) return null */}
+              {/* if (fetchMoreResult.getUsersPosts.length) return null */ }
               props.handleAction('fetchUsersPosts', {
                 data: [...fetchMoreResult.getUsersPosts],
                 id
@@ -47,7 +49,7 @@ function ProfileScrollContainer(props) {
               id={props.id}
               myProfile={props.myId === props.id}
               handleAction={props.handleAction}
-              // createPost={props.createPost}
+            // createPost={props.createPost}
             />
             <Posts
               mode="usersProfile"

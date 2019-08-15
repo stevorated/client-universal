@@ -1,13 +1,9 @@
 import React, { Fragment } from 'react'
-import { connect } from 'react-redux'
 import { Query } from 'react-apollo'
-import { fetchMoreMyPosts } from '../../Store/actions'
-import { Button } from 'reactstrap'
 import InfiniteScroll from 'react-infinite-scroller'
-// import Posts from '.'
 import { Posts, Loading } from '../'
 
-import { FETCH_MORE_POSTS, GET_MA_POSTS } from '../../Store/Apollo/Queries'
+import { FETCH_MORE_POSTS } from '../../Store/Apollo/Queries'
 
 const QueryMorePosts = props => {
 
@@ -18,11 +14,10 @@ const QueryMorePosts = props => {
       query={FETCH_MORE_POSTS}
       variables={{ limit: 5, skip: length < 5 ? length : 5 }}
       onCompleted={({ getMyPosts }) => {
-        if(length <= 10) {
-          props.handleAction('fetchMoreMyPosts', { data: getMyPosts })
-        }
+        const existingPosts = props.posts.map((post) => post.id)
+        const diff = getMyPosts.filter(post => !existingPosts.includes(post.id))
+        props.handleAction('fetchMoreMyPosts', { data: diff })
       }}
-      // refetchQueries={[{query:GET_MA_POSTS, variables:{limit: 10, skip: 0 }}]}
     >
       {({ loading, error, data, fetchMore }) => {
         const handleFetchMore = () => {

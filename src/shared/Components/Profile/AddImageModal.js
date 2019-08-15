@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { black } from '../../Utils'
+import { black, mediaQueries } from '../../Utils'
 import FileInputContainer from '../Fragment/FileInputContainer'
 
 class AddImageModal extends React.Component {
@@ -40,15 +40,16 @@ class AddImageModal extends React.Component {
           className={this.props.className}
         >
           <ModalHeader toggle={this.toggle}>Upload Profile Pic</ModalHeader>
-          <ModalBody
-          style={{ maxHeight: 'calc(95vh - 150px)', overflowY: 'auto' }}>
+          <StyledModalBody
+          // style={{ maxHeight: 'calc(95vh - 150px)', overflowY: 'auto' }}
+          >
             <FileInputContainer
               limit="4000000"
               uploadType="avatar"
               toggle={this.props.toggle}
               round={true}
             />
-          </ModalBody>
+          </StyledModalBody>
         </Modal>
       </div>
     )
@@ -83,4 +84,12 @@ const LittlePlusBtnContainer = styled.div`
   &:hover {
     cursor: pointer;
   }
+`
+
+const StyledModalBody = styled(ModalBody)`
+max-height: 'calc(95vh - 180px)'; 
+/* overflow-y: 'auto'; */
+${mediaQueries.md`
+  max-height: 'calc(95vh - 150px)'; 
+  `} 
 `
