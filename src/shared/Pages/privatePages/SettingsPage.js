@@ -14,7 +14,7 @@ import checkLoggedIn from '../../HOC/checkLoggedIn'
 import Menu from '../../Routes/Menu'
 
 import { mediaQueries } from '../../Utils'
-import { Line } from '../../Elements'
+import { FlatCardStatic,Line } from '../../Elements'
 
 export class SettingsPage extends Component {
   constructor(props) {
@@ -91,7 +91,7 @@ export class SettingsPage extends Component {
 
   render() {
     return (
-      <Row data-test="mainDiv" className="text-center">
+      <Row data-test="mainDiv" className="text-center mr-lg-1">
         <HelmetComponent
           data-test="helmet"
           pageTitle={this.title}
@@ -103,34 +103,36 @@ export class SettingsPage extends Component {
         <Col
           data-test="mainCol"
           lg="9"
-          className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-4 mt-3 px-5"
+          className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-4"
         >
-          <Line className="my-4 mx-3" />
-          <h1 className="display-4">Profile Details</h1>
-          <Line className="my-4 mx-3" />
-          <UserSettingsFormContainer
-            handleAction={this.handleAction}
-            state={this.state}
-            handleChange={this.handleChange}
-            handleState={this.handleState}
-          />
-          <Line className="my-4 mx-3" />
-          <h1 className="display-4">Password</h1>
-          <Line className="my-4 mx-3" />
-          {/* <ForgotPasswordContainer
+          <FlatCardStatic className="px-lg-4">
+            <Line className="my-4 mx-3" />
+            <h1 className="display-4">Profile Details</h1>
+            <Line className="my-4 mx-3" />
+            <UserSettingsFormContainer
+              handleAction={this.handleAction}
+              state={this.state}
+              handleChange={this.handleChange}
+              handleState={this.handleState}
+            />
+            <Line className="my-4 mx-3" />
+            <h1 className="display-4">Password</h1>
+            <Line className="my-4 mx-3" />
+            {/* <ForgotPasswordContainer
             className="my-5"
             handleAction={this.handleAction}
             state={this.state}
             handleChange={this.handleChange}
             handleState={this.handleState}
           /> */}
-          <ChangePasswordContainer
-            className="my-5"
-            handleAction={this.handleAction}
-            state={this.state}
-            handleChange={this.handleChange}
-            handleState={this.handleState}
-          />
+            <ChangePasswordContainer
+              className="my-5"
+              handleAction={this.handleAction}
+              state={this.state}
+              handleChange={this.handleChange}
+              handleState={this.handleState}
+            />
+          </FlatCardStatic>
         </Col>
       </Row>
     )
@@ -153,5 +155,6 @@ const FloatLeft = styled(Col)`
   left: 0rem;
   ${mediaQueries.lg`
   position: fixed!important;
-  `}
+  `};
+
 `

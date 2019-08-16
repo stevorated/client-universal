@@ -40,7 +40,7 @@ export default function ResetPasswordRequestForm(props) {
       <Form onSubmit={handleSubmit}>
         <ModalBody>
           <div>
-            Hey, are you sure? this operation can not be reversed!. if you choose to reset your password you will be sent a mail to confirm with all the further details.
+            Hey, are you sure? this operation can not be reversed!. if you choose to reset your password you will be sent a mail, to confirm your identity containing further details.
         </div>
 
           <FormGroup>

@@ -36,44 +36,44 @@ export class EngagePage extends Component {
 
   render() {
     return (
-          <Row data-test="mainDiv" className="">
-      <HelmetComponent
-        data-test="helmet"
-        pageTitle={this.title}
-        ogTitle={this.title}
-      />
-      <FloatLeft data-test="leftCol" lg="3">
-        <Menu />
-      </FloatLeft>
-      <Col
-        data-test="mainCol"
-        lg="9"
-        className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-5"
-      >
-      <SummeryComponent state={this.state} />
-      <Line className="mx-5 mb-5" />
-      <SummeryComponent 
-      state={{
-        wisdoms: this.state.monthWisdoms,
-        likes: this.state.monthLikes,
-        events: this.state.monthEvents,
-        eventLikes: this.state.monthEventLikes,
-      }}
-      header="Last Month"
-       />
-       <Line className="mx-5 mb-5" />
-      <SummeryComponent 
-      state={{
-        wisdoms: this.state.weekWisdoms,
-        likes: this.state.weekLikes,
-        events: this.state.weekEvents,
-        eventLikes: this.state.weekEventLikes,
-      }}
-      header="Last Week"
-       />
-      </Col>
-    </Row>
-      
+      <Row data-test="mainDiv" className="">
+        <HelmetComponent
+          data-test="helmet"
+          pageTitle={this.title}
+          ogTitle={this.title}
+        />
+        <FloatLeft data-test="leftCol" lg="3">
+          <Menu />
+        </FloatLeft>
+        <Col
+          data-test="mainCol"
+          lg="9"
+          className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-3"
+        >
+          <SummeryComponent state={this.state} />
+          {/* <Line className="mx-5 mb-5" /> */}
+          <SummeryComponent
+            state={{
+              wisdoms: this.state.monthWisdoms,
+              likes: this.state.monthLikes,
+              events: this.state.monthEvents,
+              eventLikes: this.state.monthEventLikes,
+            }}
+            header="Last Month"
+          />
+          {/* <Line className="mx-5 mb-5" /> */}
+          <SummeryComponent
+            state={{
+              wisdoms: this.state.weekWisdoms,
+              likes: this.state.weekLikes,
+              events: this.state.weekEvents,
+              eventLikes: this.state.weekEventLikes,
+            }}
+            header="Last Week"
+          />
+        </Col>
+      </Row>
+
     )
   }
 }
