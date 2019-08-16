@@ -105,7 +105,7 @@ export class SettingsPage extends Component {
           lg="9"
           className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-4"
         >
-          <FlatCardStatic className="px-lg-4">
+          <FlatCardStatic className="px-4">
             <Line className="my-4 mx-3" />
             <h1 className="display-4">Profile Details</h1>
             <Line className="my-4 mx-3" />
