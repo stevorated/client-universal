@@ -21,7 +21,9 @@ vertical-align: middle!important;
 border: .4px solid lightgray;
 grid-gap: 0;
 grid-row-gap: 0;
+font-size: 1rem;
+color: antiquewhite;
 font-weight: 700;
 height: 2rem;
-background: lightgray;
+background: rgb(100, 100, 100);
 `

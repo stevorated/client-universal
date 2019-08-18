@@ -74,7 +74,7 @@ export default function CalanderDay(props) {
 const BorderCol = styled(Col)`
 cursor: pointer;
 outline: none;
-border: .4px solid lightgray;
+border: .4px solid rgb(228, 228, 228);
 align-content: center;
 grid-gap: 0;
 grid-row-gap: 0;
