@@ -23,7 +23,6 @@ export class EngagePage extends Component {
       perSelfEventLike: 3,
       perSelfFollow: 4
     }
-    console.log(this.props.auth)
   }
 
   render() {
@@ -32,14 +31,13 @@ export class EngagePage extends Component {
       likes: auth.posts.map(post => post.likes ? post.likes.length : 0).reduce((a, b) => a + b),
       wisdoms: auth.posts.length,
       events: auth.events.length,
-      eventLikes: auth.events.map(event => event.followersCount || 0).reduce((a, b) => a + b),
+      eventLikes: auth.events.map(event => event.followers ? event.followers.length : 0).reduce((a, b) => a + b),
       show1: false,
       animation1: '',
       selfLikes: auth.likes.length,
       selfEventLikes: auth.followingEvents.length,
       selfFollows: auth.following.length,
     }
-    console.log(data)
     return (
       <Row data-test="mainDiv" className="">
         <HelmetComponent
