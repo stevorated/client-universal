@@ -30,14 +30,14 @@ export class EngagePage extends Component {
     const data = {
       likes: auth.posts.length
         ? auth.posts
-            .map(post => (post.likes.length ? post.likes.length : 0))
+            .map(post => post.likes.length ? post.likes.length : 0)
             .reduce((a, b) => a + b)
         : 0,
       wisdoms: auth.posts.length,
       events: auth.events.length,
       eventLikes: auth.events.length
         ? auth.events
-            .map(event => (event.followers.length ? event.followers.length : 0))
+            .map(event => event.followers.length ? event.followers.length : 0)
             .reduce((a, b) => a + b)
         : 0,
       show1: false,

@@ -9,7 +9,6 @@ import { ServerStyleSheet } from 'styled-components'
 import Layout from '../../shared/Routes/Layout'
 const { API_BASE } = process.env
 const linkToFavicon = `${API_BASE}/public_images/favicon.png`
-console.log(linkToFavicon)
 export default function renderer(req, store, client, context) {
 
   // console.log(req.originalUrl)

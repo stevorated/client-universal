@@ -54,8 +54,8 @@ const SummeryComponent = props => {
     eventLikePoints
   ).toString()
   const activities = (selfLikes + selfEventLikes + selfFollows).toString()
-  const likesPerWisdom = _.round(((likes / wisdoms) * 100) / 100, 1)
-  const likesPerEvent = _.round(((eventLikes / events) * 100) / 100)
+  const likesPerWisdom = _.round(((likes / wisdoms) * 100) / 100, 1) || '-'
+  const likesPerEvent = _.round(((eventLikes / events) * 100) / 100) || '-'
 
   return (
     <FlatCardStatic className="mr-lg-3" style={{ paddingBottom: '14rem' }}>
