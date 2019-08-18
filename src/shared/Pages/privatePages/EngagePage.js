@@ -28,10 +28,10 @@ export class EngagePage extends Component {
   render() {
     const { auth } = this.props
     const data = {
-      likes: auth.posts.map(post => post.likes ? post.likes.length : 0).reduce((a, b) => a + b),
+      likes: auth.posts ? auth.posts.map(post => post.likes ? post.likes.length : 0).reduce((a, b) => a + b) : 0,
       wisdoms: auth.posts.length,
       events: auth.events.length,
-      eventLikes: auth.events.map(event => event.followers ? event.followers.length : 0).reduce((a, b) => a + b),
+      eventLikes: auth.events ? auth.events.map(event => event.followers ? event.followers.length : 0).reduce((a, b) => a + b): 0,
       show1: false,
       animation1: '',
       selfLikes: auth.likes.length,
