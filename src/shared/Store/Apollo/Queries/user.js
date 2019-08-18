@@ -12,9 +12,25 @@ export const GET_ME = gql`
     avatar {
       url
     }
-    username
+    likes {
+      id
+    }
+    events {
+      id
+      followersCount
+      followers {
+        id
+        
+      }
+    }
+    followingEvents {
+      id
+    }
     posts { 
       id
+      likes {
+        id
+      }
     }
     following {
       id
@@ -41,8 +57,24 @@ export const GET_MA_DETAILS = gql`
     avatar {
       url
     }
+    likes {
+      id
+    }
+    events {
+      id
+      followersCount
+      followers {
+        id
+      }
+    }
+    followingEvents {
+      id
+    }
     posts { 
       id
+      likes {
+        id
+      }
     }
     following {
       id
@@ -70,9 +102,24 @@ query user ($id: ID!) {
     avatar {
       url
     }
-    username
+    likes {
+      id
+    }
+    events {
+      id
+      followersCount
+      followers {
+        id
+      }
+    }
+    followingEvents {
+      id
+    }
     posts { 
       id
+      likes {
+        id
+      }
     }
     following {
       id

@@ -8,7 +8,7 @@ import { QueryMorePosts } from '../Post'
 function ScrollContainer(props) {
   // console.log(props)
   return (
-    <StyledDiv className="text-center">
+    <StyledDiv className="text-center mr-lg-4">
       <PostFormContainer
         myPostsMode={true}
         // createPost={props.createPost}

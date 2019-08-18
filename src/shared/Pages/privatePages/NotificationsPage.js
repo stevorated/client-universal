@@ -49,7 +49,7 @@ export class NotificationsPage extends Component {
   }
   render() {
     return (
-      <Row data-test="mainDiv" className="text-center">
+      <Row data-test="mainDiv" className="text-center mr-lg-1">
         <HelmetComponent
           data-test="helmet"
           pageTitle={this.title}

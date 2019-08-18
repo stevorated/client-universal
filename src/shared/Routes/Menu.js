@@ -41,8 +41,8 @@ function Menu(props) {
           </Col>
           <Col lg={12} xs={6} className="p-0 pb-2">
             <StyledList className="p-0 m-0">
-              <MenuItem icon={faUserAlt} text="Profile" to="/my-profile" />
               <MenuItem icon={faBrain} text="Engage Page" to="/engage-gauge"/>
+              <MenuItem icon={faUserAlt} text="Profile" to="/my-profile" />
               <MenuItem icon={faWrench} text="Settings" to="/settings" />
               <MenuItem icon={faAirFreshener} text="Privacy" to="/privacy" />
             </StyledList>

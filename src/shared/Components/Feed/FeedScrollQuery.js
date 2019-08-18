@@ -39,7 +39,7 @@ const FeedScrollQuery = props => {
         if (loading) return <Loading />
         if (error) return null
         return (
-          <StyledDiv className="text-center">
+          <StyledDiv className="text-center  mr-lg-4">
             <PostFormContainer
               feedMode={true}
               handleAction={props.handleAction}

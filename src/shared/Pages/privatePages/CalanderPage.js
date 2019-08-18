@@ -72,7 +72,7 @@ export class CalanderPage extends Component {
   render() {
     return (
       <Fragment>
-        <Row data-test="mainDiv" className="mb-0">
+        <Row data-test="mainDiv" className="mb-0 mr-lg-1">
           <HelmetComponent
             data-test="helmet"
             pageTitle={this.title}

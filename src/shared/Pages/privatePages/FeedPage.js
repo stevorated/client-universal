@@ -82,7 +82,8 @@ export class FeedPage extends Component {
           <Menu />
         </FloatLeft>
         <Col
-          lg="6"
+          // lg="6"
+          lg="7"
           data-test="mainCol"
           className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-1"
         >
@@ -98,7 +99,7 @@ export class FeedPage extends Component {
             setFadeoutLoader={this.setFadeoutLoader}
           />
         </Col>
-        <Col
+        {/* <Col
           lg="3"
           data-test="rightCol"
           className="order-2 order-lg-3 mt-lg-2 animated fadeIn mt-lg-2"
@@ -108,7 +109,7 @@ export class FeedPage extends Component {
           <FeedActivity />
           <FeedActivity />
           <FeedActivity />
-        </Col>
+        </Col> */}
       </Row>
     )
   }

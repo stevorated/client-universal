@@ -225,8 +225,25 @@ export const UPDATE_MY_PROFILE = gql`
     avatar {
       url
     }
+    likes {
+      id
+    }
+    events {
+      id
+      followersCount
+      followers {
+        id
+        
+      }
+    }
+    followingEvents {
+      id
+    }
     posts {
       id
+      likes {
+        id
+      }
     }
     following {
       id
@@ -260,8 +277,25 @@ export const REGISTER_USER_MUT = gql`
     avatar {
       url
     }
+    likes {
+      id
+    }
+    events {
+      id
+      followersCount
+      followers {
+        id
+        
+      }
+    }
+    followingEvents {
+      id
+    }
     posts {
       id
+      likes {
+        id
+      }
     }
     following {
       id
@@ -292,8 +326,25 @@ export const LOGIN_USER_MUT = gql`
     avatar {
       url
     }
+    likes {
+      id
+    }
+    events {
+      id
+      followersCount
+      followers {
+        id
+        
+      }
+    }
+    followingEvents {
+      id
+    }
     posts {
       id
+      likes {
+        id
+      }
     }
     following {
       id

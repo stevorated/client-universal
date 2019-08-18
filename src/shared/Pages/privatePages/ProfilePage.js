@@ -123,7 +123,8 @@ export class ProfilePage extends Component {
           />
         </FloatLeft>
         <Col
-          lg="6"
+          lg="7"
+          // lg="6"
           data-test="mainCol"
           className="offset-lg-3 order-3 order-lg-2"
         >
@@ -137,7 +138,7 @@ export class ProfilePage extends Component {
             handleAction={this.handleAction}
           />
         </Col>
-        <Col
+        {/* <Col
           lg="3"
           data-test="rightCol"
           className="order-2 order-lg-3 mt-lg-3 mt-1"
@@ -145,7 +146,7 @@ export class ProfilePage extends Component {
           <InfoContainer />
           <InfoContainer />
           <InfoContainer />
-        </Col>
+        </Col> */}
       </Row>
     )
   }
