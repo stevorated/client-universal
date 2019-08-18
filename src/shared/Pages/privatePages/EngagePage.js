@@ -15,7 +15,7 @@ export class EngagePage extends Component {
     super(props)
     this.title = 'engage gauge'
     this.state = {
-      perWisdom: 11,
+      perWisdom: 52,
       perLikeWisdom: 25,
       perEvent: 200,
       perEventLike: 110,
@@ -28,15 +28,23 @@ export class EngagePage extends Component {
   render() {
     const { auth } = this.props
     const data = {
-      likes: auth.posts ? auth.posts.map(post => post.likes ? post.likes.length : 0).reduce((a, b) => a + b) : 0,
+      likes: auth.posts.length
+        ? auth.posts
+            .map(post => (post.likes.length ? post.likes.length : 0))
+            .reduce((a, b) => a + b)
+        : 0,
       wisdoms: auth.posts.length,
       events: auth.events.length,
-      eventLikes: auth.events ? auth.events.map(event => event.followers ? event.followers.length : 0).reduce((a, b) => a + b): 0,
+      eventLikes: auth.events.length
+        ? auth.events
+            .map(event => (event.followers.length ? event.followers.length : 0))
+            .reduce((a, b) => a + b)
+        : 0,
       show1: false,
       animation1: '',
       selfLikes: auth.likes.length,
       selfEventLikes: auth.followingEvents.length,
-      selfFollows: auth.following.length,
+      selfFollows: auth.following.length
     }
     return (
       <Row data-test="mainDiv" className="">
@@ -53,17 +61,19 @@ export class EngagePage extends Component {
           lg="7"
           className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-3"
         >
-          <SummeryComponent state={this.state} data={data} header="Engage Page" />
-
+          <SummeryComponent
+            state={this.state}
+            data={data}
+            header="Engage Page"
+          />
         </Col>
       </Row>
-
     )
   }
 }
 
 function mapStateToProps({ auth }) {
-  return { auth}
+  return { auth }
 }
 
 export default {
