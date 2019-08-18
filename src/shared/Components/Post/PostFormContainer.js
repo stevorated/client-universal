@@ -34,8 +34,9 @@ class PostFormContainer extends Component {
         {client => (
           <Mutation
             mutation={CREATE_POST_MUT}
-            onCompleted={({ createPost }) =>
-              this.props.handleAction('createPost', { data: createPost })
+            onCompleted={({ createPost }) =>{
+              console.log(createPost)
+              this.props.handleAction('createPost', { data: createPost })}
             }
             refetchQueries={[
               { query: FETCH_FEED },

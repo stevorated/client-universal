@@ -36,6 +36,7 @@ export const FOLLOW_USER_MUT = gql`
   mutation ($id: ID!) {
     follow (id: $id) {
       id
+      followersCount
       followers {
         id
       }
@@ -86,6 +87,7 @@ mutation (
     name
     fbId
     description
+    followersCount
     coverPhoto {
       url
     }
@@ -95,7 +97,9 @@ mutation (
     venue
     address
     artists
-    
+    followers {
+      id
+    }
     startDate
     startTime
     endDate
@@ -161,6 +165,9 @@ export const CREATE_POST_MUT = gql`
       }
       posts {
         id
+        likes {
+          id
+        }
       }
     }
     comments {

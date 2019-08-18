@@ -23,7 +23,7 @@ export default (state = null, { payload, type }) => {
       const avatar = { url: payload }
       return { ...state, avatar }
     case 'CREATE_POST':
-      const newPost = [{ id: payload[0].id }]
+      const newPost = [{ id: payload[0].id, likes: payload[0].likes }]
       return { ...state, posts: newPost.concat(state.posts) }
     case 'DELETE_POST':
       const newposts = state.posts.filter((post) => {
@@ -51,6 +51,35 @@ export default (state = null, { payload, type }) => {
           following: userObjArray.concat(state.following)
         }
         return res
+      }
+    case 'CREATE_EVENT':
+      return {
+        ...state,
+        events: payload.concat(state.events)
+      }
+    case 'FOLLOW_EVENT':
+      // console.log({
+      //   ...state,
+      //   events: {
+      //     ...state.events,
+      //     followers: payload.data.followers
+      //   }
+      // })
+      console.log(payload)
+      return {
+        ...state,
+        events: state.events.map(event => {
+            if (event.id !== payload.data.id) {
+              return event
+            }
+            return {
+              ...event,
+              followers: payload.data.followers,
+              followersCount: payload.data.followersCount
+            }
+          }),
+          followers: payload.data.followers,
+          followersCount: payload.data.followersCount
       }
     default:
       return state
