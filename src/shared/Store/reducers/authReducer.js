@@ -58,14 +58,6 @@ export default (state = null, { payload, type }) => {
         events: payload.concat(state.events)
       }
     case 'FOLLOW_EVENT':
-      // console.log({
-      //   ...state,
-      //   events: {
-      //     ...state.events,
-      //     followers: payload.data.followers
-      //   }
-      // })
-      console.log(payload)
       return {
         ...state,
         events: state.events.map(event => {
