@@ -52,7 +52,7 @@ export class PublicPage extends Component {
     return this.state.redirect ? (
       <Redirect data-test="redirect" to={this.state.where} />
     ) : (
-      <Container
+      <Container fluid
         data-test="main-div"
         style={{ minHeight: "90vh", paddingTop: "1rem" }}
         className={`animated fadeIn slow text-center ${this.state.fadeOut}`}
