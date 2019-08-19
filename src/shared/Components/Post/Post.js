@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CSSTransition } from 'react-transition-group'
 import {
   Card,
   CardTitle,
@@ -14,7 +15,7 @@ import {
   AddCommentContainer,
   DeletePostMutation
 } from './'
-import { SmallProfileImg, StyledLink, Line } from '../../Elements'
+import { SmallProfileImg, StyledLink, Line, FlatCardStatic } from '../../Elements'
 import { black, elevation, transition, timeAgo, orange } from '../../Utils'
 
 function Post(props) {
@@ -131,6 +132,7 @@ function Post(props) {
           comments={comments}
           id={id}
           post={id}
+          // style={{height: showComments ? '100%' : '0', opacity: showComments ? '1' : '0' }}
         />
       )}
     </div>
@@ -150,18 +152,11 @@ const CreatedAt = styled.p`
   font-size: 0.6rem;
   text-align: left;
 `
-const StyledCard = styled(Card)`
+const StyledCard = styled(FlatCardStatic)`
   color: ${black};
   background: whitesmoke;
   opacity: 0.9;
   border-radius: 0.3rem;
   /* margin: .4rem; */
-  ${elevation[3]}
-  transition: all 3s ease;
-  ${transition({
-    property: 'box-shadow'
-  })};
-  &:hover {
-    ${elevation[4]};
-  }
+  ${elevation[0]}
 `

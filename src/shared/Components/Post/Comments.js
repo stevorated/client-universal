@@ -49,7 +49,7 @@ function Comments(props) {
     })
   }
   return (
-    <div className="mx-2 p-2" style={{ opacity: '0.8' }}>
+    <div className="mt-2" style={{ opacity: '0.8', marginTop: '0' }}>
       {renderQuery()}
       <StyledLink to="#" onClick={openForm} className="m-2 small-text">
         {showForm ? 'Hide' : 'Comment'}

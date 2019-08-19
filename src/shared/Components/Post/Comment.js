@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatCard, SmallProfileImg } from '../../Elements'
+import { FlatCard, SmallProfileImg, FlatCardStatic } from '../../Elements'
 import { CardTitle } from 'reactstrap'
 import DeleteCommentMutation from './DeleteCommentMutation'
 import styled from 'styled-components'
@@ -13,7 +13,7 @@ export default function Comment(props) {
   const { id, body, createdAt, name, profileImgUrl, myComment, post } = props
   const PostedTime = timeAgo(Date.now(), createdAt)
   return (
-    <FlatCard className="bg-white animated fadeIn mt-1" >
+    <FlatCardStatic className="mx-2 animated fadeIn mt-1"  style={{background: 'antiquewhite', borderRadius: '20px'}}>
       {myComment && <DeleteCommentMutation
         handleAction={props.handleAction}
         post={post}
@@ -30,7 +30,7 @@ export default function Comment(props) {
         </div>
       </div>
       <div style={{whiteSpace: 'pre-wrap'}} className="text-left ml-2">{body}</div>
-    </FlatCard>
+    </FlatCardStatic>
   )
 }
 

@@ -41,6 +41,7 @@ export default class DeleteCommentPopover extends Component {
           id={`PopoverDeleteComment_${this.props.comment}`}
           onClick={this.handleClick}
           close
+          className="mr-2"
         />
       </OutsideClickHandler>
     )
