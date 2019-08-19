@@ -7,7 +7,7 @@ import styled from "styled-components"
 
 import forceLoggedIn from "../../HOC/forceLoggedIn"
 import Logo from "../../../assets/logos/logo5.png"
-import { FbLogin } from "../../Elements"
+import { FbLogin, StyledBigButton } from "../../Elements"
 const linkLogo = Logo.replace("build", "").replace("/public", "")
 
 export class PublicPage extends Component {
@@ -119,7 +119,4 @@ const OrHeader = styled.h6`
   ${mediaQueries.md`
  display: none;
 `}
-`
-const StyledBigButton = styled.button`
-  ${elevation[4]}
 `

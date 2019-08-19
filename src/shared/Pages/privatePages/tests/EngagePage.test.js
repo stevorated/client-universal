@@ -7,28 +7,20 @@ import configureStore from 'redux-mock-store'
 
 import { EngagePage } from '../EngagePage'
 import { findByTestAttr } from '../../../../tests/utils'
-
-const initialState = {}
+import { initialStateFeedPage as initialState } from '../../../../tests/mocks/initialState'
+// const initialState = {}
 const mockStore = configureStore()
 let component, store, tree
 
 const setupShallowRender = (props = {}) => {
-  return shallow(<EngagePage />)
+  return shallow(<EngagePage {...props} />)
 }
 
 describe('<EngagePage />', () => {
   beforeEach(() => {
     //creates the store with any initial state or middleware needed
     store = mockStore(initialState)
-    component = setupShallowRender()
-    tree = renderer.create(
-      <BrowserRouter>
-        <EngagePage store={store} />
-      </BrowserRouter>
-    )
-  })
-  it('matches Snapshot', () => {
-    expect(tree).toMatchSnapshot()
+    component = setupShallowRender(initialState)
   })
   it('Should render witout errors', () => {
     const mainDiv = findByTestAttr(component, 'mainDiv')

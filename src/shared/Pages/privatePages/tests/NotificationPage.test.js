@@ -76,13 +76,13 @@ describe('<NotificationsPage />', () => {
     wrapper = setupMountAndMockBootstrap(initialStateWithMocks)
     
     container = findByTestAttr(wrapper, 'liveNotificationContainer')
-  
-    const loading = findByTestAttrElement(container, 'loading', 'Spinner')
-    expect(loading.length).toBe(1)
+    // console.log(container.debug())
+    
 
     await wait(0)
     await waitForExpect(() => {
       const updated = wrapper.update()
+      
       updated.instance().handleAction = jest.fn()
       const updatedContainer = findByTestAttrElement(
         updated,
@@ -92,9 +92,8 @@ describe('<NotificationsPage />', () => {
       const notification = findByTestAttrElement(notifications, 'notification')
 
       expect(notification.length).toBe(10)
-
-      const updatedLoading = findByTestAttrElement(updatedContainer, 'loading', 'Spinner')
-      // expect(updatedLoading.length).toBe(0)
+      const loadingMore = findByTestAttrElement(updated, 'loading', 'Spinner')
+      expect(loadingMore.length).toBe(1)
 
     })
   })

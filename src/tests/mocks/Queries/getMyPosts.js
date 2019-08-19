@@ -87,5 +87,24 @@ export const FETCH_MY_POSTS_MOCK = [
     result: {
       data: { getMyPosts }
     }
-  }
+  },
+  {
+    request: {
+      query: FETCH_MORE_POSTS,
+      variables: { limit: 5, skip: 2}
+    },
+    result: {
+      data: { getMyPosts }
+    }
+  },
+  {
+    request: {
+      query: FETCH_MORE_POSTS,
+      variables: { limit: 5, skip: 0}
+    },
+    result: {
+      data: { getMyPosts }
+    }
+  },
+
 ]

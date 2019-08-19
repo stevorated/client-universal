@@ -5,15 +5,32 @@ export const initialStateFeedPage = {
     email: 'chandler@bling.com',
     fname: 'chandler',
     lname: 'bing',
+    likes: [
+      {id: '5d4a86229540cf12bc8146d9'}, {id: '5d4a86229540cf12bc8145d3'}
+    ],
     avatar: {
       url: '/images/avatars/avatar_1564830879626_5d456a7de559a623484395d7.jpg'
     },
     username: 'chandler',
+    events: [
+      { id: '5d4a9ca49540cf12bc815734', followerCount: 2, followers: [
+        {id: '5d4a86229540cf12bc8156d9'}, {id: '5d4a86229540cf12bc8156d3'}
+      ]}
+    ],
     posts: [
       {
-        id: '5d4a9ca49540cf12bc815727'
+        id: '5d4a9ca49540cf12bc815727',
+        likes: [ {id: '5d4a86229540cf12bc8156d9'}, {id: '5d4a86229540cf12bc8156d3'} ]
       }
     ],
+    followingEvents: [ 
+      {
+        id: '5d4a86229540cf12bc8156c5'
+      },
+      {
+        id: '5d4a86229540cf12bc8156c3'
+      },
+     ],
     following: [
       {
         id: '5d4a86229540cf12bc8156d9'

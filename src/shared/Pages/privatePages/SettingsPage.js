@@ -118,13 +118,6 @@ export class SettingsPage extends Component {
             <Line className="my-4 mx-3" />
             <h1 className="display-4">Password</h1>
             <Line className="my-4 mx-3" />
-            {/* <ForgotPasswordContainer
-            className="my-5"
-            handleAction={this.handleAction}
-            state={this.state}
-            handleChange={this.handleChange}
-            handleState={this.handleState}
-          /> */}
             <ChangePasswordContainer
               className="my-5"
               handleAction={this.handleAction}
@@ -150,7 +143,7 @@ export default {
   )(checkLoggedIn(requireAuth(SettingsPage)))
 }
 const FloatLeft = styled(Col)`
-  position: static !important;
+  position: static!important;
   top: 3.5rem;
   left: 0rem;
   ${mediaQueries.lg`

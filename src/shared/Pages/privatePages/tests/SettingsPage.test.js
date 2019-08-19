@@ -7,28 +7,20 @@ import configureStore from 'redux-mock-store'
 
 import { SettingsPage } from '../SettingsPage'
 import { findByTestAttr } from '../../../../tests/utils'
+import { initialStateFeedPage as initialState } from '../../../../tests/mocks/initialState'
 
-const initialState = {}
 const mockStore = configureStore()
 let component, store, tree
 
 const setupShallowRender = (props = {}) => {
-  return shallow(<SettingsPage />)
+  return shallow(<SettingsPage {...props} />)
 }
 
 describe('<SettingsPage />', () => {
   beforeEach(() => {
     //creates the store with any initial state or middleware needed
     store = mockStore(initialState)
-    component = setupShallowRender()
-    tree = renderer.create(
-      <BrowserRouter>
-        <SettingsPage store={store} />
-      </BrowserRouter>
-    )
-  })
-  it('matches Snapshot', () => {
-    expect(tree).toMatchSnapshot()
+    component = setupShallowRender(initialState)
   })
   it('Should render witout errors', () => {
     const mainDiv = findByTestAttr(component, 'mainDiv')

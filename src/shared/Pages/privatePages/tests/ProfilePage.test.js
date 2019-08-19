@@ -63,7 +63,9 @@ describe('<ProfilePage />', () => {
 
     expect(scroll.length).toBe(1)
     expect(scroll.props().posts).toBe(initialState.posts)
-    expect(scroll.props().fetchPosts).toBe(initialState.fetchFeed)
+    expect(scroll.props().loadMore).toBe(component.state().loadMore)
+    expect(scroll.props().handleAction).toBe(component.instance().handleAction)
+    expect(scroll.props().setLoadMore).toBe(component.instance().setLoadMore)
     expect(scroll.props().myId).toBe(initialState.auth.id)
   })
   it('Should render helmet component with proper props', () => {
