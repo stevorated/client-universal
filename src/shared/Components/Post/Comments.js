@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
-import { connect } from 'react-redux'
 import { Card } from 'reactstrap'
+import { CSSTransition } from 'react-transition-group'
 import Comment from './Comment'
 import AddCommentContainer from './AddCommentContainer'
 import { StyledLink } from '../../Elements'
@@ -49,24 +49,29 @@ function Comments(props) {
     })
   }
   return (
+    <CSSTransition timeout={1000}>
     <div className="mt-2" style={{ opacity: '0.8', marginTop: '0' }}>
       {renderQuery()}
       <StyledLink to="#" onClick={openForm} className="m-2 small-text">
         {showForm ? 'Hide' : 'Comment'}
       </StyledLink>
-      {showForm && (
-        <Card className="pt-3 mt-2">
-          <AddCommentContainer
-            id={id}
-            handleAction={props.handleAction}
-            openForm={openForm}
-            setShowComments={setShowComments}
-            setShowForm={setShowForm}
-            commentCount={comments.length}
-          />
-        </Card>
-      )}
+      <div style={{height: showForm ? '100%' : '0'}}>
+        {showForm && (
+          <Card className="pt-3 mt-2 mx-2"style={{background: 'whitesmoke'}}>
+            <AddCommentContainer
+              id={id}
+              handleAction={props.handleAction}
+              openForm={openForm}
+              setShowComments={setShowComments}
+              setShowForm={setShowForm}
+              commentCount={comments.length}
+              
+            />
+          </Card>
+        )}
+      </div>
     </div>
+    </CSSTransition>
   )
 }
 
