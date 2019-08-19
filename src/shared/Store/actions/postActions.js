@@ -64,7 +64,6 @@ export const fetchMoreMyPosts = (data) => async (dispatch, getState, client) => 
 }
 
 export const createPost = (data) => async (dispatch, getState, client) => {
-  console.log(data)
   await dispatch({
     type: 'CREATE_POST',
     payload: [data]

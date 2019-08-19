@@ -1341,5 +1341,6 @@ export const initialStateFeedPage = {
     }
   ],
   fetchMoreMyPosts: jest.fn(),
-  fetchCalanderEvents: jest.fn()
+  fetchCalanderEvents: jest.fn(),
+  fetchFeed: jest.fn()
 }

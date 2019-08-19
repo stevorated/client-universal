@@ -1,5 +1,26 @@
-import { GET_USER } from '../Apollo/Queries'
-import { NetworkStatus } from 'apollo-client';
+import { GET_USER, FETCH_USER_EVENTS } from '../Apollo/Queries'
+import { NetworkStatus } from 'apollo-client'
+
+export const fetchUserEventsAction = (data, id) => async (dispatch, getState, client) => {
+  if(data.length) {
+    dispatch({
+      type: 'FETCH_PROFILE_EVENTS',
+      payload: data
+    })
+  } 
+  // else {
+
+  //   const res = await client.query({
+  //     query: FETCH_USER_EVENTS,
+  //     variables: { id }
+  //   })
+
+  //   dispatch({
+  //     type: 'FETCH_PROFILE_EVENTS',
+  //     payload: res.data.user
+  //   })
+  // }
+}
 
 export const fetchUsersPosts = (data, id) => async (dispatch, getState, client) => {
   

@@ -12,14 +12,9 @@ function NextUpBoardContainerSide(props) {
     : { limit: 5, skip: 0, past: true }
   return (
     <Query
-      // fetchPolicy='network-only' // IMPORTANT
       fetchPolicy="cache-and-network"
       query={FETCH_MY_NEXT_EVENTS}
       variables={variables}
-      // onError={(e)=> console.log('ERROR')}
-      // onCompleted={({ getMyEvents }) => {
-      //   // props.handleAction('fetchMyNextEvents', { data: getMyEvents })
-      // }}
     >
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <Loading size="1" margin="1" />

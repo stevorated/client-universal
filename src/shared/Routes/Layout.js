@@ -42,7 +42,7 @@ function Layout(props) {
         <StyledAlertComponent
           className={hideMessage ? 'animated slideOutUp faster' : ''}
           setHideMessage={setHideMessage}
-          alertText="plz confirm your mail"
+          alertText="plz confirm your mail, without it you can't reset your password and get our special announcement"
         />
       )}
       <MainContent

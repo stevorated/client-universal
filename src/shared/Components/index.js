@@ -37,6 +37,8 @@ import ChangePasswordContainer from './Settings/ChangePasswordContainer'
 import ResetPasswordChangeForm from './Settings/ResetPasswordChangeForm'
 import ResetPasswordChangeFormContainer from './Settings/ResetPasswordChangeFormContainer'
 import SummeryComponent from './Engage/SummeryComponent'
+import { FeedActivity, FeedExtraRight } from './Feed'
+import ProfileEventContainer from './Profile/ProfileEventContainer'
 
 import {
   PostForm,
@@ -96,5 +98,8 @@ export {
   ChangePasswordContainer,
   ResetPasswordChangeForm,
   ResetPasswordChangeFormContainer,
-  SummeryComponent
+  SummeryComponent,
+  FeedActivity, 
+  FeedExtraRight,
+  ProfileEventContainer
 }

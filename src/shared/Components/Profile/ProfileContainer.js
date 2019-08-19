@@ -51,7 +51,7 @@ function ProfileContainer(props) {
       }).length > 0
         ? true
         : false
-    if (!details.id) return <Loading />
+    if (!details.id) return <Loading margin="1" />
     return (
       <div className="m-0 text-left">
         {details !== undefined && (

@@ -62,13 +62,13 @@ export class PublicPage extends Component {
           <h1 className="welcome-to">- Welcome to -</h1>
           <LogoHeader
             data-test="logo"
-            className="logo-img"
+            className="logo-img m-auto"
             src={linkLogo}
             alt=""
             onClick={this.gotoLogin}
           />
         </div>
-        <Row className="mt-4">
+        <Row className="mt-4 text-center">
           <Col md={4}>
             <FbLogin />
           </Col>

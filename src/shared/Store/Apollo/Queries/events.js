@@ -110,6 +110,49 @@ query ($skip: Int, $limit: Int, $id: ID, $byCreatedAt: Boolean, $byPopular: Bool
 
 `
 
+export const FETCH_USER_EVENTS = gql`
+query ($id: ID!, $skip: Int, $limit: Int) {
+  getUsersEvents (id: $id, skip: $skip, limit: $limit) {
+    id
+    name
+    fbId
+    description
+    coverPhoto {
+      url
+    }
+    thumbnil {
+      url
+    }
+    followers {
+      id
+      fname
+      lname
+      avatar {
+        url
+      }
+    }
+    venue
+    address
+    artists
+    startDate
+    startTime
+    endDate
+    endTime
+    createdBy {
+      id
+      fname
+      lname
+      avatar {
+        url
+      }
+    }
+    createdAt
+  }
+ }
+
+`
+
+
 export const FETCH_EVENTS = gql`
 query ($skip: Int, $limit: Int $id: ID) {
   getEventsFeed (skip: $skip, limit: $limit, id:$id) {

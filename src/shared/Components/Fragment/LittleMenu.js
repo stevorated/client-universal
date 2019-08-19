@@ -4,8 +4,6 @@ import { elevation, transition } from '../../Utils'
 
 export default function LittleMenu(props) {
   // console.log(props)
-  
-  
   const children = () => {
     return props.items.map(item => {
       const handleChange = () => {
@@ -19,14 +17,20 @@ export default function LittleMenu(props) {
         props.feedMode && props.byCreatedAt && item === 'new') 
         || 
         (props.feedMode && !props.byCreatedAt && item !== 'new')
-        // console.log(item, check2)
+      const check3 = (
+        props.userProfileMode && props.showPosts && item === 'posts') 
+        || 
+        (props.userProfileMode && !props.showPosts && item !== 'posts')
       const active = check ? true : false
       const active2 = check2 ? true : false
+      const active3 = check3 ? true : false
       const activeStyle = active ? 'active-button' : ''
       const activeStyle2 = active2 ? 'active-button' : ''
+      const activeStyle3 = active3 ? 'active-button' : ''
+      // console.log(item, activeStyle3)
 
       return (
-        <MenuItemButton className={`text-capitalize ${activeStyle} ${activeStyle2}`} value={item} onClick={handleChange} key={item}>{item}</MenuItemButton>
+        <MenuItemButton className={`text-capitalize ${activeStyle} ${activeStyle2} ${activeStyle3}`} value={item} onClick={handleChange} key={item}>{item}</MenuItemButton>
       )
     })
   }

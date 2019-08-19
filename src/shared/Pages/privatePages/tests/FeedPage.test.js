@@ -54,18 +54,15 @@ describe('<FeedPage />', () => {
   it('should render cols', () => {
     const mainCol = findByTestAttr(component, 'mainCol')
     const leftCol = findByTestAttr(component, 'leftCol')
-    const rightCol = findByTestAttr(component, 'rightCol')
 
     expect(mainCol.length).toBe(1)
     expect(leftCol.length).toBe(1)
-    expect(rightCol.length).toBe(1)
   })
   it('should render ScrollFeedQuery with proper props', () => {
     const feed = findByTestAttr(component, 'feedScrollQuery')
 
     expect(feed.length).toBe(1)
     expect(feed.props().posts).toBe(initialState.feed)
-    expect(feed.props().fetchPosts).toBe(initialState.fetchFeed)
     expect(feed.props().myId).toBe(initialState.auth.id)
   })
   it('Should render helmet component with proper props', () => {

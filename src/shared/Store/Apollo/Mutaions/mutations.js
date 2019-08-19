@@ -25,6 +25,7 @@ export const FOLLOW_EVENT_MUT = gql`
   mutation followEvent ($event: ID!) {
     followEvent (event: $event) {
       id
+      followersCount
       followers {
         id
       }
@@ -36,7 +37,6 @@ export const FOLLOW_USER_MUT = gql`
   mutation ($id: ID!) {
     follow (id: $id) {
       id
-      followersCount
       followers {
         id
       }

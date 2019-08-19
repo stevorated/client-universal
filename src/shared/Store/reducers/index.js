@@ -14,12 +14,14 @@ import notificationsReducer from './notificationsReducer'
 import singlePostReducer from './singlePostReducer'
 import calanderReducer from './calanderReducer'
 import notificationCountReducer from './notificationCountReducer'
+import profileEventsReducer from './profileEventsReducer'
 
 const appReducer = combineReducers({
   users: userReducer,
   auth: authReducer,
   posts: postsReducer,
   feed: feedReducer,
+  profileEvents: profileEventsReducer,
   profilePosts: profilePostsReducer,
   profileDetails: profileDataReducer,
   nextFeedEvents: nextFeedReducer,

@@ -54,11 +54,9 @@ describe('<ProfilePage />', () => {
   it('should render cols', () => {
     const mainCol = findByTestAttr(component, 'mainCol')
     const leftCol = findByTestAttr(component, 'leftCol')
-    const rightCol = findByTestAttr(component, 'rightCol')
 
     expect(mainCol.length).toBe(1)
     expect(leftCol.length).toBe(1)
-    expect(rightCol.length).toBe(1)
   })
   it('should render scroll with proper props', () => {
     const scroll = findByTestAttr(component, 'scroll')

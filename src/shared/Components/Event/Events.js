@@ -18,10 +18,10 @@ function Events(props) {
     return (
       <Container className="mt-3">
         <Row className="p-md-4 m-auto">
-          <CustomCardColumns md={6} xl={4}>
+          <CustomCardColumns md={6} xl={4} >
             {renderQuery()}
           </CustomCardColumns>
-          {!renderQuery() && <p>You Haven't created any yet click the Create button to create one</p>}
+          {!renderQuery() && <p style={{minHeight: '100px'}} className="m-auto">- No Events -</p>}
         </Row>
       </Container> 
     )
