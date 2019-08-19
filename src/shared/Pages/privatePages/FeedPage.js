@@ -83,7 +83,7 @@ export class FeedPage extends Component {
         </FloatLeft>
         <Col
           // lg="6"
-          lg="7"
+          lg="8"
           data-test="mainCol"
           className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-1"
         >

@@ -31,20 +31,21 @@ export default function AddCommentForm(props) {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <FormGroup className="px-4">
+      <FormGroup className="m-2">
         <Input
-          className="px-4 m-auto"
+          className=""
           type="textarea"
           name="body"
           id="body_comment_add"
           rows="1"
           value={state.body}
           onChange={handleOnChange}
+          style={{ borderRadius: '6px' }}
         />
       </FormGroup>
 
       <div className="d-flex mb-1">
-        <Button size="sm" className="btn-mainclr ml-auto mr-4">
+        <Button size="sm" className="btn-mainclr ml-auto mr-2">
           share
         </Button>
       </div>

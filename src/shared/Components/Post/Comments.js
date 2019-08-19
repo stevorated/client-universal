@@ -5,12 +5,14 @@ import Comment from './Comment'
 import AddCommentContainer from './AddCommentContainer'
 import { StyledLink } from '../../Elements'
 import Avatar from '../../../assets/logos/new_logo.png'
+import styled from 'styled-components'
+import { elevation } from '../../Utils'
 const defaultImg = Avatar.replace('build', '').replace('/public', '')
 const { API_BASE } = process.env
 
 function Comments(props) {
   // console.log(props)
-  const { comments, id, myId, myAvatar, setShowComments} = props
+  const { comments, id, myId, myAvatar, setShowComments } = props
   const [showForm, setShowForm] = useState(false)
   const openForm = () => {
     setShowForm(!showForm)
@@ -29,7 +31,7 @@ function Comments(props) {
       const postAvatarUrl = avatar ? `${API_BASE}${avatar.url}` : null
       const myPost = myId === createdBy.id
       const avatarUrl = myPost ? myAvatarUrl : postAvatarUrl
-      
+
       return (
         <Comment
           data-test="comment"
@@ -50,14 +52,18 @@ function Comments(props) {
   }
   return (
     <CSSTransition timeout={1000}>
-    <div className="mt-2" style={{ opacity: '0.8', marginTop: '0' }}>
-      {renderQuery()}
-      <StyledLink to="#" onClick={openForm} className="m-2 small-text">
-        {showForm ? 'Hide' : 'Comment'}
-      </StyledLink>
-      <div style={{height: showForm ? '100%' : '0'}}>
-        {showForm && (
-          <Card className="pt-3 mt-2 mx-2"style={{background: 'whitesmoke'}}>
+      <div className="mt-2" style={{ opacity: '0.8', marginTop: '0' }}>
+        {renderQuery()}
+        <StyledLink to="#" onClick={openForm} className="m-2 small-text">
+          {showForm ? 'Hide' : 'Comment'}
+        </StyledLink>
+        <div
+          style={{
+            height: showForm ? '100%' : '0',
+            display: showForm ? 'block' : 'none'
+          }}
+        >
+          <ShaddowCard className="pt-1 mt-2 mx-2" style={{ background: 'whitesmoke', borderRadius: '12px' }}>
             <AddCommentContainer
               id={id}
               handleAction={props.handleAction}
@@ -65,14 +71,17 @@ function Comments(props) {
               setShowComments={setShowComments}
               setShowForm={setShowForm}
               commentCount={comments.length}
-              
             />
-          </Card>
-        )}
+          </ShaddowCard>
+        </div>
       </div>
-    </div>
     </CSSTransition>
   )
 }
 
 export default Comments
+
+const ShaddowCard = styled(Card)`
+${elevation[6]};
+margin-bottom: 1rem;
+`

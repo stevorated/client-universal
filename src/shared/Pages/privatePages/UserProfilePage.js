@@ -141,7 +141,7 @@ export class UserProfilePage extends Component {
           </FloatLeft>
           <Col
             data-test="mainCol"
-            lg="6"
+            lg="8"
             className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-3"
           >
             <ProfileContainer
@@ -196,9 +196,6 @@ export class UserProfilePage extends Component {
             lg="3"
             className="order-2 order-lg-3 mt-lg-2 animated fadeIn mt-lg-2"
           >
-            <FeedActivity />
-            <FeedExtraRight />
-            <FeedExtraRight />
           </Col>
         </Row>
       </CSSTransition>

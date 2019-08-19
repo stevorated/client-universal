@@ -123,7 +123,7 @@ export class ProfilePage extends Component {
           />
         </FloatLeft>
         <Col
-          lg="7"
+          lg="8"
           // lg="6"
           data-test="mainCol"
           className="offset-lg-3 order-3 order-lg-2"
