@@ -64,6 +64,8 @@ export class FeedPage extends Component {
         // console.log('handleDeleteCommentAction')
         this.props.deleteCommentAction(payload.comment, payload.post)
         break
+      case 'redirect': 
+        this.props.history.push(payload.data)
       default:
         console.log('unKnownAction', type, payload)
         break
@@ -99,17 +101,6 @@ export class FeedPage extends Component {
             setFadeoutLoader={this.setFadeoutLoader}
           />
         </Col>
-        {/* <Col
-          lg="3"
-          data-test="rightCol"
-          className="order-2 order-lg-3 mt-lg-2 animated fadeIn mt-lg-2"
-        >
-          <FeedExtraRight />
-          <FeedExtraRight />
-          <FeedActivity />
-          <FeedActivity />
-          <FeedActivity />
-        </Col> */}
       </Row>
     )
   }

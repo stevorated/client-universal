@@ -102,7 +102,7 @@ export class SettingsPage extends Component {
         </FloatLeft>
         <Col
           data-test="mainCol"
-          lg="9"
+          lg="8"
           className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-4"
         >
           <FlatCardStatic className="px-4">

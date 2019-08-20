@@ -61,10 +61,10 @@ function Post(props) {
               />
             </ProfileLink>
             <div>
-              <CardTitle className="mb-0 text-capitalize">
+              <HoverCardTitle className="mb-0 text-capitalize">
                 <ProfileLink to={profileUrl}>{name}</ProfileLink>
                 <span className="lo-text"> posted</span>
-              </CardTitle>
+              </HoverCardTitle>
               <CreatedAt className="ml-0 pl-0">{PostedTime}</CreatedAt>
             </div>
           </div>
@@ -159,4 +159,10 @@ const StyledCard = styled(FlatCardStatic)`
   border-radius: 0.3rem;
   /* margin: .4rem; */
   ${elevation[0]}
+`
+const HoverCardTitle = styled(CardTitle)`
+  &:hover {
+    font-weight: 600;
+    cursor: pointer;
+  }
 `

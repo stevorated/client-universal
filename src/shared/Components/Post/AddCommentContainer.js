@@ -49,7 +49,7 @@ class AddCommentContainer extends Component {
                     margin="1"
                     size="2"
                     customLoader={true}
-                    noText={true}
+                    noloadingtext={true}
                   />
                 )
               if (error) {

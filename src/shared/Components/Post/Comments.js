@@ -31,7 +31,7 @@ function Comments(props) {
       const postAvatarUrl = avatar ? `${API_BASE}${avatar.url}` : null
       const myPost = myId === createdBy.id
       const avatarUrl = myPost ? myAvatarUrl : postAvatarUrl
-
+      const profileUrl = `/profile/${createdBy.id}`
       return (
         <Comment
           data-test="comment"
@@ -46,6 +46,7 @@ function Comments(props) {
           createdBy={createdBy}
           myComment={myComment}
           profileImgUrl={avatarUrl}
+          profileUrl={profileUrl}
         />
       )
     })

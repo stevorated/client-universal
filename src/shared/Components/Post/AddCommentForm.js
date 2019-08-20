@@ -33,7 +33,6 @@ export default function AddCommentForm(props) {
     <form onSubmit={handleSubmit}>
       <FormGroup className="m-2">
         <Input
-          className=""
           type="textarea"
           name="body"
           id="body_comment_add"
