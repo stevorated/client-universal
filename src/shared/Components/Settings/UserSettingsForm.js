@@ -29,7 +29,7 @@ const UserSettingsForm = props => {
     changed
   } = props.state
 
-  const setHideMessage = (val) => {
+  const setHideMessage = val => {
     handleState({ changed: !val })
   }
 
@@ -63,7 +63,7 @@ const UserSettingsForm = props => {
         usernameActive: false,
         bioGood: false,
         bioActive: false,
-        changed: true,
+        changed: true
       })
     }
   }
@@ -128,7 +128,12 @@ const UserSettingsForm = props => {
   }
   return (
     <Form onSubmit={handleSubmit}>
-      {changed && <AlertComponent alertText="details changed" setHideMessage={setHideMessage} />}
+      {changed && (
+        <AlertComponent
+          alertText="details changed"
+          setHideMessage={setHideMessage}
+        />
+      )}
       <Row form>
         <Col md={6}>
           <FormGroup onClick={() => handleState({ fnameActive: true })}>
@@ -202,7 +207,12 @@ const UserSettingsForm = props => {
           100 letters max
         </FormFeedback>
       </FormGroup>
-      <Button style={{ background: orange }} size="lg" className="my-4">
+      <Button
+        style={{ background: orange }}
+        size="lg"
+        className="my-4"
+        disabled={!fnameGood && !lnameGood && !usernameGood && !bioGood}
+      >
         Save Changes
       </Button>
     </Form>
