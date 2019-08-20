@@ -7,6 +7,9 @@ import { ApolloProvider } from 'react-apollo'
 import serialize from 'serialize-javascript'
 import { ServerStyleSheet } from 'styled-components'
 import Layout from '../../shared/Routes/Layout'
+import { config } from '@fortawesome/fontawesome-svg-core'
+config.autoAddCss = false
+
 const { API_BASE } = process.env
 const linkToFavicon = `${API_BASE}/public_images/favicon.png`
 export default function renderer(req, store, client, context) {

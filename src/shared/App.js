@@ -6,6 +6,7 @@ import { fetchCurrentUser } from './Store/actions'
 import { black } from './Utils'
 import styled from 'styled-components'
 import { HelmetProvider } from 'react-helmet-async'
+
 function App(props) {
   const { auth } = props
   try {

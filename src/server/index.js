@@ -31,6 +31,7 @@ app.use(
       ],
       styleSrc: [
         "'self'",
+        
         "'unsafe-inline'",
         'https://fonts.googleapis.com/'
       ],
@@ -45,6 +46,7 @@ app.use(
       ],
       imgSrc: [
         "'self'", 
+        'http://www.w3.org/svg/'
         `${API_BASE}/`,
       ],
       upgradeInsecureRequests: true,

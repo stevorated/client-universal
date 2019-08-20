@@ -82,13 +82,10 @@ class LoginPage extends Component {
           this.setState({ loading: false, formInvalid: true, formError: false })
         }
       } catch (error) {
-
         this.setState({ loading: false, formError: true, formInvalid: false })
       }
 
     } else {
-
-      console.log('SHIIITT')
       this.setState({ redirect: true, formInvalid: true, formError: false })
     }
   }
