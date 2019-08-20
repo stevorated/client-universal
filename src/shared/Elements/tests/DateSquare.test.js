@@ -7,10 +7,6 @@ import { DateSquare } from '../DateSquare'
 import { findByTestAttr } from '../../../tests/utils'
 
 describe('<DateSquare />', () => {
-  it('matches Snapshot', ()=> {
-    const tree = renderer.create(<DateSquare />).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
   it('renders with correct defaults', ()=> {
     const wrapper = shallow(<DateSquare />)
     const day = findByTestAttr(wrapper, 'day')

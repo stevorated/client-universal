@@ -68,6 +68,7 @@
     "file-loader": "4.2.0",
     "graphql": "^14.3.0",
     "graphql-tag": "^2.10.1",
+    "helmet": "^3.20.0",
     "history": "^4.9.0",
     "image-webpack-loader": "5.0.0",
     "isomorphic-fetch": "^2.2.1",

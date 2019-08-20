@@ -11,17 +11,3 @@ exports[`<DateSquareStyle /> matches snapshot and has proper style 1`] = `
   className="c0"
 />
 `;
-
-exports[`<Line /> matches snapshot 1`] = `
-<hr
-  className="noPadding undefined"
-  style={
-    Object {
-      "borderColor": "#c9783e",
-      "borderWidth": "2px",
-      "color": "#c9783e",
-      "opacity": "0.5",
-    }
-  }
-/>
-`;

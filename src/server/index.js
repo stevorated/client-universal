@@ -1,13 +1,13 @@
-
 import express from 'express'
 import cors from 'cors'
 import { matchRoutes } from 'react-router-config'
 import proxy from 'express-http-proxy' //TODO: return the proxy
 import cookieParser from 'cookie-parser'
 import routes from '../shared/Routes/mainRoutes'
+import helmet from 'helmet'
 import { renderer, createStore } from './helpers'
 import { ApolloClient } from 'apollo-client'
-import { createUploadLink } from 'apollo-upload-client' 
+import { createUploadLink } from 'apollo-upload-client'
 import fetch from 'node-fetch'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink } from 'apollo-link'
@@ -20,14 +20,49 @@ import '../assets/css/bootstrap.min.css'
 import '../assets/css/style.css'
 
 const PORT = process.env.PORT || 8080
-
+const { API_BASE } = process.env
 const app = express()
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: [
+        "'self'",
+        `${API_BASE}/graphql`
+      ],
+      styleSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        'https://fonts.googleapis.com/'
+      ],
+      fontSrc: [
+        'fonts.gstatic.com',
+        'https://fonts.googleapis.com/'
+      ],
+      scriptSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'
+      ],
+      imgSrc: [
+        "'self'", 
+        `${API_BASE}/`,
+      ],
+      upgradeInsecureRequests: true,
+    }
+  })
+)
+const sixtyDaysInSeconds = 5184000
+app.use(helmet.hsts({ maxAge: sixtyDaysInSeconds }))
+app.use(helmet.noSniff())
+app.use(helmet.frameguard({ action: 'sameorigin' }))
+app.use(helmet.hidePoweredBy())
 app.disable('x-powered-by')
 app.use(function(req, res, next) {
   res.removeHeader('X-Powered-By')
   next()
 })
 app.use(xssFilter({ setOnOldIE: true }))
+
 app.use(cookieParser())
 
 app.use(cors())
@@ -35,7 +70,7 @@ app.use(express.static('build/public'))
 
 app.get('*', async (req, res) => {
   const linkHttp = createUploadLink({
-    uri: process.env.GRAPH_URL, 
+    uri: process.env.GRAPH_URL,
     credentials: 'include',
     headers: {
       cookie: req.header('Cookie')
@@ -43,33 +78,35 @@ app.get('*', async (req, res) => {
     fetch
   })
 
-  const errorLink = onError(({ graphQLErrors, networkError, operation, forward, response }) => {
-    if (graphQLErrors) {
-      // console.log(graphQLErrors)
-      for (let err of graphQLErrors) {
-        switch (err.extensions.code) {
-          case 'UNAUTHENTICATED':
+  const errorLink = onError(
+    ({ graphQLErrors, networkError, operation, forward, response }) => {
+      if (graphQLErrors) {
+        // console.log(graphQLErrors)
+        for (let err of graphQLErrors) {
+          switch (err.extensions.code) {
+            case 'UNAUTHENTICATED':
+          }
         }
       }
     }
-  }
   )
-  
-  const links = [ errorLink, linkHttp ]
+
+  const links = [errorLink, linkHttp]
   const link = ApolloLink.from(links)
 
   const client = await new ApolloClient({
     cache: new InMemoryCache({
       addTypename: false
     }),
-    link,
+    link
   })
   const store = await createStore(client)
 
   const promises = await matchRoutes(routes, req.path)
     .map(({ route }) => {
       return route.loadData ? route.loadData(store) : null
-    }).map(promise => {
+    })
+    .map(promise => {
       if (promise) {
         return new Promise((resolve, rej) => {
           promise.then(resolve).catch(resolve)
@@ -80,14 +117,14 @@ app.get('*', async (req, res) => {
   await Promise.all(promises).then(() => {
     // console.log(promises)
     const context = {}
-    
+
     if (context.url) {
       return res.redirect(301, context.url)
     }
     if (context.notFound) {
       return res.status(404)
     }
-    
+
     const html = renderer(req, store, client, context)
     res.status(200).send(html)
   })
@@ -95,5 +132,4 @@ app.get('*', async (req, res) => {
 
 app.listen(PORT, (req, res) => {
   console.log(`APP IS RUNNING ON PORT ${PORT}`)
-  
 })

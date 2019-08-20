@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { Container } from 'reactstrap'
 import { renderRoutes } from 'react-router-config'
 import { fetchCurrentUser } from './Store/actions'
-import { black, mediaQueries } from './Utils'
-import ScrollToTop from './Elements/ScrollToTop'
+import { black } from './Utils'
 import styled from 'styled-components'
 import { HelmetProvider } from 'react-helmet-async'
 function App(props) {
@@ -18,7 +17,7 @@ function App(props) {
   return (
     <HelmetProvider>
       <AppContainer fluid className="mx-0">
-        <ScrollToTop>{renderRoutes(route.routes)}</ScrollToTop>
+        {renderRoutes(route.routes)}
       </AppContainer>
     </HelmetProvider>
   )

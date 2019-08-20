@@ -10,7 +10,7 @@ import { findByTestAttr } from '../../../../tests/utils'
 import { initialStateFeedPage as initialState } from '../../../../tests/mocks/initialState'
 // const initialState = {}
 const mockStore = configureStore()
-let component, store, tree
+let component, store
 
 const setupShallowRender = (props = {}) => {
   return shallow(<EventFeedPage {...props} />)

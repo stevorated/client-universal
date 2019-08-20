@@ -5,11 +5,16 @@ import 'jest-styled-components'
 import configureStore from 'redux-mock-store'
 import wait from 'waait'
 import waitForExpect from 'wait-for-expect'
+import { act } from 'react-dom/test-utils'
 import { MockedProvider } from '@apollo/react-testing'
 
+import { HelmetProvider } from 'react-helmet-async'
 import { SinglePostPage } from '../SinglePostPage'
 import { findByTestAttr, findByTestAttrElement } from '../../../../tests/utils'
-import { FETCH_FEED_SINGLE_POST_MOCK, getPosts } from '../../../../tests/mocks/Queries/getOnePost'
+import {
+  FETCH_FEED_SINGLE_POST_MOCK,
+  getPosts
+} from '../../../../tests/mocks/Queries/getOnePost'
 import { initialStateFeedPage as initialState } from '../../../../tests/mocks/initialState'
 
 let component, wrapper, i, store
@@ -29,9 +34,11 @@ const setupMountAndMockBootstrap = (initialState = {}, what) => {
   appendElementsComments(createCommentArray(initialState.singlePost))
   return mount(
     <MockedProvider addTypename={false} mocks={FETCH_FEED_SINGLE_POST_MOCK}>
-      <BrowserRouter>
-        <SinglePostPage {...initialState} match={match} />
-      </BrowserRouter>
+      <HelmetProvider>
+        <BrowserRouter>
+          <SinglePostPage {...initialState} match={match} />
+        </BrowserRouter>
+      </HelmetProvider>
     </MockedProvider>
   )
 }
@@ -116,9 +123,12 @@ describe('<SinglePostPage />', () => {
       fetchPost,
       likePostAction
     }
-    wrapper = setupMountAndMockBootstrap(initialStateWithMocks, 'singlePost')
-    await waitForExpect(() => {
-      expect(fetchPost).toHaveBeenCalledWith(getPosts)
+    await act(async () => {
+      wrapper = setupMountAndMockBootstrap(initialStateWithMocks, 'singlePost')
+      await waitForExpect(() => {
+        wrapper.update()
+        expect(fetchPost).toHaveBeenCalledWith(getPosts)
+      })
     })
   })
 
@@ -130,27 +140,32 @@ describe('<SinglePostPage />', () => {
       fetchPost,
       likePostAction
     }
-    
-    wrapper = setupMountAndMockBootstrap(initialStateWithMocks, 'singlePost')
-    const loading = findByTestAttrElement(wrapper, 'loading')
-    expect(loading.length).toBe(1)
 
-    await wait(0)
-    await waitForExpect(() => {
-      const updated = wrapper.update()
-      const container = findByTestAttrElement(
-        updated,
-        'singlePostContainer'
-      ).update()
-      const post = findByTestAttrElement(container.update(), 'post').update()
-      const likedIcon = findByTestAttrElement(post, 'likedIcon', 'FontAwesomeIcon')
-      const loadingAfter = findByTestAttrElement(updated, 'loading')
-      expect(likedIcon.length).toBe(1)
-      expect(loadingAfter.length).toBe(0)
-      expect(post.length).toBe(1)
+    // await wait(0)
+    await act(async () => {
+      wrapper = setupMountAndMockBootstrap(initialStateWithMocks, 'singlePost')
+      const loading = findByTestAttrElement(wrapper, 'loading')
+      expect(loading.length).toBe(1)
+      await waitForExpect(() => {
+        const updated = wrapper.update()
+        const container = findByTestAttrElement(
+          updated,
+          'singlePostContainer'
+        ).update()
+        const post = findByTestAttrElement(container.update(), 'post').update()
+        const likedIcon = findByTestAttrElement(
+          post,
+          'likedIcon',
+          'FontAwesomeIcon'
+        )
+        const loadingAfter = findByTestAttrElement(updated, 'loading')
+        expect(likedIcon.length).toBe(1)
+        expect(loadingAfter.length).toBe(0)
+        expect(post.length).toBe(1)
+      })
     })
   })
-  
+
   it('should render like btn without icon when not liked and no delete mutation (not my post)', async () => {
     const fetchPost = jest.fn()
     const likePostAction = jest.fn()
@@ -168,7 +183,8 @@ describe('<SinglePostPage />', () => {
             lname: 'gadol',
             username: 'mishue',
             avatar: {
-              url: '/images/avatars/avatar_1565167540853_5d4a86229540cf12bc8156d9.jpg'
+              url:
+                '/images/avatars/avatar_1565167540853_5d4a86229540cf12bc8156d9.jpg'
             },
             posts: [
               {
@@ -199,7 +215,8 @@ describe('<SinglePostPage />', () => {
                 fname: 'chandler',
                 lname: 'gadol',
                 avatar: {
-                  url: '/images/avatars/avatar_1565167540853_5d4a86229540cf12bc8156d9.jpg'
+                  url:
+                    '/images/avatars/avatar_1565167540853_5d4a86229540cf12bc8156d9.jpg'
                 }
               }
             },
@@ -212,7 +229,8 @@ describe('<SinglePostPage />', () => {
                 fname: 'chandler',
                 lname: 'bing',
                 avatar: {
-                  url: '/images/avatars/avatar_1564830879626_5d456a7de559a623484395d7.jpg'
+                  url:
+                    '/images/avatars/avatar_1564830879626_5d456a7de559a623484395d7.jpg'
                 }
               }
             },
@@ -225,7 +243,8 @@ describe('<SinglePostPage />', () => {
                 fname: 'chandler',
                 lname: 'bing',
                 avatar: {
-                  url: '/images/avatars/avatar_1564830879626_5d456a7de559a623484395d7.jpg'
+                  url:
+                    '/images/avatars/avatar_1564830879626_5d456a7de559a623484395d7.jpg'
                 }
               }
             }
@@ -235,20 +254,26 @@ describe('<SinglePostPage />', () => {
       fetchPost,
       likePostAction
     }
+    await act(async () => {
+      wrapper = setupMountAndMockBootstrap(initialStateWithMocks, 'singlePost')
 
-    wrapper = setupMountAndMockBootstrap(initialStateWithMocks, 'singlePost')
-
-    await waitForExpect(() => {
-      const updated = wrapper.update()
-      const container = findByTestAttrElement(
-        updated,
-        'singlePostContainer'
-      )
-      const post = findByTestAttrElement(container.update(), 'post').update()
-      const likedIcon = findByTestAttrElement(post, 'likedIcon', 'FontAwesomeIcon')
-      const deleteIcon = findByTestAttrElement(post, 'deletePostBtn', 'DeletePostMutation')
-      expect(deleteIcon.length).toBe(0)
-      expect(likedIcon.length).toBe(0)
+      await waitForExpect(() => {
+        const updated = wrapper.update()
+        const container = findByTestAttrElement(updated, 'singlePostContainer')
+        const post = findByTestAttrElement(container.update(), 'post').update()
+        const likedIcon = findByTestAttrElement(
+          post,
+          'likedIcon',
+          'FontAwesomeIcon'
+        )
+        const deleteIcon = findByTestAttrElement(
+          post,
+          'deletePostBtn',
+          'DeletePostMutation'
+        )
+        expect(deleteIcon.length).toBe(0)
+        expect(likedIcon.length).toBe(0)
+      })
     })
   })
   it('should render deleteBtn when my post', async () => {
@@ -268,7 +293,8 @@ describe('<SinglePostPage />', () => {
             lname: 'gadol',
             username: 'mishue',
             avatar: {
-              url: '/images/avatars/avatar_1565167540853_5d4a86229540cf12bc8156d9.jpg'
+              url:
+                '/images/avatars/avatar_1565167540853_5d4a86229540cf12bc8156d9.jpg'
             },
             posts: [
               {
@@ -299,7 +325,8 @@ describe('<SinglePostPage />', () => {
                 fname: 'chandler',
                 lname: 'gadol',
                 avatar: {
-                  url: '/images/avatars/avatar_1565167540853_5d4a86229540cf12bc8156d9.jpg'
+                  url:
+                    '/images/avatars/avatar_1565167540853_5d4a86229540cf12bc8156d9.jpg'
                 }
               }
             },
@@ -312,7 +339,8 @@ describe('<SinglePostPage />', () => {
                 fname: 'chandler',
                 lname: 'bing',
                 avatar: {
-                  url: '/images/avatars/avatar_1564830879626_5d456a7de559a623484395d7.jpg'
+                  url:
+                    '/images/avatars/avatar_1564830879626_5d456a7de559a623484395d7.jpg'
                 }
               }
             },
@@ -325,7 +353,8 @@ describe('<SinglePostPage />', () => {
                 fname: 'chandler',
                 lname: 'bing',
                 avatar: {
-                  url: '/images/avatars/avatar_1564830879626_5d456a7de559a623484395d7.jpg'
+                  url:
+                    '/images/avatars/avatar_1564830879626_5d456a7de559a623484395d7.jpg'
                 }
               }
             }
@@ -335,19 +364,19 @@ describe('<SinglePostPage />', () => {
       fetchPost,
       likePostAction
     }
-
-    wrapper = setupMountAndMockBootstrap(initialStateWithMocks, 'singlePost')
-
-    await wait(0)
-    await waitForExpect(() => {
-      const updated = wrapper.update()
-      const container = findByTestAttrElement(
-        updated,
-        'singlePostContainer'
-      )
-      const post = findByTestAttrElement(container.update(), 'post').update()
-      const deleteIcon = findByTestAttrElement(post, 'deletePostBtn', 'DeletePostMutation')
-      expect(deleteIcon.length).toBe(1)
+    await act(async () => {
+      wrapper = setupMountAndMockBootstrap(initialStateWithMocks, 'singlePost')
+      await waitForExpect(() => {
+        const updated = wrapper.update()
+        const container = findByTestAttrElement(updated, 'singlePostContainer')
+        const post = findByTestAttrElement(container.update(), 'post').update()
+        const deleteIcon = findByTestAttrElement(
+          post,
+          'deletePostBtn',
+          'DeletePostMutation'
+        )
+        expect(deleteIcon.length).toBe(1)
+      })
     })
   })
   it('should render 3 comments like in the initialState', async () => {
@@ -358,20 +387,15 @@ describe('<SinglePostPage />', () => {
       fetchPost,
       likePostAction
     }
-
-    wrapper = setupMountAndMockBootstrap(initialStateWithMocks, 'singlePost')
-
-    await wait(0)
-    await waitForExpect(() => {
-      const updated = wrapper.update()
-      const container = findByTestAttrElement(
-        updated,
-        'singlePostContainer'
-      )
-      const post = findByTestAttrElement(container.update(), 'post').update()
-      const comment = findByTestAttr(post, 'comment')
-      
-      expect(comment.length).toBe(initialState.singlePost[0].comments.length)
+    await act(async () => {
+      wrapper = setupMountAndMockBootstrap(initialStateWithMocks, 'singlePost')
+      await waitForExpect(() => {
+        const updated = wrapper.update()
+        const container = findByTestAttrElement(updated, 'singlePostContainer')
+        const post = findByTestAttrElement(container.update(), 'post').update()
+        const comment = findByTestAttr(post, 'comment')
+        expect(comment.length).toBe(initialState.singlePost[0].comments.length)
+      })
     })
   })
 })

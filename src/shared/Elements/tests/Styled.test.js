@@ -5,8 +5,14 @@ import renderer from 'react-test-renderer'
 import { Line, DateSquareStyle } from '..'
 import 'jest-styled-components'
 
+let component
+
+const setupMount = (props = {}) => {
+  return mount(<Line {...props} />)
+}
+
 describe('<Line />', () => {
-  it('matches snapshot',  () => {
+  beforeEach(()=> {
     const tree = renderer.create(<Line />).toJSON()
     expect(tree).toMatchSnapshot()
   })

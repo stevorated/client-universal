@@ -3,9 +3,10 @@ import { BrowserRouter } from 'react-router-dom'
 import { shallow, mount } from 'enzyme'
 import 'jest-styled-components'
 import configureStore from 'redux-mock-store'
-import wait from 'waait'
+import { act } from 'react-dom/test-utils'
 import waitForExpect from 'wait-for-expect'
 import { MockedProvider } from '@apollo/react-testing'
+import { HelmetProvider } from 'react-helmet-async'
 
 import { NotificationsPage } from '../NotificationsPage'
 import { findByTestAttr, findByTestAttrElement } from '../../../../tests/utils'
@@ -22,9 +23,11 @@ const setupShallowRender = (props = {}) => {
 const setupMountAndMockBootstrap = (initialState = {}) => {
   return mount(
     <MockedProvider addTypename={false} mocks={GET_NOTIFICATIONS_MOCK}>
-      <BrowserRouter>
-        <NotificationsPage {...initialState} />
-      </BrowserRouter>
+      <HelmetProvider>
+        <BrowserRouter>
+          <NotificationsPage {...initialState} />
+        </BrowserRouter>
+      </HelmetProvider>
     </MockedProvider>
   )
 }
@@ -79,22 +82,21 @@ describe('<NotificationsPage />', () => {
     // console.log(container.debug())
     
 
-    await wait(0)
-    await waitForExpect(() => {
-      const updated = wrapper.update()
-      
-      updated.instance().handleAction = jest.fn()
-      const updatedContainer = findByTestAttrElement(
-        updated,
-        'notificationContainer'
-      ).update()
-      const notifications = findByTestAttrElement(updatedContainer, 'notifications').first()
-      const notification = findByTestAttrElement(notifications, 'notification')
-
-      expect(notification.length).toBe(10)
-      const loadingMore = findByTestAttrElement(updated, 'loading', 'Spinner')
-      expect(loadingMore.length).toBe(1)
-
+    await act( async () => {
+      await waitForExpect(() => {
+        const updated = wrapper.update()
+        
+        updated.instance().handleAction = jest.fn()
+        const updatedContainer = findByTestAttrElement(
+          updated,
+          'notificationContainer'
+        ).update()
+        const notifications = findByTestAttrElement(updatedContainer, 'notifications').first()
+        const notification = findByTestAttrElement(notifications, 'notification')  
+        expect(notification.length).toBe(10)
+        const loadingMore = findByTestAttrElement(updated, 'loading', 'Spinner')
+        expect(loadingMore.length).toBe(1)  
+      })
     })
   })
 })

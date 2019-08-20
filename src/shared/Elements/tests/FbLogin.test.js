@@ -6,17 +6,13 @@ import "jest-styled-components"
 import { findByTestAttr } from "../../../tests/utils"
 import { FbLogin } from "./../Buttons"
 
-let component, store, tree
+let component, store
 
 const setupShallowRender = (props = {}) => {
   return shallow(<FbLogin {...props} />)
 }
 
 describe("<FbLogin />", () => {
-  it("matches Snapshot", () => {
-    const tree = renderer.create(<FbLogin />).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
   it("renders with login text correctly", () => {
     component = setupShallowRender()
     const button = findByTestAttr(component, "fb-login")

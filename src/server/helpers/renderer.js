@@ -11,8 +11,6 @@ const { API_BASE } = process.env
 const linkToFavicon = `${API_BASE}/public_images/favicon.png`
 export default function renderer(req, store, client, context) {
 
-  // console.log(req.originalUrl)
-
   const App = (
     <Provider store={store}>
       <ApolloProvider client={client}>
@@ -26,7 +24,7 @@ export default function renderer(req, store, client, context) {
   const sheet = new ServerStyleSheet()
   const content = renderToString(sheet.collectStyles(App))
   const styles = sheet.getStyleTags()
-
+  
   const helmet = Helmet.renderStatic()
 
   return `
@@ -49,11 +47,9 @@ export default function renderer(req, store, client, context) {
           s.parentNode.insertBefore(wf, s);
         })(); </script>
       <link href="https://fonts.googleapis.com/css?family=Sigmar+One&display=swap" rel="stylesheet">
-
-      <link rel="icon" href="${linkToFavicon}" type="image/png"/>
       ${helmet.title.toString()}
       ${helmet.meta.toString()}
-      <link href="https://use.fontawesome.com/releases/v5.9.0/css/svg-with-js.css" rel="stylesheet"></link>
+      <link rel="icon" href="${linkToFavicon}" type="image/png"/>
       <link rel="stylesheet" href="/styles/main.css"/>
       ${styles}
       </head>
@@ -66,7 +62,6 @@ export default function renderer(req, store, client, context) {
         <script>
           window.__APOLLO_STATE__ = ${serialize(client.extract())}
         </script>
-        <script src="https://kit.fontawesome.com/ba8dc12f24.js"></script>
         <script src="/bundle.js"></script>
       </body>
     </html>

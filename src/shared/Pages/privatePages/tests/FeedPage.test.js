@@ -4,17 +4,18 @@ import { shallow, mount } from 'enzyme'
 import renderer from 'react-test-renderer'
 import 'jest-styled-components'
 import configureStore from 'redux-mock-store'
-import wait from 'waait'
+import { act } from 'react-dom/test-utils'
 import waitForExpect from 'wait-for-expect'
 import { MockedProvider } from '@apollo/react-testing'
-import { FeedPage } from '../FeedPage'
+import { HelmetProvider } from 'react-helmet-async'
 
+import { FeedPage } from '../FeedPage'
 import { findByTestAttr } from '../../../../tests/utils'
 import { FETCH_FEED_MOCK, getPosts } from '../../../../tests/mocks/Queries/getPosts'
 import { initialStateFeedPage as initialState } from '../../../../tests/mocks/initialState'
 
 const mockStore = configureStore()
-let component, wrapper, store, tree, wrap, div, i
+let component, wrapper, store, wrap, div, i
 
 const setupShallowRender = (props = {}) => {
   return shallow(<FeedPage {...props} />)
@@ -24,9 +25,11 @@ const setupMountAndMockBootstrap = (initialState = {}, what) => {
   appendElements(initialState[what])
   return mount(
     <MockedProvider addTypename={false} mocks={FETCH_FEED_MOCK}>
-      <BrowserRouter>
-        <FeedPage {...initialState} />
-      </BrowserRouter>
+      <HelmetProvider>
+        <BrowserRouter>
+          <FeedPage {...initialState} />
+        </BrowserRouter>        
+      </HelmetProvider>
     </MockedProvider>
   )
 }
@@ -75,25 +78,28 @@ describe('<FeedPage />', () => {
   describe('testing with mounted compnent', () => {
     it('should be five posts rendered (props from server)', async () => {
       wrapper = setupMountAndMockBootstrap(initialState, 'feed')
-      await waitForExpect(() => {
-        const updated = wrapper.update()
-        const feed = findByTestAttr(updated, 'feedScrollQuery')
-        const posts = findByTestAttr(feed, 'post')
-        expect(posts.length).toBe(initialState.feed.length)
+      await act( async () => {
+        await waitForExpect(() => {
+          const updated = wrapper.update()
+          const feed = findByTestAttr(updated, 'feedScrollQuery')
+          const posts = findByTestAttr(feed, 'post')
+          expect(posts.length).toBe(initialState.feed.length)
+        })
       })
     })
 
     it('should be zero posts rendered(no props from server fetchFeed action in called)', async () => {
       const fetchFeed = jest.fn()
       const noFeedInitialState = { auth: initialState.auth, feed: [], fetchFeed }
-      wrapper = setupMountAndMockBootstrap(noFeedInitialState, 'feed')
-      await waitForExpect(() => {
-        const updated = wrapper.update()
-        const feed = findByTestAttr(updated, 'feedScrollQuery')
-        const posts = findByTestAttr(feed, 'post')
-        expect(posts.length).toBe(0)
-        expect(fetchFeed).toHaveBeenCalled()
-  
+      await act( async () => {
+        wrapper = setupMountAndMockBootstrap(noFeedInitialState, 'feed')
+        await waitForExpect(() => {
+          const updated = wrapper.update()
+          const feed = findByTestAttr(updated, 'feedScrollQuery')
+          const posts = findByTestAttr(feed, 'post')
+          expect(posts.length).toBe(0)
+          expect(fetchFeed).toHaveBeenCalled()    
+        })
       })
     })
   })

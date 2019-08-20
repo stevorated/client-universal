@@ -8,6 +8,8 @@ import waitForExpect from 'wait-for-expect'
 import { MockedProvider } from '@apollo/react-testing'
 import TestRenderer from 'react-test-renderer'
 import moment from 'moment'
+import { HelmetProvider } from 'react-helmet-async'
+import { act } from 'react-dom/test-utils'
 
 import { CalanderPage } from '../CalanderPage'
 import { findByTestAttr, findByTestAttrElement } from '../../../../tests/utils'
@@ -15,7 +17,7 @@ import { FETCH_CALANDER_EVENTS_MOCK } from '../../../../tests/mocks/Queries/getM
 import { initialStateFeedPage as initialState } from '../../../../tests/mocks/initialState'
 
 const mockStore = configureStore()
-let component, wrapper, store, tree, wrap, div, i
+let component, wrapper, store, wrap, div, i
 
 const setupShallowRender = (props = {}) => {
   return shallow(<CalanderPage {...props} />)
@@ -25,9 +27,11 @@ const setupMountAndMockBootstrap = (initialState = {}, what) => {
   appendElements(initialState[what])
   return mount(
     <MockedProvider addTypename={false} mocks={FETCH_CALANDER_EVENTS_MOCK}>
-      <BrowserRouter>
-        <CalanderPage {...initialState} />
-      </BrowserRouter>
+      <HelmetProvider>
+        <BrowserRouter>
+          <CalanderPage {...initialState} />
+        </BrowserRouter>
+      </HelmetProvider>
     </MockedProvider>
   )
 }
@@ -42,17 +46,10 @@ const appendElements = arr => {
 }
 
 describe('<CalanderPage />', () => {
-  beforeEach(() => {
+  beforeEach( async () => {
     store = mockStore(initialState)
     component = setupShallowRender(initialState)
     appendElements(initialState['calander'])
-    tree = TestRenderer.create(
-      <MockedProvider addTypename={false} mocks={FETCH_CALANDER_EVENTS_MOCK}>
-        <BrowserRouter>
-          <CalanderPage {...initialState} />
-        </BrowserRouter>
-      </MockedProvider>
-    )
   })
 
   it('should render component', () => {
@@ -101,16 +98,17 @@ describe('<CalanderPage />', () => {
     }
     wrapper = setupMountAndMockBootstrap(initialStateWithMocks, 'calander')
 
-    await wait(0)
-    await waitForExpect(() => {
-      const updated = wrapper.update()
-      const calander = findByTestAttr(updated, 'calander')
-      const dayNumber = findByTestAttrElement(calander, 'dayNumber')
-      const dayNumbersNotEmpty = dayNumber.filterWhere(day => {
-        return day.text().length
-      })
-      expect(dayNumbersNotEmpty.length).toBe(moment().daysInMonth())
-      expect(fetchCalanderEvents).toHaveBeenCalled()
+    await act( async () => {
+      await waitForExpect(() => {
+        const updated = wrapper.update()
+        const calander = findByTestAttr(updated, 'calander')
+        const dayNumber = findByTestAttrElement(calander, 'dayNumber')
+        const dayNumbersNotEmpty = dayNumber.filterWhere(day => {
+          return day.text().length
+        })
+        expect(dayNumbersNotEmpty.length).toBe(moment().daysInMonth())
+        expect(fetchCalanderEvents).toHaveBeenCalled()
+      })      
     })
   })
 })

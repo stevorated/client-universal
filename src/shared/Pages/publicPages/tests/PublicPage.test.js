@@ -10,7 +10,7 @@ import { findByTestAttr } from '../../../../tests/utils'
 
 const initialState = {}
 const mockStore = configureStore()
-let component, store, tree;
+let component, store
 
 const setupShallowRender = (props = {}) => {
   return shallow(<PublicPage />)
@@ -22,11 +22,6 @@ describe('<PublicPage />', () => {
     //creates the store with any initial state or middleware needed
     store = mockStore(initialState)
     component = setupShallowRender()
-    tree = renderer.create(
-      <BrowserRouter>
-        <PublicPage store={store} />
-      </BrowserRouter>
-    )
   })
 
   it('should render', () => {

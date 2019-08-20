@@ -5,6 +5,8 @@ import 'jest-styled-components'
 import configureStore from 'redux-mock-store'
 import waitForExpect from 'wait-for-expect'
 import { MockedProvider } from '@apollo/react-testing'
+import { HelmetProvider } from 'react-helmet-async'
+import { act } from 'react-dom/test-utils'
 
 import { ProfilePage } from '../ProfilePage'
 import { findByTestAttr } from '../../../../tests/utils'
@@ -15,7 +17,7 @@ import {
 import { initialStateFeedPage as initialState } from '../../../../tests/mocks/initialState'
 
 const mockStore = configureStore()
-let component, wrapper, store, tree, wrap, div, i
+let component, wrapper, store, wrap, div, i
 
 const setupShallowRender = (props = {}) => {
   return shallow(<ProfilePage {...props} />)
@@ -25,9 +27,11 @@ const setupMountAndMockBootstrap = (initialState = {}, what) => {
   appendElements(initialState[what])
   return mount(
     <MockedProvider addTypename={false} mocks={FETCH_MY_POSTS_MOCK}>
-      <BrowserRouter>
-        <ProfilePage {...initialState} />
-      </BrowserRouter>
+      <HelmetProvider>
+        <BrowserRouter>
+          <ProfilePage {...initialState} />
+        </BrowserRouter>
+      </HelmetProvider>
     </MockedProvider>
   )
 }
@@ -78,12 +82,14 @@ describe('<ProfilePage />', () => {
   describe('testing with mounted compnent', () => {
     it('should be five posts rendered (props from server)', async () => {
       // const fetchMoreMyPosts = jest.fn()
-      wrapper = setupMountAndMockBootstrap(initialState, 'posts')
-      await waitForExpect(() => {
-        const updated = wrapper.update()
-        const scroll = findByTestAttr(updated, 'scroll')
-        const posts = findByTestAttr(scroll, 'post')
-        expect(posts.length).toBe(initialState.posts.length)
+      await act( async () => {
+        wrapper = setupMountAndMockBootstrap(initialState, 'posts')
+        await waitForExpect(() => {
+          const updated = wrapper.update()
+          const scroll = findByTestAttr(updated, 'scroll')
+          const posts = findByTestAttr(scroll, 'post')
+          expect(posts.length).toBe(initialState.posts.length)
+        })
       })
     })
 
@@ -96,13 +102,15 @@ describe('<ProfilePage />', () => {
         posts: [],
         fetchMyPosts
       }
-      wrapper = setupMountAndMockBootstrap(noFeedInitialState, 'posts')
-      await waitForExpect(() => {
-        const updated = wrapper.update()
-        const feed = findByTestAttr(updated, 'scroll')
-        const posts = findByTestAttr(feed, 'post')
-        expect(posts.length).toBe(0)
-        expect(initialState.fetchMoreMyPosts).toHaveBeenCalledWith(getMyPosts)
+      await act( async () => {
+        wrapper = setupMountAndMockBootstrap(noFeedInitialState, 'posts')
+        await waitForExpect(() => {
+          const updated = wrapper.update()
+          const feed = findByTestAttr(updated, 'scroll')
+          const posts = findByTestAttr(feed, 'post')
+          expect(posts.length).toBe(0)
+          expect(initialState.fetchMoreMyPosts).toHaveBeenCalledWith(getMyPosts)
+        })
       })
     })
   })

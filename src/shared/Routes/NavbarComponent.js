@@ -12,6 +12,7 @@ import { SearchBar, LiveNotificationCount, ScrollTo } from "../Components"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
+  faBars,
   faBell,
   faCalendarAlt
 } from "@fortawesome/free-solid-svg-icons"
@@ -31,7 +32,6 @@ function NavbarComponent(props) {
   } = props
   const scroll = createRef()
   const scrollToTop = (ref) => {
-    // console.log('scrolll')
     ref.current.scrollIntoView({ behavior: 'smooth' })
   }
   const [collapsed, toggleNavbar] = useState(false)
@@ -114,7 +114,9 @@ function NavbarComponent(props) {
           {" "}
           <LogoImg className="ml-sm-0" src={linkLogo} alt="" />
         </NavLink>
-        <NavbarToggler onClick={handleToggleNav} />
+        <NavbarToggler onClick={handleToggleNav}>
+          <FontAwesomeIcon className="mr-0" icon={faBars} size={"lg"} />
+        </NavbarToggler>
 
         <Collapse isOpen={collapsed} navbar>
           {auth && <StyledLine />}
