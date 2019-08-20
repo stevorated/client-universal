@@ -12,7 +12,7 @@ import { mediaQueries, orange } from '../../Utils'
 import { FlatCardStatic } from '../../Elements'
 import NextUpBoardContainerSide from '../../Components/Event/NextUpBoardContainerSide'
 
-class EventBoardPage extends Component {
+export class EventBoardPage extends Component {
   constructor(props) {
     super(props)
     this.menuItems = ['suggested', 'past']
@@ -67,12 +67,13 @@ class EventBoardPage extends Component {
 
   render() {
     return (
-      <Row className="text-center">
-        <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
-        <FloatLeft lg="3" className="">
+      <Row className="text-center" data-test="mainDiv">
+        <HelmetComponent data-test="helmet" pageTitle={this.title} ogTitle={this.title} />
+        <FloatLeft data-test="leftCol" lg="3" className="">
           <Menu />
         </FloatLeft>
         <MainCol
+          data-test="mainCol"
           lg="6"
           className="offset-lg-3 order-3 order-lg-2 animated fadeIn"
         >
@@ -93,7 +94,7 @@ class EventBoardPage extends Component {
             setLoadMore={this.setLoadMore}
           />
         </MainCol>
-        <Col lg="3" className="order-2 order-lg-3 animated fadeIn">
+        <Col data-test="rightCol" lg="3" className="order-2 order-lg-3 animated fadeIn">
           <EventExtra
             myId={this.props.auth.id}
             boardMode={true}

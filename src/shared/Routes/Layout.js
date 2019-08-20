@@ -8,6 +8,7 @@ import NavbarComponent from './NavbarComponent'
 import { Footer, AlertComponent } from '../Components'
 import styled from 'styled-components'
 import { mediaQueries } from '../Utils'
+
 const MainContent = ({ whereTo, redirect, setRedirect, hideMessage, email_confirmed, auth }) => {
   const id = whereTo
   const style = (hideMessage || email_confirmed) || auth === null ? { } : { marginTop: '7rem' }

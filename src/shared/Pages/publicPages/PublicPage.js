@@ -6,8 +6,8 @@ import { transition, elevation, orange, mediaQueries } from "../../Utils"
 import styled from "styled-components"
 
 import forceLoggedIn from "../../HOC/forceLoggedIn"
-import Logo from "../../../assets/logos/logo5.png"
 import { FbLogin, StyledBigButton } from "../../Elements"
+import Logo from "../../../assets/logos/logo5.png"
 const linkLogo = Logo.replace("build", "").replace("/public", "")
 
 export class PublicPage extends Component {

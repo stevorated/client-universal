@@ -1,15 +1,11 @@
-import React, { Component } from 'react'
-import {
-  Button,
-  UncontrolledPopover,
-  PopoverBody
-} from 'reactstrap'
-import OutsideClickHandler from 'react-outside-click-handler'
+import React, { Component, Fragment } from 'react'
+import { Button, UncontrolledPopover, PopoverBody } from 'reactstrap'
+import onClickOutside from 'react-onclickoutside'
 
-export default class DeletePostPopover extends Component {
+class DeletePostPopover extends Component {
   constructor(props) {
     super(props)
-    
+
     this.state = {
       fade: '',
       showPopUp: false,
@@ -20,10 +16,15 @@ export default class DeletePostPopover extends Component {
 
   handleClick = async () => {
     if (this.state.counter === 0) {
-      await setTimeout(()=> {
-        this.setState({fade: ''})
+      await setTimeout(() => {
+        this.setState({ fade: '' })
       }, 100)
-      this.setState({ counter: 1, deleteMsg: 'You Sure?', showPopUp: true, fade: 'animated flipInX fast' })
+      this.setState({
+        counter: 1,
+        deleteMsg: 'You Sure?',
+        showPopUp: true,
+        fade: 'animated flipInX fast'
+      })
     } else if (this.state.counter === 1) {
       this.setState({ counter: 2, deleteMsg: 'Really?!' })
     } else {
@@ -31,12 +32,17 @@ export default class DeletePostPopover extends Component {
     }
   }
 
+  handleClickOutside = evt => {
+    this.setState({ showPopUp: false, counter: 0 })
+  }
+
   render() {
     return (
-      <OutsideClickHandler
-        onOutsideClick={() => {
-          this.setState({ showPopUp: false, counter: 0 })
-        }}>
+      <Fragment>
+        {/* <OutsideClickHandler
+          onOutsideClick={() => {
+            this.setState({ showPopUp: false, counter: 0 })
+          }}> */}
 
         <UncontrolledPopover
           backdrop="true"
@@ -47,7 +53,9 @@ export default class DeletePostPopover extends Component {
           // triger="focus"
           target={`PopoverDeletePost_${this.props.post}`}
         >
-          <PopoverBody className={`${this.state.fade}`}>{this.state.deleteMsg}</PopoverBody>
+          <PopoverBody className={`${this.state.fade}`}>
+            {this.state.deleteMsg}
+          </PopoverBody>
         </UncontrolledPopover>
         <Button
           type="button"
@@ -55,7 +63,10 @@ export default class DeletePostPopover extends Component {
           onClick={this.handleClick}
           close
         />
-      </OutsideClickHandler>
+        {/* </OutsideClickHandler> */}
+      </Fragment>
     )
   }
 }
+
+export default onClickOutside(DeletePostPopover)

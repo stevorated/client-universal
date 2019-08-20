@@ -5,7 +5,7 @@ import 'jest-styled-components'
 import configureStore from 'redux-mock-store'
 import wait from 'waait'
 import waitForExpect from 'wait-for-expect'
-import { MockedProvider } from 'react-apollo/test-utils'
+import { MockedProvider } from '@apollo/react-testing'
 import TestRenderer from 'react-test-renderer'
 import moment from 'moment'
 

@@ -6,36 +6,21 @@ import { fetchCurrentUser } from './Store/actions'
 import { black, mediaQueries } from './Utils'
 import ScrollToTop from './Elements/ScrollToTop'
 import styled from 'styled-components'
-// import Socket from './Store/sockets/socket'
-// if (__isBrowser__) {
-//   Socket('http://127.0.0.1:9999')
-// }
-
+import { HelmetProvider } from 'react-helmet-async'
 function App(props) {
-  const { auth, feed } = props
-  // console.log(JSON.stringify(auth))
-  // console.log(JSON.stringify(feed))
-  // console.log(props)
+  const { auth } = props
   try {
-    if (!props.auth) props.fetchCurrentUser()
-  } catch (e) { console.log(e) }
+    if (!auth) props.fetchCurrentUser()
+  } catch (e) {
+    console.log(e)
+  }
   const { route } = props
   return (
-    <AppContainer
-      fluid
-      className="mx-0"
-      // style={{
-      //   minHeight: '95vh',
-      //   marginTop: '3.2rem',
-      //   marginLeft: '0!important',
-      //   marginRight: '0!important',
-      //   padding: '0',
-
-      //   color: `${black}`
-      // }}
-    >
-      <ScrollToTop>{renderRoutes(route.routes)}</ScrollToTop>
-    </AppContainer>
+    <HelmetProvider>
+      <AppContainer fluid className="mx-0">
+        <ScrollToTop>{renderRoutes(route.routes)}</ScrollToTop>
+      </AppContainer>
+    </HelmetProvider>
   )
 }
 
@@ -52,10 +37,10 @@ export default {
 }
 
 const AppContainer = styled(Container)`
-min-height: 95vh;
-margin-top: 3.2rem;
-margin-left: 0!important;
-margin-right: 0!important;
-padding: 0;
-color: ${ black};
+  min-height: 95vh;
+  margin-top: 3.2rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0;
+  color: ${black};
 `

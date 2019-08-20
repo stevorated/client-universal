@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import { clearUsersPosts } from '../../Store/actions'
 import SearchBarSuggest from './SearchBarSuggest'
 import { mediaQueries } from '../../Utils'
+import onClickOutside from 'react-onclickoutside'
 
 function SearchBar({ setRedirect, setWhereTo, clearUsersPosts, handleClick }) {
 
@@ -58,6 +59,10 @@ function SearchBar({ setRedirect, setWhereTo, clearUsersPosts, handleClick }) {
       setChoices({})
   }
 }
+SearchBar.handleClickOutside = () => {
+  setShowSuggest(false)
+  setSearchTerm('')
+}
   
   return (
     <Nav className="ml-auto mb-0" navbar>
@@ -90,7 +95,11 @@ function SearchBar({ setRedirect, setWhereTo, clearUsersPosts, handleClick }) {
   )
 }
 
-export default connect(undefined, { clearUsersPosts })(SearchBar)
+const clickOutsideConfig = {
+  handleClickOutside: () => SearchBar.handleClickOutside
+};
+
+export default connect(undefined, { clearUsersPosts })(onClickOutside(SearchBar, clickOutsideConfig))
 
 const SearchButton = styled(Button)`
   border-radius: 50%;

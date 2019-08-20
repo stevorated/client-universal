@@ -45,7 +45,7 @@ export class UserProfilePage extends Component {
     }
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     if (!this.props.profileDetails) {
       this.props.fetchUsersPosts(payload.data, payload.id)
     }

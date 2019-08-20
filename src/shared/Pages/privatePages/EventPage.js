@@ -78,7 +78,7 @@ class EventPage extends Component {
         <MainCol
 
           data-test="mainCol"
-          lg="6"
+          lg="8"
           className="offset-lg-3 order-3 order-lg-2 animated fadeIn"
         >
           <EventDetailsQuery

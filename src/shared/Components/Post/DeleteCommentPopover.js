@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import OutsideClickHandler from 'react-outside-click-handler'
+import React, { Component, Fragment } from 'react'
 import { Button, PopoverBody, UncontrolledPopover } from 'reactstrap'
+import onClickOutside from 'react-onclickoutside'
 
-export default class DeleteCommentPopover extends Component {
+class DeleteCommentPopover extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -21,12 +21,13 @@ export default class DeleteCommentPopover extends Component {
     }
   }
 
+  handleClickOutside = evt => {
+    this.setState({ showPopUp: false, counter: 0 })
+  }
+
   render() {
     return (
-      <OutsideClickHandler
-        onOutsideClick={() => {
-          this.setState({ showPopUp: false, counter: 0 })
-        }}>
+      <Fragment>
         <UncontrolledPopover
           backdrop="true"
           className="text-capitalized animated fadeIn"
@@ -43,7 +44,9 @@ export default class DeleteCommentPopover extends Component {
           close
           className="mr-2"
         />
-      </OutsideClickHandler>
+      </Fragment>
     )
   }
 }
+
+export default onClickOutside(DeleteCommentPopover)

@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import 'jest-styled-components'
 import configureStore from 'redux-mock-store'
 import waitForExpect from 'wait-for-expect'
-import { MockedProvider } from 'react-apollo/test-utils'
+import { MockedProvider } from '@apollo/react-testing'
 
 import { ProfilePage } from '../ProfilePage'
 import { findByTestAttr } from '../../../../tests/utils'

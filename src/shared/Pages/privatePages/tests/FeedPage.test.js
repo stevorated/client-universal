@@ -6,7 +6,7 @@ import 'jest-styled-components'
 import configureStore from 'redux-mock-store'
 import wait from 'waait'
 import waitForExpect from 'wait-for-expect'
-import { MockedProvider } from 'react-apollo/test-utils'
+import { MockedProvider } from '@apollo/react-testing'
 import { FeedPage } from '../FeedPage'
 
 import { findByTestAttr } from '../../../../tests/utils'

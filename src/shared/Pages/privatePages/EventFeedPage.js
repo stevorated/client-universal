@@ -17,7 +17,7 @@ import Menu from '../../Routes/Menu'
 import { mediaQueries } from '../../Utils'
 import NextUpFeedContainerSide from '../../Components/Event/NextUpFeedContainerSide'
 
-class EventFeedPage extends Component {
+export class EventFeedPage extends Component {
   constructor(props) {
     super(props)
     this.menuItems = ['new', 'popular']
@@ -74,12 +74,13 @@ class EventFeedPage extends Component {
 
   render() {
     return (
-      <Row className="text-center">
-        <HelmetComponent pageTitle={this.title} ogTitle={this.title} />
-        <FloatLeft lg="3" className="">
+      <Row data-test="mainDiv" className="text-center">
+        <HelmetComponent data-test="helmet" pageTitle={this.title} ogTitle={this.title} />
+        <FloatLeft data-test="leftCol" lg="3" className="">
           <Menu />
         </FloatLeft>
         <Col
+          data-test="mainCol"
           lg="6"
           className="offset-lg-3 order-3 order-lg-2 animated fadeIn"
         >
@@ -100,7 +101,7 @@ class EventFeedPage extends Component {
             setLoadMore={this.setLoadMore}
           />
         </Col>
-        <Col lg="3" className="order-2 order-lg-3 animated fadeIn">
+        <Col data-test="rightCol" lg="3" className="order-2 order-lg-3 animated fadeIn">
           <EventExtra
             feedMode={true}
             byCreatedAt={this.state.byCreatedAt}
