@@ -120,7 +120,8 @@
     "webpack-cli": "^3.3.7",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2",
-    "ws": "^7.1.2"
+    "ws": "^7.1.2",
+    "x-xss-protection": "^1.2.0"
   },
   "devDependencies": {
     "babel-jest": "24.9.0",

@@ -12,6 +12,7 @@ import fetch from 'node-fetch'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
+import xssFilter from 'x-xss-protection'
 // import '../assets/css/ReactCrop.css'
 import '../assets/css/react-datepicker.css'
 import '../assets/css/animate.css'
@@ -26,6 +27,7 @@ app.use(function(req, res, next) {
   res.removeHeader('X-Powered-By')
   next()
 })
+app.use(xssFilter({ setOnOldIE: true }))
 app.use(cookieParser())
 
 app.use(cors())
