@@ -1,18 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { Button } from 'reactstrap'
-import { connect } from 'react-redux'
 import { Query } from 'react-apollo'
-import { fetchMyNotifications } from '../../Store/actions'
-import { Posts } from '../Post'
+import InfiniteScroll from 'react-infinite-scroller'
+
 import { Loading } from '../'
 import { FlatCardStatic } from '../../Elements'
 import { GET_NOTIFICATIONS } from '../../Store/Apollo/Queries'
-import { PostFormContainer } from '../Post'
 import styled from 'styled-components'
 import Notifications from './Notifications'
 import { orange } from '../../Utils'
-import InfiniteScroll from 'react-infinite-scroller'
 
 const NotificationsContainer = props => {
   return (
@@ -21,12 +16,15 @@ const NotificationsContainer = props => {
       query={GET_NOTIFICATIONS}
       variables={{ limit: 9, skip: 1 }}
       onCompleted={({ getLastNotifications }) => {
-          props.handleAction('fetchMyNotifications', {
-          data: getLastNotifications,
+        const existing = props.myNotifications.map(post => post.id)
+        const diff = getLastNotifications.filter(
+          post => !existing.includes(post.id)
+        )
+        props.handleAction('fetchMyNotifications', {
+          data: diff,
           count: props.myNotifications.length
-          })
-        }}
-      // refetchQueries={[{query:GET_MA_POSTS, variables:{limit: 10, skip: 0 }}]}
+        })
+      }}
     >
       {({ loading, error, data, fetchMore }) => {
         if (loading) return <Loading />
@@ -37,8 +35,8 @@ const NotificationsContainer = props => {
             },
             updateQuery: (prev, { fetchMoreResult }) => {
               if (!fetchMoreResult.getLastNotifications.length) {
-                  return props.setLoadMore(false)
-                }
+                return props.setLoadMore(false)
+              }
 
               return props.handleAction('fetchMyNotifications', {
                 data: [...fetchMoreResult.getLastNotifications]
@@ -49,7 +47,7 @@ const NotificationsContainer = props => {
         if (error) return null
         return (
           <StyledDiv className="text-center">
-            <FlatCardStatic className="" style={{minHeight: '100vh'}}>
+            <FlatCardStatic className="" style={{ minHeight: '100vh' }}>
               <div
                 className="text-left lead mb-0 mt-lg-4 mt-3"
                 style={{ fontWeight: '900' }}
@@ -65,7 +63,7 @@ const NotificationsContainer = props => {
                   opacity: '0.5'
                 }}
               />
-              
+
               <Notifications
                 loading={loading}
                 handleAction={props.handleAction}
@@ -73,15 +71,17 @@ const NotificationsContainer = props => {
                 myId={props.myId}
                 seen={props.seen}
               />
-              {props.myNotifications.length >= 10 && props.loadMore && <InfiniteScroll
-              children={[]}
-              pageStart={0}
-              loadMore={handlefetchMore}
-              hasMore={props.loadMore}
-              loader={
-                <Loading key={`${Date.now()}-loading-infinite-feed`} />
-              }
-            />}
+              {props.myNotifications.length >= 10 && props.loadMore && (
+                <InfiniteScroll
+                  children={[]}
+                  pageStart={0}
+                  loadMore={handlefetchMore}
+                  hasMore={props.loadMore}
+                  loader={
+                    <Loading key={`${Date.now()}-loading-infinite-feed`} />
+                  }
+                />
+              )}
             </FlatCardStatic>
           </StyledDiv>
         )
@@ -95,5 +95,4 @@ export default NotificationsContainer
 const StyledDiv = styled.div`
   margin: 0;
   padding: 0;
-  /* min-height: 100vh; */
 `
