@@ -22,42 +22,42 @@ import '../assets/css/style.css'
 const PORT = process.env.PORT || 8080
 const { API_BASE, SITE_URL } = process.env
 const app = express()
-// app.use(
-//   helmet.contentSecurityPolicy({
-//     directives: {
-//       defaultSrc: [
-//         "'self'",
-//         `${API_BASE}/graphql`,
-//         `blob: ${SITE_URL}/*`,
-//         'data:*'
-//       ],
-//       styleSrc: [
-//         "'self'",
-//         'https://use.fontawesome.com/',
-//         "'unsafe-inline'",
-//         'https://fonts.googleapis.com/'
-//       ],
-//       fontSrc: [
-//         'fonts.gstatic.com',
-//         'https://fonts.googleapis.com/'
-//       ],
-//       scriptSrc: [
-//         "'self'",
-//         "'unsafe-inline'",
-//         'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'
-//       ],
-//       imgSrc: [
-//         "'self'",
-//         `data: ${SITE_URL}/*`,
-//         `blob: ${SITE_URL}/*`,
-//         'https://www.w3.org',
-//         `${API_BASE}/`,
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: [
+        "'self'",
+        `${API_BASE}/graphql`,
+        `blob: ${SITE_URL}/*`,
+        'data:*'
+      ],
+      styleSrc: [
+        "'self'",
+        'https://use.fontawesome.com/',
+        "'unsafe-inline'",
+        'https://fonts.googleapis.com/'
+      ],
+      fontSrc: [
+        'fonts.gstatic.com',
+        'https://fonts.googleapis.com/'
+      ],
+      scriptSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'
+      ],
+      imgSrc: [
+        "'self'",
+        `data: ${SITE_URL}/*`,
+        `blob: ${SITE_URL}/*`,
+        'https://www.w3.org',
+        `${API_BASE}/`,
         
-//       ],
-//       upgradeInsecureRequests: true,
-//     }
-//   })
-// )
+      ],
+      upgradeInsecureRequests: true,
+    }
+  })
+)
 const sixtyDaysInSeconds = 5184000
 app.use(helmet.hsts({ maxAge: sixtyDaysInSeconds }))
 app.use(helmet.noSniff())

@@ -36,7 +36,7 @@ export default function renderer(req, store, client, context) {
       <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="840430c5e70010722d679edee63ea147c19430e1" content="e73a6ac6dc339154d6038998ef2574d65b12bf5e" />
+      
       <script type="text/javascript">
         WebFontConfig = {
           google: { families: [ 'Sigmar One::latin' ] }
