@@ -2,6 +2,7 @@ import Icon from './CustomIcons'
 import ScrollToTop from './ScrollToTop'
 import DateSquare from './DateSquare'
 import ModalComponent from './ModalComponent'
+import FadeIn from './FadeIn'
 
 export * from './FormInputs'
 export * from './Images'
@@ -11,4 +12,4 @@ export * from './Styled'
 export * from './Text'
 export * from './DateSquare'
 
-export { DateSquare, Icon, ScrollToTop, ModalComponent } 
+export { DateSquare, Icon, ScrollToTop, ModalComponent, FadeIn } 

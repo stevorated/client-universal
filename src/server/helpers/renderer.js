@@ -49,7 +49,8 @@ export default function renderer(req, store, client, context) {
           var s = document.getElementsByTagName('script')[0];
           s.parentNode.insertBefore(wf, s);
         })(); </script>
-      <link href="https://fonts.googleapis.com/css?family=Sigmar+One&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Sigmar+One&display=swap" rel="stylesheet" />
+      <link href="https://use.fontawesome.com/releases/v5.9.0/css/svg-with-js.css" rel="stylesheet" />
       ${helmet.title.toString()}
       ${helmet.meta.toString()}
       <link rel="icon" href="${linkToFavicon}" type="image/png"/>

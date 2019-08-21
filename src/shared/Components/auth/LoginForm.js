@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 
 import { mediaQueries } from '../../Utils'
-import { FbLogin } from '../../Elements'
+import { FbLogin, FadeIn } from '../../Elements'
 import { Loading } from '../'
 import forceLoggedIn from '../../HOC/forceLoggedIn'
 import { Link } from 'react-router-dom'
@@ -35,8 +35,8 @@ function LoginForm(props) {
               <Label for="email">Email</Label>
               <Input
                 value={email}
-                valid={emailValid}
-                invalid={emailInvalid}
+                // valid={emailValid}
+                // invalid={emailInvalid}
                 type="email"
                 name="email"
                 id="email"
@@ -49,8 +49,8 @@ function LoginForm(props) {
               <Label for="password">Password</Label>
               <Input
                 value={password}
-                valid={passwordValid}
-                invalid={passwordInvalid || formError}
+                // valid={passwordValid}
+                // invalid={passwordInvalid || formError}
                 onChange={props.handleChangeInput}
                 onPaste={props.handleChangeInput}
                 autoComplete="off"
@@ -59,14 +59,12 @@ function LoginForm(props) {
                 id="password"
                 placeholder="shh.. secret.."
               />
-              {
-                formError &&
-                <p style={{fontWeight: '900', fontSize: '1rem'}} className="text-danger mt-1">Wrong Details!</p>
-              }
-              {
-                formInvalid && 
-                <p  className='mt-1'>This can't really be it, check what you typed again plz</p>
-              }
+              <FadeIn show={formError}>
+                <p style={{fontWeight: '900', fontSize: '1rem'}} className="text-danger mt-3">Wrong Details!</p>
+              </FadeIn>
+              <FadeIn show={formInvalid}>
+                <p  className='mt-1'>This can't really be it, try again</p>
+              </FadeIn>
             </FormGroup>
             <Button className="btn-mainclr mt-lg-2">Sign In</Button>
             <p className="pt-3 mt-3 text-capitalize">Don't Have an Acount yet?<br />no worries.. it's easy just click here to<Link className="sigmar-one orange-color-hover no-underline-hover" to="/register"> Register</Link></p>
