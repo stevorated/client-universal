@@ -1,22 +1,17 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import {
-  Card,
-  CardTitle,
-  CardText,
-  Button,
-  CardBody
-} from 'reactstrap'
+import { Card, CardTitle, CardText, Button, CardBody } from 'reactstrap'
 import styled from 'styled-components'
 import LikePostMut from './LikePostMut'
+import { Comments, AddCommentContainer, DeletePostMutation } from './'
 import {
-  Comments,
-  AddCommentContainer,
-  DeletePostMutation
-} from './'
-import { SmallProfileImg, StyledLink, Line, FlatCardStatic } from '../../Elements'
-import { black, elevation, transition, timeAgo, orange } from '../../Utils'
+  SmallProfileImg,
+  StyledLink,
+  Line,
+  FlatCardStatic
+} from '../../Elements'
+import { black, elevation, transition, timeAgo, orange, mediaQueries } from '../../Utils'
 
 function Post(props) {
   // console.log(props)
@@ -40,7 +35,13 @@ function Post(props) {
   return !hideDeletedPost ? (
     <div className={` text-center mb-3`}>
       <StyledCard>
-        {PostedTime === 'a few seconds ago' && <div><span style={{opacity: '.7', color: black}} className="mr-2 p-1">New!</span></div>}
+        {PostedTime === 'a few seconds ago' && (
+          <div>
+            <span style={{ opacity: '.7', color: black }} className="mr-2 p-1">
+              New!
+            </span>
+          </div>
+        )}
         <CardBody>
           {myPost && (
             <DeletePostMutation
@@ -54,11 +55,7 @@ function Post(props) {
           )}
           <div className="d-flex">
             <ProfileLink to={profileUrl}>
-              <SmallProfileImg
-                className="mr-3"
-                src={avatarUrl}
-                alt=".."
-              />
+              <SmallProfileImg className="mr-3" src={avatarUrl} alt=".." />
             </ProfileLink>
             <div>
               <HoverCardTitle className="mb-0 text-capitalize">
@@ -156,9 +153,12 @@ const StyledCard = styled(FlatCardStatic)`
   color: ${black};
   background: whitesmoke;
   opacity: 0.9;
-  border-radius: 0.3rem;
+  border-radius: .3rem;
   /* margin: .4rem; */
   ${elevation[0]}
+  ${mediaQueries.lg`
+  border-radius: .8rem;
+`}
 `
 const HoverCardTitle = styled(CardTitle)`
   &:hover {

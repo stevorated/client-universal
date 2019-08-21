@@ -258,7 +258,8 @@ ul.header-navbar {
   cursor: pointer;
   transition: all .5s ease;
   opacity: .92;
-  animation: btn-click-response .8s 1;
+  transition: all .3s ease;
+  /* animation: btn-click-response .8s 1; */
 }
 .big-btn:active, .big-btn:hover  {
   outline: none;
@@ -266,7 +267,8 @@ ul.header-navbar {
   background: #c9783e;
 }
 .big-btn:hover  {
- animation: btn-animate 1s infinite;
+ /* animation: btn-animate 1s; */
+ transform: scale(1.06);
 }
 
 .fadeAway {

@@ -17,11 +17,14 @@ import {
 import { isEmail, isLength } from 'validator'
 import { registerUser } from '../../Store/actions'
 import { FbLogin, FadeIn } from '../../Elements'
-import { orange, red, arsenic, lightOrange } from '../../Utils'
+import InputComponent from './InputComponent'
+
+
+
+
 
 function RegisterForm({ state, handleFormState, register, errors }) {
-  const [showEmailError, setShowEmailError] = useState(true)
-  const [showUsernameError, setShowUsernameError] = useState(true)
+
   const {
     fname,
     lname,
@@ -45,11 +48,20 @@ function RegisterForm({ state, handleFormState, register, errors }) {
     great
   } = state
 
+  const usernameErrorText = () => (<div>username must be <strong>one word </strong>
+     & at least 4 letters.</div>)
+
   const handleReg = async e => {
     e.preventDefault()
     try {
-      if (lnameGood && fnameGood && usernameGood && emailGood && passwordGood) {
-        const res = await register({
+      if (
+        lnameGood &&
+        fnameGood &&
+        usernameGood &&
+        emailGood &&
+        (weak || better || great)
+      ) {
+        await register({
           variables: {
             fname,
             lname,
@@ -101,7 +113,6 @@ function RegisterForm({ state, handleFormState, register, errors }) {
           value &&
           isLength(value, { min: 2, max: 30 })
         ) {
-          setShowUsernameError(false)
           handleFormState({ usernameError: false })
           handleFormState({ usernameGood: true })
         } else if (value && isLength(value, { min: 2, max: 30 })) {
@@ -114,7 +125,6 @@ function RegisterForm({ state, handleFormState, register, errors }) {
           handleFormState({ emailError: true })
           handleFormState({ emailGood: false })
         } else if (errors && errors.email && value && isEmail(value)) {
-          setShowEmailError(false)
           handleFormState({ emailError: false })
           handleFormState({ emailGood: true })
         } else if (value && isEmail(value)) {
@@ -188,282 +198,121 @@ function RegisterForm({ state, handleFormState, register, errors }) {
             <h1 className="sigmar-one mt-md-3 my-3 mb-md-4">
               Better get Typing..
             </h1>
-            <FormGroup>
-              <Label for="fname-reg">first name</Label>
-              <Input
-                autoComplete="off"
-                // valid={fnameGood}
-                // invalid={fnameError || (!!errors && !!errors.fname)}
-                type="text"
-                name="fname"
-                id="fname-reg"
-                placeholder="first name please"
-                onChange={handleChangeInput}
-                value={fname}
-              />
-              <FadeIn show={fnameError}>
-                <Alert
-                  color="warning"
-                  style={{
-                    fontWeight: '500',
-                    fontSize: '1rem',
-                    padding: '0.1rem',
-                    marginBottom: '0',
-                    marginTop: '.1rem'
-                  }}
-                  className="text-danger"
-                >
-                  first name must be at least 2 letters long
-                </Alert>
-              </FadeIn>
-              <FadeIn show={errors !== undefined}>
-                <Alert
-                  style={{
-                    fontWeight: '500',
-                    fontSize: '1rem',
-                    padding: '0.1rem',
-                    marginBottom: '0',
-                    marginTop: '.1rem'
-                  }}
-                  className="text-danger"
-                >
-                  errors
-                  {/* {errors.fname.message} */}
-                </Alert>
-              </FadeIn>
-            </FormGroup>
-            <FormGroup>
-              <Label for="lname-reg">last name</Label>
-              <Input
-                autoComplete="off"
-                // valid={lnameGood}
-                // invalid={lnameError || (!!errors && !!errors.lname)}
-                type="text"
-                name="lname"
-                id="lname-reg"
-                placeholder="last name please"
-                onChange={handleChangeInput}
-                value={lname}
-              />
-
-              <FadeIn show={lnameError}>
-                <Alert
-                  color="warning"
-                  style={{
-                    fontWeight: '500',
-                    fontSize: '1rem',
-                    padding: '0.1rem',
-                    marginBottom: '0',
-                    marginTop: '.1rem'
-                  }}
-                  className="text-danger"
-                >
-                  last name must be at least 2 letters long
-                </Alert>
-              </FadeIn>
-              <FadeIn show={errors !== undefined}>
-                <Alert
-                  style={{
-                    fontWeight: '500',
-                    fontSize: '1rem',
-                    padding: '0.1rem',
-                    marginBottom: '0',
-                    marginTop: '.1rem'
-                  }}
-                  className="text-danger"
-                >
-                  errors
-                  {/* {errors.fname.message} */}
-                </Alert>
-              </FadeIn>
-            </FormGroup>
-            <FormGroup>
-              <Label for="username">username</Label>
-              <Input
-                autoComplete="off"
-                // valid={usernameGood}
-                // invalid={usernameError || (!!errors && !!errors.username)}
-                type="text"
-                name="username"
-                id="username-reg"
-                placeholder="username please"
-                onChange={handleChangeInput}
-                value={username}
-              />
-              <FadeIn show={usernameError}>
-                <Alert
-                  color="warning"
-                  style={{
-                    fontWeight: '500',
-                    fontSize: '1rem',
-                    padding: '0.1rem',
-                    marginBottom: '0',
-                    marginTop: '.1rem'
-                  }}
-                  className="text-danger"
-                >
-                  username must be <strong>one word</strong>
-                  <br /> & at least 4 letters long
-                </Alert>
-              </FadeIn>
-              <FadeIn show={errors !== undefined}>
-                <Alert
-                  style={{
-                    fontWeight: '500',
-                    fontSize: '1rem',
-                    padding: '0.1rem',
-                    marginBottom: '0',
-                    marginTop: '.1rem'
-                  }}
-                  className="text-danger"
-                >
-                  errors
-                  {/* {errors.fname.message} */}
-                </Alert>
-              </FadeIn>
-            </FormGroup>
-            <FormGroup>
-              <Label for="email">Email</Label>
-              <Input
-                autoComplete="off"
-                // valid={emailGood}
-                // invalid={emailError || (!!errors && !!errors.email)}
-                type="email"
-                name="email"
-                id="email-reg"
-                placeholder="your email please"
-                onChange={handleChangeInput}
-                value={email}
-              />
-              <FadeIn show={emailError}>
-                <Alert
-                  color="warning"
-                  style={{
-                    fontWeight: '500',
-                    fontSize: '1rem',
-                    padding: '0.1rem',
-                    marginBottom: '0',
-                    marginTop: '.1rem'
-                  }}
-                  className="text-danger"
-                >
-                  email must be a valid email address
-                </Alert>
-              </FadeIn>
-              <FadeIn show={errors !== undefined}>
-                <Alert
-                  style={{
-                    fontWeight: '500',
-                    fontSize: '1rem',
-                    padding: '0.1rem',
-                    marginBottom: '0',
-                    marginTop: '.1rem'
-                  }}
-                  className="text-danger"
-                >
-                  errors
-                  {/* {errors.fname.message} */}
-                </Alert>
-              </FadeIn>
-              {/* {emailError && (
-                <FormFeedback></FormFeedback>
-              )}
-              {errors &&
-                showEmailError &&
-                (errors.email && (
-                  <FormFeedback>{errors.email.message}</FormFeedback>
-                ))} */}
-            </FormGroup>
+            <InputComponent 
+              label="first name"
+              name="fname"
+              id="fname-reg"
+              type = 'text'
+              placeholder="first name here"
+              value={fname}
+              error={fnameError}
+              errorText="first name must be at least 2 letters long"
+              handleChangeInput={handleChangeInput}
+              errors={errors}
+            />
+            <InputComponent 
+              label="last name"
+              name="lname"
+              id="lname-reg"
+              type = 'text'
+              placeholder="last name here"
+              value={lname}
+              error={lnameError}
+              errorText="last name must be at least 2 letters long"
+              handleChangeInput={handleChangeInput}
+              errors={errors}
+            />
+            <InputComponent 
+              label="username"
+              name="username"
+              id="username-reg"
+              type = 'text'
+              placeholder="username here"
+              value={username}
+              error={usernameError}
+              errorText={usernameErrorText()}
+              handleChangeInput={handleChangeInput}
+              errors={errors}
+            />
+            <InputComponent 
+              label="email"
+              name="email"
+              id="email-reg"
+              type = 'email'
+              placeholder="email here"
+              value={email}
+              error={emailError}
+              errorText="must be a valid email address"
+              handleChangeInput={handleChangeInput}
+              errors={errors}
+            />
             <FormGroup>
               <Label for="password">Password</Label>
               <Input
                 value={password}
                 onChange={handleChangeInput}
                 autoComplete="off"
-                // valid={passwordGood}
-                // invalid={passwordError || (!!errors && !!errors.password)}
                 type="password"
                 name="password"
                 id="password-reg"
                 placeholder="shh.. secret.."
               />
-              <FadeIn show={weak}>
-                <Alert
-                  color="warning"
-                  style={{
-                    fontWeight: '500',
-                    fontSize: '1rem',
-                    padding: '0.1rem',
-                    marginBottom: '0',
-                    marginTop: '.1rem'
-                  }}
-                  className="text-danger"
-                >
-                  <span style={{ fontWeight: '700' }}>
-                    yeah, it's good enough
-                  </span>{' '}
-                  but you should really choose a better password, add
-                  characters, maybe a number?
-                </Alert>
-              </FadeIn>
-              <FadeIn show={better}>
-                <Alert
-                  color="success"
-                  style={{
-                    fontWeight: '500',
-                    fontSize: '1rem',
-                    padding: '0.1rem',
-                    marginBottom: '0',
-                    marginTop: '.1rem'
-                  }}
-                  className="text-danger"
-                >
-                  <span style={{ fontWeight: '700' }}>
-                    That's much better!
-                  </span>{' '}
-                  you can add special characters to make it even better
-                </Alert>
-              </FadeIn>
-              <FadeIn show={great}>
-                <p
-                  style={{
-                    fontWeight: '700',
-                    border: '1px solid black',
-                    background: lightOrange
-                  }}
-                  className="text-capitalize mt-2 p-1"
-                >
-                  <span style={{ fontWeight: '900', fontSize: '1.5rem' }}>
-                    Wow!
-                  </span>
-                  <br /> now that's what i call a great password! <br />{' '}
-                  <span style={{ fontSize: '1.3rem' }}>Go ahead tiger</span>
-                </p>
-              </FadeIn>
-              <FadeIn show={passwordError}>
-                <p>
-                  password must be between 6 and 30 characters long
-                  <br />& must contain at least one uppercase letter.
-                </p>
-              </FadeIn>
               {passwordError && (
-                <FormFeedback>
-                  password must be between 6 and 30 characters long
-                  <br />& must contain at least one uppercase letter.
-                </FormFeedback>
+                <div className="mt-2 text-danger">
+                  Password must have at least 6 letter including uppercase and
+                  lowercase letters
+                </div>
               )}
-              {errors &&
-                (errors.password && (
-                  <FormFeedback>{errors.password.message}</FormFeedback>
-                ))}
+              <FadeIn show={weak || better || great}>
+                <Alert
+                  color={great ? 'success' : 'warning'}
+                  style={{
+                    fontWeight: '500',
+                    fontSize: '1rem',
+                    padding: '0.1rem',
+                    marginBottom: '0',
+                    marginTop: '.1rem'
+                  }}
+                  className="text-danger"
+                >
+                  {weak && (
+                    <div>
+                      <span style={{ fontWeight: '700' }}>
+                        yeah, it's good enough
+                      </span>{' '}
+                      but you should really choose a better password, add
+                      characters, maybe a number?
+                    </div>
+                  )}
+                  {better && (
+                    <div>
+                      <span style={{ fontWeight: '700' }}>
+                        That's much better!
+                      </span>{' '}
+                      you can add special characters to make it even better
+                    </div>
+                  )}
+                  {great && (
+                    <div
+                      style={{
+                        fontWeight: '700'
+                      }}
+                      className="text-capitalize mt-2 p-1"
+                    >
+                      great password!
+                    </div>
+                  )}
+                </Alert>
+              </FadeIn>
             </FormGroup>
-            {submitError && (
+
+            <Button className="btn-mainclr">Sign In</Button>
+            <FadeIn show={submitError}>
               <p className="my-3 text-danger smallText">
                 You Have Errors In your form Or Stuff missing..
               </p>
-            )}
-            <Button className="btn-mainclr">Sign In</Button>
-            <p className="pt-3">
+            </FadeIn>
+            <p className="p-3 mt-1">
               Already Have an Acount?{' '}
               <Link
                 className="sigmar-one orange-color-hover no-underline-hover"

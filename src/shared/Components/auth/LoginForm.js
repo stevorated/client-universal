@@ -30,7 +30,7 @@ function LoginForm(props) {
             onSubmit={props.handleLogin}
           >
             <h6 className="mt-4 sigmar-one">- OR -</h6>
-            <h1 className="sigmar-one mt-md-3 my-3 mb-md-4">Better get Typing..</h1>
+            <h1 className="sigmar-one mt-md-3 my-3 mb-md-4">Login</h1>
             <FormGroup>
               <Label for="email">Email</Label>
               <Input

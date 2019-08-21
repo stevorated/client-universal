@@ -23,29 +23,16 @@ export class PublicPage extends Component {
 
   goToRegister = () => {
     this.setState({
-      fadeOut: "animated rollOut",
-      where: "/register"
+      where: "/register",
+      redirect: true
     })
-    setTimeout(
-      () =>
-        this.setState({
-          redirect: true
-        }),
-      1200
-    )
   }
   gotoLogin = () => {
     this.setState({
-      fadeOut: "animated hinge",
-      where: "/login"
+      // fadeOut: "animated fadeOut faster ",
+      where: "/login",
+      redirect: true
     })
-    setTimeout(
-      () =>
-        this.setState({
-          redirect: true
-        }),
-      1200
-    )
   }
 
   render() {
@@ -73,7 +60,7 @@ export class PublicPage extends Component {
             <FbLogin />
           </Col>
           <Col md={4}>
-            <OrHeader className="mt-4 sigmar-one">- OR -</OrHeader>
+            <OrHeader style={{ fontFamily: "'Sigmar One', cursive" }} className="mt-4">- OR -</OrHeader>
             <StyledBigButton
               data-test="loginBtn"
               style={{ fontFamily: "'Sigmar One', cursive" }}

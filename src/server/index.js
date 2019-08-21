@@ -20,14 +20,16 @@ import '../assets/css/bootstrap.min.css'
 import '../assets/css/style.css'
 
 const PORT = process.env.PORT || 8080
-const { API_BASE } = process.env
+const { API_BASE, SITE_URL } = process.env
 const app = express()
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: [
         "'self'",
-        `${API_BASE}/graphql`
+        `${API_BASE}/graphql`,
+        `blob: ${SITE_URL}/*`,
+        'data:*'
       ],
       styleSrc: [
         "'self'",
@@ -45,9 +47,12 @@ app.use(
         'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'
       ],
       imgSrc: [
-        "'self'", 
+        "'self'",
+        `data: ${SITE_URL}/*`,
+        `blob: ${SITE_URL}/*`,
         'https://www.w3.org',
         `${API_BASE}/`,
+        
       ],
       upgradeInsecureRequests: true,
     }
