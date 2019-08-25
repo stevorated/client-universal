@@ -3,7 +3,6 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { createUploadLink } from 'apollo-upload-client'
 import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
-import history from './history'
 
 if(process.env.NODE_ENV !== 'production') {
   console.log('url:', process.env.GRAPH_URL)
@@ -28,7 +27,6 @@ const errorLink = onError(({ graphQLErrors, networkError, operation, forward, re
   if (graphQLErrors){
     {!isProd && graphQLErrors.forEach((err)=> console.log(err.extensions.code))}
     if(graphQLErrors.find((err)=>err.extensions.code === 'UNAUTHENTICATED')) {
-      // history.push('/')
     }
     graphQLErrors.map(({message, path, extensions, locations}) =>
     !isProd ? console.log(

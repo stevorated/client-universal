@@ -1,26 +1,31 @@
-import React, { useState, Fragment, createRef } from "react"
-import { Link, NavLink } from "react-router-dom"
-import { connect } from "react-redux"
+import React, { useState, Fragment, createRef } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 import {
   Collapse,
   Navbar,
   NavbarToggler,
   Nav,
-  NavItem
-} from "reactstrap"
-import { SearchBar, LiveNotificationCount, ScrollTo } from "../Components"
-import styled from "styled-components"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+  NavItem,
+  Tooltip
+} from 'reactstrap'
+import { SearchBar, LiveNotificationCount, ScrollTo } from '../Components'
+import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import {
   faBars,
   faBell,
-  faCalendarAlt
-} from "@fortawesome/free-solid-svg-icons"
-import { elevationJs, orange, lightOrange, mediaQueries, white } from "../Utils"
-import { logoutUser, clearNewNotifications } from "../Store/actions"
-import Logo from "../../assets/logos/logo7.png"
-const linkLogo = Logo.replace("build", "").replace("/public", "")
+  faCalendarAlt,
+  faFeather
+} from '@fortawesome/free-solid-svg-icons'
+import { elevationJs, orange, lightOrange, mediaQueries, white } from '../Utils'
+import { logoutUser, clearNewNotifications } from '../Store/actions'
+import Logo from '../../assets/logos/logo7.png'
+const linkLogo = Logo.replace('build', '').replace('/public', '')
+
 function NavbarComponent(props) {
+
   const {
     newNotificationsCount,
     auth,
@@ -30,11 +35,16 @@ function NavbarComponent(props) {
     whereTo,
     clearNewNotifications
   } = props
+
+  const [collapsed, toggleNavbar] = useState(false)
+  const [prompt, setPrompt] = useState(false)
+
+  const toggle = () => setPrompt(!prompt)
+  
   const scroll = createRef()
-  const scrollToTop = (ref) => {
+  const scrollToTop = ref => {
     ref.current.scrollIntoView({ behavior: 'smooth' })
   }
-  const [collapsed, toggleNavbar] = useState(false)
 
   const handleToggleNav = () => toggleNavbar(!collapsed)
 
@@ -53,20 +63,36 @@ function NavbarComponent(props) {
   }
 
   const handleLogout = async () => {
-    if (collapsed === true) {
-      toggleNavbar(!collapsed)
+    if (!prompt) {
+      return setPrompt(true)
+    } else if (prompt) {
+      if (collapsed === true) {
+        toggleNavbar(!collapsed)
+      }
+      return logoutUser()
     }
-    return logoutUser()
   }
 
   const authBtn = auth ? (
-    <NavLink
-      className="nav-link mt-md-0 mt-0"
-      to="/logout"
-      onClick={handleLogout}
-    >
-      Logout
-    </NavLink>
+    <div className="text-left">
+      <NavLink
+        id="logoutBtn"
+        className="nav-link mt-0"
+        to="/logout"
+        onClick={handleLogout}
+      >
+        Logout
+      </NavLink>
+      <Tooltip
+        target="logoutBtn"
+        trigger="click"
+        isOpen={prompt}
+        toggle={toggle}
+        placment="left"
+      >
+        You Sure?
+      </Tooltip>
+    </div>
   ) : (
     <div className="d-md-flex mt-2 mt-md-0">
       <NavLink
@@ -94,7 +120,7 @@ function NavbarComponent(props) {
   )
   return (
     <Fragment>
-      <div style={{position: 'absolute', top: '-10vh', height: '0'}}>
+      <div style={{ position: 'absolute', top: '-10vh', height: '0' }}>
         <ScrollTo scroll={scroll} />
       </div>
       <Navbar
@@ -106,16 +132,16 @@ function NavbarComponent(props) {
         fixed="top"
       >
         <NavLink
-          style={{ fontSize: "1.1rem", margin: "0", padding: "0" }}
+          style={{ fontSize: '1.1rem', margin: '0', padding: '0' }}
           className="nav-link text-white"
           onClick={handleClick}
-          to={auth ? "/event-board" : "/"}
+          to={auth ? '/event-board' : '/'}
         >
-          {" "}
+          {' '}
           <LogoImg className="ml-sm-0" src={linkLogo} alt="" />
         </NavLink>
         <NavbarToggler onClick={handleToggleNav}>
-          <FontAwesomeIcon className="mr-0" icon={faBars} size={"lg"} />
+          <FontAwesomeIcon className="mr-0" icon={faBars} size={'lg'} />
         </NavbarToggler>
 
         <Collapse isOpen={collapsed} navbar>
@@ -134,7 +160,7 @@ function NavbarComponent(props) {
               <Fragment>
                 <NavItem>
                   <NavLink
-                    style={{ position: "relative" }}
+                    style={{ position: 'relative' }}
                     className="nav-link"
                     onClick={handleClickAndClearNotifications}
                     to="/notifications"
@@ -143,41 +169,42 @@ function NavbarComponent(props) {
                       <div
                         style={{
                           // padding: '10px',
-                          color: "black",
-                          fontSize: "9px",
-                          fontWeight: "900",
-                          width: "14px",
-                          height: "14px",
-                          position: "absolute",
-                          zIndex: "10000000000",
-                          top: "0",
-                          left: "4px",
-                          borderRadius: "100%",
+                          color: 'black',
+                          fontSize: '9px',
+                          fontWeight: '900',
+                          width: '14px',
+                          height: '14px',
+                          position: 'absolute',
+                          zIndex: '10000000000',
+                          top: '0',
+                          left: '4px',
+                          borderRadius: '100%',
                           background: orange
                         }}
                       >
                         <div className="text-center">
                           {newNotificationsCount < 10
                             ? newNotificationsCount
-                            : "10+"}
-                        </div>{" "}
+                            : '10+'}
+                        </div>{' '}
                       </div>
                     )}
                     {auth && <LiveNotificationCount />}
-                    <StyledIcon className="mr-0" icon={faBell} size={"lg"} />
+                    <StyledIcon className="mr-0" icon={faBell} size={'lg'} />
                     <StyledSpan>Notifications</StyledSpan>
                   </NavLink>
                 </NavItem>
 
-                {/* <NavItem>
-              <NavLink
-                className='nav-link'
-                onClick={handleClick}
-                to='/engage-gauge '
-              >
-                <StyledIcon className="mr-2" icon={faFeather} size={'lg'} /><StyledSpan>Engage Guage</StyledSpan>
-              </NavLink>
-            </NavItem> */}
+                <NavItem>
+                  <NavLink
+                    className="nav-link"
+                    onClick={handleClick}
+                    to="/engage-gauge"
+                  >
+                    <StyledIcon className="mr-2" icon={faFeather} size={'lg'} />
+                    <StyledSpan>Engage Guage</StyledSpan>
+                  </NavLink>
+                </NavItem>
 
                 <NavItem>
                   <NavLink
@@ -188,7 +215,7 @@ function NavbarComponent(props) {
                     <StyledIcon
                       className="mr-0"
                       icon={faCalendarAlt}
-                      size={"lg"}
+                      size={'lg'}
                     />
                     <StyledSpan>Calander</StyledSpan>
                   </NavLink>
@@ -235,20 +262,8 @@ function NavbarComponent(props) {
                     Settings
                   </NavLink>
                 </StyledNavItem>
-                {/* <StyledNavItem>
-                  <NavLink
-                    className="nav-link"
-                    onClick={handleClick}
-                    to="/prefrences"
-                  >
-                    Prefrences
-                  </NavLink>
-                </StyledNavItem> */}
               </Fragment>
             )}
-            <NavItem>
-              <StyledLine className="noPadding" />
-            </NavItem>
             <NavItem>{authBtn}</NavItem>
           </Nav>
         </Collapse>
@@ -263,18 +278,18 @@ function NavbarComponent(props) {
             <div
               style={{
                 // padding: '10px',
-                color: "black",
-                fontSize: "10px",
-                fontWeight: "900",
-                width: "14px",
-                height: "14px",
-                position: "fixed",
-                right: "95px",
-                top: "12px",
-                zIndex: "10000000000",
+                color: 'black',
+                fontSize: '10px',
+                fontWeight: '900',
+                width: '14px',
+                height: '14px',
+                position: 'fixed',
+                right: '95px',
+                top: '12px',
+                zIndex: '10000000000',
                 // top: '0',
                 // left: '0',
-                borderRadius: "100%",
+                borderRadius: '100%',
                 background: orange
               }}
             >
@@ -339,14 +354,8 @@ const StyledSpan = styled.span`
 `
 
 const StyledLine = styled.hr`
-    display: block; 
-    background: white;
-    /* border: 2px solid white; */
-    /* width: 2px; */
-    /* ${mediaQueries.md`
-     
-    display: none;
-  `} */
+  display: block;
+  background: white;
 `
 
 const LogoImg = styled.img`
@@ -355,7 +364,3 @@ const LogoImg = styled.img`
   height: 3rem;
   `}
 `
-
-// <Switch>
-// {routes.map(route => <Route key={route.name} {...route} />)}
-// </Switch>

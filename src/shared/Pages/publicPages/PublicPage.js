@@ -46,7 +46,7 @@ export class PublicPage extends Component {
       >
         <HelmetComponent data-test="helmet" pageTitle={this.title} ogTitle={this.title} />
         <div className="mt-5">
-          <h1 className="welcome-to">- Welcome to -</h1>
+          <h1 className="welcome-to mb-4">- Welcome to -</h1>
           <LogoHeader
             data-test="logo"
             className="logo-img m-auto"
@@ -56,11 +56,11 @@ export class PublicPage extends Component {
           />
         </div>
         <Row className="mt-4 text-center">
-          <Col md={4}>
+          <Col md={4} className="pl-lg-5">
             <FbLogin />
           </Col>
           <Col md={4}>
-            <OrHeader style={{ fontFamily: "'Sigmar One', cursive" }} className="mt-4">- OR -</OrHeader>
+            <OrHeader style={{ fontFamily: "'Sigmar One', cursive" }} className="mt-3">- OR -</OrHeader>
             <StyledBigButton
               data-test="loginBtn"
               style={{ fontFamily: "'Sigmar One', cursive" }}

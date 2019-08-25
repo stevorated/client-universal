@@ -13,11 +13,14 @@ export default function InputComponent(props) {
   errorText,
   errors,
   handleChangeInput,
-  value
+  value,
+  weak,
+  better,
+  strong 
   } = props
   return (
-    <FormGroup>
-      <Label for={id}>{label}</Label>
+    <FormGroup className="text-capitalize">
+      <Label  for={id}>{label}</Label>
       <Input
         autoComplete="off"
         type={type}
@@ -28,34 +31,19 @@ export default function InputComponent(props) {
         value={value}
       />
       <FadeIn show={error}>
-        <Alert
-          color="warning"
-          style={{
-            fontWeight: '500',
-            fontSize: '1rem',
-            padding: '0.1rem',
-            marginBottom: '0',
-            marginTop: '.1rem'
-          }}
-          className="text-danger"
+        <div
+          className="mt-2 text-danger"
         >
           {errorText}
-        </Alert>
+        </div>
       </FadeIn>
       <FadeIn show={errors !== undefined}>
         {errors && errors[name] && (
-          <Alert
-            style={{
-              fontWeight: '500',
-              fontSize: '1rem',
-              padding: '0.1rem',
-              marginBottom: '0',
-              marginTop: '.1rem'
-            }}
-            className="text-danger"
+          <div
+            className="mt-2 text-danger"
           >
             {errors[name].message}
-          </Alert>
+          </div>
         )}
       </FadeIn>
     </FormGroup>

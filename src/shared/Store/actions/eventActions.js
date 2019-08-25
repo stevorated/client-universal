@@ -54,7 +54,7 @@ export const fetchMyEvents = (data, limit) => async (dispatch, getState, client)
       query: FETCH_MY_EVENTS,
       variables: { limit: 5 }
     })
-    console.log(fetchEventsQuery.data.getMyEventsFeed)
+    // console.log(fetchEventsQuery.data.getMyEventsFeed)
     dispatch({
       type: 'FETCH_MY_EVENTS',
       payload: fetchEventsQuery.data.getMyEventsFeed

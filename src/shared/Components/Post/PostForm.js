@@ -14,7 +14,7 @@ import {
   FormGroup
 } from 'reactstrap'
 import { isLength } from 'validator'
-import { elevation, transition, orange } from '../../Utils'
+import { elevation, transition, orange, mediaQueries } from '../../Utils'
 import { FadeIn } from '../../Elements'
 
 import styled from 'styled-components'
@@ -118,17 +118,17 @@ export default function PostForm(props) {
 }
 
 const StyledCard = styled(Card)`
-  ${elevation[3]};
+  ${elevation[6]};
   background: whitesmoke;
   opacity: 0.9;
-  margin-top: 0.6rem;
+  margin-top: .6rem;
   margin-bottom: 1rem;
-  ${transition({
-    property: 'box-shadow'
-  })};
-  &:hover {
-    ${elevation[4]};
-  }
+  border-radius: .1rem;
+  ${mediaQueries.lg`
+  border-radius: .8rem;
+  margin-top: 1rem;
+`}
+transition: all 1s ease;
   &:active,
   &:focus {
     border-color: ${orange};

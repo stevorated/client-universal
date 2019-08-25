@@ -33,10 +33,10 @@ function Menu(props) {
         <Row >
           <Col lg={12} xs={6} className="p-0">
             <StyledList className="p-0 m-0 pb-2">
-              <MenuItem icon={faAnchor} text="Event Board" to="/event-board" />
               <MenuItem icon={faUtensils} text="Event Feed" to="/event-feed"/>
               <MenuItem icon={faCookieBite} text="Post Feed" to="/feed" />
               <MenuItem icon={faBrain} text="Engage Page" to="/engage-gauge"/>
+              <MenuItem icon={faAnchor} text="Event Board" to="/event-board" />
             </StyledList>
           </Col>
           <Col lg={12} xs={6} className="p-0 pb-2">

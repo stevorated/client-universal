@@ -58,8 +58,8 @@ export class EngagePage extends Component {
         </FloatLeft>
         <Col
           data-test="mainCol"
-          lg="8"
-          className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-3"
+          lg="9"
+          className="offset-lg-3 order-3 order-lg-2 animated fadeIn mt-lg-3 pr-lg-4"
         >
           <SummeryComponent
             state={this.state}

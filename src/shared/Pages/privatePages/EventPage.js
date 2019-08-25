@@ -13,7 +13,6 @@ import checkLoggedIn from '../../HOC/checkLoggedIn'
 import { EventDetailsQuery } from '../../Components'
 import Menu from '../../Routes/Menu'
 import { mediaQueries, elevation } from '../../Utils'
-import { history } from '../../Routes/history'
 
 class EventPage extends Component {
   constructor(props) {
@@ -24,13 +23,9 @@ class EventPage extends Component {
     this.state = {
       redirect: false
     }
-
-    // this.location = history().location;
-    // console.log(this.location)
   }
 
   scrollToTop = () => {
-    // console.log('scrolll')
     this.scroll.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' })
   }
 

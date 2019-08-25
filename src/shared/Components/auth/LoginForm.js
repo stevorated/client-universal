@@ -66,7 +66,7 @@ function LoginForm(props) {
                 <p  className='mt-1'>This can't really be it, try again</p>
               </FadeIn>
             </FormGroup>
-            <Button className="btn-mainclr mt-lg-2">Sign In</Button>
+            <Button className="btn-mainclr mt-lg-2">Log In</Button>
             <p className="pt-3 mt-3 text-capitalize">Don't Have an Acount yet?<br />no worries.. it's easy just click here to<Link className="sigmar-one orange-color-hover no-underline-hover" to="/register"> Register</Link></p>
           </Form>
         </Col>

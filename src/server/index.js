@@ -1,7 +1,6 @@
 import express from 'express'
 import cors from 'cors'
 import { matchRoutes } from 'react-router-config'
-import proxy from 'express-http-proxy' //TODO: return the proxy
 import cookieParser from 'cookie-parser'
 import routes from '../shared/Routes/mainRoutes'
 import helmet from 'helmet'
@@ -13,7 +12,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
 import xssFilter from 'x-xss-protection'
-// import '../assets/css/ReactCrop.css'
+
 import '../assets/css/react-datepicker.css'
 import '../assets/css/animate.css'
 import '../assets/css/bootstrap.min.css'
@@ -59,15 +58,15 @@ app.use(
   })
 )
 const sixtyDaysInSeconds = 5184000
-app.use(helmet.hsts({ maxAge: sixtyDaysInSeconds }))
-app.use(helmet.noSniff())
-app.use(helmet.frameguard({ action: 'sameorigin' }))
-app.use(helmet.hidePoweredBy())
 app.disable('x-powered-by')
 app.use(function(req, res, next) {
   res.removeHeader('X-Powered-By')
   next()
 })
+app.use(helmet.hidePoweredBy())
+app.use(helmet.hsts({ maxAge: sixtyDaysInSeconds }))
+app.use(helmet.noSniff())
+app.use(helmet.frameguard({ action: 'sameorigin' }))
 app.use(xssFilter({ setOnOldIE: true }))
 
 app.use(cookieParser())
