@@ -3,7 +3,7 @@
 React Polymorphic (Server Side Rendered) App, 
 
 Features: 
-1. Polymorphic React App rendering first on the Server To Provide better scalabily
+1. Polymorphic React App rendering first on the Server To Provide better sco and faster load rate.
 2. Redux intgrated with Apollo client to Provide an alternative to Apollo Cache.
 3. Apollo Client GraphQL
 4. Image upload with crop
